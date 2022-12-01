@@ -1,0 +1,76 @@
+.t-float-left {
+  float: left;
+}
+.t-float-right {
+  float: right;
+}
+@keyframes tdesign-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.hotspot-expanded.relative {
+  position: relative;
+}
+.hotspot-expanded::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transform: scale(1.5);
+}
+.t-textarea {
+  padding: 32rpx 32rpx;
+  background-color: var(--td-textarea-background-color, #fff);
+}
+.t-textarea__label:not(:empty) {
+  font-size: 28rpx;
+  color: var(--td-textarea-label-color, rgba(0, 0, 0, 0.9));
+  line-height: 44px;
+  padding-bottom: 16rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.t-textarea__wrapper {
+  width: 100%;
+}
+.t-textarea__wrapper-inner {
+  box-sizing: border-box;
+  width: inherit;
+  height: 72px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  background-color: transparent;
+  border: 0;
+  resize: none;
+  font-size: 32rpx;
+  color: 32rpx;
+  line-height: 48rpx;
+}
+.t-textarea__placeholder {
+  color: var(--td-textarea-placeholder-color, rgba(0, 0, 0, 0.4));
+  font-size: 32rpx;
+}
+.t-textarea__indicator:not(:empty) {
+  color: var(--td-textarea-indicator-text-color, rgba(0, 0, 0, 0.4));
+  font-size: 24rpx;
+  text-align: right;
+  line-height: 40rpx;
+  padding-top: 16rpx;
+}
+.t-textarea--border {
+  border-radius: var(--td-textarea-border-radius, 12rpx);
+  border: 2rpx solid var(--td-textarea-border-color, #dcdcdc);
+}
+.t-textarea .t-is-disabled {
+  color: var(--td-textarea-disabled-text-color, rgba(0, 0, 0, 0.26));
+}

@@ -1,2 +1,19 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
+  <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}">
+    {{item.label}}
+  </t-tab-bar-item>
+</t-tab-bar>
+<t-swiper
+  current="{{current}}"
+  autoplay="{{autoplay}}"
+  duration="{{duration}}"
+  interval="{{interval}}"
+  bindchange="onChange"
+  navigation
+>
+  <t-swiper-item wx:for="{{swiperList}}" wx:key="index">
+    <image src="{{item.image}}" class="img" />
+  </t-swiper-item>
+</t-swiper>
+

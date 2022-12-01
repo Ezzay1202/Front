@@ -1,16 +1,23 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/login/login",
+    "pages/apply/apply",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "NIC",
     "navigationBarTextStyle":"black"
   },
+
   "usingComponents": {
+    
+    "t-swiper": "tdesign-miniprogram/swiper/swiper",
+    "t-swiper-item": "tdesign-miniprogram/swiper/swiper-item",
+    "t-swiper-nav": "tdesign-miniprogram/swiper/swiper-nav",
     "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
     "t-tab-bar-item": "tdesign-miniprogram/tab-bar/tab-bar-item"
   },

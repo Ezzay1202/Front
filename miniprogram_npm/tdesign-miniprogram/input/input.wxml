@@ -1,0 +1,92 @@
+<wxs src="./input.wxs" module="utils" />
+<view
+  style="{{ customStyle }}"
+  class="{{classPrefix}} {{classPrefix}}--size-{{size}} {{classPrefix}}--layout-{{layout}} {{prefix}}-class"
+>
+  <view wx:if="{{prefixIcon || label}}" class="{{classPrefix}}__wrap--prefix">
+    <view wx:if="{{prefixIcon}}" class="{{classPrefix}}__icon--prefix">
+      <slot name="prefixIcon" wx:if="{{prefixIcon === 'slot'}}" />
+      <t-icon
+        wx:else
+        class="{{prefix}}-class-prefix-icon"
+        name="{{prefixIconProps.name || prefixIcon}}"
+        prefix="{{prefixIconProps.prefix}}"
+        size="{{prefixIconProps.size || '48rpx'}}"
+        color="{{prefixIconProps.color}}"
+        customStyle="{{prefixIconProps.customStyle}}"
+      ></t-icon>
+    </view>
+    <view wx:if="{{label}}" class="{{classPrefix}}__label">
+      <slot name="label" wx:if="{{label === 'slot'}}" />
+      <text wx:else class="{{prefix}}-class-label">{{label}}</text>
+    </view>
+  </view>
+
+  <view class="{{classPrefix}}__wrap">
+    <view
+      class="{{classPrefix}}__content {{prefix}}-is-{{status}}  {{borderless ? '' : classPrefix + '--border'}} {{ focus ? prefix + '-is-focus' : ''}}"
+    >
+      <input
+        disabled="{{disabled}}"
+        placeholder="{{placeholder}}"
+        placeholderStyle="{{placeholderStyle}}"
+        placeholder-class="{{classPrefix}}__placeholder"
+        value="{{value}}"
+        bindinput="onInput"
+        bindfocus="onFocus"
+        bindblur="onBlur"
+        bindconfirm="onConfirm"
+        bind:keyboardheightchange="onKeyboardHeightChange"
+        password="{{type === 'password'}}"
+        type="{{type === 'password' ? 'text' : type}}"
+        focus="{{focus}}"
+        confirm-type="{{confirmType}}"
+        confirm-hold="{{confirmHold}}"
+        cursor="{{cursor}}"
+        cursor-spacing="{{cursorSpacing}}"
+        adjust-position="{{adjustPosition}}"
+        auto-focus="{{autoFocus}}"
+        always-embed="{{alwaysEmbed}}"
+        selection-start="{{selectionStart}}"
+        selection-end="{{selectionEnd}}"
+        hold-keyboard="{{holdKeyboard}}"
+        safe-password-cert-path="{{safePasswordCertPath}}"
+        safe-password-length="{{safePasswordLength}}"
+        safe-password-time-stamp="{{safePasswordTimeStamp}}"
+        safe-password-nonce="{{safePasswordNonce}}"
+        safe-password-salt="{{safePasswordSalt}}"
+        safe-password-custom-hash="{{safePasswordCustomHash}}"
+        class="{{utils.getInputClass(classPrefix, suffix, align, disabled)}} {{prefix}}-class-input"
+      />
+
+      <t-icon
+        wx:if="{{ clearable && value.length > 0}}"
+        class="{{classPrefix}}__wrap--clearable-icon {{prefix}}-class-clearable"
+        name="{{clearableIconProps.name || 'close-circle-filled'}}"
+        prefix="{{clearableIconProps.prefix}}"
+        size="{{clearableIconProps.size || '48rpx'}}"
+        color="{{clearableIconProps.color}}"
+        customStyle="{{clearableIconProps.customStyle}}"
+        bind:tap="clearInput"
+      ></t-icon>
+
+      <view class="{{classPrefix}}__wrap--suffix {{prefix}}-class-suffix">
+        <text wx:if="{{suffix}}">{{suffix}}</text>
+        <slot wx:else name="suffix" />
+      </view>
+      <view class="{{classPrefix}}__wrap--suffix-icon">
+        <t-icon
+          wx:if="{{suffixIcon}}"
+          class="{{prefix}}-class-suffix-icon"
+          name="{{suffixIconProps.name || suffixIcon}}"
+          prefix="{{suffixIconProps.prefix}}"
+          size="{{suffixIconProps.size || '48rpx'}}"
+          color="{{suffixIconProps.color}}"
+          customStyle="{{suffixIconProps.customStyle}}"
+        ></t-icon>
+        <slot wx:else name="suffixIcon" />
+      </view>
+    </view>
+    <view wx:if="{{tips && tips.length > 0}}" class="{{classPrefix}}__tips {{prefix}}-class-tips">{{tips}} </view>
+  </view>
+</view>

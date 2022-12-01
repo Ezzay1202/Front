@@ -1,0 +1,176 @@
+.t-float-left {
+  float: left;
+}
+.t-float-right {
+  float: right;
+}
+@keyframes tdesign-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.hotspot-expanded.relative {
+  position: relative;
+}
+.hotspot-expanded::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transform: scale(1.5);
+}
+.t-input {
+  position: relative;
+  display: flex;
+  background: var(--td-input-bg-color, #fff);
+}
+.t-input--layout-vertical {
+  flex-direction: column;
+}
+.t-input__wrap--prefix {
+  display: flex;
+  padding-right: 32rpx;
+}
+.t-input__icon--prefix {
+  color: var(--td-input-prefix-icon-color, rgba(0, 0, 0, 0.9));
+}
+.t-input__label:not(:empty) {
+  min-width: 96rpx;
+  max-width: 162rpx;
+  font-size: 32rpx;
+  line-height: 48rpx;
+  color: var(--td-input-label-text-color, rgba(0, 0, 0, 0.9));
+}
+.t-input--layout-vertical .t-input__label:not(:empty) {
+  font-size: 28rpx;
+  padding-bottom: 8rpx;
+}
+.t-input__icon--prefix:not(:empty) + .t-input__label:not(:empty) {
+  padding-left: 8rpx;
+}
+.t-input__wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex: auto;
+  align-items: center;
+}
+.t-input__wrap .t-input__content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  line-height: 48rpx;
+  font-size: 32rpx;
+}
+.t-input__wrap--clearable-icon,
+.t-input__wrap--suffix-icon,
+.t-input__wrap--suffix {
+  flex: 0 0 auto;
+  padding-left: 24rpx;
+  color: var(--td-input-suffix-icon-color, rgba(0, 0, 0, 0.4));
+  font-size: 32rpx;
+}
+.t-input__wrap--clearable-icon:empty,
+.t-input__wrap--suffix-icon:empty,
+.t-input__wrap--suffix:empty {
+  display: none;
+}
+.t-input__wrap--suffix {
+  color: var(--td-input-suffix-text-color, rgba(0, 0, 0, 0.9));
+}
+.t-input__wrap--prefix:empty,
+.t-input__icon--prefix:empty,
+.t-input__label:empty,
+.t-input__tips:empty,
+.t-input__wrap--clearable-icon:empty,
+.t-input__wrap--suffix-icon:empty,
+.t-input__wrap--suffix:empty {
+  display: none;
+}
+.t-input__control {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  color: var(--td-input-default-text-color, rgba(0, 0, 0, 0.9));
+  line-height: inherit;
+  text-align: left;
+  background-color: transparent;
+  border: 0;
+  resize: none;
+  font-size: inherit;
+}
+.t-input__control--disabled {
+  color: var(--td-input-disabled-text-color, rgba(0, 0, 0, 0.26));
+  cursor: not-allowed;
+  opacity: 1;
+  -webkit-text-fill-color: currentColor;
+}
+.t-input__control--read-only {
+  cursor: default;
+}
+.t-input__control--right {
+  text-align: right;
+}
+.t-input__control--center {
+  text-align: center;
+}
+.t-input__placeholder {
+  color: var(--td-input-placeholder-text-color, rgba(0, 0, 0, 0.4));
+  font-size: 32rpx;
+}
+.t-input__tips {
+  font-size: 24rpx;
+  color: var(--td-input-default-tips-color, rgba(0, 0, 0, 0.4));
+  line-height: 40rpx;
+  padding-top: 8rpx;
+}
+.t-input--border {
+  padding: 24rpx 32rpx;
+  border-radius: var(--td-input-border-radius, 12rpx);
+  border: 3rpx solid var(--td-input-default-border-color, #dcdcdc);
+}
+.t-is-focus {
+  border-color: var(--td-input-default-focus-border-color, #0052d9);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05), 0 4px 5px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
+}
+.t-is-success.t-input--border {
+  border-color: var(--td-input-success-border-color, #00a870);
+}
+.t-is-success.t-is-focus {
+  border-color: var(--td-input-success-border-color, #00a870);
+}
+.t-is-success + .t-input__tips {
+  color: var(--td-input-success-border-color, #00a870);
+}
+.t-is-warning.t-input--border {
+  border-color: var(--td-input-warning-border-color, #ed7b2f);
+}
+.t-is-warning.t-is-focus {
+  border-color: var(--td-input-warning-border-color, #ed7b2f);
+}
+.t-is-warning + .t-input__tips {
+  color: var(--td-input-warning-border-color, #ed7b2f);
+}
+.t-is-error.t-input--border {
+  border-color: var(--td-input-error-border-color, #e34d59);
+}
+.t-is-error.t-is-focus {
+  border-color: var(--td-input-error-border-color, #e34d59);
+}
+.t-is-error + .t-input__tips {
+  color: var(--td-input-error-border-color, #e34d59);
+}
+.t-input--size-medium {
+  padding: 32rpx 32rpx;
+}
+.t-input--size-small {
+  padding: 24rpx 32rpx;
+}
