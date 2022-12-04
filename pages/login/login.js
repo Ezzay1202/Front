@@ -20,8 +20,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-  },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -72,9 +71,6 @@ Page({
 
   },
   Login1: function () {
-    wx.showToast({
-      title: 'success',
-    })
     wx.request({
       data: {
         data: {
@@ -85,7 +81,51 @@ Page({
       },
       url: 'http://1.15.118.125:8080/NIC/login',
       success: (res) => {
-        console.log(res);
+        console.log(res.data.code);
+        if (res.data.code == 102) {
+          wx.showToast({
+            title: '登录成功',
+          })
+        }
+        if (res.data.code == 100) {
+          wx.showToast({
+            title: '查无此用户',
+          })
+        }
+        if (res.data.coed == 101) {
+          wx.showToast({
+            title: '密码错误',
+          })
+        }
+        if (res.data.code == 103) {
+          wx.showToast({
+            title: 'Error',
+          })
+        }
+      }
+    })
+  },
+  Login2: function () {
+    wx.request({
+      data: {
+        method: "tourist"
+      },
+      url: 'http://1.15.118.125:8080/NIC/login',
+      success: (res) => {
+        console.log(res.data.code);
+        if (res.data.code == 102) {
+          wx.showToast({
+              title: '登录成功',
+            }),
+            wx.redirectTo({
+              url: '/pages/home/home',
+            })
+        }
+        if (res.data.code == 103) {
+          wx.showToast({
+            title: 'Error',
+          })
+        }
       }
     })
   }

@@ -25,7 +25,7 @@
      </view>
      <!-- 游客登录按钮 -->
      <view class="youke" >
-      <button class="btn-d1" bindtap="">游客登录</button>
+      <button class="btn-d1" bindtap="Login2">游客登录</button>
      </view>
    </view>
  </view>

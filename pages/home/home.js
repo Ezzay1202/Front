@@ -88,10 +88,12 @@ Component({
     interval: 5000,
     swiperList,
     value: 'label_1',
+    status: false,
     list: [{
         value: 'label_1',
         label: '首页',
-        icon: 'home'
+        icon: 'home',
+
       },
       {
         value: 'label_2',
@@ -117,6 +119,16 @@ Component({
       this.setData({
         value: e.detail.value,
       });
+      if (e.detail.value == 'label_2') {
+        //页面跳转
+        wx.redirectTo({
+          url: "/pages/login/login",
+        })
+        this.setData({
+          status : true,
+        })
+      }
+      console.log(statu);
       //swiper
       const {
         detail: {
