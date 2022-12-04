@@ -17,7 +17,7 @@
      </view>
      <!-- 登录按钮 -->
      <view class="denglu">
-              <button class="btn-dl" type="primary" bindtap="">登录</button>
+              <button class="btn-dl" type="primary" bindtap="Login1">登录</button>
      </view>
      <!-- 注册按钮 -->
      <view class="zhuce" >
@@ -29,5 +29,6 @@
      </view>
    </view>
  </view>
+
 
 

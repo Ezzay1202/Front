@@ -55,7 +55,7 @@ Page({
   onShareAppMessage() {
 
   },
-  
+
   /**
    * 页面的初始数据
    */
@@ -64,8 +64,7 @@ Page({
   }
 })
 const imageCdn = 'https://tdesign.gtimg.com/site/swiper';
-const swiperList = [
-  {
+const swiperList = [{
     image: `${imageCdn}/01.png`,
   },
   {
@@ -89,11 +88,26 @@ Component({
     interval: 5000,
     swiperList,
     value: 'label_1',
-    list: [
-      { value: 'label_1', label: '首页', icon: 'home' },
-      { value: 'label_2', label: '发布', icon: 'check-rectangle'},
-      { value: 'label_3', label: '消息', icon: 'notification' },
-      { value: 'label_4', label: '我的', icon: 'user' },
+    list: [{
+        value: 'label_1',
+        label: '首页',
+        icon: 'home'
+      },
+      {
+        value: 'label_2',
+        label: '发布',
+        icon: 'check-rectangle'
+      },
+      {
+        value: 'label_3',
+        label: '消息',
+        icon: 'notification'
+      },
+      {
+        value: 'label_4',
+        label: '我的',
+        icon: 'user'
+      },
     ],
   },
 
@@ -105,7 +119,10 @@ Component({
       });
       //swiper
       const {
-        detail: { current, source },
+        detail: {
+          current,
+          source
+        },
       } = e;
       console.log(current, source);
     },

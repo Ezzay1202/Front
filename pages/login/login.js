@@ -1,5 +1,14 @@
 // pages/login/login.js
+const app = getApp()
+let username = ''
+let password = ''
 Page({
+  content(e) {
+    username = e.detail.value
+  },
+  password(e) {
+    password = e.detail.value
+  },
 
   /**
    * 页面的初始数据
@@ -12,7 +21,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
   },
 
   /**
@@ -62,5 +70,23 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  Login1: function () {
+    wx.showToast({
+      title: 'success',
+    })
+    wx.request({
+      data: {
+        data: {
+          password: password,
+          username: username
+        },
+        method: "signUp"
+      },
+      url: 'http://1.15.118.125:8080/NIC/login',
+      success: (res) => {
+        console.log(res);
+      }
+    })
   }
 })
