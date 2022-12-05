@@ -1,11 +1,11 @@
 // pages/home/home.js
+const app = getApp()
 Page({
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
-  },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -119,24 +119,13 @@ Component({
       this.setData({
         value: e.detail.value,
       });
-      if (e.detail.value == 'label_2') {
+      if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
         //页面跳转
         wx.redirectTo({
           url: "/pages/login/login",
         })
-        this.setData({
-          status : true,
-        })
       }
-      console.log(statu);
-      //swiper
-      const {
-        detail: {
-          current,
-          source
-        },
-      } = e;
-      console.log(current, source);
+    
     },
   },
 });

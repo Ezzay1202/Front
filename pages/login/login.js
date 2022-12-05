@@ -20,7 +20,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    /*
+    var date = new Date;
+    console.log(date.getFullYear());
+    */
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -83,9 +88,14 @@ Page({
       success: (res) => {
         console.log(res.data.code);
         if (res.data.code == 102) {
+          app.globalData.hasLogin = true;
+          wx.redirectTo({
+            url: '/pages/home/home',
+          }),
           wx.showToast({
             title: '登录成功',
           })
+
         }
         if (res.data.code == 100) {
           wx.showToast({
@@ -112,14 +122,14 @@ Page({
       },
       url: 'http://1.15.118.125:8080/NIC/login',
       success: (res) => {
-        console.log(res.data.code);
         if (res.data.code == 102) {
+          app.globalData.hasLogin = true;
+          wx.redirectTo({
+            url: '/pages/home/home',
+          }),
           wx.showToast({
-              title: '登录成功',
-            }),
-            wx.redirectTo({
-              url: '/pages/home/home',
-            })
+            title: '登录成功',
+          })
         }
         if (res.data.code == 103) {
           wx.showToast({
