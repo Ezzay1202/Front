@@ -63,53 +63,35 @@ Page({
 
   }
 })
-const imageCdn = 'https://tdesign.gtimg.com/site/swiper';
-const swiperList = [{
-    image: `${imageCdn}/01.png`,
+
+
+const swiperList = [
+  {
+    image: "/image/test1.png",
+
   },
   {
-    image: `${imageCdn}/02.png`,
+    image: "/image/test2.png",
   },
   {
-    image: `${imageCdn}/03.png`,
+    image: "/image/test3.png",
   },
-  {
-    image: `${imageCdn}/04.png`,
-  },
-  {
-    image: `${imageCdn}/05.png`,
-  },
+
 ];
 Component({
   data: {
-    current: 1,
-    autoplay: true,
+    img: 'https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png',
+    current: 0,
     duration: 500,
     interval: 5000,
     swiperList,
     value: 'label_1',
-    status: false,
-    list: [{
-        value: 'label_1',
-        label: '首页',
-        icon: 'home',
-
-      },
-      {
-        value: 'label_2',
-        label: '发布',
-        icon: 'check-rectangle'
-      },
-      {
-        value: 'label_3',
-        label: '消息',
-        icon: 'notification'
-      },
-      {
-        value: 'label_4',
-        label: '我的',
-        icon: 'user'
-      },
+    value_s:'',
+    list: [
+      { value: 'label_1', label: '首页', icon: 'home' },
+      { value: 'label_2', label: '发布', icon: 'check-rectangle'},
+      { value: 'label_3', label: '消息', icon: 'notification' },
+      { value: 'label_4', label: '我的', icon: 'user' },
     ],
   },
 
@@ -122,7 +104,7 @@ Component({
       if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
         //页面跳转
         wx.redirectTo({
-          url: "/pages/login/login",
+          url: "pages/publishM/publishM",
         })
       }
     

@@ -1,2 +1,12 @@
 <!--pages/apply/apply.wxml-->
-<text>pages/apply/apply.wxml</text>
+
+<block>
+  <t-steps class="demo-steps" current="3-0" readonly="true" layout="vertical">
+    <t-step-item class="demo-steps-item" title="发布任务" />
+    <t-step-item title="接稿" />
+    <t-step-item class="demo-steps-item" title="写稿"  />
+    <t-step-item title="编辑部审稿"  />
+    <t-step-item title="辅导员审稿"  />
+    <t-step-item title="排版" />
+  </t-steps>
+ </block>

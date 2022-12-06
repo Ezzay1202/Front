@@ -64,3 +64,6 @@ Page({
 
   }
 })
+Component({
+  
+});

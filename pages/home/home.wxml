@@ -4,9 +4,11 @@
     {{item.label}}
   </t-tab-bar-item>
 </t-tab-bar>
+
+<t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{true}}" />
+
 <t-swiper
   current="{{current}}"
-  autoplay="{{autoplay}}"
   duration="{{duration}}"
   interval="{{interval}}"
   navigation
@@ -15,4 +17,11 @@
     <image src="{{item.image}}" class="img" />
   </t-swiper-item>
 </t-swiper>
+
+<t-grid class="block" column="{{4}}" theme="card">
+  <t-grid-item text="优秀作品" image="{{img}}" bindtap="goTomoudle1" />
+  <t-grid-item text="待接任务" image="{{img}}" bindtap="goTomoudle2"/>
+  <t-grid-item text="查询稿件" image="{{img}}" />
+  <t-grid-item text="任务联动" image="{{img}}" />
+</t-grid>
 

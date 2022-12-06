@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/publishM/publishM",
     "pages/login/login",
     "pages/apply/apply",
     "pages/index/index",
@@ -14,7 +15,14 @@
   },
 
   "usingComponents": {
-    
+    "t-picker": "tdesign-miniprogram/picker/picker",
+    "t-picker-item": "tdesign-miniprogram/picker/picker-item",
+    "t-input": "tdesign-miniprogram/input/input",
+    "t-grid": "tdesign-miniprogram/grid/grid",
+    "t-grid-item": "tdesign-miniprogram/grid/grid-item",
+    "t-steps": "tdesign-miniprogram/steps/steps",
+    "t-step-item": "tdesign-miniprogram/steps/step-item",
+    "t-search": "tdesign-miniprogram/search/search",
     "t-swiper": "tdesign-miniprogram/swiper/swiper",
     "t-swiper-item": "tdesign-miniprogram/swiper/swiper-item",
     "t-swiper-nav": "tdesign-miniprogram/swiper/swiper-nav",

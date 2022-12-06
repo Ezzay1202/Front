@@ -1,1 +1,8 @@
 /* pages/apply/apply.wxss */
+.demo-steps {
+  padding-top: 90rpx;
+  padding-left: 100rpx;
+}
+.demo-steps-item{
+  color: aliceblue;
+}
