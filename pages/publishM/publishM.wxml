@@ -7,7 +7,7 @@
 
 <view class="demo-textarea">
   <text class="pannel-label">活动内容</text>
-  <t-textarea class="t-textarea__placeholder" placeholder="请输入文字" bordered maxlength="100"  indicator/>
+  <t-textarea class="t-textarea__placeholder" placeholder="请输入文字" bordered maxlength="100" indicator />
 </view>
 
 <block>
@@ -26,8 +26,8 @@
   </view>
 </block>
 
-<view class="pannel-item last">
-  <t-input label="地点" placeholder="输入任务的地点"  />
+<view class="pannel-item last" >
+  <t-input label="地点" placeholder="输入任务的地点" bindsubmit="setPlace" />
 </view>
 
 <block>
@@ -39,17 +39,7 @@
 </block>
 
 <!-- 起始时间 不带标题 -->
-<t-picker
-  visible="{{date1Visible}}"
-  value="{{date1Value}}"
-  data-key="date1"
-  title="{{pickerTitle}}"
-  cancelBtn="取消"
-  confirmBtn="确认"
-  bindchange="onPickerChange"
-  bindpick="onColumnChange"
-  bindcancel="onPickerCancel"
->
+<t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
   <t-picker-item options="{{months}}"></t-picker-item>
   <t-picker-item options="{{days}}"></t-picker-item>
   <t-picker-item options="{{hour}}"></t-picker-item>
@@ -57,37 +47,19 @@
 </t-picker>
 
 <!-- 结束时间 不带标题 -->
-<t-picker
-  visible="{{date2Visible}}"
-  value="{{date2Value}}"
-  data-key="date2"
-  title="{{pickerTitle}}"
-  cancelBtn="取消"
-  confirmBtn="确认"
-  bindchange="onPickerChange"
-  bindpick="onColumnChange"
-  bindcancel="onPickerCancel"
->
+<t-picker visible="{{date2Visible}}" value="{{date2Value}}" data-key="date2" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
   <t-picker-item options="{{hour}}"></t-picker-item>
   <t-picker-item options="{{minute}}"></t-picker-item>
 </t-picker>
 
 <!-- 小记者 不带标题 -->
-<t-picker
-  visible="{{peopleVisible}}"
-  value="{{peopleValue}}"
-  data-key="people"
-  title="{{pickerTitle}}"
-  cancelBtn="取消"
-  confirmBtn="确认"
-  bindchange="onPickerChange"
-  bindpick="onColumnChange"
-  bindcancel="onPickerCancel"
->
+<t-picker visible="{{peopleVisible}}" value="{{peopleValue}}" data-key="people" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
   <t-picker-item options="{{wen}}"></t-picker-item>
   <t-picker-item options="{{she}}"></t-picker-item>
 </t-picker>
-
+<view class="apply">
+  <button class="btn-dq" bindtap="publishMission">发布</button>
+</view>
 <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
   <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}">
     {{item.label}}

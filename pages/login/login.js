@@ -20,14 +20,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
-    /*
-    var date = new Date;
-    console.log(date.getFullYear());
-    */
-
-  },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -93,11 +86,7 @@ Page({
           app.globalData.hasLogin = true;
           wx.redirectTo({
             url: '/pages/home/home',
-          }),
-          wx.showToast({
-            title: '登录成功',
           })
-
         }
         if (res.data.code == 100) {
           wx.showToast({
@@ -140,8 +129,8 @@ Page({
         }
       }
     })
-  }
-  
+  },
+
 })
 
 

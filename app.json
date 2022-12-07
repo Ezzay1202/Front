@@ -2,6 +2,7 @@
   "pages":[
     "pages/home/home",
     "pages/publishM/publishM",
+
     "pages/login/login",
     "pages/apply/apply",
     "pages/index/index",

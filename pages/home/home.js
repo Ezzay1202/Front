@@ -5,7 +5,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -101,10 +102,16 @@ Component({
       this.setData({
         value: e.detail.value,
       });
+      if (app.globalData.hasLogin && e.detail.value != 'label_1') {
+        //页面跳转
+        wx.redirectTo({
+          url: "/pages/publishM/publishM",
+        })
+      };
       if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
         //页面跳转
         wx.redirectTo({
-          url: "pages/publishM/publishM",
+          url: "/pages/login/login",
         })
       }
     
