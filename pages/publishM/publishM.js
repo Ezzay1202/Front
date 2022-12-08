@@ -5,7 +5,8 @@ const month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.get
 const day = date.getDate()
 const hour = date.getHours()
 const minute = date.getMinutes()
-const place1=''
+let place1 = ''
+let description1 = ''
 Page({
   /**
    * 生命周期函数--监听页面加载
@@ -69,11 +70,6 @@ Page({
   onShareAppMessage() {
 
   },
-  setPlace(e){
-    this.setData({
-      place1:this.detail.value
-    })
-  },
 
   /**
    * 页面的初始数据
@@ -82,8 +78,8 @@ Page({
     list1: [],
     list2: [],
     list3: [],
-    place1:'',
-    description:''
+    place1: '',
+    description: ''
   },
 })
 const PICKER_KEY = {
@@ -161,8 +157,11 @@ Component({
     ],
   },
   methods: {
-    setPlace(e){
+    setPlace(e) {
       place1 = e.detail.value
+    },
+    setDescription(e) {
+      description1 = e.detail.value
     },
     onTabsChange(event) {
       console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
@@ -184,7 +183,7 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker pick:', e, key);
+      console.log('picker pick:', place1);
       this.setData({
         [`${key}Visible`]: true,
       });
@@ -197,7 +196,7 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker change:', e.detail);
+      console.log('picker change:', );
       this.setData({
         [`${key}Visible`]: false,
         [`${key}Value`]: e.detail.value,
@@ -229,16 +228,19 @@ Component({
         [`${key}Visible`]: false,
       });
     },
-
     onChange(e) {
       //tabbar
       //四个页面
       this.setData({
         value: e.detail.value,
       });
+      if (e.detail.value == 'label_1') {
+        wx.redirectTo({
+          url: '/pages/home/home',
+        })
+      }
     },
     publishMission: function () {
-      console.log(this)
       if (this.data.list1 == null) {
         wx.showToast({
           icon: 'none',
@@ -254,15 +256,26 @@ Component({
           icon: 'none',
           title: '请填写小记者',
         })
-      } else {
+      } else if (place1 == '') {
+        wx.showToast({
+          icon: 'none',
+          title: '请填写地点',
+        })
+      }else if (description1 == '') {
+        wx.showToast({
+          icon: 'none',
+          title: '请填写活动内容',
+        })
+      }
+      else {
         wx.request({
           url: 'http://1.15.118.125:8080/NIC/manage',
           data: {
             "method": "add",
             "data": {
-              "place": "三公",
+              "place": place1,
               "title": "深夜活动",
-              "description": "看世界杯",
+              "description": description1,
               "time": {
                 "year": year,
                 "month": this.data.list1[0],

@@ -69,7 +69,6 @@ Page({
 const swiperList = [
   {
     image: "/image/test1.png",
-
   },
   {
     image: "/image/test2.png",
@@ -114,7 +113,6 @@ Component({
           url: "/pages/login/login",
         })
       }
-    
     },
   },
 });
