@@ -1,8 +1,42 @@
 /* pages/apply/apply.wxss */
+
+
+.demo{
+  width: 93%;
+  display: block;
+  background-color:rgb(236,242,254);
+  margin: 1em;
+  border-radius:5%;
+}
 .demo-steps {
-  padding-top: 90rpx;
-  padding-left: 100rpx;
+  padding-top: 1.5em;
+  padding-left: 1em;
 }
 .demo-steps-item{
   color: aliceblue;
+}
+.m{
+  height: 180rpx;
+  width: 90%;
+  display: block;
+  padding: 0.3em;
+  background-color:rgb(236,242,254);
+  margin: 1em;
+  border-radius:10%;
+  overflow: scroll;
+}
+.m .title{
+  font-size: 35rpx;
+  height:3.2em;
+}
+.m .text{
+  display: inline-block;
+}
+.m .text text{
+  font-size: 25rpx;
+  margin: .3em .5em;
+  padding: 10rpx 20rpx;
+  color: white;
+  background-color: #13a4a4;
+  border-radius: 4rpx;
 }

@@ -1,9 +1,11 @@
 {
-  "pages":[
+  "pages":[   
     "pages/home/home",
-    "pages/publishM/publishM",
+    "pages/apply/apply", 
+    "pages/publishedM/publishedM",
+
     "pages/login/login",
-    "pages/apply/apply",
+    "pages/publishM/publishM",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -23,9 +25,6 @@
     "t-steps": "tdesign-miniprogram/steps/steps",
     "t-step-item": "tdesign-miniprogram/steps/step-item",
     "t-search": "tdesign-miniprogram/search/search",
-    "t-swiper": "tdesign-miniprogram/swiper/swiper",
-    "t-swiper-item": "tdesign-miniprogram/swiper/swiper-item",
-    "t-swiper-nav": "tdesign-miniprogram/swiper/swiper-nav",
     "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
     "t-tab-bar-item": "tdesign-miniprogram/tab-bar/tab-bar-item"
   },

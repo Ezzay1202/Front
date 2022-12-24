@@ -1,0 +1,47 @@
+.m{
+  height:300rpx;
+  width: 90%;
+  padding: 10rpx;
+  display: block;
+  background-color:rgb(236,242,254);
+  margin: 10rpx;
+  border-radius:10%;
+}
+.m .title{
+  padding: 10rpx 30rpx;
+  font-size: 35rpx;
+  height:3.2em;
+}
+.m .text{
+  display: inline-block;
+}
+.m .text text{
+  margin: 20rpx 10rpx;
+  padding: 10rpx 20rpx;
+  color: white;
+  background-color: #13a4a4;
+  border-radius: 4rpx;
+
+}
+
+.m .tag{
+  float: left;
+  color: white;
+  background-color: #a47113;
+  font:1.1em sans-serif;
+  box-sizing: border-box;
+  margin: .8em .3em ;
+  padding: .3em;
+  border-radius: 10rpx;
+}
+
+.m button{
+  float:left;
+  font-size: 30rpx;
+  color: #fff;
+  width: 20%;
+  height: 20%;
+  border-radius: 10rpx;
+  background-color: #0072b0;
+  margin: .8em .3em .2em;  
+}

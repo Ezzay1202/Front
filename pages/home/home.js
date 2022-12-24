@@ -57,6 +57,7 @@ Page({
 
   },
 
+
   /**
    * 页面的初始数据
    */
@@ -96,12 +97,17 @@ Component({
   },
 
   methods: {
+    goTomoudle2(){
+      wx.redirectTo({
+        url: '/pages/publishedM/publishedM',
+      })
+    },
     onChange(e) {
       //tabbar
       this.setData({
         value: e.detail.value,
       });
-      if (app.globalData.hasLogin && e.detail.value != 'label_1') {
+      if (app.globalData.hasLogin && e.detail.value == 'label_2') {
         //页面跳转
         wx.redirectTo({
           url: "/pages/publishM/publishM",

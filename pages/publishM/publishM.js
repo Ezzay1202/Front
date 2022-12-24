@@ -130,7 +130,7 @@ Component({
     })),
 
     [`${PICKER_KEY.DATE1}Value`]: [month, day, hour, minute],
-    [`${PICKER_KEY.DATE2}Value`]: [],
+    [`${PICKER_KEY.DATE2}Value`]: [hour, minute],
     [`${PICKER_KEY.People}Value`]: [],
 
     value: 'label_2',
@@ -261,13 +261,17 @@ Component({
           icon: 'none',
           title: '请填写地点',
         })
-      }else if (description1 == '') {
+      } else if (description1 == '') {
         wx.showToast({
           icon: 'none',
           title: '请填写活动内容',
         })
-      }
-      else {
+      } else if (this.data.list2[0] < this.data.list1[2] || (this.data.list2[0] == this.data.list1[2] && this.data.list1[3] > this.data.list2[1])) {
+        wx.showToast({
+          icon: 'none',
+          title: '请填写正确的结束时间',
+        })
+      } else {
         wx.request({
           url: 'http://1.15.118.125:8080/NIC/manage',
           data: {
@@ -295,6 +299,15 @@ Component({
             console.log(res)
             wx.showToast({
               title: '发布成功',
+            });
+            let now = new Date();
+            let entertime = now.getTime();
+            let endtime = now.getTime();
+            while (endtime - entertime < 2000) {
+              endtime = new Date().getTime();
+            }
+            wx.redirectTo({
+              url: '/pages/home/home',
             })
           }
         })

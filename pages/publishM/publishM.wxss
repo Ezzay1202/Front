@@ -22,7 +22,7 @@
 
 .pannel-text {
   flex: 1;
-  color: #000;
+  color: rgb(0, 0, 0);
   opacity: 0.9;
 }
 .pannel-text.empty {
@@ -30,7 +30,7 @@
 }
 .demo-textarea {
   padding: 32rpx;
-  background-color: rgb(216, 213, 213);
+  background-color: rgb(236,242,254);
 }
 
 .demo-textarea--label {
