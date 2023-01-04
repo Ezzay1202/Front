@@ -1,11 +1,13 @@
 {
-  "pages":[   
+  "pages":[ 
     "pages/home/home",
-    "pages/apply/apply", 
+    "pages/fcheckM/fcheckM",  
+    "pages/submitM/submitM",
+    "pages/checkM/checkM", 
     "pages/publishedM/publishedM",
-
     "pages/login/login",
     "pages/publishM/publishM",
+    "pages/apply/apply", 
     "pages/index/index",
     "pages/logs/logs"
   ],

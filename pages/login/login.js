@@ -71,40 +71,66 @@ Page({
 
   },
   Login1: function () {
-    wx.request({
-      data: {
+    if (password == '') {
+      wx.showToast({
+        title: '请输入密码！',
+        icon: 'error'
+      })
+    }
+    if (username == '') {
+      wx.showToast({
+        title: '请输入账户！',
+        icon: 'error'
+      })
+    } else {
+      wx.request({
         data: {
-          password: password,
-          username: username
+          data: {
+            password: password,
+            username: username
+          },
+          method: "signUp"
         },
-        method: "signUp"
-      },
-      url: 'http://1.15.118.125:8080/NIC/login',
-      success: (res) => {
-        console.log(res.data.code);
-        if (res.data.code == 102) {
-          app.globalData.hasLogin = true;
-          wx.redirectTo({
-            url: '/pages/home/home',
-          })
+        url: 'http://1.15.118.125:8080/NIC/login',
+        success: (res) => {
+          console.log(res.data);
+          if (res.data.code == 102) {
+            app.globalData.hasLogin = true;
+            app.globalData.authority1 = res.data.data.authority1;
+            app.globalData.authority2 = res.data.data.authority2;
+            app.globalData.authority3 = res.data.data.authority3;
+            app.globalData.username = res.data.data.username;
+            app.globalData.userid = res.data.data.userid;
+            app.globalData.missionTaken = res.data.data.missionTaken;
+            app.globalData.missionCompleted = res.data.data.missionCompleted;
+            wx.showToast({
+                title: '登录成功',
+              }),
+              wx.redirectTo({
+                url: '/pages/home/home',
+              })
+          }
+          if (res.data.code == 99) {
+            wx.showToast({
+              title: '查无此用户',
+              icon: 'error'
+            })
+          }
+          if (res.data.code == 101) {
+            wx.showToast({
+              title: '密码错误',
+              icon: 'error'
+            })
+          }
+          if (res.data.code == 103) {
+            wx.showToast({
+              title: 'Error',
+              icon: 'error'
+            })
+          }
         }
-        if (res.data.code == 100) {
-          wx.showToast({
-            title: '查无此用户',
-          })
-        }
-        if (res.data.coed == 101) {
-          wx.showToast({
-            title: '密码错误',
-          })
-        }
-        if (res.data.code == 103) {
-          wx.showToast({
-            title: 'Error',
-          })
-        }
-      }
-    })
+      })
+    }
   },
   Login2: function () {
     wx.request({
@@ -116,20 +142,19 @@ Page({
         if (res.data.code == 102) {
           app.globalData.hasLogin = true;
           wx.redirectTo({
-            url: '/pages/home/home',
-          }),
-          wx.showToast({
-            title: '登录成功',
-          })
+              url: '/pages/home/home',
+            }),
+            wx.showToast({
+              title: '登录成功',
+            })
         }
         if (res.data.code == 103) {
           wx.showToast({
             title: 'Error',
+            icon:'error'
           })
         }
       }
     })
   },
 })
-
-

@@ -5,23 +5,18 @@
   </t-tab-bar-item>
 </t-tab-bar>
 
-<t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{true}}" />
+<view class="container" style="background-color: white;padding:.5em;">
+  <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{true}}" />
+</view>
 
-<t-swiper
-  current="{{current}}"
-  duration="{{duration}}"
-  interval="{{interval}}"
-  navigation
->
-  <t-swiper-item wx:for="{{swiperList}}" wx:key="index">
-    <image src="{{item.image}}" class="img" />
-  </t-swiper-item>
-</t-swiper>
+<swiper>
 
-<t-grid class="block" column="{{4}}" theme="card">
-  <t-grid-item text="优秀作品" image="{{img}}" bindtap="goTomoudle1" />
-  <t-grid-item text="待接任务" image="{{img}}" bindtap="goTomoudle2"/>
-  <t-grid-item text="查询稿件" image="{{img}}" />
-  <t-grid-item text="任务联动" image="{{img}}" />
+</swiper>
+
+<t-grid class="block" column="{{4}}" theme="card" >
+<block wx:for="{{functions}}" wx:key="index" >
+  <t-grid-item text="{{item.name}}" image="{{item.img}}" bindtap="goTomoudle2" data-index="{{index}}" />
+</block>
 </t-grid>
+
 

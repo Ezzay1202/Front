@@ -58,7 +58,7 @@
   <t-picker-item options="{{she}}"></t-picker-item>
 </t-picker>
 <view class="apply">
-  <button class="btn-dq" bindtap="publishMission">发布</button>
+  <button bindtap="publishMission">发布</button>
 </view>
 <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
   <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}">

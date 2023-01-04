@@ -1,5 +1,6 @@
+/* pages/checkM/checkM.wxss */
 .m{
-  flex:1 0 300rpx;
+  flex:1 0 ;
   width: 85%;
   align-items: stretch;
   padding: 1em;
@@ -30,30 +31,4 @@
   color: white;
   background-color: #13a4a4;
   border-radius: .5em;
-}
-.m .n{
-  display: flex;
-  align-items: center;
-  margin-top: 0;
-  box-sizing: border-box;
-}
-.m .n .tag{
-  color: white;
-  background-color: #a47113;
-  text-align: center;
-  font:1.1em sans-serif;
-  box-sizing: border-box;
-  margin: .8em .3em ;
-  padding: .3em;
-  border-radius: 10rpx;
-}
-
-.m .n button{
-  flex:1;
-  font-size: 30rpx;
-  color: #13a4a4;
-  border-radius: 10rpx;
-  background-color: rgb(236,242,254);
-  border: 1px solid #13a4a4;
-  margin: .3em .3em .2em;  
 }

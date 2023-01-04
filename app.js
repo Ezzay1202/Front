@@ -14,5 +14,13 @@ App({
   },
   globalData: {
     hasLogin: false,
+    userid:"",
+    username:"",
+    identity:"",
+    authority1:0,
+    authority2:0,
+    authority3:0,
+    missionCompleted:[],
+    missionTaken:[]
   }
 })  

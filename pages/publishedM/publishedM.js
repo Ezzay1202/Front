@@ -1,4 +1,5 @@
 // pages/publishedM/publishedM.js
+const app = getApp();
 let list_all = [];
 let list_show = [];
 Page({
@@ -54,10 +55,10 @@ Page({
             date2: list_all[j].time.endHour + ":" + minend,
             location: list_all[j].place,
             people: article + photo,
-            isUrge1:isUrge1,
-            isUrge2:isUrge2,
-            isUrge3:isUrge3,
-            isUrge4:isUrge4,
+            isUrge1: isUrge1,
+            isUrge2: isUrge2,
+            isUrge3: isUrge3,
+            isUrge4: isUrge4,
           }
         };
         console.log(list_all);
@@ -69,15 +70,101 @@ Page({
 
   },
   takePhoto() {
-    wx.request({
-      url: 'url',
-    })
+    if (app.globalData.authority1 == 1) {
+      wx.request({
+        url: 'http://1.15.118.125:8080/NIC/take',
+        data: {
+          "method": "take",
+          "data": {
+            "username": app.globalData.username,
+            "missionID": "2022120402",
+            "kind": "photo"
+          }
+        },
+        success: (res) => {
+          console.log(res.data)
+          if (res.data.code == 401) {
+            wx.showToast({
+              title: res.data.msg,
+              icon:'error'
+            })
+          }
+          if (res.data.code == 402) {
+            wx.showToast({
+              title: '接摄成功',
+              //问题：一个人重复接一个任务。。。。。
+            })
+          }
+          if (res.data.code == 99) {
+            wx.showToast({
+              title: '无此任务，请刷新界面',
+              icon:'error'
+            })
+          }
+          if (res.data.code == 98) {
+            wx.showToast({
+              title: '错误！请联系开发者',
+              icon:'error'
+            })
+          }
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '您没有权限',
+        icon: "error"
+      })
+    }
+
   },
 
   takeArticle() {
-    wx.request({
-      url: 'url',
-    })
+    if (app.globalData.authority1 == 1) {
+      wx.request({
+        url: 'http://1.15.118.125:8080/NIC/take',
+        data: {
+          "method": "take",
+          "data": {
+            "username": app.globalData.username,
+            "missionID": "2022120402",
+            "kind": "article"
+          }
+        },
+        success: (res) => {
+          console.log(res.data)
+          if (res.data.code == 401) {
+            wx.showToast({
+              title: res.data.msg,
+              icon:'error'
+            })
+          }
+          if (res.data.code == 402) {
+            wx.showToast({
+              title: '接文成功',
+              //问题：一个人重复接一个任务。。。。。
+            })
+          }
+          if (res.data.code == 99) {
+            wx.showToast({
+              title: '无此任务，请刷新界面',
+              icon:'error'
+            })
+          }
+          if (res.data.code == 98) {
+            wx.showToast({
+              title: '请联系开发者',
+              icon:'error'
+            })
+          }
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '您没有权限',
+        icon: "error"
+      })
+    }
+
   },
 
   /**

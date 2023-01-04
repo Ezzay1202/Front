@@ -1,0 +1,108 @@
+/* pages/submitM/submitM.wxss */
+.m{
+  flex:1 0 300rpx;
+  width: 85%;
+  align-items: stretch;
+  padding: 1em;
+  background-color:rgb(236,242,254);
+  margin: .5em 5%;
+  border-radius:10%;
+  display:flex;
+  flex-direction: column;
+}
+.m .title{
+  flex:1;
+  font-size: 35rpx;
+  max-height:3em;
+  margin-bottom: .5em;
+  overflow:scroll;
+}
+.m .text{
+  float: left;
+  margin: .2em  ;
+  max-height: 3em;
+  overflow: scroll;
+}
+.m .text text{
+  float:inline-start;
+  font-size: 26rpx;
+  margin: .3em .8em .3em 0;
+  padding: .5em;
+  color: white;
+  background-color: #13a4a4;
+  border-radius: .5em;
+}
+.filebox{
+  flex:2;
+  margin: .6rem 5% 0;
+  display: flex;
+  background-color:rgb(236,242,254);
+  box-sizing: border-box;
+  flex-direction: column;
+  border-top: 1px dashed #888;
+}
+.filebox .right{
+  flex:2;
+  margin-top: .5em;
+  font-size: 24rpx;
+  display: flex;
+  color:black;
+}
+.filebox .right .n{
+  background-color: white;
+  border: 2px outset  #13a4a4; 
+  margin-left: .5em;
+  display:grid;
+  grid-template-columns: 1fr 4fr ;
+  grid-template-rows: 2fr 1fr;
+  max-height: 100rpx;
+  overflow: hidden;
+}
+
+.filebox .right .n text{
+padding: .2em;
+margin: .2em;
+border: 0px solid #888;
+width: 12em;
+}
+
+.filebox .right .n .name{
+  grid-column: 2/3;
+  grid-row: 1/2;
+  font-size: 30rpx;
+  max-height: 3em;
+  overflow: scroll;
+}
+
+.filebox .right .n .size {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  font-size: 20rpx;
+  color: #888888;
+}
+.filebox .right .n >image{
+  grid-column: 1/2;
+  grid-row: 1/3;
+  margin-top: 1em;
+  margin-left: .5em;
+  max-width: 3em;
+  max-height: 3em;
+}
+.filebox .right >image{
+  width: 3em;
+  height: 3em;
+  align-self: center;
+  text-align: center;
+  border-radius: 10rpx;
+  margin: .2em;
+  }
+  
+.filebox button{
+  flex:3;
+  margin: .5em;
+  font-size: 26rpx;
+  background-color: rgb(236,242,254);
+  color: #13a4a4;
+  border: 1px solid #13a4a4 !important;
+}
+

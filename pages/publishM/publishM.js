@@ -1,4 +1,5 @@
 // pages/home/home.js
+const app = getApp();
 const date = new Date()
 const year = date.getFullYear()
 const month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
@@ -173,6 +174,7 @@ Component({
 
     onStickyScroll(event) {
       console.log(event.detail);
+
     },
 
     joinArray(array) {
@@ -277,8 +279,10 @@ Component({
           data: {
             "method": "add",
             "data": {
+              "element":0,
+              "publisher":app.globalData.username,
               "place": place1,
-              "title": "深夜活动",
+              "title": "",
               "description": description1,
               "time": {
                 "year": year,

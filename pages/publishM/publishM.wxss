@@ -58,3 +58,6 @@
   border-radius: 10rpx;
   background-color: rgb(236,242,254);
 }
+.apply button:after {
+  border: 0;
+  }

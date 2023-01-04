@@ -1,0 +1,73 @@
+<!--pages/fcheckM/fcheckM.wxml-->
+<!--服务评价-->
+<block class="container">
+  <view class="m">
+    <view class="title">{{mag.text}}</view>
+    <view class="text">
+      <text >{{mag.date1}}——{{mag.date2}}</text>
+      <text >{{mag.location}}</text>
+      <text >{{mag.people}}</text>
+    </view>
+    <view class="filebox" style="border-top: 1px dashed #888;" >
+      <view class="right" wx:for="{{mag.fileArray}}"  wx:key="index">
+        <image  src="/image/下载.png" bindtap="downloadfile" data-item="{{item}}" data-index="{{index}}">
+        </image>
+        <view class="n" bindtap="previewFile" data-path="{{item.path}}">
+        <image src="/image/docm.png"  mode="aspectFill" ></image>
+        <text  class="name">{{item.name}}</text>
+        <text class="size">{{item.size}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="service">
+     <!--评分-->
+     <view class='score'>
+       <view class='word'>
+         {{wjxScore||"请点击星星评分"}}
+       </view>
+       <view class="right">
+          <view bindtap="starTap" data-index="{{index}}"  class="star" wx:for="{{userStars}}" wx:key="index">
+           <image src="{{item}}"></image>
+         </view>
+       </view>
+     </view>
+     <!--内容-->
+     <view class='content'>
+       <view class='left'>
+         点击添加tag
+       </view>
+       <view class='right'  >
+         <block  wx:for="{{tag}}" wx:key="index">
+          <text bindtap='labelx' class="{{item.show===true ? 'labelColor':'' }}" >{{item.name}}</text>
+        </block>
+          <text bindtap='label' class="{{attitude===true ? 'labelColor':''}}" data-index="{{attitude}}">小清新</text>
+       </view>
+     </view>
+   </view>
+   <!--textarea-->
+   <view class="conts">
+       <textarea class="areas" placeholder='请输入您对该稿件的评价'  bindinput="inputs"> 
+           <!-- <text class="currentWordNumber">{{currentWordNumber| }}/{{max}}</text> -->
+       </textarea>
+   </view>
+   
+  </block>
+  <block>
+    <view class="filebox" style="padding: 1em;" >
+      <view class="right" wx:for="{{fileArray}}"  wx:key="index">
+        <image  src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
+        </image>
+       <view class="n" bindtap="previewFile" data-path="{{item.path}}">
+        <image src="/image/docm.png"  mode="aspectFill" ></image>
+        <text  class="name">{{item.name}}</text>
+        <text class="size">{{item.size}}</text>
+      </view>
+    </view>
+    <button bindtap="uploadFile" >选择稿件及照片</button>
+    </view>
+    <!--提交评价-->
+   <button class='btn' bindtap='handleBtn'>提交评价</button>
+  </block>
+   
+

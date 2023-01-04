@@ -3,18 +3,19 @@
     <view class="m">
       <view class="title">{{item.text}}</view>
     <view class="text">
-      <text >{{item.date1}}——{{item.date2}}</text>
+      <text >{{item.date1}}—{{item.date2}}</text>
       <text >{{item.location}}</text>
       <text >{{item.people}}</text>
     </view>
-    <view >
+    <view class="n" >
       <view class="tag"  hidden="{{item.isUrge1}}">紧急稿件</view>
       <view class="tag"  hidden="{{item.isUrge2}}">缺文摄</view>
       <view class="tag"  hidden="{{item.isUrge3}}">缺文</view>
       <view class="tag"  hidden="{{item.isUrge4}}">缺摄</view>
-    </view>
       <button bindtap="takePhoto">接摄</button>
       <button bindtap="takeArticle">接文</button>
+    </view>
+      
     </view>
   </block>
 </scroll-view>

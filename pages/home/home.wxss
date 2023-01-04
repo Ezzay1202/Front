@@ -1,4 +1,11 @@
 /* pages/home/home.wxss */
+page{
+  background-color: rgb(238, 238,238);
+}
+t-search{
+  width:80%;
+  background-color: white;
+}
 .img {
   width: 100%;
   height: 100%;

@@ -1,6 +1,6 @@
 <!--pages/apply/apply.wxml-->
-<t-search model:value="{{value_s}}" placeholder="请输入稿件码查询" center="{{true}}" />
-<view class="m">
+<t-search model:value="{{value_s}}" placeholder="请输入稿件码查询" center="{{true}}" bind:change="onChange" bind:blur="missionSearch" />
+<view class="m" hidden="{{mag.bool}}">
     <view class="title">{{mag.text}}</view>
     <view class="text">
       <text >{{mag.date1}}——{{mag.date2}}</text>
@@ -9,14 +9,14 @@
     </view>
 </view>
 <block>
-<view class="demo">
-  <t-steps class="demo-steps" current="2" readonly="false" layout="vertical">
+<view class="demo" hidden="{{mag.bool}}">
+  <t-steps class="demo-steps" current="{{current}}" readonly="false" layout="vertical">
     <t-step-item title="发布任务" content="{{content.a}}"/>
     <t-step-item title="接稿" content="{{content.b}}"/>
-    <t-step-item title="写稿"  />
-    <t-step-item title="编辑部审稿"  content="{{content.c}}"/>
-    <t-step-item title="辅导员审稿"  />
-    <t-step-item title="排版" />
+    <t-step-item title="写稿"  content="{{content.c}}"/>
+    <t-step-item title="编辑部审稿"  content="{{content.d}}"/>
+    <t-step-item title="辅导员审稿"  content="{{content.e}}"/>
+    <t-step-item title="排版" content="{{content.f}}"/>
   </t-steps>
 </view> 
  </block>
