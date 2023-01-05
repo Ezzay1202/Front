@@ -93,7 +93,6 @@ Page({
       wx.showToast({
         title: '评价成功',
         icon: 'succes',
-        duration: 1500,
         mask: true,
         success: function () {
           setTimeout(function () {

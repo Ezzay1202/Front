@@ -20,7 +20,7 @@ Page({
         type: "file"}]},
         {
           text:"管理学创新实验班班会 管理学创新实验班班会", date1:"10-9-11-0" ,date2:"12-00", location:"东久D888",people:"1文1摄",fileArray:[]},], 
-    show:'display:none',
+    show:'',
 
   },
   // 文件上传
