@@ -1,7 +1,7 @@
 <!--pages/checkM/checkM.wxml-->
 <scroll-view class="container" scroll-y="true" enable-flex="true">
   <block wx:for="{{listm}}" wx:key="id" >
-    <view class="m">
+    <view class="m" bindtap="func1" data-id="{{item.arr}}">
       <view class="title">{{item.text}}</view>
     <view class="text">
       <text >{{item.date1}}—{{item.date2}}</text>

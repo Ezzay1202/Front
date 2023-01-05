@@ -1,24 +1,109 @@
 // pages/checkM/checkM.js
+const app = getApp();
+let list_all = [];
+let list_show = [];
 Page({
+    /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    wx.request({
+      url: 'http://1.15.118.125:8080/NIC/show?method=showGotDraft',
+      success: (res) => {
+        list_all = res.data.data;
+        let j = -1;
+        let len = list_all.length;
+        for (let i = 0; i < len; i++) {
+          j++;
+          let article = list_all[j].reporterNeeds.article + "文";
+          let photo = list_all[j].reporterNeeds.photo + "摄";
+          let minbegin = list_all[j].time.beginMinute;
+          let minend = list_all[j].time.endMinute;
+          if (minbegin < 10) {
+            minbegin = "0" + minbegin.toString();
+          }
+          if (minend < 10) {
+            minend = "0" + minend.toString();
+          }
+          if (list_all[j].reporterNeeds.article == undefined) {
+            article = '';
+          }
+          if (list_all[j].reporterNeeds.photo == undefined) {
+            photo = '';
+          }
+          list_show[i] = {
+            arr:i,
+            missionID: list_all[j].missionID,
+            text: list_all[j].description,
+            date1: list_all[j].time.month + "月" + list_all[j].time.day + "日" + list_all[j].time.beginHour + ":" + minbegin,
+            date2: list_all[j].time.endHour + ":" + minend,
+            location: list_all[j].place,
+            people: article + photo
+          }
+        };
+        console.log(list_show);
+        console.log(list_all);
+        this.setData({
+          listm: list_show
+        })
+      }
+    })
+  },
+  func1(e){
+    let i = e.currentTarget.dataset.id
+    let data_temp = list_show[i]
+    let da = {
+      mag: {
+        text: data_temp.text,
+        date1: data_temp.date1,
+        date2: data_temp.date2,
+        location: data_temp.location,
+        people: data_temp.people,
+        fileArray: [{
+          name: "NIC考核标准lallalal (1)(1).docx",
+          path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
+          size: 22089,
+          time: 1669440948,
+          type: "file"
+        }]
+      },
+      tag: [{
+          name: "优秀稿件",
+          show: true
+        },
+        {
+          name: "优秀稿件2",
+          show: false
+        },
+      ],
+      attitude: true,
+      code: 1,
+      code1: 2,
+      wjxScore: 0,
+      fileArray: [{
+        name: "NIC考核标准lallalal (1)(1).docx",
+        path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
+        size: 22089,
+        time: 1669440948,
+        type: "file"
+      }, {
+        name: "NIC考核标准 (1)(1).docx",
+        path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
+        size: 22089,
+        time: 1669440948,
+        type: "file"
+      }]
+    }
+    wx.navigateTo({
+      url: '/pages/fcheckM/fcheckM?resultInfo='+JSON.stringify(da)
+    })
+  },
 
   /**
    * 页面的初始数据
    */
   data: {
-    listm:[
-      {
-        text:"管理学创新实验班班会 管理学创新实验班班会", date1:"10-9-11-0" ,date2:"12-00", location:"东久D888",people:"1文1摄"},
-        {
-          text:"管理学创新实验班班会 管理学创新实验班班会", date1:"10-9-11-0" ,date2:"12-00", location:"东久D888",people:"1文1摄"},
-          {
-            text:"管理学创新实验班班会 管理学创新实验班班会", date1:"10-9-11-0" ,date2:"12-00", location:"东久D888",people:"1文1摄"},]
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+    
   },
 
   /**
