@@ -11,7 +11,7 @@ Page({
       {
         text:"管理学创新实验班班会 管理学创新实验班班会", date1:"10-9-11-0" ,date2:"12-00", location:"东久D888",people:"1文1摄" ,fileArray:[{name: "NIC考核标准lallalal (1)(1).docx",
         path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
-        size: 22089,
+        size: 2,
         time: 1669440948,
         type: "file"},{name: "NIC考核标准 (1)(1).docx",
         path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",

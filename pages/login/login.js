@@ -101,8 +101,6 @@ Page({
             app.globalData.authority3 = res.data.data.authority3;
             app.globalData.username = res.data.data.username;
             app.globalData.userid = res.data.data.userid;
-            app.globalData.missionTaken = res.data.data.missionTaken;
-            app.globalData.missionCompleted = res.data.data.missionCompleted;
             wx.showToast({
                 title: '登录成功',
               }),

@@ -98,6 +98,7 @@ Page({
           setTimeout(function () {
             wx.reLaunch({
               url: '../index/index'
+              //跳转到任务阶段页面
             })
           }, 1500)
         }
