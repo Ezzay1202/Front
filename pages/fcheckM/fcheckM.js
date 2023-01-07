@@ -13,7 +13,16 @@ Page({
       attitude: resultInfo.attitude,
       code: resultInfo.code,
       code1: resultInfo.code1,
-      fileArray: resultInfo.fileArray
+      file_download: resultInfo.files
+    })
+  },
+
+  downloadFile: function (e) {
+    wx.downloadFile({
+      url: 'http://1.15.118.125:8080/NIC/work_files/' + this.data.file_download[0].name,
+      success:(res)=>{
+        console.log(res)
+      }
     })
   },
   /**
@@ -36,7 +45,8 @@ Page({
     // textarea
     min: 5, //最少字数
     max: 300, //最多字数 (根据自己需求改变) 
-    fileArray: []
+    file_download: [],
+    file_upload: []
   },
   // 星星点击事件
   starTap: function (e) {
@@ -122,7 +132,7 @@ Page({
       success: (res) => {
         console.log(res.tempFiles)
         this.setData({
-          fileArray: this.data.fileArray.concat(res.tempFiles)
+          file_upload: this.data.file_upload.concat(res.tempFiles)
         })
       }
     })
@@ -130,9 +140,9 @@ Page({
   removefile(e) {
     let index = e.currentTarget.dataset.index
     console.log(e, index)
-    this.data.fileArray.splice(index, 1)
+    this.data.file_upload.splice(index, 1)
     this.setData({
-      fileArray: this.data.fileArray
+      file_upload: this.data.file_upload
     })
   },
   // 预览附件

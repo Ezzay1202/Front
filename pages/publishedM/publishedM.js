@@ -76,7 +76,7 @@ Page({
         data: {
           "method": "take",
           "data": {
-            "username": app.globalData.username,
+            "userid": app.globalData.userid,
             "missionID": e.currentTarget.dataset.id.toString(),
             "kind": "photo"
           }
@@ -125,7 +125,7 @@ Page({
         data: {
           "method": "take",
           "data": {
-            "username": app.globalData.username,
+            "userid": app.globalData.userid,
             "missionID": e.currentTarget.dataset.id.toString(),
             "kind": "article"
           }

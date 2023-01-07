@@ -9,8 +9,8 @@
       <text >{{mag.people}}</text>
     </view>
     <view class="filebox" style="border-top: 1px dashed #888;" >
-      <view class="right" wx:for="{{mag.fileArray}}"  wx:key="index">
-        <image  src="/image/下载.png" bindtap="downloadfile" data-item="{{item}}" data-index="{{index}}">
+      <view class="right" wx:for="{{file_download}}"  wx:key="index">
+        <image  src="/image/下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}">
         </image>
         <view class="n" bindtap="previewFile" data-path="{{item.path}}">
         <image src="/image/docm.png"  mode="aspectFill" ></image>
@@ -55,7 +55,7 @@
   </block>
   <block>
     <view class="filebox" style="padding: 1em;" >
-      <view class="right" wx:for="{{fileArray}}"  wx:key="index">
+      <view class="right" wx:for="{{file_upload}}"  wx:key="index">
         <image  src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
         </image>
        <view class="n" bindtap="previewFile" data-path="{{item.path}}">

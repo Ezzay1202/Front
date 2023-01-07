@@ -3,7 +3,7 @@ const app = getApp();
 let list_all = [];
 let list_show = [];
 Page({
-    /**
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
@@ -32,7 +32,8 @@ Page({
             photo = '';
           }
           list_show[i] = {
-            arr:i,
+            arr: i,
+            files: list_all[j].files, //Array
             missionID: list_all[j].missionID,
             text: list_all[j].description,
             date1: list_all[j].time.month + "月" + list_all[j].time.day + "日" + list_all[j].time.beginHour + ":" + minbegin,
@@ -49,7 +50,7 @@ Page({
       }
     })
   },
-  func1(e){
+  func1(e) {
     let i = e.currentTarget.dataset.id
     let data_temp = list_show[i]
     let da = {
@@ -58,15 +59,13 @@ Page({
         date1: data_temp.date1,
         date2: data_temp.date2,
         location: data_temp.location,
-        people: data_temp.people,
-        fileArray: [{
-          name: "NIC考核标准lallalal (1)(1).docx",
-          path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
-          size: 22089,
-          time: 1669440948,
-          type: "file"
-        }]
+        people: data_temp.people
       },
+      files: [{
+        name: data_temp.files[0],
+        type: 'file',
+        path:''
+      }],
       tag: [{
           name: "优秀稿件",
           show: true
@@ -79,23 +78,10 @@ Page({
       attitude: true,
       code: 1,
       code1: 2,
-      wjxScore: 0,
-      fileArray: [{
-        name: "NIC考核标准lallalal (1)(1).docx",
-        path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
-        size: 22089,
-        time: 1669440948,
-        type: "file"
-      }, {
-        name: "NIC考核标准 (1)(1).docx",
-        path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
-        size: 22089,
-        time: 1669440948,
-        type: "file"
-      }]
+      wjxScore: 0
     }
     wx.navigateTo({
-      url: '/pages/fcheckM/fcheckM?resultInfo='+JSON.stringify(da)
+      url: '/pages/fcheckM/fcheckM?resultInfo=' + JSON.stringify(da)
     })
   },
 
@@ -103,7 +89,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+
   },
 
   /**

@@ -19,7 +19,7 @@
       </view>
     </view>
     <button bindtap="uploadFile" data-index="{{index}}">选择稿件及照片</button>
-    <button style="{{show}}" >提交文件</button>
+    <button style="{{show}}" bindtap="submitFile" data-id="{{item.arr}}">提交文件</button>
     </view>
     </view>
   </block>

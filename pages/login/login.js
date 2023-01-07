@@ -1,10 +1,10 @@
 // pages/login/login.js
 const app = getApp()
-let username = ''
+let userid = ''
 let password = ''
 Page({
   content(e) {
-    username = e.detail.value
+    userid = e.detail.value
   },
   password(e) {
     password = e.detail.value
@@ -77,7 +77,7 @@ Page({
         icon: 'error'
       })
     }
-    if (username == '') {
+    if (userid == '') {
       wx.showToast({
         title: '请输入账户！',
         icon: 'error'
@@ -87,7 +87,7 @@ Page({
         data: {
           data: {
             password: password,
-            username: username
+            userid: userid
           },
           method: "signUp"
         },
