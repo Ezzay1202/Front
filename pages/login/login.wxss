@@ -1,9 +1,9 @@
 /* pages/login/login.wxss */
-v1{
+.v1{
   display: block;
   position:absolute;
   width: 100%;
-  background-color: rgb(253, 249, 249);
+  background-color: #fff;
 }
 /* 白色区域 */
 .v1 .v2{
@@ -12,8 +12,6 @@ v1{
   left: 100rpx; 
   width: 545rpx;
   height: 600rpx;
-  background-color: rgb(252, 245, 245);
-  border-radius: 50rpx;
 }
 /* 白色区域内的登录文本 */
 .v1 .v2 .dltext{
@@ -27,6 +25,7 @@ v1{
   color: #000000;
   line-height: 100rpx;
   letter-spacing: 2rpx;
+  
 }
 /* 手机图片+输入框+下划线的父容器view */
 .v1 .v2 .phoneCs{
@@ -37,7 +36,7 @@ v1{
   width:480rpx ;
   height: 90rpx ;
   background-color: white;
-  
+  border: 6rpx outset #0f0c0d;
 }
 /* 手机图标 */
 .v1 .v2 .phoneCs .ph{
@@ -45,6 +44,7 @@ v1{
   margin-left: 30rpx;
   width: 55rpx;
   height: 55rpx;
+
 }
 /* 手机号输入框 */
 .v1 .v2 .phoneCs input{
@@ -52,31 +52,31 @@ v1{
   font-size: 30rpx ;
   margin-top: 25rpx;
   margin-left: 30rpx;
+
 }
 /* 密码图标+输入框+小眼睛图标+下划线父容器view */
 .v1 .v2 .passwordCs{
-  margin-top: 350rpx;
+  margin-top: 330rpx;
   margin-left: 25rpx;
   position: absolute;
   display: flex;
   width:480rpx ;
   height: 90rpx ;
   background-color: white;
-
+  border: 6rpx outset #0e0815;
 }
 /* 密码图标 */
 .v1 .v2 .passwordCs .ps{
-  margin-top: 5rpx;
+  margin-top: 13rpx;
   margin-left: 30rpx;
   width: 55rpx;
   height: 55rpx;
 }
 /* 眼睛 图标*/
 .v1 .v2 .passwordCs .eye{
-  margin-top: 5rpx;
-  margin-left: 65rpx;
-  width: 55rpx;
-  height: 55rpx;
+  margin: 16rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 /* 密码输入框 */
 .v1 .v2 .passwordCs input{
@@ -85,82 +85,35 @@ v1{
   margin-top: 25rpx;
   margin-left: 30rpx;
 }
-/* 登录按钮容器view */
-.v1 .v2 .denglu{
-  width: 480rpx;
-  height: 80rpx;
+.v1 .v2 .forget{
+  right: 25rpx;
+  margin-top: 440rpx;
+  margin-right: 20rpx;
   position: absolute;
-  margin-top:815rpx;
-  margin-left:25rpx;
-  
-}
-/* 登录按钮 */
-.v1 .v2 .denglu button{
-  padding: 0rpx;
-  line-height: 70rpx;
-  font-size: 30rpx;
-  width: 100%;
-  height: 100%;
-  border-radius: 5rpx;
-}
-/* 注册按钮容器view */
-.v1 .v2 .zhuce{
-  width: 480rpx;
-  height: 80rpx;
-  position: absolute;
-  margin-top:915rpx;
-  margin-left:25rpx;
-  
-}
-/* 注册按钮 */
-.v1 .v2 .zhuce button{
-  padding: 0rpx;
-  line-height: 70rpx;
-  font-size: 30rpx;
-  width: 100%;
-  height: 100%;
-  border-radius: 5rpx;
-}
-/* 游客登录按钮容器view */
-.v1 .v2 .youke{
-  width: 480rpx;
-  height: 80rpx;
-  position: absolute;
-  margin-top:1015rpx;
-  margin-left:25rpx;
-}
-/* 游客登录按钮 */
-.v1 .v2 .youke button{
-  padding: 0rpx;
-  line-height: 70rpx;
-  font-size: 30rpx;
-  width: 100%;
-  height: 100%;
-  border-radius: 5rpx;
-}
-.pannel-item {
   display: flex;
+}
+.v1 .v2 .forget>text ::after{
+  color: #000000;
+}
+/* 登录按钮容器view */
+.button{
+  position: absolute;
+  top:715rpx;
+  margin: .5em 0;
+  display:flex;
+  flex-direction: column;
   align-items: center;
-  height: 96rpx;
-  padding: 0 32rpx;
-  font-size: 32rpx;
-  margin-bottom: 32rpx;
+  box-sizing: border-box;
+}
+button{
+  flex:1;
+  width: 490rpx;
+  font-size: 29rpx;
+  margin: 0 25rpx .5em ;
+  padding: 0;
+  color: #234328;
   background-color: #fff;
+  border: 1px solid #234328 !important;
+  border-radius: 2%;
 }
 
-.pannel-item .last {
-  margin-bottom: -13rpx;
-}
-.pannel-label {
-  width: 160rpx;
-  margin-right: 32rpx;
-}
-
-.pannel-text {
-  flex: 1;
-  color: #000;
-  opacity: 0.9;
-}
-.pannel-text.empty {
-  opacity: 0.26;
-}

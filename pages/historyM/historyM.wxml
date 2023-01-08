@@ -1,0 +1,51 @@
+<!--pages/historyM/historyM.wxml-->
+<view class="container" style="background-color: white;padding:.5em;">
+  <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{center}}" />
+</view>
+
+<van-dropdown-menu
+  active-color="#135ba4"
+>
+  <block wx:for="{{class}}" wx:key="index">
+    <van-dropdown-item value="{{ item.value1 }}" options="{{ item.option1 }}" />
+  </block>
+  
+  <van-dropdown-item id="item" title="时间">
+    <van-datetime-picker
+      type="year-month"
+      value="{{ currentDate }}"
+      min-date="{{ minDate }}"
+      bind:input="onInput"
+    />
+  </van-dropdown-item>
+
+  <van-dropdown-item id="item" title="{{ itemTitle }}"/>
+   
+</van-dropdown-menu>
+
+
+<scroll-view class="container" scroll-y="true" enable-flex="true">
+  <block wx:for="{{listm}}" wx:key="id" >
+    <view class="m">
+      <view class="title">{{item.text}}</view>
+    <view class="text">
+      <text >{{item.date}}</text>
+      <text >{{item.location}}</text>
+      <button bindtap="goto" data-url="{{item.url}}">点击浏览</button>
+    </view>  
+    <view class="n">
+      <view class="people">
+        <block wx:for="{{item.people}}" wx:key="index">
+          <text data-id="{{item.key}}">{{item.name}}</text>
+         </block>
+        </view>
+      <view class="score">
+        {{item.score}}分
+      </view>
+    </view>
+  </view>
+  </block>
+</scroll-view>
+
+ <t-popup>
+</t-popup>

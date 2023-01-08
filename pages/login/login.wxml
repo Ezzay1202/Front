@@ -12,20 +12,16 @@
      </view>
      <!-- 密码 -->
      <view class="passwordCs">
-       <!-- <image src="/images/mi.png" class="ps"></image> -->
-       <input placeholder="密码" type="password" bindinput="password"  />
+      <input placeholder="密码" type="{{open? 'password':'text'}}" bindinput="password"  />
+       <image src="{{open? '/image/睁眼.png':'/image/闭眼.png'}}" class="eye" bindtap="password_eye"></image>
+     </view>
+     <view class="forget">
+        <text style="font-size: 28.5rpx; color: rgb(145, 139, 139); " bindtap="">忘记密码</text>
      </view>
      <!-- 登录按钮 -->
-     <view class="denglu">
-              <button class="btn-dl" type="primary" bindtap="Login1">登录</button>
-     </view>
-     <!-- 注册按钮 -->
-     <view class="zhuce" >
-      <button class="btn-dq" bindtap="">注册</button>
-     </view>
-     <!-- 游客登录按钮 -->
-     <view class="youke" >
-      <button class="btn-d1" bindtap="Login2">游客登录</button>
+     <view class="button">
+         <button bindtap="Login1" style="background-color: #245a3d; color: white;border:white;">登录</button>
+         <button bindtap="Login2">游客登录</button>
      </view>
    </view>
  </view>

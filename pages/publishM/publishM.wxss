@@ -1,4 +1,133 @@
 /* pages/publishM/publishM.wxss */
+.demo-desc {
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+.block {
+  background-color: rgb(236,242,254);
+  padding: .5em;
+  display: flex;
+  flex-direction: column;
+  margin: .5em 5%;
+  border-radius: 5%;
+}
+.block>text{
+  font-weight:bold;
+  font-size: 30rpx;
+  margin: 1em .5em;
+}
+.filebox{
+  flex:2;
+  margin: .6rem 5% ;
+  display: flex;
+  border-radius: 5% ;
+  background-color:rgb(236,242,254);
+  box-sizing: border-box;
+  flex-direction: column;
+}
+.filebox .right{
+  flex:2;
+  margin-top: .5em;
+  font-size: 24rpx;
+  display: flex;
+  color:black;
+}
+.filebox .right .n{
+  flex: 1;
+  background-color: white;
+  border: 2px outset  #13a4a4;
+  margin-left: .5em;
+  display:grid;
+  grid-template-columns: 1fr 4fr ;
+  grid-template-rows: 2fr 1fr;
+  max-height: 100rpx;
+  overflow: hidden;
+}
+
+.filebox .right .n text{
+padding: .2em;
+margin: .2em;
+border: 0px solid #888;
+width: 12em;
+}
+
+.filebox .right .n .name{
+  grid-column: 2/3;
+  grid-row: 1/2;
+  font-size: 30rpx;
+  max-height: 3em;
+  overflow: scroll;
+}
+
+.filebox .right .n .size {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  font-size: 20rpx;
+  color: #888888;
+}
+.filebox .right .n >image{
+  grid-column: 1/2;
+  grid-row: 1/3;
+  margin-top: 1em;
+  margin-left: .5em;
+  max-width: 3em;
+  max-height: 3em;
+}
+.filebox .right >image{
+  width: 3em;
+  height: 3em;
+  align-self: center;
+  text-align: center;
+  border-radius: 10rpx;
+  margin: .2em;
+  }
+.filebox button{
+  flex:3;
+  margin: .5em;
+  font-size: 26rpx;
+  background-color: rgb(236,242,254);
+  color: #13a4a4;
+  border: 1px solid #13a4a4 !important;
+}
+.conts{
+  flex:3;
+  margin: .6rem 5% ;
+  border-radius: 5%;
+  display: flex;
+}
+textarea {
+  padding: 1em;
+  display: block;
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 24rpx;
+  line-height: 40rpx;
+  padding-bottom: 16rpx;
+}
+.areas{
+  flex: 1;
+  background-color:rgb(238, 238, 238);
+  margin: 1em 3%;
+font-size: 30rpx;
+overflow: scroll;   
+border: 2px solid #13a4a4 !important;
+height: 5em;
+}
+
+.btn {
+  flex: 1;
+width: 600rpx;
+height: 80rpx;
+line-height: 80rpx;
+font-size: 30rpx;
+color: #13a4a4;
+border: 1px solid #13a4a4 !important;
+margin-top: 2em;
+bottom: 37rpx;
+} 
+button:after {
+border: 0;
+}
+
 .custom-tabs {
   margin-bottom: 32rpx;
 }

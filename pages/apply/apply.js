@@ -82,6 +82,41 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  missionSearch: function () {
+    wx.request({
+      url: 'http://1.15.118.125:8080/NIC/show',
+      data: {
+        "method": "showByInput",
+        "data": {
+          "missionID": missionID
+        }
+      },
+      success: (res) => {
+        console.log(res.data)
+        if (res.data.code == 302) {
+          //success
+          description = res.data.data[0].description
+          location = res.data.data[0].place
+          publisher = res.data.data[0].publisher
+          date1 = res.data.data[0].time.month + "月" + res.data.data[0].time.day + "日" + res.data.data[0].time.beginHour + ":" + res.data.data[0].time.beginMinute
+          date2 = res.data.data[0].time.endHour + ":" + res.data.data[0].time.endMinute
+          people = res.data.data[0].reporterNeeds.article + "文" + res.data.data[0].reporterNeeds.photo + "摄"
+          wx.showToast({
+            title: '查询成功',
+            success: res => {
+              //页面刷新如何实现？？？
+              reload()
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '未查询到此稿件码',
+            icon: 'none'
+          })
+        }
+      }
+    })
   }
 })
 Component({

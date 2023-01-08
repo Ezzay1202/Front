@@ -1,6 +1,8 @@
 {
   "component": true,
   "usingComponents": {
+    "t-steps": "tdesign-miniprogram/steps/steps",
+    "t-step-item": "tdesign-miniprogram/steps/step-item",
     "t-tabs": "tdesign-miniprogram/tabs/tabs",
     "t-tab-panel": "tdesign-miniprogram/tabs/tab-panel",
     "t-textarea": "tdesign-miniprogram/textarea/textarea",

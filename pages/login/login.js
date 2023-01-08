@@ -14,7 +14,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    open:true
   },
 
   /**
@@ -69,6 +69,12 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  password_eye(){
+    let open=!this.data.open
+    this.setData({
+      open:open
+    })
   },
   Login1: function () {
     if (password == '') {

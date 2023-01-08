@@ -1,0 +1,55 @@
+
+.m{
+  flex:1 0 ;
+  width: 85%;
+  align-items: stretch;
+  padding: 1em;
+  background-color:rgb(236,242,254);
+  margin: .5em 5%;
+  border-radius:5%;
+  display:flex;
+  flex-direction: column;
+}
+.m .title{
+  flex:1;
+  font-size: 35rpx;
+  max-height:3em;
+  margin-bottom: .5em;
+  overflow:scroll;
+}
+.m .text{
+  float: left;
+  margin: .2em;
+  max-height: 3em;
+  overflow: scroll;
+}
+.m .text text{
+  float:inline-start;
+  font-size: 26rpx;
+  margin: .3em .8em .3em 0;
+  padding: .5em;
+  color: white;
+  background-color: #13a4a4;
+  border-radius: .5em;
+}
+
+.none{
+  position: absolute;
+  width: 100%;
+  bottom:17em;
+  display: flex;
+}
+.none>image{
+  height: 10em;
+  width:10em;
+  position: fixed;
+  left:6.5em;
+  bottom:18em;
+}
+.none>text{
+  flex:1;
+  font-size: 28rpx;
+  color:#888;
+  text-align: center;
+  
+}

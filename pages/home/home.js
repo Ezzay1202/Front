@@ -5,8 +5,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
-
+  onLoad(options) {
+    if(options.type="baidu"){
+      this.setData({
+        url:"https://mp.weixin.qq.com/s/HVmzDgdhLzOJUcBnIMy0fg"
+      })
+    }
+  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -86,7 +92,7 @@ Component({
     }, {
       name: "查询稿件",
       img: '/image/apply.png',
-      goto: "/pages/apply/apply"
+      goto: "/pages/inquiryM/inquiryM"
     }, {
       name: "审核稿件",
       img: '/image/checkM.png',
@@ -95,6 +101,10 @@ Component({
       name: "提交稿件",
       img: '/image/submitM.png',
       goto: "/pages/submitM/submitM"
+    },{
+      name: "历史稿件",
+      img: '/image/submitM.png',
+      goto: "/pages/historyM/historyM"
     }],
     current: 0,
     duration: 500,

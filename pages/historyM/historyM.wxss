@@ -1,0 +1,105 @@
+/* pages/historyM/historyM.wxss */
+page {
+  --people-color: #13a4a4;
+}
+
+t-search{
+  width:80%;
+  background-color: #feecf2;
+}
+.m{
+  flex:1 0 ;
+  width: 85%;
+  align-items: stretch;
+  padding: 1em;
+  border:.1em solid rgb(236,242,254);
+  background-color: #ecfbfe;
+  margin: .5em 5%;
+  border-radius:10%;
+  display:flex;
+  flex-direction: column;
+}
+.m .title{
+  flex:1;
+  font-size: 35rpx;
+  max-height:3em;
+  margin-bottom: .5em;
+  overflow:scroll;
+}
+.m .text{
+  float: left;
+  margin: .2em;
+  max-height: 3em;
+  overflow: scroll;
+  border-bottom: 1px dashed #009999;
+}
+.m .text >text{
+  color: white;
+  background-color: #13a4a4;
+  border-radius: .5em;
+}
+ text{
+  float:inline-start;
+  font-size: 26rpx;
+  margin: .3em .8em .3em 0;
+  padding: .5em;
+} 
+.text button{
+  margin: .3em .8em .3em 0;
+  font-size: 26rpx;
+  color: white;
+  background-color: #135ba4;
+  border-radius: .5em;
+}
+.m .people{
+  flex:1;
+  float:left;
+  margin: .2em;
+  display: flex;
+  max-height: 3rem;
+  max-width: 80%;
+  align-items:center;
+  overflow:scroll;
+}
+.m .people >text{
+  min-width: max-content;
+  margin-right: .5em;
+  text-align: center;
+  flex:1;
+  padding: .4em;
+  font-size:25rpx;
+  color:var(--people-color);
+  border:1rpx solid var(--people-color);
+  border-radius: .5em;
+}
+.m .people >text[data-id="1"]{
+  --people-color:#13a45b
+}
+.m .people >text[data-id="2"]{
+  --people-color:#135ba4
+}
+.m .people >text[data-id="4"]{
+  --people-color:#a4a413
+}
+.m .people >text[data-id="5"]{
+  --people-color:#a413a4
+}
+
+.m .n{
+  display: flex;
+  box-sizing: border-box;
+}
+.score{
+  box-sizing: border-box;
+  width:20%;
+  font-size:35rpx;
+  padding: .3rem .3rem 0;
+  color:#a63f53;
+}
+image{
+  z-index: 1;
+  position: absolute;
+  bottom: 4rem;
+  height: 4rem;
+  width:4rem;
+}
