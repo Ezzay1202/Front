@@ -1,18 +1,18 @@
 <!--pages/inquiryM/inquiryM.wxml-->
 <t-search model:value="{{value_s}}" placeholder="请输入稿件码查询" center="{{true}}" bind:change="onChange" bind:blur="missionSearch" />
-<view  class="none" wx:if="{{listm.length===0}}">
+<view class="none" wx:if="{{listm.length===0}}">
   <image src="/image/缺省页_暂无消息.png"></image>
   <text>您还没有查询过稿件，请输入稿件码查询</text>
 </view>
 <scroll-view class="container" scroll-y="true" enable-flex="true">
-<block wx:for="{{listm}}" wx:key="index">
-  <view class="m" hidden="{{item.bool}}">
-    <view class="title">{{item.text}}</view>
-    <view class="text">
-      <text >{{item.date1}}—{{item.date2}}</text>
-      <text >{{item.location}}</text>
-      <text >{{item.people}}</text>
+  <block wx:for="{{listm}}" wx:key="index">
+    <view class="m" >
+      <view class="title">{{item.text}}</view>
+      <view class="text">
+        <text>{{item.date1}}—{{item.date2}}</text>
+        <text>{{item.location}}</text>
+        <text>{{item.people}}</text>
+      </view>
     </view>
-  </view>
-</block>
+  </block>
 </scroll-view>
