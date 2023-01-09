@@ -93,7 +93,8 @@ Component({
         data: {
           "method": "showByInput",
           "data": {
-            "missionID": missionID
+            "missionID": missionID,
+            'userid': app.globalData.userid
           }
         },
         success: (res) => {
