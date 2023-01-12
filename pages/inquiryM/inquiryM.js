@@ -23,7 +23,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listm: []
   },
 
   /**
@@ -159,26 +158,5 @@ Component({
       })
     }
   },
-  data: {
-    current: 0,
-    info: {
-      name: name1,
-      time: "2022-10-21 20:00"
-    },
-    content: {
-      a: a,
-      b: b,
-      c: "小明于 2022-10-21 20：00完成了该任务",
-      d: d,
-      e: e,
-      f: f
-    },
-    mag: {
-      text: description,
-      date1: date1,
-      date2: date2,
-      location: location,
-      people: people,
-    },
-  }
+  data: {}
 });

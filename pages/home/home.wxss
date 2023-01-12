@@ -14,3 +14,46 @@ t-search{
   display: block;
   margin-bottom: 32rpx;
 }
+.image{
+  padding: 1em 1em .8em;
+  width: 60rpx;
+  height: 60rpx;
+}
+.middle-container {
+  overflow:scroll;
+  height: 200rpx;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  border-radius: 20rpx;
+  background-color: #FFFFFF;
+  margin: 0rpx 30rpx 26rpx 30rpx;
+  box-shadow: 0 15rpx 10rpx -15rpx #efefef;
+}
+
+.view_2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.view_tupianwenzi {
+  display: flex;
+  flex-direction: column;
+  width: 130rpx;
+  align-items: center;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+}
+
+.image_tupian {
+  display: flex;
+  padding: 1em 1em .8em;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.text_1 {
+  font-size: 27rpx;
+}

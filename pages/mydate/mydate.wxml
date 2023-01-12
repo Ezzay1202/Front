@@ -1,0 +1,50 @@
+<!--pages/mydate/mydate.wxml-->
+<view class="flex-row head">
+  <view class="head-left flex-column j_c">
+    <image src="https://s3.bmp.ovh/imgs/2022/07/27/6289fe4ab016c74a.png" class="head-icon" />
+    <text class="head-left-text one">第</text>
+    <text class="head-left-text two">周</text>
+    <text class="head-curr-week">{{currentWeek}}</text>
+  </view>
+  <view class="head-right flex-row j_b">
+    <view class="flex-column week" wx:for="{{weekList}}" wx:key="list">
+      <text class="head-week {{item.isCurr && 'head-right-curr'}}">{{item.weekday}}</text>
+      <text class=" {{item.isCurr && 'head-right-curr'}}">{{item.isCurr?'今天':item.day}}</text>
+    </view>
+  </view>
+</view>
+<view class="container flex-row mb20">
+  <view class="container-left flex-column j_b">
+    <block wx:for="{{time.one}}" wx:key="list">
+      <view class="flex-column j_c">
+        <text class="con-title">{{item.index}}</text>
+        <text>{{item.timeStart}}</text>
+        <text>{{item.timeEnd}}</text>
+      </view>
+    </block>
+  </view>
+  <swiper class="swiper" bindchange="changeWeeks" >
+      <block wx:for="{{weeks}}" wx:key="index">
+        <swiper-item  class="container-right">
+        <view class="con-item  j_c " wx:for="{{item.class}}" wx:key="index" style=
+      " grid-row:{{item.num1}}/{{item.num2}}; grid-column: {{item.weekday}}; background-color:{{color[item.color]}};"
+     catchtap="{{item.type ? 'getDetail':''}}" data-item="{{item}}">
+        <view class="textbox">
+          <text class="con-item-subj line_ellipsis">{{item.sub}}</text>
+          <text class="line_ellipsis">{{item.tec}}</text>
+          <text class="line_ellipsis">{{item.add}}</text>
+        </view>
+      </view>
+    <image src="https://s3.bmp.ovh/imgs/2022/07/27/85dabf1d5821a98b.png" class="con-icon" />
+      </swiper-item>
+      </block>
+  </swiper>
+</view>
+
+<!-- 详情弹框 -->
+<view class="mask" hidden="{{!isShow}}" catchtap="close"></view>
+<view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
+  <view>{{current.sub}}</view>
+  <view>{{current.add}}</view>
+  <view>{{current.tec}}</view>
+</view>

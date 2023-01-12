@@ -1,0 +1,82 @@
+<!--pages/myself/meself.wxml-->
+<view class='container'>
+	<!-- 第1部分 -->
+	<view class='top-container'>
+		<image class='bg-img' src='/image/啸天.png'></image>
+	</view>
+  <view class="head">
+    <image src='/image/啸天.png'></image>
+    <text>烟霞状元</text>
+  </view>
+	<!-- 第2部分 -->
+	<view class='middle-container'>
+		<view class="view_2" wx:for="{{functions}}" wx:key="index">
+			<view class="view_tupianwenzi" bindtap="goTomoudle" data-index="{{index}}">
+				<image class="image_tupian" src="{{item.src}}"></image>
+				<text class="text_1">{{item.name}}</text>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="flex">
+  <view class="myM">
+    <text class="text">我的稿件</text>
+    <text>进行中稿件</text>
+    <view class="myM-ing">
+      <t-steps 
+        t-class="t-class"
+       current="{{steps_num}}" bind:change="onFirstChange" readonly="true">
+      <block wx:for="{{step}}" wx:key="index"> 
+        <t-step-item
+        
+        t-class-title="t-class-title"
+        title="{{item.text}}" content="{{item.content}}"  />
+      </block>
+      </t-steps>
+    </view>
+    <text>历史稿件</text>
+    <view class="myM-history">
+      <block wx:for="{{listm}}" wx:key="id" >
+      <view class="m">
+       <view class="title">{{item.text}}</view>
+        <view class="text">
+          <text >{{item.date}}</text>
+          <text >{{item.location}}</text>
+          <button bindtap="goto" data-url="{{item.url}}">点击浏览</button>
+          </view>  
+        <view class="n">
+          <view class="people">
+          <block wx:for="{{item.people}}" wx:key="index">
+          <text data-id="{{item.key}}">{{item.name}}</text>
+          </block>
+          </view>
+          <view class="score">
+          {{item.score}}分
+          </view>
+        </view>
+      </view>
+    </block>
+    </view>
+  </view>
+
+  <view class="time-view">
+    <text class="text">我的时间</text> 
+    <view class="myday">
+      <block wx:for="{{work}}" wx:key="index">
+        <view class="mywork">
+          <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
+          <text>{{item.add}}</text>
+          <text>{{item.time1}}-{{item.time2}}</text>
+        </view>
+      </block>
+    </view> 
+  </view>
+  <image></image>
+</view>
+
+
+<t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
+  <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}" bindtap="onChange">
+    {{item.label}}
+  </t-tab-bar-item>
+</t-tab-bar>

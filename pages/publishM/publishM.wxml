@@ -1,7 +1,7 @@
 <!--pages/publishM/publishM.wxml-->
 
 <!--bind:change="onTabsChange" bind:click="onTabsClick" -->
-<t-tabs defaultValue="{{1}}" t-class="custom-tabs">
+<t-tabs defaultValue="{{0}}" t-class="custom-tabs">
   <t-tab-panel label="日常任务" value="0">
     <view class="demo-textarea">
       <text class="pannel-label">活动标题</text>

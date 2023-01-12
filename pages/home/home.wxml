@@ -13,10 +13,13 @@
 
 </swiper>
 
-<t-grid class="block" column="{{4}}" theme="card" >
-<block wx:for="{{functions}}" wx:key="index" >
-  <t-grid-item text="{{item.name}}" image="{{item.img}}" bindtap="goTomoudle2" data-index="{{index}}" />
-</block>
-</t-grid>
+<view class='middle-container'>
+		<view class="view_2" wx:for="{{functions}}"  wx:key="index">
+			<view class="view_tupianwenzi" bindtap="goTomoudle" data-index="{{index}}">
+				<image class="image_tupian" src="{{item.img}}"></image>
+				<text class="text_1">{{item.name}}</text>
+			</view>
+		</view>
+	</view>
 
 

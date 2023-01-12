@@ -325,6 +325,11 @@ Component({
           url: '/pages/home/home',
         })
       }
+      if (e.detail.value == 'label_4') {
+        wx.redirectTo({
+          url: '/pages/myself/myself',
+        })
+      }
     },
     publishMission: function () {
       if (this.data.list1 == null) {
@@ -392,7 +397,7 @@ Component({
             let entertime = now.getTime();
             let endtime = now.getTime();
             while (endtime - entertime < 2000) {
-              endtime = new Date().getTime();
+              endtime = new Date().getTime()
             }
             wx.redirectTo({
               url: '/pages/home/home',
