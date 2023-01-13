@@ -9,6 +9,7 @@ const hour = date.getHours()
 const minute = date.getMinutes()
 let place1 = ''
 let description1 = ''
+let description2 = ''
 Page({
   /**
    * 生命周期函数--监听页面加载
@@ -80,8 +81,7 @@ Page({
     list1: [],
     list2: [],
     list3: [],
-    place1: '',
-    description: ''
+    place1: ''
   },
 })
 const PICKER_KEY = {
@@ -245,8 +245,12 @@ Component({
     setPlace(e) {
       place1 = e.detail.value
     },
-    setDescription(e) {
+    setDescription1(e) {
       description1 = e.detail.value
+    },
+    setDescription2(e) {
+      description2 = e.detail.value
+      //console.log(description2)
     },
     onTabsChange(event) {
       console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
@@ -331,7 +335,7 @@ Component({
         })
       }
     },
-    publishMission: function () {
+    publishMission() {
       if (this.data.list1 == null) {
         wx.showToast({
           icon: 'none',
@@ -405,7 +409,14 @@ Component({
           }
         })
       }
-
+    },
+    publishMission2(){
+      if (description2 == '') {
+        wx.showToast({
+          icon: 'none',
+          title: '请填写稿件备注',
+        })
+      }
     }
   },
 });

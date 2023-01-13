@@ -11,7 +11,7 @@
 	<!-- 第2部分 -->
 	<view class='middle-container'>
 		<view class="view_2" wx:for="{{functions}}" wx:key="index">
-			<view class="view_tupianwenzi" bindtap="goTomoudle" data-index="{{index}}">
+			<view class="view_tupianwenzi" bindtap="{{item.bindtap}}">
 				<image class="image_tupian" src="{{item.src}}"></image>
 				<text class="text_1">{{item.name}}</text>
 			</view>
@@ -21,20 +21,25 @@
 <view class="flex">
   <view class="myM">
     <text class="text">我的稿件</text>
-    <text>进行中稿件</text>
+    <text style="margin-top: .4em;">进行中稿件</text>
     <view class="myM-ing">
-      <t-steps 
-        t-class="t-class"
-       current="{{steps_num}}" bind:change="onFirstChange" readonly="true">
+      <block wx:for="{{listm}}" wx:key="id" >
+      <view class="m-ing">
+       <view class="title" >{{item.text}}</view>
+    
+        <t-steps 
+        current="{{steps_num}}" bind:change="onFirstChange" readonly="true">
       <block wx:for="{{step}}" wx:key="index"> 
         <t-step-item
-        
+        t-class-content="t-class-content"
         t-class-title="t-class-title"
         title="{{item.text}}" content="{{item.content}}"  />
       </block>
       </t-steps>
+      </view>
+    </block>
     </view>
-    <text>历史稿件</text>
+    <text style="margin-top: 1em;">历史稿件</text>
     <view class="myM-history">
       <block wx:for="{{listm}}" wx:key="id" >
       <view class="m">
@@ -42,7 +47,7 @@
         <view class="text">
           <text >{{item.date}}</text>
           <text >{{item.location}}</text>
-          <button bindtap="goto" data-url="{{item.url}}">点击浏览</button>
+          <button bindtap="" data-url="{{item.url}}">点击浏览</button>
           </view>  
         <view class="n">
           <view class="people">
@@ -60,14 +65,27 @@
   </view>
 
   <view class="time-view">
-    <text class="text">我的时间</text> 
-    <view class="myday">
-      <block wx:for="{{work}}" wx:key="index">
+    <text class="text">我的时间</text>
+    <text style="margin-top: .4em; " class="date">今天</text> 
+    <view class="mytoday">
+      <block wx:for="{{todaywork}}" wx:key="index">
         <view class="mywork">
           <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
           <text>{{item.add}}</text>
           <text>{{item.time1}}-{{item.time2}}</text>
         </view>
+      </block>
+    </view>
+    <view class="myday">
+      <block wx:for="{{day}}" wx:key="index">
+        <text class="date sticky">{{item.date}}</text>
+        <block wx:for="{{item.work}}" wx:key="index">
+        <view class="mywork">
+          <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
+          <text>{{item.add}}</text>
+          <text>{{item.time1}}-{{item.time2}}</text>
+        </view>
+      </block>
       </block>
     </view> 
   </view>
@@ -80,3 +98,18 @@
     {{item.label}}
   </t-tab-bar-item>
 </t-tab-bar>
+<!-- 详情弹框 -->
+<view class="mask" hidden="{{!isShow}}">
+<view class="mask-bac">
+  <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
+  <view class="input-box">
+    <input placeholder="HUST学号" 	placeholder-class="p-class" type="text" bindinput="content" class="phonecs" />
+    <input placeholder="密码" type="password" 	placeholder-class="p-class" bindinput="password" class="phonecs" /> 
+  </view>
+  <view class="button-box">
+    <button style="background-color: var(--bu-color); color:white" bindtap="kcbSpider">确认</button>   
+    <button bindtap="cannelMask">取消</button>                                                 
+ </view>
+</view>
+</view>
+</view>

@@ -1,7 +1,7 @@
 <!--pages/mydate/mydate.wxml-->
 <view class="flex-row head">
   <view class="head-left flex-column j_c">
-    <image src="https://s3.bmp.ovh/imgs/2022/07/27/6289fe4ab016c74a.png" class="head-icon" />
+    <image src="https://s3.bmp.ovh/imgs/2022/07/27/6289fe4ab016c74a.png" class="head-icon" bindtap="showMask" />
     <text class="head-left-text one">第</text>
     <text class="head-left-text two">周</text>
     <text class="head-curr-week">{{currentWeek}}</text>
@@ -23,7 +23,7 @@
       </view>
     </block>
   </view>
-  <swiper class="swiper" bindchange="changeWeeks" >
+  <swiper class="swiper" bindchange="changeWeeks" current="{{currentWeek}}">
       <block wx:for="{{weeks}}" wx:key="index">
         <swiper-item  class="container-right">
         <view class="con-item  j_c " wx:for="{{item.class}}" wx:key="index" style=
@@ -39,12 +39,4 @@
       </swiper-item>
       </block>
   </swiper>
-</view>
-
-<!-- 详情弹框 -->
-<view class="mask" hidden="{{!isShow}}" catchtap="close"></view>
-<view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
-  <view>{{current.sub}}</view>
-  <view>{{current.add}}</view>
-  <view>{{current.tec}}</view>
 </view>

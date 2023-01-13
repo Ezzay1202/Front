@@ -6,13 +6,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    if (options.type = "baidu") {
+    if(options.type="baidu"){
       this.setData({
-        url: "https://mp.weixin.qq.com/s/HVmzDgdhLzOJUcBnIMy0fg"
+        url:"https://mp.weixin.qq.com/s/HVmzDgdhLzOJUcBnIMy0fg"
       })
     }
   },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -101,7 +101,7 @@ Component({
       name: "提交稿件",
       img: '/image/submitM.png',
       goto: "/pages/submitM/submitM"
-    }, {
+    },{
       name: "历史稿件",
       img: '/image/submitM.png',
       goto: "/pages/historyM/historyM"

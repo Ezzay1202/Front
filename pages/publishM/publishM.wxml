@@ -5,94 +5,94 @@
   <t-tab-panel label="日常任务" value="0">
     <view class="demo-textarea">
       <text class="pannel-label">活动标题</text>
-      <t-textarea class="t-textarea__placeholder"         placeholder="请输入文字" bind:change = "setDescription" bordered maxlength="100" indicator />
+      <t-textarea class="t-textarea__placeholder" placeholder="请输入文字" bind:change="setDescription" bordered maxlength="100" indicator />
     </view>
 
     <block>
       <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
-      <view class="pannel-label">起始时间</view>
-      <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
-     <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+        <view class="pannel-label">起始时间</view>
+        <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
       </view>
     </block>
 
     <block>
       <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE2}}">
-      <view class="pannel-label">结束时间</view>
-      <view class="pannel-text {{date2CurrentValue.length ? '' : 'empty'}}"> {{date2CurrentValue || '选择时间' }}</view>
-      <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+        <view class="pannel-label">结束时间</view>
+        <view class="pannel-text {{date2CurrentValue.length ? '' : 'empty'}}"> {{date2CurrentValue || '选择时间' }}</view>
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
       </view>
     </block>
 
-    <view class="pannel-item last" >
+    <view class="pannel-item last">
       <t-input label="地点" placeholder="输入任务的地点" bind:change="setPlace" />
     </view>
 
     <block>
       <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.People}}">
-      <view class="pannel-label">小记者</view>
-      <view class="pannel-text {{peopleValue.length ? '' : 'empty'}}"> {{peopleCurrentValue || '选择人数' }}</view>
-      <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+        <view class="pannel-label">小记者</view>
+        <view class="pannel-text {{peopleValue.length ? '' : 'empty'}}"> {{peopleCurrentValue || '选择人数' }}</view>
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
       </view>
     </block>
 
-<!-- 起始时间 不带标题 -->
-<t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
-  <t-picker-item options="{{months}}"></t-picker-item>
-  <t-picker-item options="{{days}}"></t-picker-item>
-  <t-picker-item options="{{hour}}"></t-picker-item>
-  <t-picker-item options="{{minute}}"></t-picker-item>
-</t-picker>
+    <!-- 起始时间 不带标题 -->
+    <t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+      <t-picker-item options="{{months}}"></t-picker-item>
+      <t-picker-item options="{{days}}"></t-picker-item>
+      <t-picker-item options="{{hour}}"></t-picker-item>
+      <t-picker-item options="{{minute}}"></t-picker-item>
+    </t-picker>
 
-<!-- 结束时间 不带标题 -->
-<t-picker visible="{{date2Visible}}" value="{{date2Value}}" data-key="date2" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
-  <t-picker-item options="{{hour}}"></t-picker-item>
-  <t-picker-item options="{{minute}}"></t-picker-item>
-</t-picker>
+    <!-- 结束时间 不带标题 -->
+    <t-picker visible="{{date2Visible}}" value="{{date2Value}}" data-key="date2" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+      <t-picker-item options="{{hour}}"></t-picker-item>
+      <t-picker-item options="{{minute}}"></t-picker-item>
+    </t-picker>
 
-<!-- 小记者 不带标题 -->
-<t-picker visible="{{peopleVisible}}" value="{{peopleValue}}" data-key="people" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
-  <t-picker-item options="{{wen}}"></t-picker-item>
-  <t-picker-item options="{{she}}"></t-picker-item>
-</t-picker>
-<view class="apply">
-  <button bindtap="publishMission">发布</button>
-</view>
+    <!-- 小记者 不带标题 -->
+    <t-picker visible="{{peopleVisible}}" value="{{peopleValue}}" data-key="people" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+      <t-picker-item options="{{wen}}"></t-picker-item>
+      <t-picker-item options="{{she}}"></t-picker-item>
+    </t-picker>
+    <view class="apply">
+      <button bindtap="publishMission">发布</button>
+    </view>
   </t-tab-panel>
   <t-tab-panel label="其他任务" value="1">
     <view style="overflow: scroll; max-height:1000rpx">
       <view class="block">
-      <text >请选择任务状态</text>
-      <t-steps current="{{first}}" bind:change="onFirstChange">
-      <block wx:for="{{step}}" wx:key="index"> 
-        <t-step-item  title="{{item.text}}" content="{{item.content}}" />
-      </block>
-      </t-steps>
-    </view>
-
-    <block>
-    <view class="filebox" style="padding: 1em;" >
-      <view class="right" wx:for="{{fileArray}}"  wx:key="index">
-        <image  src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
-        </image>
-       <view class="n" bindtap="previewFile" data-path="{{item.path}}">
-        <image src="/image/docm.png"  mode="aspectFill" ></image>
-        <text  class="name">{{item.name}}</text>
-        <text class="size">{{item.size}}</text>
+        <text>请选择任务状态</text>
+        <t-steps current="{{first}}" bind:change="onFirstChange">
+          <block wx:for="{{step}}" wx:key="index">
+            <t-step-item title="{{item.text}}" content="{{item.content}}" />
+          </block>
+        </t-steps>
       </view>
-    </view>
-    <button bindtap="uploadFile" >选择稿件及照片</button>
-    </view>
 
-    <view class="conts">
-       <textarea class="areas" placeholder='添加稿件的备注'  bindinput="inputs"> 
+      <block>
+        <view class="filebox" style="padding: 1em;">
+          <view class="right" wx:for="{{fileArray}}" wx:key="index">
+            <image src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
+            </image>
+            <view class="n" bindtap="previewFile" data-path="{{item.path}}">
+              <image src="/image/docm.png" mode="aspectFill"></image>
+              <text class="name">{{item.name}}</text>
+              <text class="size">{{item.size}}</text>
+            </view>
+          </view>
+          <button bindtap="uploadFile">选择稿件及照片</button>
+        </view>
+
+        <view class="conts">
+          <textarea class="areas" placeholder='添加稿件的备注' bindinput="setDescription2">
        </textarea>
-   </view>
-  
-    <!--提交评价-->
-   <button class='btn' bindtap='handleBtn'>发布任务</button>
-  </block>
-  
+        </view>
+
+        <!--提交评价-->
+        <button class='btn' bindtap='publishMission2'>发布任务</button>
+      </block>
+
     </view>
   </t-tab-panel>
 </t-tabs>

@@ -1,6 +1,16 @@
 // pages/myself/meself.js
 const app = getApp()
+let userid = ''
+let password = ''
 Page({
+  content(e) {
+    userid = e.detail.value
+    //console.log(userid)
+  },
+  password(e) {
+    password = e.detail.value
+    //console.log(password)
+  },
 
   /**
    * 页面的初始数据
@@ -10,7 +20,6 @@ Page({
     functions: [{
       name: "我的稿件",
       src: "/image/mywo.png"
-
     }, {
       name: "我的绩效",
       src: "/image/myw.png"
@@ -20,7 +29,7 @@ Page({
     }, {
       name: "我的时间",
       src: "/image/myt.png",
-      goto: "/pages/mydate/mydate"
+      bindtap: "gotoMydate"
     }],
     list: [{
         value: 'label_1',
@@ -148,7 +157,7 @@ Page({
     }, {
       text: '排版',
     }, ],
-    work: [{
+    todaywork: [{
         name: "概率论",
         add: "D888",
         time1: "8:00",
@@ -159,46 +168,62 @@ Page({
         add: "D888",
         time1: "8:00",
         time2: "10:00",
-      }, {
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      }, {
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      }
-    ]
+      },
+    ],
+    day: [{
+      date: "1/12 周四",
+      work: [{
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
+        {
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
+      ],
+    }, {
+      date: "1/12 周四",
+      work: [{
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
+        {
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
+      ],
+    }, {
+      date: "1/12 周四",
+      work: [{
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
+        {
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
+      ],
+    }],
+    isShow: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.request({
-      url: 'http://1.15.118.125:8080/NIC/lesson',
-      data: {
-        "method": "get",
-        "data": {
-          "weekStart": 1,
-          "weekEnd": 19,
-          "userid": app.globalData.userid
-        }
-      },
-      success: (res) => {
-        console.log(res.data)
-        this.setData({
-          kcb_code: res.data.code
-        })
-        if (res.data.code == 702) {
-          this.setData({
-            kcb: res.data.data
-          })
-        }
-      }
-    })
+    this.getKcb()
   },
 
   /**
@@ -249,24 +274,83 @@ Page({
   onShareAppMessage() {
 
   },
-  goTomoudle(e) {
-    console.log("yes", e)
-    let index = e.currentTarget.dataset.index
-    let url = this.data.functions[index].goto
-    if (index == 3) {
-      if (this.data.kcb_code != 702) {
-        wx.showToast({
-          title: '您未导入课程表',
-          icon: 'error'
+  getKcb(){
+    wx.request({
+      url: 'http://1.15.118.125:8080/NIC/lesson',
+      data: {
+        "method": "get",
+        "data": {
+          "weekStart": 1,
+          "weekEnd": 19,
+          "userid": app.globalData.userid
+        }
+      },
+      success: (res) => {
+        console.log(res.data)
+        this.setData({
+          kcb_code: res.data.code
         })
-      } else {
-        wx.navigateTo({
-          url: url + "?kcb=" + JSON.stringify(this.data.kcb),
-        })
+        if (res.data.code == 702) {
+          this.setData({
+            kcb: res.data.data
+          })
+        }
+        console.log(this.data.kcb)
       }
+    })
+  },
+  kcbSpider(e) {
+    if (userid == '') {
+      wx.showToast({
+        title: 'title',
+        icon: 'error'
+      })
+    } else if (password == '') {
+      wx.showToast({
+        title: 'title',
+        icon: 'error'
+      })
     } else {
-      wx.navigateTo({
-        url: url,
+      wx.showLoading({
+        title: '导入课程表中...',
+        mask: true //防止多次点击
+      })
+      wx.request({
+        url: 'http://1.15.118.125:8080/NIC/lesson',
+        data: {
+          "method": "add",
+          "data": {
+            "password": password,
+            "userid": userid
+          }
+        },
+        success: (res) => {
+          console.log(res.data)
+          if (res.data.code == 702) {
+            wx.showToast({
+              title: '导入成功!'
+            })
+            this.getKcb()
+            let now = new Date();
+            let entertime = now.getTime();
+            let endtime = now.getTime();
+            while (endtime - entertime < 1200) {
+              endtime = new Date().getTime()
+            }
+            this.setData({
+              isShow: false
+            })
+          }
+        },
+        fail: () => {
+          wx.showToast({
+            title: '导入失败，请稍后再试！',
+            icon: 'error'
+          })
+        },
+        complete: () => {
+          wx.hideLoading()
+        }
       })
     }
   },
@@ -287,12 +371,44 @@ Page({
           icon: 'none'
         })
       }
-    };
+    }
     if (e.detail.value == 'label_1') {
       //页面跳转
       wx.redirectTo({
         url: "/pages/home/home",
       })
     }
+    if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
+      //页面跳转
+      wx.redirectTo({
+        url: "/pages/login/login",
+      })
+    }
   },
+  cannelMask() {
+    this.setData({
+      isShow: false
+    })
+  },
+  gotoMydate() {
+    if (this.data.kcb_code != 702) {
+      wx.showToast({
+        title: '您未导入课程表',
+        icon: 'error'
+      })
+      let now = new Date();
+      let entertime = now.getTime();
+      let endtime = now.getTime();
+      while (endtime - entertime < 1500) {
+        endtime = new Date().getTime()
+      }
+      this.setData({
+        isShow: true
+      })
+    } else {
+      wx.navigateTo({
+        url: "/pages/mydate/mydate?kcb=" + JSON.stringify(this.data.kcb),
+      })
+    }
+  }
 })

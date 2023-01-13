@@ -1,13 +1,19 @@
+page{
+  background-color: #f3f3f5;
+  --tag-color:#a47113;
+}
 .m{
-  flex:1 0 300rpx;
+  flex:1;
   width: 85%;
   align-items: stretch;
   padding: 1em;
-  background-color:rgb(236,242,254);
   margin: .5em 5%;
-  border-radius:10%;
+  border-radius:3%;
   display:flex;
   flex-direction: column;
+  background-color: #fff;
+  border: 4rpx  outset #021a40;
+  box-shadow: 5px 5px #dfdfeb;
 }
 .m .title{
   flex:1;
@@ -17,19 +23,19 @@
   overflow:scroll;
 }
 .m .text{
-  float: left;
   margin: .2em;
   max-height: 3em;
   overflow: scroll;
+  display: flex;
 }
 .m .text text{
-  float:inline-start;
+  text-align: center;
   font-size: 26rpx;
   margin: .3em .8em .3em 0;
   padding: .5em;
   color: white;
-  background-color: #13a4a4;
-  border-radius: .5em;
+  background-color: #307090;
+  border-radius: .3em;
 }
 .m .n{
   display: flex;
@@ -37,23 +43,32 @@
   margin-top: 0;
   box-sizing: border-box;
 }
-.m .n .tag{
-  color: white;
-  background-color: #a47113;
+.n .tagbox{
+  max-width: 200rpx;
+  max-height: 100rpx;
+  overflow: scroll;
+}
+.n .tagbox view {
+  color: var(--tag-color);
+  border:.1em solid  var(--tag-color);
   text-align: center;
   font:1.1em sans-serif;
   box-sizing: border-box;
-  margin: .8em .3em ;
-  padding: .3em;
+  margin: .5em .3em ;
+  padding: .5em;
   border-radius: 10rpx;
 }
+.n .buttonbox{
+  flex:1;
+  display:flex;
+}
 
-.m .n button{
+.buttonbox button{
   flex:1;
   font-size: 30rpx;
-  color: #13a4a4;
+  color: white;
   border-radius: 10rpx;
-  background-color: rgb(236,242,254);
-  border: 1px solid #13a4a4;
+  background-color: #629460;
+  border: 1px solid ;
   margin: .3em .3em .2em;  
 }

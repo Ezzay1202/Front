@@ -22,6 +22,6 @@ App({
     authority3: 0,
     missionCompleted: [],
     missionTaken: [],
-    week_kcb: 1,
+    week_kcb: 10
   }
 })
