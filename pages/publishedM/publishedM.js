@@ -8,7 +8,7 @@ Page({
    */
   onLoad(options) {
     wx.request({
-      url: 'http://1.15.118.125:8080/NIC/show?method=showAll',
+      url: 'http://1.15.118.125:8080/NIC/show?method=showNeed',
       success: (res) => {
         list_all = res.data.data;
         let j = -1;

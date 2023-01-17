@@ -4,7 +4,7 @@
     <view class="m" bindtap="func1" data-id="{{item.arr}}">
       <view class="title">{{item.text}}</view>
     <view class="text">
-      <text >{{item.date1}}—{{item.date2}}</text>
+      <text >{{item.date1}}{{item.date2}}</text>
       <text >{{item.location}}</text>
       <text >{{item.people}}</text>
     </view>  

@@ -17,11 +17,25 @@ Page({
     })
   },
 
-  downloadFile: function (e) {
-    wx.downloadFile({
-      url: 'http://1.15.118.125:8080/NIC/work_files/' + this.data.file_download[0].name,
-      success:(res)=>{
-        console.log(res)
+  downloadFile(e) {
+    let arr = e.currentTarget.dataset.id
+    console.log(arr)
+    wx.showLoading({
+      title: '下载中...',
+      mask: true
+    })
+    wx.setClipboardData({
+      data: 'http://1.15.118.125:8080/NIC/work_files/' + this.data.file_download[arr].name,
+      success: (res) => {
+        wx.showToast({
+          title: '文件下载链接已复制到剪贴板',
+          icon: 'none'
+        })
+      },
+      complete: (res) => {
+        wx.hideLoading({
+          success: (res) => {},
+        })
       }
     })
   },
@@ -125,7 +139,6 @@ Page({
   },
   // 文件上传
   uploadFile: function (e) {
-    console.log(e)
     wx.chooseMessageFile({
       count: 10, //选择文件的数量
       type: 'all', //选择文件的类型
@@ -147,6 +160,7 @@ Page({
   },
   // 预览附件
   previewFile(e) {
+    console.log(e)
     var string = ''
     string = e.currentTarget.dataset.path.substring(e.currentTarget.dataset.path.indexOf(".") + 1)
     if (string == 'png' || string == 'jpg' || string == 'gif' || string == 'jpeg') {
@@ -158,17 +172,38 @@ Page({
         urls: arr
       })
     } else {
-      // 文件预览
-      wx.openDocument({
-        fileType: string, // 文件类型
-        filePath: e.currentTarget.dataset.path, // 文件地址
-        success: function (res) {
-          console.log('成功')
-        },
-        fail: function (error) {
-          console.log("失败")
+      let tempFilePath = ''
+      wx.showLoading({
+        title: '请稍等...',
+      })
+      wx.downloadFile({
+        url: 'http://1.15.118.125:8080/NIC/work_files/' + this.data.file_download[e.currentTarget.dataset.id].name,
+        success: (res) => {
+          console.log(res)
+          tempFilePath = res.tempFilePath
+          // 文件预览
+          wx.openDocument({
+            filePath: tempFilePath, // 文件地址
+            showMenu: true,
+            success: function (res) {
+              //console.log('成功')
+            },
+            fail: function (error) {
+              console.log(error)
+              wx.showToast({
+                title: '无法预览！',
+                icon: 'error'
+              })
+            },
+            complete: (res) => {
+              wx.hideLoading({
+                success: (res) => {},
+              })
+            }
+          })
         }
       })
+
     }
   },
   /**

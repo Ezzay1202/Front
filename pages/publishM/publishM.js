@@ -95,27 +95,18 @@ Component({
     styleIsolation: 'apply-shared',
   },
   data: {
-    fileArray:[{name: "NIC考核标准lallalal (1)(1).docx",
-    path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
-    size: 22089,
-    time: 1669440948,
-    type: "file"},{name: "NIC考核标准 (1)(1).docx",
-    path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
-    size: 22089,
-    time: 1669440948,
-    type: "file"}],
-    step:[{
-      text:'已写稿',
-      
-    },{
-      text:'编辑部审稿',
-      content:"需要编辑部帮助润色稿件"
-    },{
-      text:'辅导员审稿',
-      content:"已有其他辅导员审核稿件"
-    },{
-      text:'排版',
-    },],
+    fileArray: [],
+    step: [{
+      text: '已写稿',
+    }, {
+      text: '编辑部审稿',
+      content: "需要编辑部帮助润色稿件"
+    }, {
+      text: '辅导员审稿',
+      content: "已有其他辅导员审核稿件"
+    }, {
+      text: '排版',
+    }, ],
     first: 1,
     second: 1,
     third: 1,
@@ -186,61 +177,67 @@ Component({
     ],
   },
   methods: {
-    uploadFile:function(e) {
+    uploadFile: function (e) {
       console.log(e)
       wx.chooseMessageFile({
-          count: 10,     //选择文件的数量
-          type: 'all',   //选择文件的类型
-          success: (res) => {
-            console.log(res.tempFiles)
-              this.setData({
-                fileArray: this.data.fileArray.concat(res.tempFiles)
-              })
-          }
+        count: 10, //选择文件的数量
+        type: 'all', //选择文件的类型
+        success: (res) => {
+          console.log(res.tempFiles)
+          this.setData({
+            fileArray: this.data.fileArray.concat(res.tempFiles)
+          })
+        }
       })
-  },
-  removefile(e){
-    let index=e.currentTarget.dataset.index
-    console.log(e,index)
-    this.data.fileArray.splice(index,1)
-    this.setData({
-      fileArray:this.data.fileArray
-    })
-  },
-  // 预览附件
-  previewFile(e) {
-  var string = ''
-  string = e.currentTarget.dataset.path.substring(e.currentTarget.dataset.path.indexOf(".") + 1)
-  if (string == 'png' || string == 'jpg' || string == 'gif' || string == 'jpeg') {
-          // 图片预览
-          var arr = []
-          arr.push(e.currentTarget.dataset.path)
-          wx.previewImage({
-              current: e.currentTarget.dataset.path,
-              urls: arr
-          })
+    },
+    removefile(e) {
+      let index = e.currentTarget.dataset.index
+      console.log(e, index)
+      this.data.fileArray.splice(index, 1)
+      this.setData({
+        fileArray: this.data.fileArray
+      })
+    },
+    // 预览附件
+    previewFile(e) {
+      var string = ''
+      string = e.currentTarget.dataset.path.substring(e.currentTarget.dataset.path.indexOf(".") + 1)
+      if (string == 'png' || string == 'jpg' || string == 'gif' || string == 'jpeg') {
+        // 图片预览
+        var arr = []
+        arr.push(e.currentTarget.dataset.path)
+        wx.previewImage({
+          current: e.currentTarget.dataset.path,
+          urls: arr
+        })
       } else {
-          // 文件预览
-          wx.openDocument({
-              fileType: string, // 文件类型
-              filePath: e.currentTarget.dataset.path, // 文件地址
-              success: function (res) {
-                  console.log('成功')
-              },
-              fail: function (error) {
-                  console.log("失败")
-              }
-          })
+        // 文件预览
+        wx.openDocument({
+          fileType: string, // 文件类型
+          filePath: e.currentTarget.dataset.path, // 文件地址
+          success: function (res) {
+            console.log('成功')
+          },
+          fail: function (error) {
+            console.log("失败")
+          }
+        })
       }
-  },
+    },
     onFirstChange(e) {
-      this.setData({ first: e.detail.current });
+      this.setData({
+        first: e.detail.current
+      });
     },
     onSecondChange(e) {
-      this.setData({ second: e.detail.current });
+      this.setData({
+        second: e.detail.current
+      });
     },
     onThirdChange(e) {
-      this.setData({ third: e.detail.current });
+      this.setData({
+        third: e.detail.current
+      });
     },
     setPlace(e) {
       place1 = e.detail.value
@@ -372,8 +369,8 @@ Component({
           data: {
             "method": "add",
             "data": {
-              "element":0,
-              "publisher":app.globalData.userid,
+              "element": 0,
+              "publisher": app.globalData.userid,
               "place": place1,
               "title": "",
               "description": description1,
@@ -410,11 +407,75 @@ Component({
         })
       }
     },
-    publishMission2(){
+    publishMission2() {
+      let fileArray = this.data.fileArray
       if (description2 == '') {
         wx.showToast({
           icon: 'none',
           title: '请填写稿件备注',
+        })
+      } else if (fileArray.length == 0) {
+        wx.showToast({
+          icon: 'none',
+          title: '请上传文件',
+        })
+      } else {
+        wx.showLoading({
+          title: '请稍等...',
+        })
+        wx.request({
+          url: 'http://1.15.118.125:8081/NIC/manage',
+          data: {
+            "method": "add",
+            "data": {
+              "element": 1,
+              "publisher": app.globalData.userid,
+              "description": description2
+            }
+          },
+          success: (res) => {
+            console.log(res.data)
+            let missionID = res.data.missionID
+            for (let i = 0; i < fileArray.length; i++) {
+              console.log(fileArray[i])
+              wx.uploadFile({
+                filePath: fileArray[i].path,
+                name: 'file',
+                url: 'http://1.15.118.125:8080/NIC/upload?missionID=' + missionID,
+                header: {
+                  "Content-Type": "multipart/form-data"
+                },
+                success: (res) => {
+                  let json = JSON.parse(res.data)
+                  console.log(json)
+                }
+              })
+            }
+            if (json.code == 502) {
+              wx.showToast({
+                title: '发布成功',
+              })
+              let now = new Date();
+              let entertime = now.getTime();
+              let endtime = now.getTime();
+              while (endtime - entertime < 2000) {
+                endtime = new Date().getTime();
+              }
+              wx.redirectTo({
+                url: '/pages/home/home',
+              })
+            } else {
+              wx.showToast({
+                title: '提交失败',
+                icon: 'error'
+              })
+            }
+          },
+          complete: (res) => {
+            wx.hideLoading({
+              success: (res) => {},
+            })
+          }
         })
       }
     }

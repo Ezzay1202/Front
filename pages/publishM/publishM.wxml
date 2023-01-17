@@ -5,7 +5,7 @@
   <t-tab-panel label="日常任务" value="0">
     <view class="demo-textarea">
       <text class="pannel-label">活动标题</text>
-      <t-textarea class="t-textarea__placeholder" placeholder="请输入文字" bind:change="setDescription" bordered maxlength="100" indicator />
+      <t-textarea class="t-textarea__placeholder" placeholder="请输入文字" bind:change="setDescription1" bordered maxlength="100" indicator />
     </view>
 
     <block>

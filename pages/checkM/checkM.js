@@ -31,13 +31,19 @@ Page({
           if (list_all[j].reporterNeeds.photo == undefined) {
             photo = '';
           }
+          let date1 = list_all[j].time.month + "月" + list_all[j].time.day + "日" + list_all[j].time.beginHour + ":" + minbegin + '-'
+          let date2 = list_all[j].time.endHour + ":" + minend
+          if (minbegin == undefined) {
+            date2 = ''
+            date1 = list_all[j].time.month + "月" + list_all[j].time.day + "日"
+          }
           list_show[i] = {
             arr: i,
             files: list_all[j].files, //Array
             missionID: list_all[j].missionID,
             text: list_all[j].description,
-            date1: list_all[j].time.month + "月" + list_all[j].time.day + "日" + list_all[j].time.beginHour + ":" + minbegin,
-            date2: list_all[j].time.endHour + ":" + minend,
+            date1: date1,
+            date2: date2,
             location: list_all[j].place,
             people: article + photo
           }
@@ -53,6 +59,16 @@ Page({
   func1(e) {
     let i = e.currentTarget.dataset.id
     let data_temp = list_show[i]
+    let filesList = []
+    for (let i = 0; i < data_temp.files.length; i++) {
+      let temp = {
+        arr: i,
+        name: data_temp.files[i],
+        type: 'file',
+        path: ''
+      }
+      filesList.push(temp)
+    }
     let da = {
       mag: {
         text: data_temp.text,
@@ -61,11 +77,7 @@ Page({
         location: data_temp.location,
         people: data_temp.people
       },
-      files: [{
-        name: data_temp.files[0],
-        type: 'file',
-        path:''
-      }],
+      files: filesList,
       tag: [{
           name: "优秀稿件",
           show: true

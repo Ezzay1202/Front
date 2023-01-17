@@ -10,9 +10,9 @@
     </view>
     <view class="filebox" style="border-top: 1px dashed #888;" >
       <view class="right" wx:for="{{file_download}}"  wx:key="index">
-        <image  src="/image/下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}">
+        <image  src="/image/下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}" data-id="{{item.arr}}">
         </image>
-        <view class="n" bindtap="previewFile" data-path="{{item.path}}">
+        <view class="n" bindtap="previewFile" data-path="{{item.path}}" data-id="{{item.arr}}">
         <image src="/image/docm.png"  mode="aspectFill" ></image>
         <text  class="name">{{item.name}}</text>
         <text class="size">{{item.size}}</text>
