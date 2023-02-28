@@ -216,7 +216,29 @@ Page({
         },
       ],
     }],
+    performance:[{
+      title:"完成第一篇稿件",
+      style:false,
+      score:50,
+      complete:true
+    },{
+      title:"完成第二篇稿件",
+      style:false,
+      score:20,
+      complete:false
+    },{
+      title:"每月参加一次记者团培训/例会",
+      style:false,
+      score:10,
+      complete:false
+    },{
+      title:"完成多篇稿件（第三篇开始）",
+      style:true,
+      score:10,
+      complete:false
+    }],
     isShow: false,
+    showdetail:false
   },
 
   /**
@@ -273,6 +295,11 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  showDetail(){
+    this.setData({
+      showdetail:!this.data.showdetail
+    })
   },
   getKcb(){
     wx.request({

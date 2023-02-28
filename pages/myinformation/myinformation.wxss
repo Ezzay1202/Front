@@ -1,0 +1,177 @@
+/* pages/myinformation/myinformation.wxss */
+page{
+  --bu-color:#0b1f51;
+}
+.background{
+  padding: 30rpx;
+  width: 90%;
+  height: 1182rpx;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(7,1fr);
+}
+.box{
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  margin: .5em;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 5rpx 5rpx #efefef;
+}
+.box >image{
+  position: relative;
+  z-index:-2;
+  width:100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+.box >text{
+  position: relative;
+  bottom: 55rpx;
+  z-index: 0;
+  color: #efefef;
+  font-size: 30rpx;
+}
+.grid{
+  grid-row: 2/4;
+  grid-column: 1/3;
+}
+.box .bigtext{
+  color: white;
+  font-size: 50rpx;
+}
+.bigtext-max{
+  font-size: 100rpx;
+  color: white;
+  position: relative;
+  top: 50rpx;
+  -webkit-box-align: center;
+
+}
+.set{
+  box-sizing: border-box;
+  padding: .1em;
+  width: 100%;
+  height: 100%;
+}
+.set image{
+  z-index: 0;
+  width: 80%;
+  height: 80%;
+}
+.mask-bac{
+  z-index:11;
+  position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+}
+.modal {
+  width: 600rpx;
+  height: 500rpx;
+  border-radius: 20rpx;
+  position: fixed;
+  z-index: 11;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #aef4e0;
+  box-sizing: border-box;
+  padding: 1em;
+  color: #7e7a7a;
+  font-size: 27rpx;
+  line-height: 40rpx;
+}
+.modal .input-box{
+  margin-top: 35rpx;
+  margin-left: 25rpx;
+  padding: .3em;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box> text{
+  color:black;
+  font-size: 32rpx;
+  margin-left:6rpx ;
+  margin-bottom: 35rpx ;
+}
+
+.inputcs{
+  background-color: #e5f4ae;
+  margin-bottom: .8em;
+  color: black;
+  width:450rpx;
+  font-size: 25rpx;
+  padding: .5em;
+  border: 6rpx outset #0f0c0d;
+}
+
+.passwordcs{
+  width:450rpx;
+  font-size: 30rpx;
+  padding: .5em;
+  border: 6rpx outset #0f0c0d;
+}
+.pannel-item {
+  display: flex;
+  align-items: center;
+  border:6rpx outset;
+
+}
+.pannel-item-other{
+  margin: 0 1em;
+  margin-bottom: -13rpx;
+  background-color:#f0ecfe;
+  border-radius: 5%;
+}
+.pannel-item .last {
+  margin-bottom: -13rpx;
+}
+.pannel-label {
+  width: 160rpx;
+  margin-right: 32rpx;
+}
+.pannel-text {
+  flex: 1;
+  color: rgb(0, 0, 0);
+  opacity: 0.9;
+}
+.pannel-text.empty {
+  opacity: 0.26;
+}
+.modal .mbutton-box{
+  position:absolute;
+  bottom:80rpx;
+  width:540rpx;
+  margin: .5em 0;
+  display:flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.mbutton-box >button{
+  flex:1;
+  font-size: 29rpx;
+  margin: 0 10rpx .5em ;
+  padding: 0;
+  color: var(--bu-color);
+  background-color: #aef4e0;
+  border: 1px solid var(--bu-color) !important;
+  border-radius: 2%;
+}
+
+.modal.noShow {
+  top: -0%;
+  opacity: 0;
+  transition: all 1s;
+}
+
+.modal.show {
+  top: 50%;
+  transition: all 1s;
+  opacity: 1;
+}
+

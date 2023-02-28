@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {  
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-picker": "tdesign-miniprogram/picker/picker",
+    "t-picker-item": "tdesign-miniprogram/picker/picker-item"
+  }
 }

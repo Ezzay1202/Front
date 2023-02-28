@@ -225,6 +225,7 @@ Component({
       }
     },
     onFirstChange(e) {
+      //选择任务状态
       this.setData({
         first: e.detail.current
       });

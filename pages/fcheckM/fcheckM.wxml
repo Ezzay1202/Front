@@ -47,7 +47,7 @@
    </view>
    <!--textarea-->
    <view class="conts">
-       <textarea class="areas" placeholder='请输入您对该稿件的评价'  bindinput="inputs"> 
+       <textarea class="areas" placeholder='请输入您对该稿件的评价'  bindinput="inputReview"> 
            <!-- <text class="currentWordNumber">{{currentWordNumber| }}/{{max}}</text> -->
        </textarea>
    </view>
@@ -67,7 +67,30 @@
     <button bindtap="uploadFile" >选择稿件及照片</button>
     </view>
     <!--提交评价-->
-   <button class='btn' bindtap='handleBtn'>提交评价</button>
   </block>
+  <block wx:if="{{isManagement}}">
+    <view class="pM">
+    <block>
+      <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
+        <view class="pannel-label">截止时间</view>
+        <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      </view>
+    </block>
+    <t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+      <t-picker-item options="{{months}}"></t-picker-item>
+      <t-picker-item options="{{days}}"></t-picker-item>
+      <t-picker-item options="{{hour}}"></t-picker-item>
+      <t-picker-item options="{{minute}}"></t-picker-item>
+    </t-picker>
+      <view class="conts">
+       <textarea class="areas" style="height:200rpx" placeholder='请输入您对排版的备注'  bindinput="inputRemarks"> 
+           <!-- <text class="currentWordNumber">{{currentWordNumber| }}/{{max}}</text> -->
+       </textarea>
+   </view>
+   </view>
+  </block>
+  <button class='btn' bindtap='handleBtn'>提交评价</button>
+
    
 

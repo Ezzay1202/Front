@@ -140,7 +140,12 @@ border: 0;
   margin-bottom: 32rpx;
   background-color: #fff;
 }
-
+.pannel-item-other{
+  margin: 0 1em;
+  margin-bottom: -13rpx;
+  background-color:#f0ecfe;
+  border-radius: 5%;
+}
 .pannel-item .last {
   margin-bottom: -13rpx;
 }

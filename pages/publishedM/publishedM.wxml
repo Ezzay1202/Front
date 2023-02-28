@@ -1,4 +1,6 @@
-<scroll-view class="container" scroll-y="true" enable-flex="true">
+<t-tabs defaultValue="{{1}}" t-class="custom-tabs">
+  <t-tab-panel label="待接稿件" value="0">
+    <scroll-view class="container" scroll-y="true" enable-flex="true">
   <block wx:for="{{listm}}" wx:key="id">
     <view class="m">
       <view class="title">{{item.text}}</view>
@@ -21,4 +23,53 @@
     </view>
     </view>
   </block>
-</scroll-view>
+    </scroll-view>
+  </t-tab-panel>
+  <t-tab-panel label="待接排版" value="1">
+    <scroll-view class="container" scroll-y="true" enable-flex="true">
+      <block wx:for="{{listp}}" wx:key="id">
+    <view class="m">
+      <view class="title">{{item.text}}</view>
+      <view class="tag-p">
+       <text style="--tag-color:#841339;">{{item.date}}</text>
+        <block wx:for="{{item.people}}" wx:key="index">
+          <text>{{item.name}}</text>
+        </block>
+        <button bindtap="showDetail" data-index="{{index}}">{{item.showdetail? "查看":"收回"}}详细信息</button>
+      </view>
+      <view class="detail" hidden="{{item.showdetail}}">
+        <view class="filebox">
+      <view class="right" wx:for="{{item.file}}"  wx:key="index">
+        <image  src="/image/下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}">
+        </image>
+        <view class="w" bindtap="previewFile" data-path="{{item.path}}">
+        <image src="/image/docm.png"  mode="aspectFill" ></image>
+        <text  class="name">{{item.name}}</text>
+        <text class="size">{{item.size}}</text>
+      </view>
+    </view>
+        </view>
+        <view class="tag-p detail-tag">
+          <block wx:for="{{item.tag}}"  wx:key="index">
+            <text>{{item}}</text>
+          </block>
+        </view>
+        <block wx:for="{{item.people}}" wx:key="index">
+          <view class="detail-people">
+            <text>{{item.name}}</text>
+            <view class="detail-box" >
+              <text>{{item.detail}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="n">
+      <view class="buttonbox">
+        <button data-id="{{item.missionID}}">接搞</button>
+      </view>
+    </view>
+    </view>
+  </block>
+    </scroll-view>
+  </t-tab-panel>
+</t-tabs>

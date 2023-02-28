@@ -1,0 +1,23 @@
+<!--pages/submitP/submitP.wxml-->
+<scroll-view class="container" scroll-y="true" enable-flex="true">
+      <block wx:for="{{listp}}" wx:key="id">
+    <view class="m">
+      <view class="title">{{item.text}}</view>
+      <view class="tag-p">
+       <text style="--tag-color:#841339;">{{item.date}}</text>
+        <block wx:for="{{item.people}}" wx:key="index">
+          <text>{{item.name}}</text>
+        </block>
+      </view>
+      <view class="n">
+      <view class="inputbox">
+        <input placeholder="请输入排版链接" placeholder-class="p-class" type="text" bindinput="content"  data-index="{{index}}" class="inputp" />
+      </view>
+      <view class="buttonbox">
+        <button data-id="{{item.missionID}}">提交排版</button>
+        <button bindtap="goto" data-url="{{item.url}}">预览排版</button>
+      </view>
+    </view>
+    </view>
+  </block>
+    </scroll-view>

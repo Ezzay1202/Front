@@ -222,6 +222,28 @@ Page({
   data: {
     hasMore: true,
     showLoading: true,
-    start: 0
+    start: 0,
+    listp:[{
+      text:"管理学创新实验班班会",
+      date:"1月14日 7:00",
+      tag:["班会","模板1"],
+      file:[{
+        name:"管理学创新实验班班会.doc",
+        size:"2.3 mb"
+      }],
+      people:[
+      {name:"方权泽",tel:"13848440908",detail:"一定要今天发哦"},
+      {name:"张赫",tel:"13848440908",detail:"一定要今天发哦"},
+      ],
+      showdetail:true,
+    }]
   },
+  showDetail(e){
+    console.log(e)
+    let index = e.currentTarget.dataset.index
+    let showdetail = 'listp[' + index + '].showdetail'
+    this.setData({
+      [showdetail]:!this.data.listp[index].showdetail
+    })
+  }
 })

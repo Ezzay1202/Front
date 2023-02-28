@@ -43,6 +43,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+    mode: '',
+    monthVisible: false,
+    month: '2021-09',
+    monthText: '',
+    // 指定选择区间起始值
+    start: '2000-01-01 00:00:00',
+    end: '2030-09-09 12:12:12',
+    review: '',
+    remarks: '',
+    isManagement: true,
     mag: {},
     tag: [],
     attitude: true,
@@ -60,10 +70,69 @@ Page({
     min: 5, //最少字数
     max: 300, //最多字数 (根据自己需求改变) 
     file_download: [],
-    file_upload: []
+    file_upload: [],
+    date1Visible: false,
+    months: Array.from(new Array(12), (_, index) => ({
+      label: `${index + 1}月`,
+      value: index + 1,
+    })),
+    days: Array.from(new Array(31), (_, index) => ({
+      label: `${index + 1}日`,
+      value: index + 1
+    })),
+
+    hour: Array.from(new Array(24), (_, index) => ({
+      label: `${index}时`,
+      value: index,
+    })),
+
+    minute: Array.from(new Array(60), (_, index) => ({
+      label: `${index}分`,
+      value: index,
+    })),
+  },
+  onClickPicker(e) {
+
+    this.setData({
+      date1Visible: true,
+    });
+  },
+  onColumnChange(e) {
+    console.log('picker pick:', e);
+  },
+  onPickerChange(e) {
+
+    console.log('picker change:', );
+    this.setData({
+      date1Visible: false,
+      date1Value: e.detail.value,
+      date1CurrentValue: this.joinArray(e.detail.label),
+    });
+    if (e.detail.value.length == 4) {
+      this.setData({
+        list1: e.detail.value
+      })
+    }
+    if (e.detail.label[0] == e.detail.value[0] + '时') {
+      this.setData({
+        list2: e.detail.value
+      })
+    }
+    if (e.detail.label[0] == e.detail.value[0] + '文') {
+      this.setData({
+        list3: e.detail.value
+      })
+    }
+  },
+  onPickerCancel(e) {
+    console.log(e, '取消');
+    console.log('picker1 cancel:');
+    this.setData({
+      date1Visible: false,
+    });
   },
   // 星星点击事件
-  starTap: function (e) {
+  starTap(e) {
     var that = this;
     var index = e.currentTarget.dataset.index; // 获取当前点击的是第几颗星星
     var tempUserStars = this.data.userStars; // 暂存星星数组
@@ -82,9 +151,10 @@ Page({
     that.setData({
       userStars: tempUserStars
     })
+    console.log(this.data.wjxScore)
   },
   // 标签
-  labelx: function (e) {
+  labelx(e) {
     console.log(e)
     var i = e.currentTarget.dataset.index;
     var that = this.data.tag[i];
@@ -92,18 +162,41 @@ Page({
       show: !e.currentTarget.dataset.show
     })
   },
-  label: function (e) {
+  label(e) {
     console.log(e)
     var that = this;
     that.setData({
       attitude: !e.currentTarget.dataset.index
     })
   },
-  inputs: function (e) {
+  inputReview(e) {
     // 获取输入框的内容
     var value = e.detail.value;
     // 获取输入框内容的长度
     var len = parseInt(value.length);
+    //输入框内容赋值
+    this.setData({
+      review: value
+    })
+    console.log(this.data.review)
+    //最多字数限制
+    if (len > this.data.max)
+      return;
+    // 当输入框内容的长度大于最大长度限制（max)时，终止setData()的执行
+    this.setData({
+      currentWordNumber: len //当前字数  
+    });
+  },
+  inputRemarks(e) {
+    // 获取输入框的内容
+    var value = e.detail.value;
+    // 获取输入框内容的长度
+    var len = parseInt(value.length);
+    //输入框内容赋值
+    this.setData({
+      remarks: value
+    })
+    console.log(this.data.remarks)
     //最多字数限制
     if (len > this.data.max)
       return;
@@ -120,8 +213,8 @@ Page({
         mask: true,
         success: function () {
           setTimeout(function () {
-            wx.reLaunch({
-              url: '../index/index'
+            wx.redirectTo({
+              url: '/pages/home/home.js'
               //跳转到任务阶段页面
             })
           }, 1500)

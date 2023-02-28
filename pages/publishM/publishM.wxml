@@ -7,7 +7,6 @@
       <text class="pannel-label">活动标题</text>
       <t-textarea class="t-textarea__placeholder" placeholder="请输入文字" bind:change="setDescription1" bordered maxlength="100" indicator />
     </view>
-
     <block>
       <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
         <view class="pannel-label">起始时间</view>
@@ -83,7 +82,18 @@
           </view>
           <button bindtap="uploadFile">选择稿件及照片</button>
         </view>
-
+        <block>
+      <view class="pannel-item-other pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
+        <view class="pannel-label">截止时间</view>
+        <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      </view>
+    </block>
+    <t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+      <t-picker-item options="{{months}}"></t-picker-item>
+      <t-picker-item options="{{days}}"></t-picker-item>
+      <t-picker-item options="{{hour}}"></t-picker-item>
+    </t-picker>
         <view class="conts">
           <textarea class="areas" placeholder='添加稿件的备注' bindinput="setDescription2">
        </textarea>

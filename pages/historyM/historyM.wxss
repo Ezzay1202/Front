@@ -2,7 +2,6 @@
 page {
   --people-color: #13a4a4;
 }
-
 t-search{
   width:80%;
   background-color: #feecf2;
@@ -102,4 +101,71 @@ image{
   bottom: 4rem;
   height: 4rem;
   width:4rem;
+}
+page {
+  background-color: #fff;
+}
+
+page .round-image {
+  border-radius: 12rpx;
+}
+
+.t-sidebar-content{
+  padding:.2em .5em .2em 0 !important;
+}
+
+.t-sidebar{
+  margin:.1em 0;
+}
+
+.t-sidebar-text{
+background-color: #efefef;
+border-radius: 5%;
+margin-bottom: .1em;
+padding: 15rpx 0 !important;
+white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.t-sidebar-text{
+background-color: #efefef;
+border-radius: 5%;
+margin-bottom: .1em;
+padding: 15rpx 0 !important;
+white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.t-sidebar-text-checked{
+  background-color: #ecf1fe;
+  border-radius: 5%;
+  margin-bottom: .1em;
+  padding: 15rpx 0 !important;
+  white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+.side-bar-wrapper {
+  display: flex;
+  height: 60vh;
+}
+
+.side-bar-wrapper .content {
+  flex: 1;
+  padding-left: 10rpx;
+}
+
+.side-bar-wrapper .section {
+  padding: 32rpx 0;
+}
+
+.side-bar-wrapper .title {
+  padding-left: 40rpx;
+  margin-bottom: 8rpx;
+  line-height: 52rpx;
+}
+
+.side-bar-wrapper .image {
+  width: 96rpx;
+  height: 96rpx;
 }

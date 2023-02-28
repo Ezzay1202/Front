@@ -1,75 +1,118 @@
-<!--pages/myself/meself.wxml-->
+<!--pages/myself/myself.wxml-->
 <view class='container'>
-	<!-- 第1部分 -->
-	<view class='top-container'>
-		<image class='bg-img' src='/image/啸天.png'></image>
-	</view>
+  <!-- 第1部分 -->
+  <view class='top-container'>
+    <image class='bg-img' src='/image/啸天.png'></image>
+  </view>
   <view class="head">
     <image src='/image/啸天.png'></image>
     <text>烟霞状元</text>
   </view>
-	<!-- 第2部分 -->
-	<view class='middle-container'>
-		<view class="view_2" wx:for="{{functions}}" wx:key="index">
-			<view class="view_tupianwenzi" bindtap="{{item.bindtap}}">
-				<image class="image_tupian" src="{{item.src}}"></image>
-				<text class="text_1">{{item.name}}</text>
-			</view>
-		</view>
-	</view>
+  <!-- 第2部分 -->
+  <view class='middle-container'>
+    <view class="view_2" wx:for="{{functions}}" wx:key="index">
+      <view class="view_tupianwenzi" bindtap="{{item.bindtap}}">
+        <image class="image_tupian" src="{{item.src}}"></image>
+        <text class="text_1">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
 </view>
 <view class="flex">
-  <view class="myM">
+  <view class="myM flex-column">
     <text class="text">我的稿件</text>
     <text style="margin-top: .4em;">进行中稿件</text>
     <view class="myM-ing">
-      <block wx:for="{{listm}}" wx:key="id" >
-      <view class="m-ing">
-       <view class="title" >{{item.text}}</view>
-    
-        <t-steps 
-        current="{{steps_num}}" bind:change="onFirstChange" readonly="true">
-      <block wx:for="{{step}}" wx:key="index"> 
-        <t-step-item
-        t-class-content="t-class-content"
-        t-class-title="t-class-title"
-        title="{{item.text}}" content="{{item.content}}"  />
+      <block wx:for="{{listm}}" wx:key="id">
+        <view class="m-ing">
+          <view class="title">{{item.text}}</view>
+          <t-steps current="{{steps_num}}" bind:change="onFirstChange" readonly="true">
+            <block wx:for="{{step}}" wx:key="index">
+              <t-step-item t-class-content="t-class-content" t-class-title="t-class-title" title="{{item.text}}" content="{{item.content}}" />
+            </block>
+          </t-steps>
+        </view>
       </block>
-      </t-steps>
-      </view>
-    </block>
     </view>
     <text style="margin-top: 1em;">历史稿件</text>
     <view class="myM-history">
-      <block wx:for="{{listm}}" wx:key="id" >
-      <view class="m">
-       <view class="title">{{item.text}}</view>
-        <view class="text">
-          <text >{{item.date}}</text>
-          <text >{{item.location}}</text>
-          <button bindtap="" data-url="{{item.url}}">点击浏览</button>
-          </view>  
-        <view class="n">
-          <view class="people">
-          <block wx:for="{{item.people}}" wx:key="index">
-          <text data-id="{{item.key}}">{{item.name}}</text>
-          </block>
+      <block wx:for="{{listm}}" wx:key="id">
+        <view class="m">
+          <view class="title">{{item.text}}</view>
+          <view class="text">
+            <text>{{item.date}}</text>
+            <text>{{item.location}}</text>
+            <button bindtap="goto" data-url="{{item.url}}">点击浏览</button>
           </view>
-          <view class="score">
-          {{item.score}}分
+          <view class="n">
+            <view class="people">
+              <block wx:for="{{item.people}}" wx:key="index">
+                <text data-id="{{item.key}}">{{item.name}}</text>
+              </block>
+            </view>
+            <view class="score">
+              {{item.score}}分
+            </view>
           </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="myM">
+    <text class="text">我的绩效</text>
+    <view class="scorebox">
+      <view class="scoreitem">
+        <view class="curperformance">
+          <text>20</text>
+          <text style="color: black; font-size: 30rpx;">/100</text>
+        </view>
+        <text>当月绩效</text>
+      </view>
+      <view class="scoreitem">
+        <view class="curperformance">
+          <text>20</text>
+        </view>
+        <text>总绩效</text>
+      </view>
+    </view>
+    <block wx:for="{{performance}}" wx:if="index">
+      <view class="performance-box performance-items">
+        <view class="p-leftbox">
+          <image src="{{item.complete? '/image/sx.png':'/image/kx.png'}}" mode="" />
+        </view>
+        <view class="p-rightbox flex-column">
+          <text style="font-size: 30rpx; font-weight: 500;">{{item.title}}</text>
+          <text class="text-mini">任务类型：{{item.style? "部门业务-附加项":"部门业务"}}</text>
+          <text class="text-mini" style="color: {{item.style? '#005995':'#f05945'}};">分数：{{item.score}}分</text>
         </view>
       </view>
     </block>
+    <view class="performance-box performance-items" style="background-color: #00303f;">
+        <view class="p-leftbox">
+          <image src="/image/kx.png" mode="" />
+        </view>
+        <view class="p-rightbox flex-column" >
+          <text style="font-size: 30rpx; font-weight: 500;  color: white;">例会迟到早退/未提前请假旷会</text>
+          <text class="text-mini" style=" color: white;">任务类型：日常表现</text>
+          <text class="text-mini" style="color: white;">初始分数：20分 || 扣除分数：-4分/-10分</text>
+        </view>
+    </view>
+   <view style="width: 100%; text-align: right; ">
+    <text style="font-size: 26rpx; margin-right: 24rpx; color: rgb(150, 150, 150);" bindtap="showDetail">{{showdetail? '查看详情':'收起'}}</text>
+   </view>
+   <view hidden="{{showdetail}}" class="detailbox flex-column" >
+      <text>1.月考核= 部门业务（80分）+日常表现（20分）</text>
+      <text>2.学期考核= 月考核平均分*80%＋个人总评</text>
+      <text>3.月考核平均分 = ∑月考核真实分数/考核月数</text>
+      <text>4.当月考核分数上限80，学期考核不设上限</text>
     </view>
   </view>
-
-  <view class="time-view">
+  <view class="myM flex-column">
     <text class="text">我的时间</text>
-    <text style="margin-top: .4em; " class="date">今天</text> 
+    <text style="margin-top: .4em; " class="date">今天</text>
     <view class="mytoday">
       <block wx:for="{{todaywork}}" wx:key="index">
-        <view class="mywork">
+        <view class="mywork style-left">
           <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
           <text>{{item.add}}</text>
           <text>{{item.time1}}-{{item.time2}}</text>
@@ -80,36 +123,36 @@
       <block wx:for="{{day}}" wx:key="index">
         <text class="date sticky">{{item.date}}</text>
         <block wx:for="{{item.work}}" wx:key="index">
-        <view class="mywork">
-          <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
-          <text>{{item.add}}</text>
-          <text>{{item.time1}}-{{item.time2}}</text>
-        </view>
+          <view class="mywork style-left">
+            <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
+            <text>{{item.add}}</text>
+            <text>{{item.time1}}-{{item.time2}}</text>
+          </view>
+        </block>
       </block>
-      </block>
-    </view> 
+    </view>
   </view>
   <image></image>
 </view>
 
 
-<t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
+<t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}" t-class="t-tab-bar">
   <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}" bindtap="onChange">
     {{item.label}}
   </t-tab-bar-item>
 </t-tab-bar>
 <!-- 详情弹框 -->
 <view class="mask" hidden="{{!isShow}}">
-<view class="mask-bac">
-  <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
-  <view class="input-box">
-    <input placeholder="HUST学号" 	placeholder-class="p-class" type="text" bindinput="content" class="phonecs" />
-    <input placeholder="密码" type="password" 	placeholder-class="p-class" bindinput="password" class="phonecs" /> 
+  <view class="mask-bac">
+    <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
+      <view class="input-box">
+        <input placeholder="HUST学号" placeholder-class="p-class" type="text" bindinput="content" class="phonecs" />
+        <input placeholder="密码" type="password" placeholder-class="p-class" bindinput="password" class="phonecs" />
+      </view>
+      <view class="button-box">
+        <button style="background-color: var(--bu-color); color:white" bindtap="kcbSpider">确认</button>
+        <button bindtap="cannelMask">取消</button>
+      </view>
+    </view>
   </view>
-  <view class="button-box">
-    <button style="background-color: var(--bu-color); color:white" bindtap="kcbSpider">确认</button>   
-    <button bindtap="cannelMask">取消</button>                                                 
- </view>
-</view>
-</view>
 </view>

@@ -5,6 +5,9 @@ page {
   background-color: rgb(245, 245, 245);
   --bu-color:#0b1f51;
 }
+.t-tab-bar{
+  z-index: 10;
+}
 .flex{
   position: relative;
   top:560rpx;
@@ -105,7 +108,9 @@ page {
   width: 60rpx;
   height: 60rpx;
 }
-
+.text-mini{
+  font-size: 21rpx;
+}
 .text_1 {
   font-size: 27rpx;
 }
@@ -114,9 +119,11 @@ page {
   font-weight: bold;
   margin-bottom: .3em;
 }
-.myM{
+.flex-column{
   display:flex;
   flex-direction: column;
+}
+.myM{
   background-color: #FFFFFF;
   margin: 40rpx 30rpx 26rpx 30rpx;
   box-shadow: 0 15rpx 10rpx -15rpx #efefef;
@@ -236,20 +243,75 @@ page {
   padding: .3rem .3rem 0;
   color:#a63f53;
 }
-.time-view{
-  background-color: white;
-  margin: 20rpx 30rpx 26rpx 30rpx;
-  box-shadow: 0 15rpx 10rpx -15rpx #efefef;
-  padding: 1em;
-  border-radius: 5%;
+.scorebox{
+  margin-top: 20rpx;
+  display: flex;
+  justify-items: center;
+  align-self:center;
+}
+.scoreitem{
+  flex: 1;
+  margin: .3em;
   display: flex;
   flex-direction: column;
+}
+.scoreitem{
+  font-size: 28rpx;
+  font-weight: 800;
+  text-align: center;
+}
+.curperformance{
+  display: inline;
+}
+.curperformance >text{
+  color: #a63f53;
+  font-weight: bold;
+  font-size: 37rpx;
+}
+.performance-box{
+  display:flex;
+  box-sizing: border-box;
+  justify-items: center;
+  align-items: center;
+}
+.p-leftbox {
+  width: 60rpx;
+}
+.p-leftbox >image{
+  width: 60rpx;
+  height: 60rpx;
+}
+.p-rightbox{
+  flex:1;
+  height: 120rpx;
+}
+.performance-items{
+  height:140rpx;
+  padding: .3em;
+  margin:.5em;
+  border-radius: 8%;
+  background-color: #fff;
+  box-shadow:  0px 1px 5px 0px #e5e5e5;
+}
+
+.performance-items  text{
+  color: #060702;
+  margin-left: 15rpx;
+  margin: .1rem;
+}
+.detailbox{
+  margin-top: 10rpx;
+  width: 100%;
+}
+.detailbox >text{
+  font-size: 26rpx; 
+  margin: .2em .4em;
+  color: rgb(150, 150, 150);
 }
 .mytoday{
   display:flex;
   flex-direction: column;
   border-bottom: 1px dashed black;
-
 }
 .myday{
   margin: .5em;
@@ -265,7 +327,6 @@ page {
   z-index: 3;
 }
 .date{
-
   text-align: center;
   margin: .3em;
   background-color: #efefef;
@@ -274,15 +335,11 @@ page {
   height:120rpx;
   padding: .3em;
   margin:.5em;
-  border-left:6rpx outset #009999;
-  display: flex;
-  flex-direction: column;
   box-shadow: 10rpx 10rpx 10rpx -15rpx #009999;
 }
 .mywork>text{
   flex: 1;
   font-size: 21rpx;
-  margin-left:15rpx ;
   color: black ;
 }
 .mask-bac{
