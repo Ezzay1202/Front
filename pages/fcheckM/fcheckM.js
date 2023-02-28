@@ -206,32 +206,42 @@ Page({
     });
   },
   handleBtn() {
-    wx: if (this.data.code == 1) {
+    if (this.data.review == '') {
       wx.showToast({
-        title: '评价成功',
-        icon: 'succes',
-        mask: true,
-        success: function () {
-          setTimeout(function () {
-            wx.redirectTo({
-              url: '/pages/home/home.js'
-              //跳转到任务阶段页面
-            })
-          }, 1500)
-        }
-      });
-    } else if (this.data.code1 == 2) {
-      console.log("111")
-      wx.showToast({
-        title: '评价失败',
-        image: '/image/fail.png',
-        duration: 1500,
-        mask: true
+        title: '请输入评价！',
+        icon: 'error'
       })
-    }
+    } //else if (this.data.remarks == '') {
+    // wx.showToast({
+    //    title: '请输入备注！',
+    //     icon: 'error'
+    //   })
+    // }
+    wx.request({
+      url: '',
+      data: {
+        "method": "",
+        "data": {}
+      },
+      success: (res) => {
+        console.log(res)
+        wx.showToast({
+          title: '发布成功',
+        });
+        let now = new Date();
+        let entertime = now.getTime();
+        let endtime = now.getTime();
+        while (endtime - entertime < 2000) {
+          endtime = new Date().getTime()
+        }
+        wx.redirectTo({
+          url: '/pages/home/home',
+        })
+      }
+    })
   },
   // 文件上传
-  uploadFile: function (e) {
+  uploadFile(e) {
     wx.chooseMessageFile({
       count: 10, //选择文件的数量
       type: 'all', //选择文件的类型
