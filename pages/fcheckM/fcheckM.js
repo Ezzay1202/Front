@@ -190,7 +190,7 @@ Page({
     this.setData({
       review: value
     })
-    console.log(this.data.review)
+    //console.log(this.data.review)
     //最多字数限制
     if (len > this.data.max)
       return;
@@ -208,7 +208,7 @@ Page({
     this.setData({
       remarks: value
     })
-    console.log(this.data.remarks)
+    //console.log(this.data.remarks)
     //最多字数限制
     if (len > this.data.max)
       return;
@@ -230,34 +230,67 @@ Page({
     //   })
     // }
     else {
-      wx.request({
-        url: 'http://1.15.118.125:8081/NIC/manage',
-        data: {
-          "method": "examine",
-          "data": {
-            "userid": String(app.globalData.userid),
-            "missionID": String(this.data.missionID),
-            "review": this.data.review,
-            "tag": [],
-            "stars": String(this.data.wjxScore)
+      let count = 0
+      for (let i = 0; i < this.data.file_upload.length; i++) {
+        wx.uploadFile({
+          filePath: this.data.file_upload[i],
+          name: 'file',
+          url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + this.data.missionID.toString() + '&userid=' + app.globalData.userid.toString() + '&kind=Layout',
+          header: {
+            "Content-Type": "multipart/form-data"
+          },
+          success: (res) => {
+            let json = JSON.parse(res.data)
+            console.log(json)
+            if (json.code != 502) {
+              wx.showToast({
+                title: 'error',
+                icon:'error'
+              })
+              bool = false
+              count += 1
+            }
           }
-        },
-        success: (res) => {
-          console.log(res)
-          wx.showToast({
-            title: '发布成功',
-          });
-          let now = new Date();
-          let entertime = now.getTime();
-          let endtime = now.getTime();
-          while (endtime - entertime < 2000) {
-            endtime = new Date().getTime()
+        })
+      }
+      if (count != 0) {
+        wx.request({
+          url: 'http://1.15.118.125:8081/NIC/manage',
+          data: {
+            "method": "examine",
+            "data": {
+              "userid": String(app.globalData.userid),
+              "missionID": String(this.data.missionID),
+              "review": this.data.review,
+              "tag": [],
+              "stars": String(this.data.wjxScore)
+            }
+          },
+          success: (res) => {
+            console.log(res)
+            if (count == this.data.file_upload.length) {
+              wx.showToast({
+                title: '提交成功',
+              })
+            } else {
+              wx.showToast({
+                title: '提交失败',
+                icon: 'error'
+              })
+            }
+            let now = new Date();
+            let entertime = now.getTime();
+            let endtime = now.getTime();
+            while (endtime - entertime < 2000) {
+              endtime = new Date().getTime()
+            }
+            wx.redirectTo({
+              url: '/pages/checkM/checkM.js',
+            })
+            list_show = [] //手动清空
           }
-          wx.redirectTo({
-            url: '/pages/home/home',
-          })
-        }
-      })
+        })
+      }
     }
   },
   // 文件上传

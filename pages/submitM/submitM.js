@@ -66,7 +66,6 @@ Page({
         filePath: list_show[i].fileArray[j].path,
         name: 'file',
         url: 'http://1.15.118.125:8081/NIC/upload?missionID='+list_show[i].missionID.toString()+'&userid='+app.globalData.userid.toString(),
-
         header: {
           "Content-Type": "multipart/form-data"
         },

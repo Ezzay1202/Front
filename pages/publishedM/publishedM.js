@@ -76,7 +76,7 @@ Page({
         data: {
           "method": "take",
           "data": {
-            "userid": app.globalData.userid,
+            "userid": app.globalData.userid.toString(),
             "missionID": e.currentTarget.dataset.id.toString(),
             "kind": "photo"
           }
@@ -89,7 +89,7 @@ Page({
               icon:'error'
             })
           }
-          if (res.data.code == 402) {
+          if (res.data.code == 403) {
             wx.showToast({
               title: '接摄成功',
               //问题：一个人重复接一个任务。。。。。
@@ -125,7 +125,7 @@ Page({
         data: {
           "method": "take",
           "data": {
-            "userid": app.globalData.userid,
+            "userid": app.globalData.userid.toString(),
             "missionID": e.currentTarget.dataset.id.toString(),
             "kind": "article"
           }
@@ -138,7 +138,7 @@ Page({
               icon:'error'
             })
           }
-          if (res.data.code == 402) {
+          if (res.data.code == 403) {
             wx.showToast({
               title: '接文成功',
               //问题：一个人重复接一个任务。。。。。

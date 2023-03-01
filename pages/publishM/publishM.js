@@ -271,20 +271,20 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker pick:', place1);
+      //console.log('picker pick:', place1);
       this.setData({
         [`${key}Visible`]: true,
       });
     },
 
     onColumnChange(e) {
-      console.log('picker pick:', e);
+      //console.log('picker pick:', e);
     },
     onPickerChange(e) {
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker change:', );
+      //console.log('picker change:', );
       this.setData({
         [`${key}Visible`]: false,
         [`${key}Value`]: e.detail.value,
