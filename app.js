@@ -17,9 +17,9 @@ App({
     userid: "",
     username: "",
     identity: "",
-    authority1: 0,
-    authority2: 0,
-    authority3: 0,
+    authority1: 0,//记者权限（接任务）
+    authority2: 0,//部门负责人？（发布任务权限）
+    authority3: 0,//辅导员权限
     missionCompleted: [],
     missionTaken: [],
     week_kcb: 10

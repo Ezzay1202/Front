@@ -1,13 +1,25 @@
 // pages/fcheckM/fcheckM.js
 const app = getApp();
+const authority3 = app.globalData.authority3
 Page({
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    //console.log(authority3)
+    if (authority3 == 1) {
+      this.setData({
+        isManagement: true
+      })
+    } else {
+      this.setData({
+        isManagement: false
+      })
+    }
     const resultInfo = JSON.parse(options.resultInfo)
     console.log(resultInfo)
     this.setData({
+      missionID: resultInfo.missionID,
       mag: resultInfo.mag,
       tag: resultInfo.tag,
       attitude: resultInfo.attitude,
@@ -52,7 +64,7 @@ Page({
     end: '2030-09-09 12:12:12',
     review: '',
     remarks: '',
-    isManagement: true,
+    isManagement: false,
     mag: {},
     tag: [],
     attitude: true,
@@ -217,28 +229,36 @@ Page({
     //     icon: 'error'
     //   })
     // }
-    wx.request({
-      url: '',
-      data: {
-        "method": "",
-        "data": {}
-      },
-      success: (res) => {
-        console.log(res)
-        wx.showToast({
-          title: '发布成功',
-        });
-        let now = new Date();
-        let entertime = now.getTime();
-        let endtime = now.getTime();
-        while (endtime - entertime < 2000) {
-          endtime = new Date().getTime()
+    else {
+      wx.request({
+        url: 'http://1.15.118.125:8081/NIC/manage',
+        data: {
+          "method": "examine",
+          "data": {
+            "userid": String(app.globalData.userid),
+            "missionID": String(this.data.missionID),
+            "review": this.data.review,
+            "tag": [],
+            "stars": String(this.data.wjxScore)
+          }
+        },
+        success: (res) => {
+          console.log(res)
+          wx.showToast({
+            title: '发布成功',
+          });
+          let now = new Date();
+          let entertime = now.getTime();
+          let endtime = now.getTime();
+          while (endtime - entertime < 2000) {
+            endtime = new Date().getTime()
+          }
+          wx.redirectTo({
+            url: '/pages/home/home',
+          })
         }
-        wx.redirectTo({
-          url: '/pages/home/home',
-        })
-      }
-    })
+      })
+    }
   },
   // 文件上传
   uploadFile(e) {

@@ -77,7 +77,7 @@
         <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
       </view>
     </block>
-    <t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+    <t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel" >
       <t-picker-item options="{{months}}"></t-picker-item>
       <t-picker-item options="{{days}}"></t-picker-item>
       <t-picker-item options="{{hour}}"></t-picker-item>

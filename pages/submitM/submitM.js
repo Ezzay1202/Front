@@ -10,11 +10,11 @@ Page({
    */
   onLoad(options) {
     wx.request({
-      url: 'http://1.15.118.125:8080/NIC/user',
+      url: 'http://1.15.118.125:8081/NIC/user',
       data: {
         "method": "userInfo",
         "data": {
-          "userid": app.globalData.userid
+          "userid": app.globalData.userid.toString()
         }
       },
       success: (res) => {
@@ -57,7 +57,7 @@ Page({
 
   },
   // 提交
-  submitFile: function (e) {
+  submitFile(e) {
     let i = e.currentTarget.dataset.id
     let len = list_show[i].fileArray.length
     for (let j = 0; j < len; j++) {
@@ -65,7 +65,8 @@ Page({
       wx.uploadFile({
         filePath: list_show[i].fileArray[j].path,
         name: 'file',
-        url: 'http://1.15.118.125:8080/NIC/upload?missionID=' + list_show[i].missionID.toString(),
+        url: 'http://1.15.118.125:8081/NIC/upload?missionID='+list_show[i].missionID.toString()+'&userid='+app.globalData.userid.toString(),
+
         header: {
           "Content-Type": "multipart/form-data"
         },
@@ -82,10 +83,11 @@ Page({
             while (endtime - entertime < 2000) {
               endtime = new Date().getTime();
             }
+            list_show = []
             wx.redirectTo({
               url: '/pages/home/home',
             })
-          } else{
+          } else {
             wx.showToast({
               title: '提交失败',
               icon: 'error'

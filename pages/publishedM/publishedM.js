@@ -8,7 +8,7 @@ Page({
    */
   onLoad(options) {
     wx.request({
-      url: 'http://1.15.118.125:8080/NIC/show?method=showNeed',
+      url: 'http://1.15.118.125:8081/NIC/show?method=showNeed',
       success: (res) => {
         list_all = res.data.data;
         let j = -1;
@@ -72,7 +72,7 @@ Page({
   takePhoto(e) {
     if (app.globalData.authority1 == 1) {
       wx.request({
-        url: 'http://1.15.118.125:8080/NIC/take',
+        url: 'http://1.15.118.125:8081/NIC/take',
         data: {
           "method": "take",
           "data": {
@@ -121,7 +121,7 @@ Page({
   takeArticle(e) {
     if (app.globalData.authority1 == 1) {
       wx.request({
-        url: 'http://1.15.118.125:8080/NIC/take',
+        url: 'http://1.15.118.125:8081/NIC/take',
         data: {
           "method": "take",
           "data": {

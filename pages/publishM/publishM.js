@@ -366,7 +366,7 @@ Component({
         })
       } else {
         wx.request({
-          url: 'http://1.15.118.125:8080/NIC/manage',
+          url: 'http://1.15.118.125:8081/NIC/manage',
           data: {
             "method": "add",
             "data": {
@@ -442,7 +442,7 @@ Component({
               wx.uploadFile({
                 filePath: fileArray[i].path,
                 name: 'file',
-                url: 'http://1.15.118.125:8080/NIC/upload?missionID=' + missionID,
+                url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + missionID,
                 header: {
                   "Content-Type": "multipart/form-data"
                 },

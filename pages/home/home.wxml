@@ -137,10 +137,10 @@
     </block>
   </swiper>
   <view class="gird_view"> 
-    <view class="gird_view_2">
+    <view class="gird_view_2" bindtap="goto">
       <text>查询稿件</text>
     </view>
-    <view class="gird_view_2">
+    <view class="gird_view_2" bindtap="goto">
       <text>历史稿件</text>
     </view>
   </view>

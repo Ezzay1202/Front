@@ -7,8 +7,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    list_show = []
     wx.request({
-      url: 'http://1.15.118.125:8080/NIC/show?method=showGotDraft',
+      url: 'http://1.15.118.125:8081/NIC/show?method=showGotDraft',
       success: (res) => {
         list_all = res.data.data;
         let j = -1;
@@ -48,8 +49,8 @@ Page({
             people: article + photo
           }
         };
-        console.log(list_show);
-        console.log(list_all);
+        //console.log(list_show);
+        //console.log(list_all);
         this.setData({
           listm: list_show
         })
@@ -87,6 +88,7 @@ Page({
           show: false
         },
       ],
+      missionID:data_temp.missionID,
       attitude: true,
       code: 1,
       code1: 2,
