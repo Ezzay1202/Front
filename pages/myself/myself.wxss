@@ -335,11 +335,17 @@ page {
   height:120rpx;
   padding: .3em;
   margin:.5em;
+  display: flex;
+  flex-direction: column;
+}
+.style-left{
+  border-left:6rpx outset #009999;
   box-shadow: 10rpx 10rpx 10rpx -15rpx #009999;
 }
 .mywork>text{
   flex: 1;
   font-size: 21rpx;
+  margin-left:15rpx ;
   color: black ;
 }
 .mask-bac{

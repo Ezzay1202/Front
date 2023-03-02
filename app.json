@@ -1,5 +1,7 @@
 {
   "pages":[
+    "pages/publishM/publishM",
+
     "pages/home/home", 
     "pages/login/login",
     "pages/people/people",
@@ -7,7 +9,6 @@
     "pages/myself/myself",
     "pages/myinformation/myinformation",
     "pages/historyM/historyM",
-    "pages/publishM/publishM",
     "pages/fcheckM/fcheckM",  
     "pages/mydate/mydate",
     "pages/publishedM/publishedM",
@@ -27,6 +28,7 @@
   },
 
   "usingComponents": {
+    "t-icon": "tdesign-miniprogram/icon/icon",
     "t-picker": "tdesign-miniprogram/picker/picker",
     "t-picker-item": "tdesign-miniprogram/picker/picker-item",
     "t-input": "tdesign-miniprogram/input/input",

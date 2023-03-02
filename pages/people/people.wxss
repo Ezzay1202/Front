@@ -1,1 +1,149 @@
 /* pages/people/people.wxss */
+page{
+  --people-color:#009999;
+  --bu-color:#009999;
+}
+t-search{
+  flex: 1;
+  background-color: #feecf2;
+  margin:0 .3em;
+  border-radius: 20%;
+}
+.search{
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  padding:.5em;
+}
+.search image{
+  width: 60rpx;
+  height: 60rpx;
+  margin: .3em;
+}
+.people_deptext{
+  display: flex;
+  justify-items: center;
+  align-self: center;
+  padding: 1em;
+}
+.people_deptext>text{
+  flex: 1;
+  font-size: 38rpx;
+  font-weight: bold;
+}
+.people_deptext>image{
+  width:40rpx;
+  height: 40rpx;
+}
+.people_info{
+  border-radius: 3%;
+  display:flex;
+  padding: .5em ;
+  margin: .5em .5em;
+  box-shadow: 0rpx 2rpx 10rpx 0rpx #00999938;
+}
+.people_info_checked{
+  border:3rpx solid var(--people-color);
+}
+.people_info_checked::after{
+  border: 14px solid var(--people-color);
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+}
+.people_info image{
+  width:120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+.people_info .text_box{
+  flex: 1;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.text_box>text{
+  margin: .1rem;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.text_box .tag_box{
+  flex:1;
+  float:left;
+  margin: .2em;
+  display: flex;
+  max-height: 3rem;
+  max-width: 80%;
+  align-items:center;
+  overflow:scroll;
+}
+
+.tag_box >text{
+  min-width: max-content;
+  margin-right: .5em;
+  text-align: center;
+  flex:1;
+  padding: .4em;
+  font-size:25rpx;
+  color:var(--people-color);
+  border:1rpx solid var(--people-color);
+  border-radius: .5em;
+}
+.card__icon {
+  color: #fff;
+  background-color: var(--people-color);
+  z-index: 1;
+}
+.main-active-class{
+  border-color:#135ba4 ;
+  --sidebar-selected-border-color:#135ba4;
+  --info-background-color:#135ba4;
+}
+.content-active-class{
+  --tree-select-item-active-color:#135ba4;
+}
+.choose_box{
+  position: fixed;
+  top: 220rpx;
+  display: flex;
+  flex-direction: column;
+  padding: .5em;
+  box-sizing: border-box;
+}
+.choose_box .box_p{
+  width: 690rpx;
+  height: 100rpx;
+  display: flex;
+  justify-items: center;
+  align-self: center;
+  padding: 5rpx;
+  box-shadow: 0rpx 2rpx 10rpx 0rpx #00999938;
+}
+
+.box_p_item image{
+  border: 1rpx solid white;
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+  margin: 5rpx;
+}
+.choose_title{
+  display: flex;
+  height: 100rpx;
+  padding: .5em 0;
+  justify-items: center;
+}
+.choose_title input{
+  flex:1;
+  color: black;
+  font-size: 25rpx;
+  padding: .3em .5em;
+  border: 6rpx outset #0f0c0d;
+}
+.choose_title button{
+  height: 75rpx;
+  font-size: 29rpx;
+  margin-left:.3em;
+  color: white;
+  border-radius: 10rpx;
+  background-color: #1f9792;
+}

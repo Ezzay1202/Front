@@ -85,16 +85,250 @@ Page({
   },
 })
 const PICKER_KEY = {
+  DATE: 'date',
   DATE1: 'date1',
   DATE2: 'date2',
   People: 'people',
 };
 
 Component({
+  offsetTopList: [],
   options: {
     styleIsolation: 'apply-shared',
   },
   data: {
+    sideBarIndex: 0,
+    scrollTop: 0,
+    categories: [{
+        label: '教学建设',
+        title: '教学建设',
+        items: [{
+            label: "研讨会",
+            checked: true
+          },
+          {
+            label: "座谈会",
+            checked: false
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
+          {
+            label: "研讨会",
+            checked: true
+          },
+          {
+            label: "座谈会",
+            checked: false
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
+          {
+            label: "研讨会",
+            checked: true
+          },
+          {
+            label: "座谈会",
+            checked: false
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
+        ]
+      },
+      {
+        label: '选项1',
+        title: '选项1',
+        items: [{
+            label: "研讨会",
+            checked: true
+          },
+          {
+            label: "座谈会",
+            checked: false
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
+        ]
+      },
+      {
+        label: '选项2',
+        title: '选项2',
+        items: [{
+            label: "研讨会",
+            checked: true
+          },
+          {
+            label: "座谈会",
+            checked: false
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
+        ]
+      },
+      {
+        label: '选项3',
+        title: '选项3',
+        items: [{
+            label: "研讨会",
+            checked: true
+          },
+          {
+            label: "座谈会",
+            checked: false
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
+        ]
+      },
+      {
+        label: '选项4',
+        title: '选项4',
+        items: [{
+            label: "研讨会",
+            checked: true
+          },
+          {
+            label: "座谈会",
+            checked: false
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
+        ]
+      },
+    ],
+    showcheck: false,
     fileArray: [],
     step: [{
       text: '已写稿',
@@ -114,6 +348,7 @@ Component({
       zIndex: 2,
     },
     PICKER_KEY,
+    [`${PICKER_KEY.DATE}Visible`]: false,
     [`${PICKER_KEY.DATE1}Visible`]: false,
     [`${PICKER_KEY.DATE2}Visible`]: false,
     [`${PICKER_KEY.People}Visible`]: false,
@@ -148,7 +383,7 @@ Component({
       label: `${index+1}摄`,
       value: index + 1,
     })),
-
+    [`${PICKER_KEY.DATE}Value`]: [month, day, hour],
     [`${PICKER_KEY.DATE1}Value`]: [month, day, hour, minute],
     [`${PICKER_KEY.DATE2}Value`]: [hour, minute],
     [`${PICKER_KEY.People}Value`]: [],
@@ -177,6 +412,56 @@ Component({
     ],
   },
   methods: {
+    handlePopup(e) {
+      const {
+        item
+      } = e.currentTarget.dataset;
+
+      this.setData({
+          cur: item,
+        },
+        () => {
+          this.setData({
+            showcheck: true
+          });
+        },
+      );
+    },
+    onVisibleChange(e) {
+      this.setData({
+        showcheck: e.detail.visible,
+      });
+    },
+    showCheck(e) {
+      this.setData({
+        showcheck: !this.data.showcheck
+      })
+    },
+    onSideBarChange(e) {
+      const {
+        value
+      } = e.detail;
+
+      this.setData({
+        sideBarIndex: value
+      });
+    },
+    checkedTag(e) {
+      let index1 = this.data.index1
+      let index2 = e.currentTarget.dataset.index2
+      let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
+      console.log(e, index1, index2, checked)
+      this.setData({
+        [checked]: !this.data.categories[index1].items[index2].checked
+      })
+      console.log(this.data.categories[index1].items[index2].checked)
+    },
+    checkedTags(e) {
+      this.setData({
+        index1: e.currentTarget.dataset.index1
+      })
+    },
+
     uploadFile: function (e) {
       console.log(e)
       wx.chooseMessageFile({

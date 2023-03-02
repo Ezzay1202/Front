@@ -62,6 +62,19 @@ Page({
     // 指定选择区间起始值
     start: '2000-01-01 00:00:00',
     end: '2030-09-09 12:12:12',
+
+    isManagement:true,
+    mag: {},
+    people:[{
+      name:"乔晟豪",
+      job:"文",
+    },{
+      name:"蔡毅洲",
+      job:"摄",
+    },{
+      name:"李钰",
+      job:"审稿",
+    },],
     review: '',
     remarks: '',
     isManagement: false,
@@ -104,7 +117,6 @@ Page({
     })),
   },
   onClickPicker(e) {
-
     this.setData({
       date1Visible: true,
     });

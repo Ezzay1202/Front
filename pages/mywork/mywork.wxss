@@ -1,0 +1,153 @@
+/* pages/mywork/mywork.wxss */
+t-search{
+  flex: 1;
+  background-color: #feecf2;
+  margin:0 .3em;
+  border-radius: 20%;
+}
+.search{
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  padding:.5em;
+}
+.search image{
+  width: 60rpx;
+  height: 60rpx;
+  margin: .3em;
+}
+.main-active-class{
+  border-color:#135ba4 ;
+  --sidebar-selected-border-color:#135ba4;
+  --info-background-color:#135ba4;
+}
+.content-active-class{
+  --tree-select-item-active-color:#135ba4;
+}
+.text{
+  font-size: 35rpx;
+  font-weight: bold;
+  margin-bottom: .3em;
+}
+.flex-column{
+  display:flex;
+  flex-direction: column;
+}
+.myM{
+  position: fixed;
+  top: 220rpx;
+  height: 80vh;
+  border-radius: 5%;
+  align-items: center;
+  justify-self:center;
+}
+.myM-ing{
+  padding: 1em;
+
+}
+.m-ing{
+  width: 85%;
+  align-items: stretch;
+  padding: 1em;
+  border:.2em outset #135ba4 ;
+  margin: .5em ;
+  border-radius:5%;
+  display:flex;
+  flex-direction: column;
+}
+.n-ing{
+  margin: .3em;
+  padding:.2em;
+  border-top: 1px dashed black;
+}
+.myM-history{
+  padding: .5em;
+}
+.m{
+  width: 85%;
+  align-items: stretch;
+  padding: 1em;
+  border:.1em solid rgb(236,242,254);
+  background-color: #ecfbfe;
+  margin: .5em ;
+  border-radius:10%;
+  display:flex;
+  flex-direction: column;
+}
+ .title{
+  flex:1;
+  font-size: 30rpx;
+  max-height:3em;
+  margin-bottom: .5em;
+  overflow:scroll;
+}
+.m .text{
+  float: left;
+  margin: .2em;
+  max-height: 3em;
+  overflow: scroll;
+  border-bottom: 1px dashed #009999;
+}
+.m .text >text{
+  color: white;
+  background-color: #13a4a4;
+  border-radius: .5em;
+}
+ .m text{
+  float:inline-start;
+  font-size: 20rpx;
+  margin: .3em .8em .3em 0;
+  padding: .5em;
+} 
+.text button{
+  margin: .3em .8em .3em 0;
+  font-size: 20rpx;
+  color: white;
+  background-color: #135ba4;
+  border-radius: .5em;
+}
+.m .people{
+  flex:1;
+  float:left;
+  margin: .2em;
+  display: flex;
+  max-height: 3rem;
+  max-width: 80%;
+  align-items:center;
+  overflow:scroll;
+}
+.m .people >text{
+  min-width: max-content;
+  margin-right: .5em;
+  text-align: center;
+  flex:1;
+  padding: .4em;
+  font-size:20rpx;
+  color:var(--people-color);
+  border:1rpx solid var(--people-color);
+  border-radius: .5em;
+}
+.m .people >text[data-id="1"]{
+  --people-color:#13a45b
+}
+.m .people >text[data-id="2"]{
+  --people-color:#135ba4
+}
+.m .people >text[data-id="4"]{
+  --people-color:#a4a413
+}
+.m .people >text[data-id="5"]{
+  --people-color:#a413a4
+}
+
+ .n{
+  display: flex;
+  box-sizing: border-box;
+}
+.score{
+  box-sizing: border-box;
+  width:20%;
+  font-size:30rpx;
+  padding: .3rem .3rem 0;
+  color:#a63f53;
+}

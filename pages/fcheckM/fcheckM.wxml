@@ -1,75 +1,83 @@
 <!--pages/fcheckM/fcheckM.wxml-->
 <!--服务评价-->
-<block class="container">
+<view class="container" style="height: auto;">
   <view class="m">
     <view class="title">{{mag.text}}</view>
     <view class="text">
-      <text >{{mag.date1}}——{{mag.date2}}</text>
-      <text >{{mag.location}}</text>
-      <text >{{mag.people}}</text>
+      <text style="flex:3;">{{mag.date1}}—{{mag.date2}}</text>
+      <text style="flex:1;">{{mag.location}}</text>
+      <text style="flex:1;">{{mag.people}}</text>
     </view>
-    <view class="filebox" style="border-top: 1px dashed #888;" >
-      <view class="right" wx:for="{{file_download}}"  wx:key="index">
-        <image  src="/image/下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}" data-id="{{item.arr}}">
+    <view class="filebox" style="border-top: 1px dashed #888;">
+      <view class="right" wx:for="{{file_download}}" wx:key="index">
+        <image src="/image/下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}" data-id="{{item.arr}}">
         </image>
         <view class="n" bindtap="previewFile" data-path="{{item.path}}" data-id="{{item.arr}}">
-        <image src="/image/docm.png"  mode="aspectFill" ></image>
-        <text  class="name">{{item.name}}</text>
-        <text class="size">{{item.size}}</text>
+          <image src="/image/docm.png" mode="aspectFill"></image>
+          <text class="name">{{item.name}}</text>
+          <text class="size">{{item.size}}</text>
+        </view>
+      </view>
+      <view class="people_box">
+        <block wx:for="{{people}}" wx:key="index">
+          <view class="people_item">
+            <image src="/image/啸天.png" mode="" />
+            <text class="name">{{item.name}}</text>
+            <text class="job">{{item.job}}</text>
+          </view>
+        </block>
       </view>
     </view>
   </view>
-</view>
-<view class="service">
-     <!--评分-->
-     <view class='score'>
-       <view class='word'>
-         {{wjxScore||"请点击星星评分"}}
-       </view>
-       <view class="right">
-          <view bindtap="starTap" data-index="{{index}}"  class="star" wx:for="{{userStars}}" wx:key="index">
-           <image src="{{item}}"></image>
-         </view>
-       </view>
-     </view>
-     <!--内容-->
-     <view class='content'>
-       <view class='left'>
-         点击添加tag
-       </view>
-       <view class='right'  >
-         <block  wx:for="{{tag}}" wx:key="index">
-          <text bindtap='labelx' class="{{item.show===true ? 'labelColor':'' }}" >{{item.name}}</text>
+  <view class="service">
+    <!--评分-->
+    <view class='score'>
+      <view class='word'>
+        {{wjxScore||"请点击星星评分"}}
+      </view>
+      <view class="right">
+        <view bindtap="starTap" data-index="{{index}}" class="star" wx:for="{{userStars}}" wx:key="index">
+          <image src="{{item}}"></image>
+        </view>
+      </view>
+    </view>
+    <!--内容-->
+    <view class='content'>
+      <view class='left'>
+        点击添加tag
+      </view>
+      <view class='right'>
+        <block wx:for="{{tag}}" wx:key="index">
+          <text bindtap='labelx' class="{{item.show===true ? 'labelColor':'' }}">{{item.name}}</text>
         </block>
-          <text bindtap='label' class="{{attitude===true ? 'labelColor':''}}" data-index="{{attitude}}">小清新</text>
-       </view>
-     </view>
-   </view>
-   <!--textarea-->
-   <view class="conts">
-       <textarea class="areas" placeholder='请输入您对该稿件的评价'  bindinput="inputReview"> 
+        <text bindtap='label' class="{{attitude===true ? 'labelColor':''}}" data-index="{{attitude}}">小清新</text>
+      </view>
+    </view>
+  </view>
+  <!--textarea-->
+  <view class="conts">
+    <textarea class="areas" placeholder='请输入您对该稿件的评价' bindinput="inputs">
            <!-- <text class="currentWordNumber">{{currentWordNumber| }}/{{max}}</text> -->
        </textarea>
-   </view>
-   
-  </block>
-  <block>
-    <view class="filebox" style="padding: 1em;" >
-      <view class="right" wx:for="{{file_upload}}"  wx:key="index">
-        <image  src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
-        </image>
-       <view class="n" bindtap="previewFile" data-path="{{item.path}}">
-        <image src="/image/docm.png"  mode="aspectFill" ></image>
-        <text  class="name">{{item.name}}</text>
+  </view>
+</view>
+<block>
+  <view class="filebox" style="padding: 1em;">
+    <view class="right" wx:for="{{file_upload}}" wx:key="index">
+      <image src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
+      </image>
+      <view class="n" bindtap="previewFile" data-path="{{item.path}}">
+        <image src="/image/docm.png" mode="aspectFill"></image>
+        <text class="name">{{item.name}}</text>
         <text class="size">{{item.size}}</text>
       </view>
     </view>
-    <button bindtap="uploadFile" >选择稿件及照片</button>
-    </view>
-    <!--提交评价-->
-  </block>
-  <block wx:if="{{isManagement}}">
-    <view class="pM">
+    <button bindtap="uploadFile">选择稿件及照片</button>
+  </view>
+  <!--提交评价-->
+</block>
+<block wx:if="{{isManagement}}">
+  <view class="pM">
     <block>
       <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
         <view class="pannel-label">截止时间</view>
@@ -77,20 +85,20 @@
         <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
       </view>
     </block>
-    <t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel" >
+    <t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
       <t-picker-item options="{{months}}"></t-picker-item>
       <t-picker-item options="{{days}}"></t-picker-item>
       <t-picker-item options="{{hour}}"></t-picker-item>
       <t-picker-item options="{{minute}}"></t-picker-item>
     </t-picker>
-      <view class="conts">
-       <textarea class="areas" style="height:200rpx" placeholder='请输入您对排版的备注'  bindinput="inputRemarks"> 
+    <view class="conts">
+      <textarea class="areas" style="height:200rpx" placeholder='请输入您对排版的备注' bindinput="inputs">
            <!-- <text class="currentWordNumber">{{currentWordNumber| }}/{{max}}</text> -->
        </textarea>
-   </view>
-   </view>
-  </block>
-  <button class='btn' bindtap='handleBtn'>提交评价</button>
-
-   
-
+    </view>
+  </view>
+</block>
+<view class='btn'>
+  <button class="btn_go" bindtap='handleBtn'>提交评价</button>
+  <button class="btn_back">打回重做</button>
+</view>

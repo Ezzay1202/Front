@@ -1,4 +1,4 @@
-<!--pages/myself/myself.wxml-->
+<!--pages/myself/meself.wxml-->
 <view class='container'>
   <!-- 第1部分 -->
   <view class='top-container'>
