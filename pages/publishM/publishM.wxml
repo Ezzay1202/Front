@@ -77,12 +77,12 @@
             <t-side-bar-item wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" disabled="{{item.disabled}}" badge-props="{{item.badgeProps}}" />
           </t-side-bar>
           <view class="content">
-            <scroll-view style="transform: translateY(-{{sideBarIndex * 100}}%)" wx:for="{{categories}}" wx:key="index" class="section" scroll-y scroll-with-animation show-scrollbar="{{true}}" enhanced="{{true}}">
+            <scroll-view style="transform: translateY(-{{sideBarIndex * 100}}%)" wx:for="{{categories}}" wx:key="index" class="section" scroll-y scroll-with-animation show-scrollbar="{{true}}" data-index1="{{index1}}" wx:for-index='index1' bindtap="checkedTags" enhanced="{{true}}">
               <view class="title2">{{item.title || item.label}}</view>
               <view class="t-grid">
                 <view style="margin-left:0px; margin-top:0px" class="t-grid__content">
-                  <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
-                    <view bindtap="checkedTag" hover-stay-time="200" style="width:33.33333333333333%" class="t-grid-item t-sidebar" data-index2="{{index}}">
+                  <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" wx:for-index='index2' >
+                    <view  hover-stay-time="200" style="width:33.33333333333333%" class="t-grid-item t-sidebar" bindtap="checkedTag"  data-index2="{{index2}}">
                       <view>
                         <view class="t-grid-item__content t-sidebar-content">
                           <view class="t-grid-item__words t-grid-item__words--vertical">

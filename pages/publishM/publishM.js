@@ -97,6 +97,8 @@ Component({
     styleIsolation: 'apply-shared',
   },
   data: {
+    index1: 0,
+    index2: 0,
     sideBarIndex: 0,
     scrollTop: 0,
     categories: [{
@@ -412,6 +414,13 @@ Component({
     ],
   },
   methods: {
+    checkedTag(e) {
+      console.log('2')
+      console.log(e)
+      this.setData({
+        index2: e.currentTarget.dataset.index2
+      })
+    },
     handlePopup(e) {
       const {
         item
@@ -438,6 +447,7 @@ Component({
       })
     },
     onSideBarChange(e) {
+      console.log(e.detail)
       const {
         value
       } = e.detail;
@@ -447,19 +457,25 @@ Component({
       });
     },
     checkedTag(e) {
+      console.log('2')
+      console.log(e)
+      this.setData({
+        index2: e.currentTarget.dataset.index2
+      })
+    },
+    checkedTags(e) {
+      console.log('1')
+      this.setData({
+        index1: e.currentTarget.dataset.index1
+      })
       let index1 = this.data.index1
-      let index2 = e.currentTarget.dataset.index2
+      let index2 = this.data.index2
       let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
-      console.log(e, index1, index2, checked)
+      console.log(index1, index2, checked)
       this.setData({
         [checked]: !this.data.categories[index1].items[index2].checked
       })
       console.log(this.data.categories[index1].items[index2].checked)
-    },
-    checkedTags(e) {
-      this.setData({
-        index1: e.currentTarget.dataset.index1
-      })
     },
 
     uploadFile: function (e) {

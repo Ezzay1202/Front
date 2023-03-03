@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/publishM/publishM",
-
     "pages/home/home", 
+
     "pages/login/login",
     "pages/people/people",
     "pages/submitP/submitP",
