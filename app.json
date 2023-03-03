@@ -1,32 +1,30 @@
 {
-  "pages":[
+  "pages": [
+    "pages/home/home",
     "pages/publishM/publishM",
-    "pages/home/home", 
-
+    "pages/historyM/historyM",
     "pages/login/login",
     "pages/people/people",
     "pages/submitP/submitP",
     "pages/myself/myself",
     "pages/myinformation/myinformation",
-    "pages/historyM/historyM",
-    "pages/fcheckM/fcheckM",  
+    "pages/fcheckM/fcheckM",
     "pages/mydate/mydate",
     "pages/publishedM/publishedM",
     "pages/inquiryM/inquiryM",
     "pages/seeM/seeM",
     "pages/submitM/submitM",
-    "pages/checkM/checkM", 
-    "pages/apply/apply", 
+    "pages/checkM/checkM",
+    "pages/apply/apply",
     "pages/index/index",
     "pages/logs/logs"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "NIC",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
-
   "usingComponents": {
     "t-icon": "tdesign-miniprogram/icon/icon",
     "t-picker": "tdesign-miniprogram/picker/picker",

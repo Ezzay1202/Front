@@ -100,7 +100,6 @@ Component({
     index1: 0,
     index2: 0,
     sideBarIndex: 0,
-    scrollTop: 0,
     categories: [{
         label: '教学建设',
         title: '教学建设',
@@ -447,7 +446,6 @@ Component({
       })
     },
     onSideBarChange(e) {
-      console.log(e.detail)
       const {
         value
       } = e.detail;
