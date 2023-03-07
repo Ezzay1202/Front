@@ -240,6 +240,7 @@ Page({
     });
   },
   onLoad() {
+    //console.log('1')
     const query = wx.createSelectorQuery().in(this);
     query
       .selectAll('.title')

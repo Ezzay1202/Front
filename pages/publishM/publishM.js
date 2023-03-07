@@ -15,6 +15,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    wx.request({
+      url: 'http://1.15.118.125:8081/NIC/manage?method=getTag',
+      success:(res)=>{
+        console.log(res.data)
+        this.setData({
+          categories: res.data.data
+        })
+      }
+    })
 
     this.setData({
       year: year,
