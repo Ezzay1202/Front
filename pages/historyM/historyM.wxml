@@ -1,84 +1,63 @@
 <!--pages/historyM/historyM.wxml-->
 
-<view style="position: fixed; z-index: 2; width:750rpx; background-color: white;" >
+<view style="position: fixed; z-index: 2; width:750rpx; background-color: white;">
   <view class="container" style="background-color: white;padding:.5em;">
-  <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{center}}" />
-</view>
-  <van-dropdown-menu
-  active-color="#135ba4"
-  custom-class="dropdown-menu"
->
-  <block wx:for="{{class}}" wx:key="index">
-    <van-dropdown-item value="{{ item.value1 }}" options="{{ item.option1 }}" />
-  </block>
-  
-  <van-dropdown-item id="item" title="时间">
-    <van-datetime-picker
-      type="year-month"
-      value="{{ currentDate }}"
-      min-date="{{ minDate }}"
-      bind:input="onInput"
-    />
-  </van-dropdown-item>
+    <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{center}}" />
+  </view>
+  <van-dropdown-menu active-color="#135ba4" custom-class="dropdown-menu">
+    <block wx:for="{{class}}" wx:key="index">
+      <van-dropdown-item value="{{ item.value1 }}" options="{{ item.option1 }}" />
+    </block>
 
-  <van-dropdown-item id="item" title="{{ itemTitle }}" >
-    <view class="side-bar-wrapper" >
-  <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
-    <t-side-bar-item
-      wx:for="{{categories}}"
-      wx:key="index"
-      value="{{item.value || index}}"
-      label="{{item.label}}"
-      badge-props="{{item.badgeProps}}"
-    />
-  </t-side-bar>
-  <scroll-view class="content" scroll-y scroll-with-animation scroll-top="{{scrollTop}}" bind:scroll="onScroll">
-    <view wx:for="{{categories}}" wx:key="index" wx:for-index='index1' class="section" bindtap="checkedTags" data-index1="{{index1}}">
-      <view class="title">{{item.title || item.label}}</view>
-      <t-grid column="{{3}}" border="{{false}}" >
-        <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" wx:for-index='index2' >
-          <t-grid-item
-            data-index2="{{index2}}"
-            bindtap="checkedTag"
-            text="{{cargo.label}}"
-            t-class-text="t-sidebar-text{{cargo.checked ? '-checked' : ' '}}"
-            t-class="t-sidebar"
-            t-class-content="t-sidebar-content"
-          >
-          </t-grid-item>
-        </block>
-      </t-grid>
-    </view>
-  </scroll-view>
-</view>
-  </van-dropdown-item>
-   
-</van-dropdown-menu>
+    <van-dropdown-item id="item" title="时间">
+      <van-datetime-picker type="year-month" value="{{ currentDate }}" min-date="{{ minDate }}" bind:input="onInput" />
+    </van-dropdown-item>
+
+    <van-dropdown-item id="item" title="{{ itemTitle }}">
+      <view class="side-bar-wrapper">
+        <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
+          <t-side-bar-item class="font_32" wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" disabled="{{item.disabled}}" badge-props="{{item.badgeProps}}" />
+        </t-side-bar>
+        <view class="content">
+          <scroll-view class="section" style="transform: translateY(-{{sideBarIndex * 100}}%)" scroll-y scroll-with-animation show-scrollbar="{{true}}" wx:for="{{categories}}" wx:key="index" wx:for-index='index1' bindtap="checkedTags" enhanced="{{true}}" data-index1="{{index1}}">
+            <view class="title">{{item.title || item.label}}</view>
+            <t-grid column="{{3}}" border="{{false}}">
+              <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" wx:for-index='index2'>
+                <t-grid-item data-index2="{{index2}}" bindtap="checkedTag" text="{{cargo.label}}" t-class-text="t-sidebar-text{{cargo.checked ? '-checked' : ' '}}" t-class="t-sidebar" t-class-content="t-sidebar-content">
+                </t-grid-item>
+              </block>
+            </t-grid>
+          </scroll-view>
+        </view>
+      </view>
+    </van-dropdown-item>
+
+  </van-dropdown-menu>
 
 </view>
 
 <scroll-view class="container" style="position:absolute; top:210rpx" scroll-y="true" enable-flex="true">
-  <block wx:for="{{listm}}" wx:key="id" >
+  <block wx:for="{{listm}}" wx:key="id">
     <view class="m">
       <view class="title">{{item.text}}</view>
-    <view class="text">
-      <text >{{item.date}}</text>
-      <text >{{item.location}}</text>
-      <button bindtap="goto" data-url="{{item.url}}">点击浏览</button>
-    </view>  
-    <view class="n">
-      <view class="people">
-        <block wx:for="{{item.people}}" wx:key="index">
-          <text data-id="{{item.key}}">{{item.name}}</text>
-         </block>
+      <view class="text">
+        <text>{{item.date}}</text>
+        <text>{{item.location}}</text>
+        <button bindtap="goto" data-url="{{item.url}}">点击浏览</button>
+      </view>
+      <view class="n">
+        <view class="people">
+          <block wx:for="{{item.people}}" wx:key="index">
+            <text data-id="{{item.key}}">{{item.name}}</text>
+          </block>
         </view>
-      <view class="score">
-        {{item.score}}分
+        <view class="score">
+          {{item.score}}分
+        </view>
       </view>
     </view>
-  </view>
   </block>
 </scroll-view>
 
- <t-popup>
+<t-popup>
 </t-popup>

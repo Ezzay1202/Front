@@ -8,8 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    sideBarIndex: 1,
-    scrollTop: 0,
+    sideBarIndex: 0,
     index1Tump: 0,
     index2Tump: 0,
     categories: [{
@@ -17,13 +16,11 @@ Page({
         title: '教学建设',
         items: [{
             label: "研讨会",
-            checked: true,
-            number: 0
+            checked: true
           },
           {
             label: "座谈会",
-            checked: false,
-            number: 1
+            checked: false
           },
           {
             label: "座谈会"
@@ -46,14 +43,47 @@ Page({
           {
             label: "管院国奖故事"
           },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "座谈会"
+          },
+          {
+            label: "管院国奖故事"
+          },
         ]
       },
       {
         label: '选项',
         title: '标题',
-        badgeProps: {
-          dot: true,
-        },
         items: [{
           label: "研讨会"
         }]
@@ -68,9 +98,6 @@ Page({
       {
         label: '选项',
         title: '标题',
-        badgeProps: {
-          count: 6,
-        },
         items: [{
           label: "研讨会"
         }]
@@ -250,36 +277,13 @@ Page({
       .exec();
   },
   onSideBarChange(e) {
-    console.log('onSideBarChange')
     const {
       value
     } = e.detail;
+
     this.setData({
-      sideBarIndex: value,
-      scrollTop: this.offsetTopList[value]
+      sideBarIndex: value
     });
-  },
-  onScroll(e) {
-    const {
-      scrollTop
-    } = e.detail;
-    //console.log(scrollTop)
-    const threshold = 10; // 下一个标题与顶部的距离
-
-    if (scrollTop < threshold) {
-      this.setData({
-        sideBarIndex: 0
-      });
-      return;
-    }
-
-    const index = this.offsetTopList.findIndex((top) => top > scrollTop && top - scrollTop <= threshold);
-
-    if (index > -1) {
-      this.setData({
-        sideBarIndex: index
-      });
-    }
   },
   checkedTag(e) {
     console.log('2')

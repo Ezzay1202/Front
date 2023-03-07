@@ -81,8 +81,8 @@
               <view class="title2">{{item.title || item.label}}</view>
               <view class="t-grid">
                 <view style="margin-left:0px; margin-top:0px" class="t-grid__content">
-                  <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" wx:for-index='index2' >
-                    <view  hover-stay-time="200" style="width:33.33333333333333%" class="t-grid-item t-sidebar" bindtap="checkedTag"  data-index2="{{index2}}">
+                  <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" wx:for-index='index2'>
+                    <view hover-stay-time="200" style="width:33.33333333333333%" class="t-grid-item t-sidebar" bindtap="checkedTag" data-index2="{{index2}}">
                       <view>
                         <view class="t-grid-item__content t-sidebar-content">
                           <view class="t-grid-item__words t-grid-item__words--vertical">

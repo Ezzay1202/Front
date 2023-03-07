@@ -1,4 +1,5 @@
 /* pages/publishM/publishM.wxss */
+
 .demo-desc {
   margin-top: 24px;
   margin-bottom: 16px;
@@ -268,6 +269,10 @@ page {
   display: flex;
   height: 60vh;
   overflow: hidden;
+}
+
+.side-bar-wrapper .t-side-bar-item {
+  font-size: 32rpx;
 }
 
 .side-bar-wrapper scroll-view {
