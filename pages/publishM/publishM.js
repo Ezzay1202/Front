@@ -15,16 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.request({
-      url: 'http://1.15.118.125:8081/NIC/manage?method=getTag',
-      success:(res)=>{
-        console.log(res.data)
-        this.setData({
-          categories: res.data.data
-        })
-      }
-    })
-
     this.setData({
       year: year,
       month: month,
@@ -106,238 +96,12 @@ Component({
     styleIsolation: 'apply-shared',
   },
   data: {
+    test1: 0,
     index1: 0,
     index2: 0,
     sideBarIndex: 0,
-    categories: [{
-        label: '教学建设',
-        title: '教学建设',
-        items: [{
-            label: "研讨会",
-            checked: true
-          },
-          {
-            label: "座谈会",
-            checked: false
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-          {
-            label: "研讨会",
-            checked: true
-          },
-          {
-            label: "座谈会",
-            checked: false
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-          {
-            label: "研讨会",
-            checked: true
-          },
-          {
-            label: "座谈会",
-            checked: false
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-        ]
-      },
-      {
-        label: '选项1',
-        title: '选项1',
-        items: [{
-            label: "研讨会",
-            checked: true
-          },
-          {
-            label: "座谈会",
-            checked: false
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-        ]
-      },
-      {
-        label: '选项2',
-        title: '选项2',
-        items: [{
-            label: "研讨会",
-            checked: true
-          },
-          {
-            label: "座谈会",
-            checked: false
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-        ]
-      },
-      {
-        label: '选项3',
-        title: '选项3',
-        items: [{
-            label: "研讨会",
-            checked: true
-          },
-          {
-            label: "座谈会",
-            checked: false
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-        ]
-      },
-      {
-        label: '选项4',
-        title: '选项4',
-        items: [{
-            label: "研讨会",
-            checked: true
-          },
-          {
-            label: "座谈会",
-            checked: false
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-        ]
-      },
-    ],
+    scrollTop: 0,
+    categories: [],
     showcheck: false,
     fileArray: [],
     step: [{
@@ -422,6 +186,42 @@ Component({
     ],
   },
   methods: {
+    onLoad(options) {
+      let list1 = []
+      let list2 = []
+      let temp3 = []
+      wx.request({
+        url: 'http://1.15.118.125:8081/NIC/manage?method=getTag',
+        success: (res) => {
+          console.log(res.data.data)
+          list1 = res.data.data['list1'][0]
+          list2 = res.data.data['list2']
+          let len = list1.length === list2.length ? list1.length : 0
+          let tag = new Map()
+          for (let i = 0; i < len; i++) {
+            tag.set(list1[i], [])
+            let temp = {
+              label: list1[i],
+              title: list1[i],
+              items: []
+            }
+            for (let j = 0; j < list2[i].length; j++) {
+              let temp2 = {
+                label: list2[i][j],
+                checked: false
+              }
+              temp['items'] = temp['items'].concat(temp2)
+            }
+            temp3 = temp3.concat(temp)
+            this.setData({
+              categories: temp3,
+              tag: tag
+            })
+            console.log(temp3)
+          }
+        }
+      })
+    },
     checkedTag(e) {
       console.log('2')
       console.log(e)
@@ -455,6 +255,7 @@ Component({
       })
     },
     onSideBarChange(e) {
+      console.log(e.detail)
       const {
         value
       } = e.detail;
@@ -464,7 +265,6 @@ Component({
       });
     },
     checkedTag(e) {
-      console.log('2')
       console.log(e)
       this.setData({
         index2: e.currentTarget.dataset.index2
@@ -478,11 +278,22 @@ Component({
       let index1 = this.data.index1
       let index2 = this.data.index2
       let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
-      console.log(index1, index2, checked)
+      let temp = this.data.tag
+      let tempTag = this.data.categories[index1]['items'][index2]['label']
+      let templist = temp.get(this.data.categories[index1]['label'])
+      if (templist.includes(tempTag)) {
+        templist.splice(templist.indexOf(tempTag), 1)
+        temp.set(this.data.categories[index1]['label'], templist)
+      } else {
+        templist.push(tempTag)
+        temp.set(this.data.categories[index1]['label'], templist)
+      }
       this.setData({
-        [checked]: !this.data.categories[index1].items[index2].checked
+        [checked]: !this.data.categories[index1].items[index2].checked,
+        tag: temp
       })
       console.log(this.data.categories[index1].items[index2].checked)
+      console.log(this.data.tag)
     },
 
     uploadFile: function (e) {
@@ -678,6 +489,7 @@ Component({
           data: {
             "method": "add",
             "data": {
+              "tags": this.data.tag,
               "element": 0,
               "publisher": app.globalData.userid,
               "place": place1,
@@ -700,18 +512,25 @@ Component({
           },
           success: (res) => {
             console.log(res)
-            wx.showToast({
-              title: '发布成功',
-            });
-            let now = new Date();
-            let entertime = now.getTime();
-            let endtime = now.getTime();
-            while (endtime - entertime < 2000) {
-              endtime = new Date().getTime()
+            if (res.data.code == 99) { //!!!wrong code
+              wx.showToast({
+                title: '发布成功',
+              })
+              let now = new Date();
+              let entertime = now.getTime();
+              let endtime = now.getTime();
+              while (endtime - entertime < 2000) {
+                endtime = new Date().getTime()
+              }
+              wx.redirectTo({
+                url: '/pages/home/home',
+              })
+            } else {
+              wx.showToast({
+                title: '发布失败',
+                icon: 'error'
+              })
             }
-            wx.redirectTo({
-              url: '/pages/home/home',
-            })
           }
         })
       }
@@ -760,7 +579,7 @@ Component({
                 }
               })
             }
-            if (json.code == 502) {
+            if (json.code == 202) {
               wx.showToast({
                 title: '发布成功',
               })
