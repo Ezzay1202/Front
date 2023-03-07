@@ -217,7 +217,7 @@ Component({
               categories: temp3,
               tag: tag
             })
-            console.log(temp3)
+            //console.log(temp3)
           }
         }
       })
@@ -293,7 +293,7 @@ Component({
         tag: temp
       })
       console.log(this.data.categories[index1].items[index2].checked)
-      console.log(this.data.tag)
+      //console.log(this.data.tag)
     },
 
     uploadFile: function (e) {
@@ -452,6 +452,7 @@ Component({
         })
       }
     },
+
     publishMission() {
       if (this.data.list1 == null) {
         wx.showToast({
@@ -484,12 +485,18 @@ Component({
           title: '请填写正确的结束时间',
         })
       } else {
+        let obj = Object.create(null);
+        for (let [k, v] of this.data.tag) {
+          obj[k] = v;
+        }
+        let tags = JSON.stringify(obj)
+        console.log(tags)
         wx.request({
           url: 'http://1.15.118.125:8081/NIC/manage',
           data: {
             "method": "add",
             "data": {
-              "tags": this.data.tag,
+              "tags": tags,
               "element": 0,
               "publisher": app.globalData.userid,
               "place": place1,
@@ -579,7 +586,7 @@ Component({
                 }
               })
             }
-            if (json.code == 202) {
+            if (json.data.code == 202) {
               wx.showToast({
                 title: '发布成功',
               })
