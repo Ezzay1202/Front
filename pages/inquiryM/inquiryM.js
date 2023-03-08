@@ -29,7 +29,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
   },
 
   /**
@@ -88,25 +87,25 @@ Component({
     },
     missionSearch: function () {
       wx.request({
-        url: 'http://1.15.118.125:8080/NIC/show',
+        url: 'http://1.15.118.125:8081/NIC/show',
         data: {
           "method": "showByInput",
           "data": {
-            "missionID": missionID,
-            'userid': app.globalData.userid
+            "missionID": missionID
           }
         },
         success: (res) => {
-          console.log(res.data)
+          console.log(res.data.data[0])
+
           if (res.data.code == 302) {
             let current = 0
-            a = res.data.data[0].publisher + "于 " + res.data.data[0].status.发布任务 + '发布任务'
+            a = res.data.data[0].statusChanger['发布任务']['username'] + "于 " + res.data.data[0].status.发布任务 + '发布任务'
             if (res.data.data[0].status.接稿 != '未达成') {
               current += 1
-              if (res.data.data[0].reporters.article[0] == res.data.data[0].reporters.photo[0]) {
-                b = res.data.data[0].reporters.article[0] + "于 " + res.data.data[0].status.接稿 + "接文摄"
+              if (res.data.data[0].reporters['photo'] === res.data.data[0]['article']) {
+                b = res.data.data[0].reporters['photo'][0]['username'] + "于 " + res.data.data[0].status.接稿 + "接文摄"
               } else {
-                b = res.data.data[0].reporters.article[0] + "和" + res.data.data[0].reporters.photo[0] + "于 " + res.data.data[0].status.接稿 + "分接文摄"
+                b = res.data.data[0].reporters['article'][0]['username'] + "和" + res.data.data[0].reporters['photo'][0]['username'] + "于 " + res.data.data[0].status.接稿 + "分接文摄"
               }
               if (res.data.data[0].status.写稿 != '未达成') {
                 current += 1

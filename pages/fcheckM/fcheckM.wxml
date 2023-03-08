@@ -56,7 +56,7 @@
   </view>
   <!--textarea-->
   <view class="conts">
-    <textarea class="areas" placeholder='请输入您对该稿件的评价' bindinput="inputs">
+    <textarea class="areas" placeholder='请输入您对该稿件的评价' bindinput="inputRemarks">
            <!-- <text class="currentWordNumber">{{currentWordNumber| }}/{{max}}</text> -->
        </textarea>
   </view>
@@ -100,5 +100,5 @@
 </block>
 <view class='btn'>
   <button class="btn_go" bindtap='handleBtn'>提交评价</button>
-  <button class="btn_back">打回重做</button>
+  <button class="btn_back" bindtap="missionRollback">打回重做</button>
 </view>

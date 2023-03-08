@@ -528,7 +528,7 @@ Component({
           },
           success: (res) => {
             console.log(res)
-            if (res.data.code == 99) { //!!!wrong code
+            if (res.data.code == 202) { //!!!wrong code
               wx.showToast({
                 title: '发布成功',
               })

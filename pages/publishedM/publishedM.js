@@ -11,6 +11,7 @@ Page({
       url: 'http://1.15.118.125:8081/NIC/show?method=showNeed',
       success: (res) => {
         list_all = res.data.data;
+        console.log(res)
         let j = -1;
         let len = list_all.length;
         for (let i = 0; i < len; i++) {
@@ -89,10 +90,9 @@ Page({
               icon:'error'
             })
           }
-          if (res.data.code == 403) {
+          if (res.data.code == 402) {
             wx.showToast({
               title: '接摄成功',
-              //问题：一个人重复接一个任务。。。。。
             })
           }
           if (res.data.code == 99) {
@@ -138,7 +138,7 @@ Page({
               icon:'error'
             })
           }
-          if (res.data.code == 403) {
+          if (res.data.code == 402) {
             wx.showToast({
               title: '接文成功',
               //问题：一个人重复接一个任务。。。。。

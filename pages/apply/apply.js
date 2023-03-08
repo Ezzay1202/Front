@@ -25,6 +25,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log('apply')
     //const resultInfo2 = JSON.parse(options.resultInfo2)
     //console.log(resultInfo2)
     console.log('yes')
@@ -118,7 +119,7 @@ Component({
     },
     missionSearch: function () {
       wx.request({
-        url: 'http://1.15.118.125:8080/NIC/show',
+        url: 'http://1.15.118.125:8081/NIC/show',
         data: {
           "method": "showByInput",
           "data": {
