@@ -102,6 +102,7 @@ Component({
     sideBarIndex: 0,
     scrollTop: 0,
     categories: [],
+    tagbox: [],
     showcheck: false,
     fileArray: [],
     step: [{
@@ -279,18 +280,26 @@ Component({
       let index2 = this.data.index2
       let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
       let temp = this.data.tag
+      let temptagbox = this.data.tagbox
       let tempTag = this.data.categories[index1]['items'][index2]['label']
       let templist = temp.get(this.data.categories[index1]['label'])
+      let tempdict = {
+        color: index1,
+        tag: this.data.categories[index1]['label'] + '-' + tempTag
+      }
       if (templist.includes(tempTag)) {
         templist.splice(templist.indexOf(tempTag), 1)
         temp.set(this.data.categories[index1]['label'], templist)
+        temptagbox.splice(temptagbox.indexOf(tempdict), 1)
       } else {
         templist.push(tempTag)
         temp.set(this.data.categories[index1]['label'], templist)
+        temptagbox.push(tempdict)
       }
       this.setData({
         [checked]: !this.data.categories[index1].items[index2].checked,
-        tag: temp
+        tag: temp,
+        tagbox: temptagbox
       })
       console.log(this.data.categories[index1].items[index2].checked)
       //console.log(this.data.tag)

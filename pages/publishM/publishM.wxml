@@ -11,10 +11,16 @@
       <text class="pannel-label">活动标题</text>
       <t-textarea class="t-textarea__placeholder" placeholder="请输入文字" bind:change="setDescription1" bordered maxlength="100" indicator />
     </view> -->
-    <view class="pannel-item last" bind:tap="showCheck">
-      <view class="pannel-label">稿件类型</view>
+    <view class="box tagbox" >
+      <view class="tag-item">
+      <block wx:for="{{tagbox}}" wx:key="index">   
+        <view  class="tag">{{item.tag}}</view>
+      </block>
+      </view>
+      <button bind:tap="showCheck">选择稿件类型</button>
+      <!-- <view class="pannel-label">稿件类型</view>
       <view class="pannel-text empty"> {{'选择稿件类型' }}</view>
-      <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" /> -->
     </view>
     <block>
       <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
@@ -130,7 +136,7 @@
       </view>
 
       <block>
-        <view class="filebox" style="padding: 1em;">
+        <view class="box filebox" style="padding: 1em;">
           <view class="right" wx:for="{{fileArray}}" wx:key="index">
             <image src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
             </image>

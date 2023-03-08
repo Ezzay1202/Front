@@ -1,9 +1,9 @@
 /* pages/publishM/publishM.wxss */
-
 .demo-desc {
   margin-top: 24px;
   margin-bottom: 16px;
 }
+
 
 .block {
   background-color: rgb(236, 242, 254);
@@ -20,16 +20,44 @@
   margin: 1em .5em;
 }
 
-.filebox {
+.box {
   flex: 2;
   margin: .6rem 5%;
   display: flex;
   border-radius: 5%;
-  background-color: rgb(236, 242, 254);
   box-sizing: border-box;
   flex-direction: column;
 }
-
+.tagbox{
+  padding: .3em .5em;
+  margin: -10rpx 5% 0rpx;
+}
+.tagbox .tag-item{
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag-item .tag{
+  font-size: 25rpx;
+  /* border-radius: 15%; */
+  padding: .5em;
+  margin: 0rpx .3rem .2rem;
+  color: #5944ca;
+  /* background-color: #5944ca; */
+  border-left: 2px solid #5944ca !important;
+  box-shadow: 2rpx 2rpx 4rpx 0 #4472ca;
+}
+.tagbox button{
+  flex: 3;
+  margin: .5em;
+  font-size: 26rpx;
+  color: black;
+  background-color: white;
+  border: 1px solid black !important;
+  box-shadow: 0 1rpx 4rpx 0 black;
+}
+.filebox{
+  background-color: rgb(236, 242, 254);
+}
 .filebox .right {
   flex: 2;
   margin-top: .5em;
@@ -220,7 +248,7 @@ button:after {
 }
 
 .title_box {
-  margin: .5rem 5%;
+  margin: .5rem 5% 0rpx;
   border-radius: 5%;
   display: flex;
 }
@@ -230,7 +258,6 @@ button:after {
   border: 2px solid #4472ca !important;
   box-shadow: 0 2rpx 10rpx 0 #4472ca;
 }
-
 page {
   background-color: #fff;
 }
@@ -301,7 +328,6 @@ page {
   width: 96rpx;
   height: 96rpx;
 }
-
 .block2 {
   width: 100vw;
   background: #fff;
@@ -345,14 +371,12 @@ page {
   overflow: hidden;
   background-color: var(--td-grid-bg-color, #fff);
 }
-
 .t-grid-item {
   box-sizing: border-box;
   height: 100%;
   display: inline-block;
   vertical-align: top;
 }
-
 .t-grid-item__content {
   display: flex;
   flex-direction: column;
@@ -361,7 +385,6 @@ page {
   position: relative;
   padding: 32rpx 0 24rpx;
 }
-
 .t-grid-item__words {
   width: 100%;
   text-align: center;
@@ -372,7 +395,6 @@ page {
   justify-content: center;
   align-items: center;
 }
-
 .t-grid-item__text {
   width: inherit;
   color: var(--td-grid-item-text-color, rgba(0, 0, 0, 0.9));
