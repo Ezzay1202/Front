@@ -2,10 +2,8 @@
   "pages": [
     "pages/home/home",
     "pages/publishM/publishM",
- 
     "pages/historyM/historyM",
     "pages/login/login",
-    "pages/people/people",
     "pages/submitP/submitP",
     "pages/myself/myself",
     "pages/myinformation/myinformation",

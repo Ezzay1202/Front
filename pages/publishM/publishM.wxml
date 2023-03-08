@@ -11,17 +11,17 @@
       <text class="pannel-label">活动标题</text>
       <t-textarea class="t-textarea__placeholder" placeholder="请输入文字" bind:change="setDescription1" bordered maxlength="100" indicator />
     </view> -->
-    <view class="box tagbox" >
+    <view class="box tagbox">
       <view class="tag-item">
-      <block wx:for="{{tagbox}}" wx:key="index">   
-        <view  class="tag">{{item.tag}}</view>
-      </block>
+        <block wx:for="{{tagbox}}" wx:key="index">
+          <view class="tag">{{item.tag}}</view>
+        </block>
       </view>
       <button bind:tap="showCheck">选择稿件类型</button>
       <!-- <view class="pannel-label">稿件类型</view>
       <view class="pannel-text empty"> {{'选择稿件类型' }}</view>
       <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" /> -->
-    </view>
+    </view> 
     <block>
       <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
         <view class="pannel-label">起始时间</view>
@@ -118,7 +118,7 @@
           </view>
         </view>
       </view>
-    </t-popup>
+    </t-popup> 
 
     <view class="apply">
       <button bindtap="publishMission">发布</button>

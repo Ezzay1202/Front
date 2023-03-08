@@ -1,5 +1,5 @@
 <!--pages/people/people.wxml-->
-<view style="position: fixed; z-index: 2; width:750rpx; background-color: white;">
+<view style="position: fixed; top: 0; z-index: 2; width:750rpx; background-color: white;">
   <view class="search" style="background-color: white;padding:.5em; flex-direction: row;">
     <image bindtap="Choose" src="{{choose? '/image/s.png':'/image/uns .png' }}" mode="" />
     <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{center}}" />
@@ -18,16 +18,16 @@
 </view>
 <view hidden="{{!choose}}" class="choose_box">
   <scroll-view scroll-x="true" class="box_p">
-    <view class="box_p_item">
-      <image src="/image/啸天.png" mode="" />
-    </view>
+      <block wx:for="{{ImgSrc}}" wx:key="index">
+        <image src="{{item}}" mode="" />
+      </block>
   </scroll-view>
   <view class="choose_title">
-    <input placeholder="分组名称" 	placeholder-class="p-class" type="text" bindinput="content" class="inputcs" />
+    <input placeholder="分组名称" placeholder-class="p-class" type="text" bindinput="content" class="inputcs" />
     <button>完成（1）</button>
   </view>
 </view>
-<scroll-view  scroll-y="true" style="position: fixed; top: {{choose? '420rpx':'220rpx'}};">
+<scroll-view scroll-y="true" style="margin-top: {{choose? '440rpx':'220rpx'}}; height: {{choose? '60vh':'80vh'}};">
   <block wx:for="{{people}}" wx:if="index">
     <view>
       <view bindtap="showDep" class="people_deptext" data-index="{{index}}">

@@ -2,13 +2,16 @@
   "component": true,
   "usingComponents": {
     "t-tabs": "tdesign-miniprogram/tabs/tabs",
-    "t-tab-panel": "tdesign-miniprogram/tabs/tab-panel",
+    "t-tab-panel":  "tdesign-miniprogram/tabs/tab-panel",
     "t-search": "tdesign-miniprogram/search/search",
     "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
     "t-tab-bar-item": "tdesign-miniprogram/tab-bar/tab-bar-item",
     "t-icon": "tdesign-miniprogram/icon/icon",
     "t-picker": "tdesign-miniprogram/picker/picker",
     "t-picker-item": "tdesign-miniprogram/picker/picker-item",
-    "van-count-down": "@vant/weapp/count-down/index"
+    "van-count-down": "@vant/weapp/count-down/index",
+    "t-popup": "tdesign-miniprogram/popup/popup",
+    "t-side-bar": "tdesign-miniprogram/side-bar/side-bar",
+    "t-side-bar-item": "tdesign-miniprogram/side-bar-item/side-bar-item"
   }
 }
