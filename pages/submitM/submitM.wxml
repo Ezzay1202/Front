@@ -1,27 +1,55 @@
 <!--pages/submitM/submitM.wxml-->
 <scroll-view class="container" scroll-y="true" enable-flex="true">
-  <block wx:for="{{listm}}"  wx:key="id" >
-    <view class="m">
-      <view class="title">{{item.text}}</view>
-    <view class="text">
-      <text >{{item.date1}}—{{item.date2}}</text>
-      <text >{{item.location}}</text>
-      <text >{{item.people}}</text>
-    </view> 
-    <view class="filebox" >
-      <view class="right" wx:for="{{item.fileArray}}"  wx:key="index">
-        <image  src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
-        </image>
-       <view class="n" bindtap="previewFile" data-path="{{item.path}}">
-        <image src="/image/docm.png"  mode="aspectFill" ></image>
-        <text  class="name">{{item.name}}</text>
-        <text class="size">{{item.size}}</text>
+  <block wx:for="{{listn}}" wx:key="id">
+    <view class="m {{item.state===1? 'm_back':''}}">
+      <view class="title {{item.state===1? 'title_back':''}}">{{item.text}}</view>
+      <view class="text">
+        <text>{{item.date1}}—{{item.date2}}</text>
+        <text>{{item.location}}</text>
+        <text>{{item.people}}</text>
+      </view>
+      <view class="detail-people">
+        <text>{{item.name}}</text>
+        <view class="detail-box">
+          <text>{{item.detail}}</text>
+        </view>
+      </view>
+      <view class="filebox">
+        <view class="right" wx:for="{{item.fileArray}}" wx:key="index">
+          <image src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
+          </image>
+          <view class="n" bindtap="previewFile" data-path="{{item.path}}">
+            <image src="/image/docm.png" mode="aspectFill"></image>
+            <text class="name">{{item.name}}</text>
+            <text class="size">{{item.size}}</text>
+          </view>
+        </view>
+        <button bindtap="uploadFile" data-index="{{index}}">选择稿件及照片</button>
+        <button style="{{show}}" bindtap="submitFile" data-id="{{item.arr}}">提交文件</button>
       </view>
     </view>
-    <button bindtap="uploadFile" data-index="{{index}}">选择稿件及照片</button>
-    <button style="{{show}}" bindtap="submitFile" data-id="{{item.arr}}">提交文件</button>
-    </view>
+  </block>
+  <block wx:for="{{listm}}" wx:key="id">
+    <view class="m">
+      <view class="title">{{item.text}}</view>
+      <view class="text">
+        <text>{{item.date1}}—{{item.date2}}</text>
+        <text>{{item.location}}</text>
+        <text>{{item.people}}</text>
+      </view>
+      <view class="filebox">
+        <view class="right" wx:for="{{item.fileArray}}" wx:key="index">
+          <image src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
+          </image>
+          <view class="n" bindtap="previewFile" data-path="{{item.path}}">
+            <image src="/image/docm.png" mode="aspectFill"></image>
+            <text class="name">{{item.name}}</text>
+            <text class="size">{{item.size}}</text>
+          </view>
+        </view>
+        <button bindtap="uploadFile" data-index="{{index}}">选择稿件及照片</button>
+        <button style="{{show}}" bindtap="submitFile" data-id="{{item.arr}}">提交文件</button>
+      </view>
     </view>
   </block>
 </scroll-view>
-

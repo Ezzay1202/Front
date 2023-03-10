@@ -55,6 +55,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showMask:false,
     mode: '',
     monthVisible: false,
     month: '2021-09',
@@ -116,6 +117,16 @@ Page({
       value: index,
     })),
   },
+  missionRollback(e) { 
+    this.setData({ 
+      showMask: !this.data.showMask 
+    }) 
+  }, 
+  cannelMask() { 
+    this.setData({ 
+      showMask: false 
+    }) 
+  }, 
   onClickPicker(e) {
     this.setData({
       date1Visible: true,
@@ -196,7 +207,6 @@ Page({
   inputReview(e) {
     // 获取输入框的内容
     var value = e.detail.value;
-
     // 获取输入框内容的长度
     var len = parseInt(value.length);
     //输入框内容赋值
@@ -212,30 +222,6 @@ Page({
       currentWordNumber: len //当前字数  
     });
   },
-  missionRollback() {
-    wx.request({
-      url: 'http://1.15.118.125:8081/NIC/manage',
-      data: {
-        'method': 'return',
-        'data': {
-          'missionID': this.data.missionID
-        }
-      },
-      success: (res) => {
-        console.log(res.data)
-        if (res.data.code == 202) {
-          wx.showToast({
-            title: '打回成功！'
-          })
-        } else {
-          wx.showToast({
-            title: '打回失败！',
-            icon: 'error'
-          })
-        }
-      }
-    })
-  },
   inputRemarks(e) {
     // 获取输入框的内容
     var value = e.detail.value;
@@ -245,7 +231,7 @@ Page({
     this.setData({
       remarks: value
     })
-    console.log(this.data.remarks)
+    //console.log(this.data.remarks)
     //最多字数限制
     if (len > this.data.max)
       return;
@@ -255,7 +241,7 @@ Page({
     });
   },
   handleBtn() {
-    if (this.data.review === '') {
+    if (this.data.review == '') {
       wx.showToast({
         title: '请输入评价！',
         icon: 'error'
@@ -266,12 +252,6 @@ Page({
     //     icon: 'error'
     //   })
     // }
-    else if (this.data.wjxScore === 0) {
-      wx.showToast({
-        title: '请评分！',
-        icon: 'error'
-      })
-    }
     else {
       let count = 0
       for (let i = 0; i < this.data.file_upload.length; i++) {
@@ -286,6 +266,10 @@ Page({
             let json = JSON.parse(res.data)
             console.log(json)
             if (json.code != 502) {
+              wx.showToast({
+                title: 'error',
+                icon:'error'
+              })
               bool = false
               count += 1
             }
@@ -300,7 +284,7 @@ Page({
             "data": {
               "userid": String(app.globalData.userid),
               "missionID": String(this.data.missionID),
-              "review": this.data.remarks,
+              "review": this.data.review,
               "tag": [],
               "stars": String(this.data.wjxScore)
             }

@@ -28,25 +28,29 @@
   box-sizing: border-box;
   flex-direction: column;
 }
-.tagbox{
+
+.tagbox {
   padding: .3em .5em;
   margin: -10rpx 5% 0rpx;
 }
-.tagbox .tag-item{
+
+.tagbox .tag-item {
   display: flex;
   flex-wrap: wrap;
 }
-.tag-item .tag{
+
+.tag-item .tag {
   font-size: 25rpx;
   /* border-radius: 15%; */
-  padding: .5em;
+  padding: .4em .3em;
   margin: 0rpx .3rem .2rem;
   color: #5944ca;
   /* background-color: #5944ca; */
   border-left: 2px solid #5944ca !important;
   box-shadow: 2rpx 2rpx 4rpx 0 #4472ca;
 }
-.tagbox button{
+
+.tagbox button {
   flex: 3;
   margin: .5em;
   font-size: 26rpx;
@@ -55,9 +59,11 @@
   border: 1px solid black !important;
   box-shadow: 0 1rpx 4rpx 0 black;
 }
-.filebox{
+
+.filebox {
   background-color: rgb(236, 242, 254);
 }
+
 .filebox .right {
   flex: 2;
   margin-top: .5em;

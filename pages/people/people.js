@@ -17,103 +17,103 @@ Page({
       disabled: false,
       // 该导航下所有的可选项
       children: [{
-          // 名称
-          text: '管实2101班',
-          // id，作为匹配选中状态的标识
-          id: 1,
-          // 禁用选项
-          disabled: false,
-        },
-        {
-          text: '物流2001班',
-          id: 2,
-        },
+        // 名称
+        text: '管实2101班',
+        // id，作为匹配选中状态的标识
+        id: 1,
+        // 禁用选项
+        disabled: false,
+      },
+      {
+        text: '物流2001班',
+        id: 2,
+      },
       ],
-    }, ],
+    },],
     activeId: [],
     max: 2,
     index: 0,
     choose: true,
     itemTitle: '筛选',
     people: [{
-        text: "人事部",
-        show_dep: true,
-        dep: [{
-            value: 2,
-            checked: true,
-            img: '/image/啸天.png',
-            name: "乔晟豪",
-            tag_box: ['人事部部长', '管实2101班']
-          },
-          {
-            value: 1,
-            checked: false,
-            img: '/image/啸天.png',
-            name: "乔晟豪",
-            tag_box: ['人事部部长', '管实2101班']
-          }
-        ]
+      text: "人事部",
+      show_dep: true,
+      dep: [{
+        value: 2,
+        checked: true,
+        img: '/image/啸天.png',
+        name: "乔晟豪",
+        tag_box: ['人事部部长', '管实2101班']
       },
       {
-        text: "技术部",
-        show_dep: true,
-        dep: [{
-            img: '/image/啸天.png',
-            name: "苏睿贤",
-            tag_box: ['技术部部长', '管实2101班']
-          },
-          {
-            img: '/image/啸天.png',
-            name: "江昊洋",
-            tag_box: ['技术部成员', '物流2001班']
-          }
-        ]
-      },
-      {
-        text: "技术部",
-        show_dep: true,
-        dep: [{
-            img: '/image/啸天.png',
-            name: "苏睿贤",
-            tag_box: ['技术部部长', '管实2101班']
-          },
-          {
-            img: '/image/啸天.png',
-            name: "江昊洋",
-            tag_box: ['技术部成员', '物流2001班']
-          }
-        ]
-      },
-      {
-        text: "技术部",
-        show_dep: true,
-        dep: [{
-            img: '/image/啸天.png',
-            name: "苏睿贤",
-            tag_box: ['技术部部长', '管实2101班']
-          },
-          {
-            img: '/image/啸天.png',
-            name: "江昊洋",
-            tag_box: ['技术部成员', '物流2001班']
-          }
-        ]
+        value: 1,
+        checked: false,
+        img: '/image/啸天.png',
+        name: "乔晟豪",
+        tag_box: ['人事部部长', '管实2101班']
       }
+      ]
+    },
+    {
+      text: "技术部",
+      show_dep: true,
+      dep: [{
+        img: '/image/啸天.png',
+        name: "苏睿贤",
+        tag_box: ['技术部部长', '管实2101班']
+      },
+      {
+        img: '/image/啸天.png',
+        name: "江昊洋",
+        tag_box: ['技术部成员', '物流2001班']
+      }
+      ]
+    },
+    {
+      text: "技术部",
+      show_dep: true,
+      dep: [{
+        img: '/image/啸天.png',
+        name: "苏睿贤",
+        tag_box: ['技术部部长', '管实2101班']
+      },
+      {
+        img: '/image/啸天.png',
+        name: "江昊洋",
+        tag_box: ['技术部成员', '物流2001班']
+      }
+      ]
+    },
+    {
+      text: "技术部",
+      show_dep: true,
+      dep: [{
+        img: '/image/啸天.png',
+        name: "苏睿贤",
+        tag_box: ['技术部部长', '管实2101班']
+      },
+      {
+        img: '/image/啸天.png',
+        name: "江昊洋",
+        tag_box: ['技术部成员', '物流2001班']
+      }
+      ]
+    }
     ],
     class: [{
       value1: 0,
       option1: [{
-          text: '按职务排序',
-          value: 0,
-          icon: ''
-        },
-        {
-          text: '按姓名排序',
-          value: 1,
-          icon: ''
-        },
+        text: '按职务排序',
+        value: 0,
+        icon: ''
+      },
+      {
+        text: '按姓名排序',
+        value: 1,
+        icon: ''
+      },
       ],
-    }, ],
+    },],
     ImgSrc: []
   },
   showDep(e) {

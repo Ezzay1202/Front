@@ -54,7 +54,16 @@ Page({
     index1: 0,
     listm: [],
     show: '',
-
+    listn: [{
+      text: "管理学创新实验班",
+      date1: "1月9日10：00",
+      date2: '12:00',
+      location: '东九',
+      state: 1,
+      name: "方权泽",
+      detail: "这个稿件很一般哦",
+      fileArray: []
+    }]
   },
   // 提交
   submitFile(e) {
@@ -65,7 +74,7 @@ Page({
       wx.uploadFile({
         filePath: list_show[i].fileArray[j].path,
         name: 'file',
-        url: 'http://1.15.118.125:8081/NIC/upload?missionID='+list_show[i].missionID.toString()+'&userid='+app.globalData.userid.toString(),
+        url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + list_show[i].missionID.toString() + '&userid=' + app.globalData.userid.toString(),
         header: {
           "Content-Type": "multipart/form-data"
         },

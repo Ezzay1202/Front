@@ -1,5 +1,5 @@
 /* pages/submitM/submitM.wxss */
-.m{
+/* .m{
   flex:1 0 300rpx;
   width: 85%;
   align-items: stretch;
@@ -31,42 +31,120 @@
   color: white;
   background-color: #13a4a4;
   border-radius: .5em;
+} */
+page {
+  background-color: #f3f3f5;
+  --tag-color: #a4a413;
 }
-.filebox{
-  flex:2;
+
+.m {
+  flex: 1;
+  width: 85%;
+  align-items: stretch;
+  padding: 1em;
+  margin: .5em 5%;
+  border-radius: 3%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 4rpx outset #021a40;
+  box-shadow: 5px 5px #dfdfeb;
+}
+
+.m_back {
+  border-color: #c61d3c;
+}
+
+.m .title {
+  flex: 1;
+  font-size: 35rpx;
+  max-height: 3em;
+  margin-bottom: .5em;
+  overflow: scroll;
+}
+
+.title_back {
+  color: #c61d3c
+}
+
+.m .text {
+  margin: .2em;
+  max-height: 3em;
+  overflow: scroll;
+  display: flex;
+}
+
+.m .text text {
+  text-align: center;
+  font-size: 26rpx;
+  margin: .3em .8em .3em 0;
+  padding: .5em;
+  color: white;
+  background-color: #307090;
+  border-radius: .3em;
+}
+
+.detail-people {
+  border: 4rpx dashed#c61d3c;
+  padding: .6rem 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-people>text {
+
+  font-size: 33rpx;
+  font-weight: 500;
+  margin: 0em 0 .5em;
+}
+
+.detail-box {
+  height: 4em;
+  width: 100%;
+  border-left: 3px solid var(--tag-color);
+  box-shadow: 5rpx 5rpx #efefef;
+}
+
+.detail-box text {
+  padding: 1em;
+}
+
+.filebox {
+  flex: 2;
   margin: .6rem 5% 0;
   display: flex;
-  background-color:rgb(236,242,254);
   box-sizing: border-box;
   flex-direction: column;
   border-top: 1px dashed #888;
 }
-.filebox .right{
-  flex:2;
+
+.filebox .right {
+  flex: 2;
   margin-top: .5em;
   font-size: 24rpx;
   display: flex;
-  color:black;
+  color: black;
 }
-.filebox .right .n{
+
+.filebox .right .n {
   background-color: white;
-  border: 2px outset  #13a4a4; 
+  border: 2px outset #13a4a4;
   margin-left: .5em;
-  display:grid;
-  grid-template-columns: 1fr 4fr ;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
   grid-template-rows: 2fr 1fr;
   max-height: 100rpx;
   overflow: hidden;
 }
 
-.filebox .right .n text{
-padding: .2em;
-margin: .2em;
-border: 0px solid #888;
-width: 12em;
+.filebox .right .n text {
+  padding: .2em;
+  margin: .2em;
+  border: 0px solid #888;
+  width: 12em;
 }
 
-.filebox .right .n .name{
+.filebox .right .n .name {
   grid-column: 2/3;
   grid-row: 1/2;
   font-size: 30rpx;
@@ -80,7 +158,8 @@ width: 12em;
   font-size: 20rpx;
   color: #888888;
 }
-.filebox .right .n >image{
+
+.filebox .right .n>image {
   grid-column: 1/2;
   grid-row: 1/3;
   margin-top: 1em;
@@ -88,21 +167,20 @@ width: 12em;
   max-width: 3em;
   max-height: 3em;
 }
-.filebox .right >image{
+
+.filebox .right>image {
   width: 3em;
   height: 3em;
   align-self: center;
   text-align: center;
   border-radius: 10rpx;
   margin: .2em;
-  }
-  
-.filebox button{
-  flex:3;
+}
+
+.filebox button {
+  flex: 3;
   margin: .5em;
   font-size: 26rpx;
-  background-color: rgb(236,242,254);
   color: #13a4a4;
   border: 1px solid #13a4a4 !important;
 }
-

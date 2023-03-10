@@ -157,5 +157,7 @@ Component({
       })
     }
   },
-  data: {}
+  data: {
+    listm: []
+  }
 });

@@ -80,15 +80,15 @@ Page({
       },
       files: filesList,
       tag: [{
-          name: "优秀稿件",
-          show: true
-        },
-        {
-          name: "优秀稿件2",
-          show: false
-        },
+        name: "优秀稿件",
+        show: true
+      },
+      {
+        name: "优秀稿件2",
+        show: false
+      },
       ],
-      missionID:data_temp.missionID,
+      missionID: data_temp.missionID,
       attitude: true,
       code: 1,
       code1: 2,
@@ -103,7 +103,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    listn: [{
+      text: "管理学创新实验班",
+      date1: "1月9日10：00",
+      date2: '12:00',
+      location: '东九',
+      state: 1,
+      name: "方权泽",
+      detail: "这个稿件很一般哦"
+    }]
   },
 
   /**

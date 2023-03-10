@@ -1,7 +1,11 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/people/people",
+
     "pages/publishM/publishM",
+    "pages/mywork/mywork",
+
     "pages/historyM/historyM",
     "pages/login/login",
     "pages/submitP/submitP",

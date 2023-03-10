@@ -71,7 +71,7 @@
             <view class="myM-ing">
               <view class="m-ing">
                 <view class="title">{{item.text}}</view>
-                <t-steps current="{{steps_num}}" bind:change="onFirstChange" readonly="true">
+                <t-steps current="{{steps_num}}" current-status="error" bind:change="onFirstChange" readonly="true">
                   <block wx:for="{{step}}" wx:key="index">
                     <t-step-item t-class-content="t-class-content" t-class-title="t-class-title" title="{{item.text}}" content="{{item.content}}" />
                   </block>
@@ -178,7 +178,7 @@
     <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
       <view class="input-box">
         <input placeholder="事项名称" placeholder-class="p-class" type="text" bindinput="content" class="inputcs" />
-        <input placeholder="地点" type="password" placeholder-class="p-class" bindinput="password" class="inputcs" />
+        <input placeholder="地点" placeholder-class="p-class" bindinput="password" class="inputcs" />
         <view class="inputcs pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
           <view class="pannel-label">起始时间</view>
           <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
@@ -205,11 +205,11 @@
       <view class="block2">
         <view class="header">
           <view class="btn2 btn--cancel" aria-role="button" bindcancel="onPickerCancel">取消</view>
-          <view class="title"></view>
+          <view class="title_c"></view>
           <view class="btn2 btn--confirm" aria-role="button">确定</view>
         </view>
         <view class="side-bar-wrapper">
-          <t-side-bar value="{{sideBarIndex}}"  bind:change="onSideBarChange">
+          <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
             <t-side-bar-item wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" disabled="{{item.disabled}}" badge-props="{{item.badgeProps}}" />
           </t-side-bar>
           <view class="content">

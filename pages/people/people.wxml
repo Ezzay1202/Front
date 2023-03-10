@@ -18,9 +18,9 @@
 </view>
 <view hidden="{{!choose}}" class="choose_box">
   <scroll-view scroll-x="true" class="box_p">
-      <block wx:for="{{ImgSrc}}" wx:key="index">
-        <image src="{{item}}" mode="" />
-      </block>
+    <block wx:for="{{ImgSrc}}" wx:key="index">
+      <image src="{{item}}" mode="" />
+    </block>
   </scroll-view>
   <view class="choose_title">
     <input placeholder="分组名称" placeholder-class="p-class" type="text" bindinput="content" class="inputcs" />
