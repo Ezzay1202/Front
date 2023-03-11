@@ -297,7 +297,7 @@ Page({
           },
           success: (res) => {
             console.log(res)
-            if (count == this.data.file_upload.length) {
+            if (count === this.data.file_upload.length) {
               wx.showToast({
                 title: '提交成功',
               })
