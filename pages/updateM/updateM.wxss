@@ -1,3 +1,4 @@
+/* pages/updateM/updateM.wxss */
 /* pages/publishM/publishM.wxss */
 .demo-desc {
   margin-top: 24px;
@@ -21,6 +22,7 @@
 }
 
 .box {
+  flex: 2;
   margin: .6rem 5%;
   display: flex;
   border-radius: 5%;
@@ -133,6 +135,7 @@
 }
 
 .conts {
+  flex: 3;
   margin: .6rem 5%;
   border-radius: 5%;
   display: flex;
@@ -262,7 +265,6 @@ button:after {
   border: 2px solid #4472ca !important;
   box-shadow: 0 2rpx 10rpx 0 #4472ca;
 }
-
 page {
   background-color: #fff;
 }
@@ -333,7 +335,6 @@ page {
   width: 96rpx;
   height: 96rpx;
 }
-
 .block2 {
   width: 100vw;
   background: #fff;
@@ -377,14 +378,12 @@ page {
   overflow: hidden;
   background-color: var(--td-grid-bg-color, #fff);
 }
-
 .t-grid-item {
   box-sizing: border-box;
   height: 100%;
   display: inline-block;
   vertical-align: top;
 }
-
 .t-grid-item__content {
   display: flex;
   flex-direction: column;
@@ -393,7 +392,6 @@ page {
   position: relative;
   padding: 32rpx 0 24rpx;
 }
-
 .t-grid-item__words {
   width: 100%;
   text-align: center;
@@ -404,7 +402,6 @@ page {
   justify-content: center;
   align-items: center;
 }
-
 .t-grid-item__text {
   width: inherit;
   color: var(--td-grid-item-text-color, rgba(0, 0, 0, 0.9));

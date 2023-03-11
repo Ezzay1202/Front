@@ -139,7 +139,7 @@
 <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}" t-class="t-tab-bar">
   <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}" bindtap="onChange">
     {{item.label}}
-  </t-tab-bar-item>
+</t-tab-bar-item>
 </t-tab-bar>
 <!-- 详情弹框 -->
 <view class="mask" hidden="{{!isShow}}">

@@ -46,18 +46,18 @@ Page({
         { text: '按状态排序', value: 2, icon: '' },
       ],
     },],
-    listm_ing:[{
-      text:"管理学创新实验班班会",
-      steps_num:1,
-    },{
-      text:"管理学创新实验班班会",
-      steps_num:1,
-    },{
-      text:"管理学创新实验班班会",
-      steps_num:1,
-    },{
-      text:"管理学创新实验班班会",
-      steps_num:1,
+    listm_ing: [{
+      text: "管理学创新实验班班会",
+      steps_num: 1,
+    }, {
+      text: "管理学创新实验班班会",
+      steps_num: 1,
+    }, {
+      text: "管理学创新实验班班会",
+      steps_num: 1,
+    }, {
+      text: "管理学创新实验班班会",
+      steps_num: 1,
     }],
     listm: [{
       text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
@@ -164,6 +164,13 @@ Page({
     }, {
       text: '排版',
     },],
+  },
+  goto(e) {
+    console.log(e)
+    let url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url: `../seeM/seeM?url=${url}`,
+    })
   },
   onClickNav({ detail = {} }) {
     this.setData({

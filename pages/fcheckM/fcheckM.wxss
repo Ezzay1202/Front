@@ -181,7 +181,8 @@ textarea {
 .filebox .right .n {
   flex: 1;
   background-color: white;
-  border: 2px outset #13a4a4;
+  box-shadow: 0 1rpx 5rpx 0rpx #13a4a4;
+  /* border: 2px outset #13a4a4; */
   margin-left: .5em;
   display: grid;
   grid-template-columns: 1fr 4fr;
@@ -326,6 +327,7 @@ button:after {
 .pannel-item .last {
   margin-bottom: -13rpx;
 }
+
 .pannel-label {
   width: 160rpx;
   margin-right: 32rpx;

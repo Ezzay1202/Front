@@ -46,7 +46,7 @@ Page({
       },
       complete: (res) => {
         wx.hideLoading({
-          success: (res) => {},
+          success: (res) => { },
         })
       }
     })
@@ -55,7 +55,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showMask:false,
+    showMask: false,
     mode: '',
     monthVisible: false,
     month: '2021-09',
@@ -75,7 +75,7 @@ Page({
     }, {
       name: "李钰",
       job: "审稿",
-    }, ],
+    },],
     review: '',
     remarks: '',
     isManagement: false,
@@ -95,7 +95,13 @@ Page({
     // textarea
     min: 5, //最少字数
     max: 300, //最多字数 (根据自己需求改变) 
-    file_download: [],
+    file_download: [{
+      name: "管理学创新",
+      state: 1,
+    }, {
+      name: "管理学创新",
+      state: 0,
+    }],
     file_upload: [],
     date1Visible: false,
     months: Array.from(new Array(12), (_, index) => ({
@@ -117,16 +123,16 @@ Page({
       value: index,
     })),
   },
-  missionRollback(e) { 
-    this.setData({ 
-      showMask: !this.data.showMask 
-    }) 
-  }, 
-  cannelMask() { 
-    this.setData({ 
-      showMask: false 
-    }) 
-  }, 
+  missionRollback(e) {
+    this.setData({
+      showMask: !this.data.showMask
+    })
+  },
+  cannelMask() {
+    this.setData({
+      showMask: false
+    })
+  },
   onClickPicker(e) {
     this.setData({
       date1Visible: true,
@@ -137,7 +143,7 @@ Page({
   },
   onPickerChange(e) {
 
-    console.log('picker change:', );
+    console.log('picker change:',);
     this.setData({
       date1Visible: false,
       date1Value: e.detail.value,
@@ -268,7 +274,7 @@ Page({
             if (json.code != 502) {
               wx.showToast({
                 title: 'error',
-                icon:'error'
+                icon: 'error'
               })
               bool = false
               count += 1
@@ -376,7 +382,7 @@ Page({
             },
             complete: (res) => {
               wx.hideLoading({
-                success: (res) => {},
+                success: (res) => { },
               })
             }
           })

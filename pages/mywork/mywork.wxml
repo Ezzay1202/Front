@@ -1,5 +1,5 @@
 <!--pages/mywork/mywork.wxml-->
-<view style="position: fixed; z-index: 2; width:750rpx; background-color: white;">
+<!-- <view style="position: fixed; z-index: 2; width:750rpx; background-color: white;">
   <view class="search" style="background-color: white;padding:.5em; flex-direction: row;">
     <image bindtap="" src="/image/uns .png" mode="" />
     <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{center}}" />
@@ -13,16 +13,18 @@
       <van-tree-select content-active-class="content-active-class" main-active-class="main-active-class" items="{{ items }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ activeId }}" max="{{ max }}" bind:click-nav="onClickNav" bind:click-item="onClickItem" />
     </van-dropdown-item>
   </van-dropdown-menu>
-</view>
+</view> -->
 
 
 <scroll-view scroll-y="true" enable-flex="true" class="myM flex-column">
-    <text style="margin-top: .4em;" class="text">进行中稿件</text>
-    <view class="myM-ing">
-      <block wx:for="{{listm_ing}}" wx:key="id">
-        <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}">
-  <view slot="left">选择</view>
-  <view class="m-ing">
+  <text style="margin-top: .4em;" class="text_big">进行中稿件</text>
+  <view class="myM-ing">
+    <block wx:for="{{listm_ing}}" wx:key="id">
+      <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}">
+        <view slot="left" class="hidden_swiper left">
+          <text>更改</text>
+        </view>
+        <view class="m-ing">
           <view class="title">{{item.text}}</view>
           <t-steps current="{{item.steps_num}}" bind:change="onFirstChange" readonly="true">
             <block wx:for="{{step}}" wx:key="index">
@@ -30,32 +32,33 @@
             </block>
           </t-steps>
         </view>
-  <view slot="right">删除</view>
-</van-swipe-cell>
-
-      </block>
-    </view>
-    <text style="margin-top: 1em;">历史稿件</text>
-    <view class="myM-history">
-      <block wx:for="{{listm}}" wx:key="id">
-        <view class="m">
-          <view class="title">{{item.text}}</view>
-          <view class="text">
-            <text>{{item.date}}</text>
-            <text>{{item.location}}</text>
-            <button bindtap="goto" data-url="{{item.url}}">点击浏览</button>
+        <view slot="right" class="hidden_swiper right">
+          <text>删除</text>
+        </view>
+      </van-swipe-cell>
+    </block>
+  </view>
+  <text style="margin-top: 1em;" class="text_big">历史稿件</text>
+  <view class="myM-history">
+    <block wx:for="{{listm}}" wx:key="id">
+      <view class="m">
+        <view class="title">{{item.text}}</view>
+        <view class="text">
+          <text>{{item.date}}</text>
+          <text>{{item.location}}</text>
+          <button bindtap="goto" data-url="{{item.url}}">点击浏览</button>
+        </view>
+        <view class="n">
+          <view class="people">
+            <block wx:for="{{item.people}}" wx:key="index">
+              <text data-id="{{item.key}}">{{item.name}}</text>
+            </block>
           </view>
-          <view class="n">
-            <view class="people">
-              <block wx:for="{{item.people}}" wx:key="index">
-                <text data-id="{{item.key}}">{{item.name}}</text>
-              </block>
-            </view>
-            <view class="score">
-              {{item.score}}分
-            </view>
+          <view class="score">
+            {{item.score}}分
           </view>
         </view>
-      </block>
-    </view>
-  </scroll-view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

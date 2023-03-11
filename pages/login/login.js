@@ -14,13 +14,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    open:true
+    open: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) { },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -70,10 +70,10 @@ Page({
   onShareAppMessage() {
 
   },
-  password_eye(){
-    let open=!this.data.open
+  password_eye() {
+    let open = !this.data.open
     this.setData({
-      open:open
+      open: open
     })
   },
   Login1: function () {
@@ -92,8 +92,8 @@ Page({
       wx.request({
         data: {
           data: {
-            password: password,
-            userid: userid
+            password: '123456',
+            userid: 'U202116999'
           },
           method: "signUp"
         },
@@ -108,8 +108,8 @@ Page({
             app.globalData.username = res.data.data.username;
             app.globalData.userid = res.data.data.userid;
             wx.showToast({
-                title: '登录成功',
-              }),
+              title: '登录成功',
+            }),
               wx.redirectTo({
                 url: '/pages/home/home',
               })
@@ -146,8 +146,8 @@ Page({
         if (res.data.code == 102) {
           app.globalData.hasLogin = true;
           wx.redirectTo({
-              url: '/pages/home/home',
-            }),
+            url: '/pages/home/home',
+          }),
             wx.showToast({
               title: '登录成功',
             })
@@ -155,7 +155,7 @@ Page({
         if (res.data.code == 103) {
           wx.showToast({
             title: 'Error',
-            icon:'error'
+            icon: 'error'
           })
         }
       }
