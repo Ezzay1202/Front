@@ -1,14 +1,15 @@
 // pages/submitM/submitM.js
 const app = getApp();
 let index1 = 0;
-let list_all = [];
-let list_show = [];
+let list_all = []
+let list_show = []
 Page({
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let list_show = []
     wx.request({
       url: 'http://1.15.118.125:8081/NIC/user',
       data: {
@@ -20,24 +21,41 @@ Page({
       success: (res) => {
         list_all = res.data.data
         console.log(res)
-        for (let i = 0; i < list_all.length; i++) {
-          let beginMinute = list_all[i].time.beginMinute
-          let endMinute = list_all[i].time.endMinute
-          if (list_all[i].time.beginMinute < 10) {
-            beginMinute = "0" + list_all[i].time.beginMinute.toString()
-          }
-          if (list_all[i].time.endMinute < 10) {
-            endMinute = "0" + list_all[i].time.endMinute.toString()
-          }
-          list_show[i] = {
-            arr: i,
-            missionID: list_all[i].missionID,
-            text: list_all[i].description,
-            date1: list_all[i].time.month + "月" + list_all[i].time.day + "日" + list_all[i].time.beginHour + ":" + beginMinute,
-            date2: list_all[i].time.endHour + ":" + endMinute,
-            location: list_all[i].place,
-            people: list_all[i].reporterNeeds.article + "文" + list_all[i].reporterNeeds.photo + "摄",
-            fileArray: []
+        if (list_all === undefined) {
+          // 还没有接任务
+        } else {
+          for (let i = 0; i < list_all.length; i++) {
+            let name = ''
+            let detail = ''
+            let state = 0
+            if (JSON.stringify(list_all[i].comments.editor) != '{}') {
+              state = 1
+              for (let k in list_all[i].comments.editor) {
+                name = k
+                detail = list_all[i].comments.editor[k]
+              }
+            }
+            let beginMinute = list_all[i].time.beginMinute
+            let endMinute = list_all[i].time.endMinute
+            if (list_all[i].time.beginMinute < 10) {
+              beginMinute = "0" + list_all[i].time.beginMinute.toString()
+            }
+            if (list_all[i].time.endMinute < 10) {
+              endMinute = "0" + list_all[i].time.endMinute.toString()
+            }
+            list_show[i] = {
+              arr: i,
+              missionID: list_all[i].missionID,
+              text: list_all[i].description,
+              date1: list_all[i].time.month + "月" + list_all[i].time.day + "日" + list_all[i].time.beginHour + ":" + beginMinute,
+              date2: list_all[i].time.endHour + ":" + endMinute,
+              location: list_all[i].place,
+              people: list_all[i].reporterNeeds.article + "文" + list_all[i].reporterNeeds.photo + "摄",
+              state: state,
+              name: name,
+              detail: detail,
+              fileArray: []
+            }
           }
         }
         console.log(list_show)
@@ -53,53 +71,46 @@ Page({
   data: {
     index1: 0,
     listm: [],
-    show: '',
-    listn: [{
-      text: "管理学创新实验班",
-      date1: "1月9日10：00",
-      date2: '12:00',
-      location: '东九',
-      state: 1,
-      name: "方权泽",
-      detail: "这个稿件很一般哦",
-      fileArray: []
-    }]
+    show: ''
   },
   // 提交
   submitFile(e) {
     let i = e.currentTarget.dataset.id
-    let len = list_show[i].fileArray.length
+    let len = this.data.listm[i].fileArray.length
+    let count = 0
     for (let j = 0; j < len; j++) {
-      console.log(list_show[i].fileArray[j].path)
+      console.log(this.data.listm[i].fileArray[j].path)
       wx.uploadFile({
-        filePath: list_show[i].fileArray[j].path,
+        filePath: this.data.listm[i].fileArray[j].path,
         name: 'file',
-        url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + list_show[i].missionID.toString() + '&userid=' + app.globalData.userid.toString(),
+        url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + this.data.listm[i].missionID.toString() + '&userid=' + app.globalData.userid.toString(),
         header: {
           "Content-Type": "multipart/form-data"
         },
         success: (res) => {
           let json = JSON.parse(res.data)
           console.log(json)
-          if (json.code == 502) {
-            wx.showToast({
-              title: '提交成功',
-            })
-            let now = new Date();
-            let entertime = now.getTime();
-            let endtime = now.getTime();
-            while (endtime - entertime < 2000) {
-              endtime = new Date().getTime();
+          if (json.code === 502) {
+            count += 1
+            if (count === len) {
+              wx.showToast({
+                title: '提交成功',
+              })
+              let now = new Date()
+              let entertime = now.getTime()
+              let endtime = now.getTime()
+              while (endtime - entertime < 2000) {
+                endtime = new Date().getTime()
+              }
+              wx.redirectTo({
+                url: '/pages/home/home',
+              })
+            } else {
+              wx.showToast({
+                title: '提交失败',
+                icon: 'error'
+              })
             }
-            list_show = []
-            wx.redirectTo({
-              url: '/pages/home/home',
-            })
-          } else {
-            wx.showToast({
-              title: '提交失败',
-              icon: 'error'
-            })
           }
         }
       })
@@ -107,7 +118,7 @@ Page({
 
   },
   // 文件上传
-  uploadFile: function (e) {
+  uploadFile(e) {
     console.log(e)
     index1 = e.currentTarget.dataset.index
     console.log(index1)
@@ -122,6 +133,7 @@ Page({
         })
       }
     })
+    console.log(this.data.listm[index1].fileArray)
   },
   removefile(e) {
     console.log(index1)

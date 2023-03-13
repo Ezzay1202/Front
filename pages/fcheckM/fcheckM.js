@@ -1,13 +1,12 @@
 // pages/fcheckM/fcheckM.js
 const app = getApp();
-const authority3 = app.globalData.authority3
 Page({
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    //console.log(authority3)
-    if (authority3 == 1) {
+    console.log(app.globalData.authority3)
+    if (app.globalData.authority3 === 1) {
       this.setData({
         isManagement: true
       })
@@ -55,7 +54,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showMask:false,
+    showMask: false,
     mode: '',
     monthVisible: false,
     month: '2021-09',
@@ -117,16 +116,39 @@ Page({
       value: index,
     })),
   },
-  missionRollback(e) { 
-    this.setData({ 
-      showMask: !this.data.showMask 
-    }) 
-  }, 
-  cannelMask() { 
-    this.setData({ 
-      showMask: false 
-    }) 
-  }, 
+  showMask(e) {
+    this.setData({
+      showMask: !this.data.showMask
+    })
+  },
+  cancelMask() {
+    this.setData({
+      showMask: false
+    })
+  },
+  missionRollback() {
+    wx.request({
+      url: 'http://1.15.118.125:8081/NIC/manage',
+      data: {
+        'method': 'return',
+        'data': {
+          'missionID': String(this.data.missionID),
+          'userid': app.globalData.userid,
+          'comment': this.data.return
+        }
+      },
+      success:(res)=>{
+        console.log(res.data)
+        if (res.data.code === 202) {
+          wx.showToast({
+            title: msg
+          })
+        }
+      }
+      
+    })
+    this.cancelMask()
+  },
   onClickPicker(e) {
     this.setData({
       date1Visible: true,
@@ -135,25 +157,27 @@ Page({
   onColumnChange(e) {
     console.log('picker pick:', e);
   },
+  joinArray(array) {
+    return array.join(' ');
+  },
   onPickerChange(e) {
-
-    console.log('picker change:', );
     this.setData({
       date1Visible: false,
       date1Value: e.detail.value,
       date1CurrentValue: this.joinArray(e.detail.label),
-    });
-    if (e.detail.value.length == 4) {
+    })
+    console.log('picker change:', this.data.date1CurrentValue)
+    if (e.detail.value.length === 4) {
       this.setData({
         list1: e.detail.value
       })
     }
-    if (e.detail.label[0] == e.detail.value[0] + '时') {
+    if (e.detail.label[0] === e.detail.value[0] + '时') {
       this.setData({
         list2: e.detail.value
       })
     }
-    if (e.detail.label[0] == e.detail.value[0] + '文') {
+    if (e.detail.label[0] === e.detail.value[0] + '文') {
       this.setData({
         list3: e.detail.value
       })
@@ -224,9 +248,9 @@ Page({
   },
   inputRemarks(e) {
     // 获取输入框的内容
-    var value = e.detail.value;
+    var value = e.detail.value
     // 获取输入框内容的长度
-    var len = parseInt(value.length);
+    var len = parseInt(value.length)
     //输入框内容赋值
     this.setData({
       remarks: value
@@ -234,14 +258,26 @@ Page({
     //console.log(this.data.remarks)
     //最多字数限制
     if (len > this.data.max)
-      return;
+      return
     // 当输入框内容的长度大于最大长度限制（max)时，终止setData()的执行
     this.setData({
       currentWordNumber: len //当前字数  
-    });
+    })
+  },
+  inputsReturn(e) {
+    var value = e.detail.value
+    var len = parseInt(value.length)
+    this.setData({
+      return: value
+    })
+    if (len > this.data.max)
+      return
+    this.setData({
+      currentWordNumber: len
+    })
   },
   handleBtn() {
-    if (this.data.review == '') {
+    if (this.data.remarks === '') {
       wx.showToast({
         title: '请输入评价！',
         icon: 'error'
@@ -255,62 +291,69 @@ Page({
     else {
       let count = 0
       for (let i = 0; i < this.data.file_upload.length; i++) {
+        let kind = 'editor'
+        if (this.data.isManagement) {
+          kind = 'teacher'
+        }
+        console.log(kind)
         wx.uploadFile({
-          filePath: this.data.file_upload[i],
+          filePath: this.data.file_upload[i].path,
           name: 'file',
-          url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + this.data.missionID.toString() + '&userid=' + app.globalData.userid.toString() + '&kind=Layout',
+          url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + this.data.missionID.toString() + '&userid=' + app.globalData.userid.toString() + '&kind=' + kind,
           header: {
             "Content-Type": "multipart/form-data"
           },
           success: (res) => {
             let json = JSON.parse(res.data)
             console.log(json)
-            if (json.code != 502) {
+            if (json.code === 502) {
+              count += 1
+              if (count === this.data.file_upload.length) {
+                wx.request({
+                  url: 'http://1.15.118.125:8081/NIC/manage',
+                  data: {
+                    "method": "examine",
+                    "data": {
+                      "userid": String(app.globalData.userid),
+                      "missionID": String(this.data.missionID),
+                      "review": this.data.remarks,
+                      "tag": [],
+                      "stars": String(this.data.wjxScore),
+                      'kind': kind
+                    }
+                  },
+                  success: (res) => {
+                    console.log(res)
+                    if (count === this.data.file_upload.length && res.data.code === 402) {
+                      wx.showToast({
+                        title: '提交成功',
+                      })
+                    } else {
+                      wx.showToast({
+                        title: '提交失败',
+                        icon: 'error'
+                      })
+                    }
+                    let now = new Date();
+                    let entertime = now.getTime();
+                    let endtime = now.getTime();
+                    while (endtime - entertime < 2000) {
+                      endtime = new Date().getTime()
+                    }
+                    wx.redirectTo({
+                      url: '/pages/home/home',
+                    })
+                  }
+                })
+              }
+            }
+            //
+            else {
               wx.showToast({
                 title: 'error',
-                icon:'error'
-              })
-              bool = false
-              count += 1
-            }
-          }
-        })
-      }
-      if (count != 0) {
-        wx.request({
-          url: 'http://1.15.118.125:8081/NIC/manage',
-          data: {
-            "method": "examine",
-            "data": {
-              "userid": String(app.globalData.userid),
-              "missionID": String(this.data.missionID),
-              "review": this.data.review,
-              "tag": [],
-              "stars": String(this.data.wjxScore)
-            }
-          },
-          success: (res) => {
-            console.log(res)
-            if (count === this.data.file_upload.length) {
-              wx.showToast({
-                title: '提交成功',
-              })
-            } else {
-              wx.showToast({
-                title: '提交失败',
                 icon: 'error'
               })
             }
-            let now = new Date();
-            let entertime = now.getTime();
-            let endtime = now.getTime();
-            while (endtime - entertime < 2000) {
-              endtime = new Date().getTime()
-            }
-            wx.redirectTo({
-              url: '/pages/checkM/checkM.js',
-            })
-            list_show = [] //手动清空
           }
         })
       }
@@ -340,9 +383,9 @@ Page({
   // 预览附件
   previewFile(e) {
     console.log(e)
-    var string = ''
+    let string = ''
     string = e.currentTarget.dataset.path.substring(e.currentTarget.dataset.path.indexOf(".") + 1)
-    if (string == 'png' || string == 'jpg' || string == 'gif' || string == 'jpeg') {
+    if (string === 'png' || string === 'jpg' || string === 'gif' || string === 'jpeg') {
       // 图片预览
       var arr = []
       arr.push(e.currentTarget.dataset.path)
@@ -356,7 +399,7 @@ Page({
         title: '请稍等...',
       })
       wx.downloadFile({
-        url: 'http://1.15.118.125:8080/NIC/work_files/' + this.data.file_download[e.currentTarget.dataset.id].name,
+        url: 'http://1.15.118.125:8081/NIC/work_files/' + this.data.file_download[e.currentTarget.dataset.id].name,
         success: (res) => {
           console.log(res)
           tempFilePath = res.tempFilePath

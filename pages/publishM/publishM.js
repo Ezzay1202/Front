@@ -115,7 +115,7 @@ Component({
       content: "已有其他辅导员审核稿件"
     }, {
       text: '排版',
-    },],
+    }, ],
     first: 1,
     second: 1,
     third: 1,
@@ -165,25 +165,25 @@ Component({
 
     value: 'label_2',
     list: [{
-      value: 'label_1',
-      label: '首页',
-      icon: 'home'
-    },
-    {
-      value: 'label_2',
-      label: '发布',
-      icon: 'check-rectangle'
-    },
-    {
-      value: 'label_3',
-      label: '消息',
-      icon: 'notification'
-    },
-    {
-      value: 'label_4',
-      label: '我的',
-      icon: 'user'
-    },
+        value: 'label_1',
+        label: '首页',
+        icon: 'home'
+      },
+      {
+        value: 'label_2',
+        label: '发布',
+        icon: 'check-rectangle'
+      },
+      {
+        value: 'label_3',
+        label: '消息',
+        icon: 'notification'
+      },
+      {
+        value: 'label_4',
+        label: '我的',
+        icon: 'user'
+      },
     ],
   },
   methods: {
@@ -236,8 +236,8 @@ Component({
       } = e.currentTarget.dataset;
 
       this.setData({
-        cur: item,
-      },
+          cur: item,
+        },
         () => {
           this.setData({
             showcheck: true
@@ -533,7 +533,7 @@ Component({
           },
           success: (res) => {
             console.log(res)
-            if (res.data.code == 99) { //!!!wrong code
+            if (res.data.code === 202) {
               wx.showToast({
                 title: '发布成功',
               })
@@ -622,7 +622,7 @@ Component({
           },
           complete: (res) => {
             wx.hideLoading({
-              success: (res) => { },
+              success: (res) => {},
             })
           }
         })

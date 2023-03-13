@@ -7,30 +7,58 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let kind = ''
+    if (app.globalData.authority3 === 1) {
+      kind = 'teacher'
+    } else {
+      kind = 'editor'
+    }
+    console.log(kind)
     list_show = []
+    this.setData({
+      list_all: []
+    })
     wx.request({
       url: 'http://1.15.118.125:8081/NIC/show?method=showGotDraft',
+      data: {
+        'data': {
+          'kind': kind
+        }
+      },
       success: (res) => {
+        console.log(res.data.data)
         list_all = res.data.data;
         let j = -1;
         let len = list_all.length;
         for (let i = 0; i < len; i++) {
           j++;
-          let article = list_all[j].reporterNeeds.article + "文";
-          let photo = list_all[j].reporterNeeds.photo + "摄";
-          let minbegin = list_all[j].time.beginMinute;
-          let minend = list_all[j].time.endMinute;
+          let state = 0
+          let name = ''
+          let detail = ''
+          if (kind === 'editor') {
+            if (JSON.stringify(list_all[i].comments.teacher) != '{}') {
+              state = 1
+              for (let k in list_all[i].comments.teacher) {
+                name = k
+                detail = list_all[i].comments.teacher[k]
+              }
+            }
+          }
+          let article = list_all[j].reporterNeeds.article + "文"
+          let photo = list_all[j].reporterNeeds.photo + "摄"
+          let minbegin = list_all[j].time.beginMinute
+          let minend = list_all[j].time.endMinute
           if (minbegin < 10) {
-            minbegin = "0" + minbegin.toString();
+            minbegin = "0" + minbegin.toString()
           }
           if (minend < 10) {
             minend = "0" + minend.toString();
           }
           if (list_all[j].reporterNeeds.article == undefined) {
-            article = '';
+            article = ''
           }
           if (list_all[j].reporterNeeds.photo == undefined) {
-            photo = '';
+            photo = ''
           }
           let date1 = list_all[j].time.month + "月" + list_all[j].time.day + "日" + list_all[j].time.beginHour + ":" + minbegin + '-'
           let date2 = list_all[j].time.endHour + ":" + minend
@@ -46,10 +74,12 @@ Page({
             date1: date1,
             date2: date2,
             location: list_all[j].place,
-            people: article + photo
+            people: article + photo,
+            state: state,
+            name: name,
+            detail: detail
           }
         };
-        //console.log(list_show);
         //console.log(list_all);
         this.setData({
           listm: list_show
@@ -80,13 +110,13 @@ Page({
       },
       files: filesList,
       tag: [{
-        name: "优秀稿件",
-        show: true
-      },
-      {
-        name: "优秀稿件2",
-        show: false
-      },
+          name: "优秀稿件",
+          show: true
+        },
+        {
+          name: "优秀稿件2",
+          show: false
+        },
       ],
       missionID: data_temp.missionID,
       attitude: true,
@@ -102,17 +132,7 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    listn: [{
-      text: "管理学创新实验班",
-      date1: "1月9日10：00",
-      date2: '12:00',
-      location: '东九',
-      state: 1,
-      name: "方权泽",
-      detail: "这个稿件很一般哦"
-    }]
-  },
+  data: {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成

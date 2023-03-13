@@ -1,12 +1,13 @@
 // pages/publishedM/publishedM.js
 const app = getApp();
-let list_all = [];
-let list_show = [];
+let list_all = []
+let list_show = []
 Page({
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let list_show = []
     wx.request({
       url: 'http://1.15.118.125:8081/NIC/show?method=showNeed',
       success: (res) => {
@@ -22,7 +23,7 @@ Page({
           j++;
           let lackAtc = list_all[j].reporterLack.article;
           let lackPht = list_all[j].reporterLack.photo;
-          if (lackAtc == 0 && lackPht == 0) {
+          if (lackAtc === 0 && lackPht === 0) {
             list_show.splice(i, 1);
             i -= 1;
             len -= 1;
@@ -44,10 +45,10 @@ Page({
           if (minend < 10) {
             minend = "0" + minend.toString();
           }
-          if (list_all[j].reporterNeeds.article == undefined) {
+          if (list_all[j].reporterNeeds.article === undefined) {
             article = '';
           }
-          if (list_all[j].reporterNeeds.photo == undefined) {
+          if (list_all[j].reporterNeeds.photo === undefined) {
             photo = '';
           }
           list_show[i] = {
@@ -69,9 +70,15 @@ Page({
         })
       }
     })
+    wx.request({
+      url: 'http://1.15.118.125:8081/NIC/show?method=showNeedLayout',
+      success:(res)=>{
+        console.log(res.data.data)
+      }
+    })
   },
   takePhoto(e) {
-    if (app.globalData.authority1 == 1) {
+    if (app.globalData.authority1 === 1) {
       wx.request({
         url: 'http://1.15.118.125:8081/NIC/take',
         data: {
@@ -84,27 +91,28 @@ Page({
         },
         success: (res) => {
           console.log(res.data)
-          if (res.data.code == 401) {
+          if (res.data.code === 401) {
             wx.showToast({
               title: res.data.msg,
-              icon:'error'
+              icon: 'error'
             })
           }
-          if (res.data.code == 402) {
+          if (res.data.code === 402) {
             wx.showToast({
               title: '接摄成功',
             })
+            this.onLoad()
           }
-          if (res.data.code == 99) {
+          if (res.data.code === 99) {
             wx.showToast({
               title: '无此任务，请刷新界面',
-              icon:'error'
+              icon: 'error'
             })
           }
-          if (res.data.code == 98) {
+          if (res.data.code === 98) {
             wx.showToast({
               title: '错误！请联系开发者',
-              icon:'error'
+              icon: 'error'
             })
           }
         }
@@ -115,11 +123,10 @@ Page({
         icon: "error"
       })
     }
-
   },
 
   takeArticle(e) {
-    if (app.globalData.authority1 == 1) {
+    if (app.globalData.authority1 === 1) {
       wx.request({
         url: 'http://1.15.118.125:8081/NIC/take',
         data: {
@@ -132,28 +139,28 @@ Page({
         },
         success: (res) => {
           console.log(res.data)
-          if (res.data.code == 401) {
+          if (res.data.code === 401) {
             wx.showToast({
               title: res.data.msg,
-              icon:'error'
+              icon: 'error'
             })
           }
-          if (res.data.code == 402) {
+          if (res.data.code === 402) {
             wx.showToast({
-              title: '接文成功',
-              //问题：一个人重复接一个任务。。。。。
+              title: '接文成功'
             })
+            this.onLoad()
           }
-          if (res.data.code == 99) {
+          if (res.data.code === 99) {
             wx.showToast({
               title: '无此任务，请刷新界面',
-              icon:'error'
+              icon: 'error'
             })
           }
-          if (res.data.code == 98) {
+          if (res.data.code === 98) {
             wx.showToast({
               title: '请联系开发者',
-              icon:'error'
+              icon: 'error'
             })
           }
         }
@@ -223,27 +230,34 @@ Page({
     hasMore: true,
     showLoading: true,
     start: 0,
-    listp:[{
-      text:"管理学创新实验班班会",
-      date:"1月14日 7:00",
-      tag:["班会","模板1"],
-      file:[{
-        name:"管理学创新实验班班会.doc",
-        size:"2.3 mb"
+    listp: [{
+      text: "管理学创新实验班班会",
+      date: "1月14日 7:00",
+      tag: ["班会", "模板1"],
+      file: [{
+        name: "管理学创新实验班班会.doc",
+        size: "2.3 mb"
       }],
-      people:[
-      {name:"方权泽",tel:"13848440908",detail:"一定要今天发哦"},
-      {name:"张赫",tel:"13848440908",detail:"一定要今天发哦"},
+      people: [{
+          name: "方权泽",
+          tel: "13848440908",
+          detail: "一定要今天发哦"
+        },
+        {
+          name: "张赫",
+          tel: "13848440908",
+          detail: "一定要今天发哦"
+        },
       ],
-      showdetail:true,
+      showdetail: true,
     }]
   },
-  showDetail(e){
+  showDetail(e) {
     console.log(e)
     let index = e.currentTarget.dataset.index
     let showdetail = 'listp[' + index + '].showdetail'
     this.setData({
-      [showdetail]:!this.data.listp[index].showdetail
+      [showdetail]: !this.data.listp[index].showdetail
     })
   }
 })
