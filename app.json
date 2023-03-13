@@ -1,16 +1,17 @@
 {
   "pages": [
-    "pages/fcheckM/fcheckM",
     "pages/home/home",
+
+    "pages/performance/performance",
+    "pages/fcheckM/fcheckM",
+    "pages/people/people",
+    "pages/mywork/mywork",
     "pages/myinformation/myinformation",
     "pages/updateM/updateM",
-    "pages/mywork/mywork",
     "pages/publishM/publishM",
-    "pages/people/people",
     "pages/historyM/historyM",
     "pages/login/login",
     "pages/submitP/submitP",
-    "pages/myself/myself",
     "pages/mydate/mydate",
     "pages/publishedM/publishedM",
     "pages/inquiryM/inquiryM",

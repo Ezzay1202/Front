@@ -1,0 +1,103 @@
+/* pages/performance/performance.wxss */
+page {
+  background-color: #fcfcfc;
+}
+
+.text-mini {
+  font-size: 21rpx;
+}
+
+.text_1 {
+  font-size: 27rpx;
+}
+
+.text {
+  font-size: 35rpx;
+  font-weight: bold;
+  margin-bottom: .3em;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.pandp {
+  margin: .5em;
+  background-color: white;
+  box-shadow: 0px 1px 5px 0px #e5e5e5;
+}
+
+.performance-box {
+  display: flex;
+  box-sizing: border-box;
+  justify-items: center;
+  align-items: center;
+}
+
+.p-leftbox {
+  width: 60rpx;
+}
+
+.p-leftbox>image {
+  margin-top: 10rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.p-rightbox {
+  flex: 1;
+  height: 120rpx;
+}
+
+.performance-items {
+  height: 140rpx;
+  padding: .3em;
+  margin: .5em;
+  background-color: #fff;
+  /* box-shadow: 0px 1px 5px 0px #e5e5e5; */
+}
+
+.performance-items text {
+  color: #060702;
+  margin-left: 15rpx;
+  margin: .1rem;
+}
+
+.people-items {
+  margin: .3em 1em;
+  background-color: #fff;
+  box-shadow: 0px 1rpx 5rpx 0px #e5e5e5;
+}
+
+.peo-leftbox {
+  width: 50rpx;
+}
+
+.peo-leftbox>image {
+  margin-top: 10rpx;
+  height: 50rpx;
+  width: 50rpx;
+}
+
+.text-box {
+  margin-left: 5rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-box text {
+  font-size: 30rpx;
+}
+
+.upanddown {
+  padding: 0 1em;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.upanddown>image {
+  width: 30rpx;
+  height: 30rpx;
+}
