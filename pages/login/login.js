@@ -76,14 +76,14 @@ Page({
       open: open
     })
   },
-  Login1: function () {
-    if (password == '') {
+  Login1() {
+    if (password === '') {
       wx.showToast({
         title: '请输入密码！',
         icon: 'error'
       })
     }
-    if (userid == '') {
+    if (userid === '') {
       wx.showToast({
         title: '请输入账户！',
         icon: 'error'
@@ -100,13 +100,13 @@ Page({
         url: 'http://1.15.118.125:8080/NIC/login',
         success: (res) => {
           console.log(res.data);
-          if (res.data.code == 102) {
-            app.globalData.hasLogin = true;
-            app.globalData.authority1 = res.data.data.authority1;
-            app.globalData.authority2 = res.data.data.authority2;
-            app.globalData.authority3 = res.data.data.authority3;
-            app.globalData.username = res.data.data.username;
-            app.globalData.userid = res.data.data.userid;
+          if (res.data.code === 102) {
+            app.globalData.hasLogin = true
+            app.globalData.authority1 = res.data.data.authority1
+            app.globalData.authority2 = res.data.data.authority2
+            app.globalData.authority3 = res.data.data.authority3
+            app.globalData.username = res.data.data.username
+            app.globalData.userid = res.data.data.userid
             wx.showToast({
               title: '登录成功',
             }),
@@ -114,19 +114,19 @@ Page({
                 url: '/pages/home/home',
               })
           }
-          if (res.data.code == 99) {
+          if (res.data.code === 99) {
             wx.showToast({
               title: '查无此用户',
               icon: 'error'
             })
           }
-          if (res.data.code == 101) {
+          if (res.data.code === 101) {
             wx.showToast({
               title: '密码错误',
               icon: 'error'
             })
           }
-          if (res.data.code == 103) {
+          if (res.data.code === 103) {
             wx.showToast({
               title: 'Error',
               icon: 'error'

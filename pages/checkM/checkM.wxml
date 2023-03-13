@@ -1,6 +1,6 @@
 <!--pages/checkM/checkM.wxml-->
 <scroll-view class="container" scroll-y="true" enable-flex="true">
-  <block wx:for="{{listn}}" wx:key="id">
+  <block wx:for="{{listm}}" wx:key="id">
     <view class="m {{item.state===1? 'm_back':''}}" bindtap="func1" data-id="{{item.arr}}">
       <view class="title  {{item.state===1? 'title_back':''}}">{{item.text}}</view>
       <view class="text">
@@ -8,21 +8,11 @@
         <text>{{item.location}}</text>
         <text>{{item.people}}</text>
       </view>
-      <view class="detail-people">
+      <view class="detail-people" hidden="{{item.state === 0}}">
         <text>{{item.name}}</text>
         <view class="detail-box">
           <text>{{item.detail}}</text>
         </view>
-      </view>
-    </view>
-  </block>
-  <block wx:for="{{listm}}" wx:key="id">
-    <view class="m" bindtap="func1" data-id="{{item.arr}}">
-      <view class="title">{{item.text}}</view>
-      <view class="text">
-        <text>{{item.date1}}{{item.date2}}</text>
-        <text>{{item.location}}</text>
-        <text>{{item.people}}</text>
       </view>
     </view>
   </block>

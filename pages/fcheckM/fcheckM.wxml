@@ -100,19 +100,19 @@
 </block>
 <view class='btn'>
   <button class="btn_go" bindtap='handleBtn'>提交评价</button>
-  <button class="btn_back" bindtap="missionRollback">打回重做</button>
+  <button class="btn_back" bindtap="showMask">打回重做</button>
 </view>
 <view class="mask" hidden="{{!showMask}}">
   <view class="mask-bac">
     <view class="modal flex-column j_c {{showMask ? 'show':'noShow'}}" style="background: {{current.color}};">
       <view class="input-box">
         <!-- <text>添加打回备注</text> -->
-        <textarea class="inputcs" style="height:200rpx" placeholder='请输入您对排版的备注' bindinput="" placeholder-style="font-size:30rpx" />
+        <textarea class="inputcs" style="height:200rpx" placeholder='请输入您的意见' bindinput="inputsReturn" placeholder-style="font-size:30rpx" />
         <!-- <input placeholder="{{info[index].btext}}" placeholder-class="p-class" type="text" bindinput="content" class="inputcs" /> -->
       </view>
       <view class="mbutton-box">
-        <button bindtap="cannelMask">取消</button>
-        <button style="background-color: var(--bu-color); color:white" bindtap="kcbSpider">确认</button>
+        <button bindtap="cancelMask">取消</button>
+          <button style="background-color: var(--bu-color); color:white" bindtap="missionRollback">确认</button>
       </view>
     </view>
   </view>

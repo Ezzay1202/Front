@@ -600,13 +600,13 @@ Component({
       console.log("yes", e)
       let index = e.currentTarget.dataset.index
       let url = this.data.functions[index].goto
-      if (url == '/pages/checkM/checkM' && app.globalData.authority2 == 10) { //!!!
+      if (url === '/pages/checkM/checkM' && app.globalData.authority2 === 10) { //!!!
         wx.showToast({
           title: '您没有权限',
           icon: 'error'
         })
       } else {
-        wx.redirectTo({
+        wx.navigateTo({
           url: url,
         })
       }
