@@ -115,7 +115,7 @@ Component({
       content: "已有其他辅导员审核稿件"
     }, {
       text: '排版',
-    }, ],
+    },],
     first: 1,
     second: 1,
     third: 1,
@@ -174,7 +174,11 @@ Component({
       label: '发布',
       icon: 'check-rectangle'
     },
-
+    {
+      value: 'label_3',
+      label: '消息',
+      icon: 'notification'
+    },
     {
       value: 'label_4',
       label: '我的',
@@ -232,8 +236,8 @@ Component({
       } = e.currentTarget.dataset;
 
       this.setData({
-          cur: item,
-        },
+        cur: item,
+      },
         () => {
           this.setData({
             showcheck: true
@@ -618,7 +622,7 @@ Component({
           },
           complete: (res) => {
             wx.hideLoading({
-              success: (res) => {},
+              success: (res) => { },
             })
           }
         })
