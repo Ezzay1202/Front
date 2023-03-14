@@ -606,6 +606,12 @@ Component({
             url: url
           })
         }
+        else{
+          wx.showToast({
+            title: '您没有权限',
+            icon: 'error'
+          })
+        }
       } else if (app.globalData.authority1 === 1) {
         wx.navigateTo({
           url: url

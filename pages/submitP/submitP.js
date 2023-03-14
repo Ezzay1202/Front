@@ -28,7 +28,7 @@ Page({
     this.setData({
       [url]:e.detail.value
     })
-    console.log(e)
+    console.log(this.data.listp)
   },
   goto(e){
     console.log(e)
@@ -42,6 +42,20 @@ Page({
    */
   onLoad(options) {
     
+  },
+  submitP(e){
+    console.log()
+    wx.request({
+      url: 'http://1.15.118.125:8081/NIC/take',
+      data:{
+        'method':'uploadURL',
+        //'data':{
+        //  'missionID':,
+       //   'userid':,
+        //  'url':
+        //}
+      }
+    })
   },
 
   /**
