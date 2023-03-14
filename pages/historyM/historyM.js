@@ -300,7 +300,7 @@ Page({
     let index1 = this.data.index1
     let index2 = this.data.index2
     let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
-    console.log(index1, index2, checked)
+    console.log(index1, index2)
     this.setData({
       [checked]: !this.data.categories[index1].items[index2].checked
     })

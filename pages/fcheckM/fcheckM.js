@@ -45,7 +45,7 @@ Page({
       },
       complete: (res) => {
         wx.hideLoading({
-          success: (res) => { },
+          success: (res) => {},
         })
       }
     })
@@ -74,7 +74,7 @@ Page({
     }, {
       name: "李钰",
       job: "审稿",
-    },],
+    }, ],
     review: '',
     remarks: '',
     isManagement: false,
@@ -143,15 +143,19 @@ Page({
           'comment': this.data.return
         }
       },
-      success:(res)=>{
+      success: (res) => {
         console.log(res.data)
         if (res.data.code === 202) {
           wx.showToast({
-            title: msg
+            title: res.data.msg
+          })
+          app.sleep(1000)
+          wx.navigateBack({
+            delta: 2,
           })
         }
       }
-      
+
     })
     this.cancelMask()
   },
@@ -164,7 +168,7 @@ Page({
     console.log('picker pick:', e);
   },
   joinArray(array) {
-    return array.join(' ');
+    return array.join('');
   },
   onPickerChange(e) {
     this.setData({
@@ -235,21 +239,16 @@ Page({
     })
   },
   inputReview(e) {
-    // 获取输入框的内容
     var value = e.detail.value;
-    // 获取输入框内容的长度
     var len = parseInt(value.length);
-    //输入框内容赋值
     this.setData({
       review: value
     })
     console.log(this.data.review)
-    //最多字数限制
     if (len > this.data.max)
       return;
-    // 当输入框内容的长度大于最大长度限制（max)时，终止setData()的执行
     this.setData({
-      currentWordNumber: len //当前字数  
+      currentWordNumber: len
     });
   },
   inputRemarks(e) {
@@ -315,42 +314,76 @@ Page({
             if (json.code === 502) {
               count += 1
               if (count === this.data.file_upload.length) {
-                wx.request({
-                  url: 'http://1.15.118.125:8081/NIC/manage',
-                  data: {
-                    "method": "examine",
-                    "data": {
-                      "userid": String(app.globalData.userid),
-                      "missionID": String(this.data.missionID),
-                      "review": this.data.remarks,
-                      "tag": [],
-                      "stars": String(this.data.wjxScore),
-                      'kind': kind
-                    }
-                  },
-                  success: (res) => {
-                    console.log(res)
-                    if (count === this.data.file_upload.length && res.data.code === 402) {
-                      wx.showToast({
-                        title: '提交成功',
+                if (kind === 'editor') {
+                  console.log(kind)
+                  wx.request({
+                    url: 'http://1.15.118.125:8081/NIC/manage',
+                    data: {
+                      "method": "examine",
+                      "data": {
+                        "userid": String(app.globalData.userid),
+                        "missionID": String(this.data.missionID),
+                        "review": this.data.remarks,
+                        "tag": [],
+                        "stars": String(this.data.wjxScore),
+                        'kind': kind
+                      }
+                    },
+                    success: (res) => {
+                      console.log(res)
+                      if (count === this.data.file_upload.length && res.data.code === 402) {
+                        wx.showToast({
+                          title: '提交成功',
+                        })
+                      } else {
+                        wx.showToast({
+                          title: '提交失败',
+                          icon: 'error'
+                        })
+                      }
+                      app.sleep(2000)
+                      wx.redirectTo({
+                        url: '/pages/home/home',
                       })
-                    } else {
-                      wx.showToast({
-                        title: '提交失败',
-                        icon: 'error'
+                    }
+                  })
+                }
+                if (kind === 'teacher') {
+                  console.log(kind)
+                  wx.request({
+                    url: 'http://1.15.118.125:8081/NIC/manage',
+                    data: {
+                      "method": "examine",
+                      "data": {
+                        "userid": String(app.globalData.userid),
+                        "missionID": String(this.data.missionID),
+                        "review": this.data.remarks,
+                        "tag": [],
+                        "stars": String(this.data.wjxScore),
+                        'kind': kind,
+                        'ddl': this.data.date1CurrentValue,
+                        'postscript': this.data.review
+                      }
+                    },
+                    success: (res) => {
+                      console.log(res)
+                      if (count === this.data.file_upload.length && res.data.code === 402) {
+                        wx.showToast({
+                          title: '提交成功',
+                        })
+                      } else {
+                        wx.showToast({
+                          title: '提交失败',
+                          icon: 'error'
+                        })
+                      }
+                      app.sleep(2000)
+                      wx.redirectTo({
+                        url: '/pages/home/home',
                       })
                     }
-                    let now = new Date();
-                    let entertime = now.getTime();
-                    let endtime = now.getTime();
-                    while (endtime - entertime < 2000) {
-                      endtime = new Date().getTime()
-                    }
-                    wx.redirectTo({
-                      url: '/pages/home/home',
-                    })
-                  }
-                })
+                  })
+                }
               }
             }
             //
@@ -425,7 +458,7 @@ Page({
             },
             complete: (res) => {
               wx.hideLoading({
-                success: (res) => { },
+                success: (res) => {},
               })
             }
           })

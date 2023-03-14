@@ -5,11 +5,9 @@ let password = ''
 Page({
   content(e) {
     userid = e.detail.value
-    //console.log(userid)
   },
   password(e) {
     password = e.detail.value
-    //console.log(password)
   },
 
   /**
@@ -323,12 +321,12 @@ Page({
     })
   },
   kcbSpider(e) {
-    if (userid == '') {
+    if (userid === '') {
       wx.showToast({
         title: 'title',
         icon: 'error'
       })
-    } else if (password == '') {
+    } else if (password === '') {
       wx.showToast({
         title: 'title',
         icon: 'error'
@@ -354,12 +352,7 @@ Page({
               title: '导入成功!'
             })
             this.getKcb()
-            let now = new Date();
-            let entertime = now.getTime();
-            let endtime = now.getTime();
-            while (endtime - entertime < 1200) {
-              endtime = new Date().getTime()
-            }
+            app.sleep(1200)
             this.setData({
               isShow: false
             })
@@ -419,12 +412,7 @@ Page({
         title: '您未导入课程表',
         icon: 'error'
       })
-      let now = new Date();
-      let entertime = now.getTime();
-      let endtime = now.getTime();
-      while (endtime - entertime < 1500) {
-        endtime = new Date().getTime()
-      }
+      app.sleep(1500)
       this.setData({
         isShow: true
       })

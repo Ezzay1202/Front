@@ -12,6 +12,14 @@ App({
       }
     })
   },
+  sleep(time){
+    let now = new Date()
+    let entertime = now.getTime()
+    let endtime = now.getTime()
+    while (endtime - entertime < time) {
+      endtime = new Date().getTime()
+    }
+  },
   globalData: {
     hasLogin: false,
     userid: "",

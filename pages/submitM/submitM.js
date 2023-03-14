@@ -96,15 +96,8 @@ Page({
               wx.showToast({
                 title: '提交成功',
               })
-              let now = new Date()
-              let entertime = now.getTime()
-              let endtime = now.getTime()
-              while (endtime - entertime < 2000) {
-                endtime = new Date().getTime()
-              }
-              wx.redirectTo({
-                url: '/pages/home/home',
-              })
+              app.sleep(2000)
+              wx.navigateBack()
             } else {
               wx.showToast({
                 title: '提交失败',

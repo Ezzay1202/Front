@@ -33,14 +33,14 @@ Page({
         for (let i = 0; i < len; i++) {
           j++;
           let state = 0
-          let name = ''
-          let detail = ''
+          let name = []
+          let detail = []
           if (kind === 'editor') {
             if (JSON.stringify(list_all[i].comments.teacher) != '{}') {
               state = 1
               for (let k in list_all[i].comments.teacher) {
-                name = k
-                detail = list_all[i].comments.teacher[k]
+                name.push(k)
+                detail.push(list_all[i].comments.teacher[k])
               }
             }
           }
@@ -54,15 +54,15 @@ Page({
           if (minend < 10) {
             minend = "0" + minend.toString();
           }
-          if (list_all[j].reporterNeeds.article == undefined) {
+          if (list_all[j].reporterNeeds.article === undefined) {
             article = ''
           }
-          if (list_all[j].reporterNeeds.photo == undefined) {
+          if (list_all[j].reporterNeeds.photo === undefined) {
             photo = ''
           }
           let date1 = list_all[j].time.month + "月" + list_all[j].time.day + "日" + list_all[j].time.beginHour + ":" + minbegin + '-'
           let date2 = list_all[j].time.endHour + ":" + minend
-          if (minbegin == undefined) {
+          if (minbegin === undefined) {
             date2 = ''
             date1 = list_all[j].time.month + "月" + list_all[j].time.day + "日"
           }
@@ -76,11 +76,10 @@ Page({
             location: list_all[j].place,
             people: article + photo,
             state: state,
-            name: name,
-            detail: detail
+            name: name[0],
+            detail: detail[0]
           }
-        };
-        //console.log(list_all);
+        }
         this.setData({
           listm: list_show
         })

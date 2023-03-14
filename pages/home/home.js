@@ -102,19 +102,19 @@ Component({
     }, {
       img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
       people: "乔晟豪"
-    },],
+    }, ],
     boxshow: [{
-      image: "http://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2CPGoKg3rLAVNiaIjRHRgucKpf2D0xGKXEABncIfmRpeiaAvvRjlibycFw2r9EOiaHJYDOJ2yQp23PX3Q/0?wx_fmt=jpeg",
-      text: "W.0.W | 我与兔年那些不得不说的事！"
-    },
-    {
-      image: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2Ac8wK5HibkMhAmDeXRps44clAPtULQic6IObMB7rB5uscibPfTbM0GqLwXsFrZqR2GCyg0FSKicc0uPg/0?wx_fmt=jpeg",
-      text: "M.O.M新春特辑 | 年味儿速递：快看！这些管院er用镜头记录下了年前幸福的瞬间~"
-    },
-    {
-      image: "https://mmbiz.qpic.cn/mmbiz_png/gbpAf4uUr2B1uZSbxb6SdAEtqm0fNDDSL1arFMsgCcENBibMQbtpRREMp47auxa2uqHzdKXHlcTqRgqasGTpAKg/0?wx_fmt=png",
-      text: "W.O.W | 惊！原来距离我成为学霸需要的时间是......"
-    }
+        image: "http://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2CPGoKg3rLAVNiaIjRHRgucKpf2D0xGKXEABncIfmRpeiaAvvRjlibycFw2r9EOiaHJYDOJ2yQp23PX3Q/0?wx_fmt=jpeg",
+        text: "W.0.W | 我与兔年那些不得不说的事！"
+      },
+      {
+        image: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2Ac8wK5HibkMhAmDeXRps44clAPtULQic6IObMB7rB5uscibPfTbM0GqLwXsFrZqR2GCyg0FSKicc0uPg/0?wx_fmt=jpeg",
+        text: "M.O.M新春特辑 | 年味儿速递：快看！这些管院er用镜头记录下了年前幸福的瞬间~"
+      },
+      {
+        image: "https://mmbiz.qpic.cn/mmbiz_png/gbpAf4uUr2B1uZSbxb6SdAEtqm0fNDDSL1arFMsgCcENBibMQbtpRREMp47auxa2uqHzdKXHlcTqRgqasGTpAKg/0?wx_fmt=png",
+        text: "W.O.W | 惊！原来距离我成为学霸需要的时间是......"
+      }
 
     ],
     isShow: false,
@@ -177,155 +177,155 @@ Component({
     value: 'label_1',
     value_s: '',
     categories: [{
-      label: '选项一',
-      title: '标题一',
-      badgeProps: {},
-      items: [{
-        label: '标题文字',
-        checked: true
+        label: '选项一',
+        title: '标题一',
+        badgeProps: {},
+        items: [{
+            label: '标题文字',
+            checked: true
+          },
+          {
+            label: '标题文字',
+            checked: false
+          },
+        ]
       },
       {
-        label: '标题文字',
-        checked: false
-      },
-      ]
-    },
-    {
-      label: '选项二',
-      title: '标题二',
-      badgeProps: {
-        dot: true,
-      },
-      items: [{
-        label: '标题文字',
-        checked: false
-      },
-      {
-        label: '标题文字',
-        checked: false
-      },
-      ]
-    },
-    {
-      label: '选项三',
-      title: '标题三',
-      badgeProps: {},
-      items: [{
-        label: '标题文字',
-        checked: false
+        label: '选项二',
+        title: '标题二',
+        badgeProps: {
+          dot: true,
+        },
+        items: [{
+            label: '标题文字',
+            checked: false
+          },
+          {
+            label: '标题文字',
+            checked: false
+          },
+        ]
       },
       {
-        label: '标题文字',
-        checked: false
-      },
-      ]
-    },
-    {
-      label: '选项四',
-      title: '标题四',
-      badgeProps: {
-        count: 8,
-      },
-      items: [{
-        label: '标题文字',
-        checked: false
+        label: '选项三',
+        title: '标题三',
+        badgeProps: {},
+        items: [{
+            label: '标题文字',
+            checked: false
+          },
+          {
+            label: '标题文字',
+            checked: false
+          },
+        ]
       },
       {
-        label: '标题文字',
-        checked: false
-      },
-      ]
-    },
-    {
-      label: '选项五',
-      title: '标题五',
-      badgeProps: {},
-      disabled: true,
-      items: [{
-        label: '标题文字',
-        checked: false
+        label: '选项四',
+        title: '标题四',
+        badgeProps: {
+          count: 8,
+        },
+        items: [{
+            label: '标题文字',
+            checked: false
+          },
+          {
+            label: '标题文字',
+            checked: false
+          },
+        ]
       },
       {
-        label: '标题文字',
-        checked: false
+        label: '选项五',
+        title: '标题五',
+        badgeProps: {},
+        disabled: true,
+        items: [{
+            label: '标题文字',
+            checked: false
+          },
+          {
+            label: '标题文字',
+            checked: false
+          },
+        ]
       },
-      ]
-    },
     ],
     list: [{
-      value: 'label_1',
-      label: '首页',
-      icon: 'home'
-    },
-    {
-      value: 'label_2',
-      label: '发布',
-      icon: 'check-rectangle'
-    },
+        value: 'label_1',
+        label: '首页',
+        icon: 'home'
+      },
+      {
+        value: 'label_2',
+        label: '发布',
+        icon: 'check-rectangle'
+      },
 
-    {
-      value: 'label_4',
-      label: '我的',
-      icon: 'user'
-    },
+      {
+        value: 'label_4',
+        label: '我的',
+        icon: 'user'
+      },
     ],
     todaywork: [{
-      name: "概率论",
-      add: "D888",
-      time1: "8:00",
-      time2: "10:00",
-    },
-    {
-      name: "概率论",
-      add: "D888",
-      time1: "8:00",
-      time2: "10:00",
-    },
+        name: "概率论",
+        add: "D888",
+        time1: "8:00",
+        time2: "10:00",
+      },
+      {
+        name: "概率论",
+        add: "D888",
+        time1: "8:00",
+        time2: "10:00",
+      },
     ],
     day: [{
       date: "1/12 周四",
       work: [{
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      },
-      {
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      },
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
+        {
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
       ],
     }, {
       date: "1/12 周四",
       work: [{
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      },
-      {
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      },
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
+        {
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
       ],
     }, {
       date: "1/12 周四",
       work: [{
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      },
-      {
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      },
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
+        {
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        },
       ],
     }],
     step: [{
@@ -338,47 +338,47 @@ Component({
       text: '辅导员审稿',
     }, {
       text: '排版',
-    },],
+    }, ],
     listm: [{
-      text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-      date: "2022-11-30",
-      location: "管理学院105",
-      people: [{
-        key: 1,
-        name: "陶柯羽"
-      }, {
-        key: 2,
-        name: "高原"
-      }, {
-        key: 5,
-        name: "徐文慧"
-      }, {
-        key: 4,
-        name: "张赫"
-      },],
-      url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-      score: 4.5
-    },
-    {
-      text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-      date: "2022-11-30",
-      location: "管理学院105",
-      people: [{
-        key: 1,
-        name: "陶柯羽"
-      }, {
-        key: 2,
-        name: "高原"
-      }, {
-        key: 5,
-        name: "徐文慧"
-      }, {
-        key: 4,
-        name: "张赫"
-      },],
-      url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-      score: 4.5
-    },
+        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
+        date: "2022-11-30",
+        location: "管理学院105",
+        people: [{
+          key: 1,
+          name: "陶柯羽"
+        }, {
+          key: 2,
+          name: "高原"
+        }, {
+          key: 5,
+          name: "徐文慧"
+        }, {
+          key: 4,
+          name: "张赫"
+        }, ],
+        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
+        score: 4.5
+      },
+      {
+        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
+        date: "2022-11-30",
+        location: "管理学院105",
+        people: [{
+          key: 1,
+          name: "陶柯羽"
+        }, {
+          key: 2,
+          name: "高原"
+        }, {
+          key: 5,
+          name: "徐文慧"
+        }, {
+          key: 4,
+          name: "张赫"
+        }, ],
+        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
+        score: 4.5
+      },
     ],
     time: 2 * 24 * 60 * 60 * 1000,
     timeData: {},
@@ -532,7 +532,7 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker change:',);
+      console.log('picker change:', );
       this.setData({
         [`${key}Visible`]: false,
         [`${key}Value`]: e.detail.value,
@@ -597,20 +597,35 @@ Component({
       })
     },
     goTomoudle2(e) {
-      console.log("yes", e)
+      console.log("yes")
       let index = e.currentTarget.dataset.index
       let url = this.data.functions[index].goto
-      if (url === '/pages/checkM/checkM' && app.globalData.authority2 === 10) { //!!!
+      if (url === '/pages/checkM/checkM') {
+        if ((app.globalData.authority2 === 1) || (app.globalData.authority3 === 1)) {
+          wx.navigateTo({
+            url: url
+          })
+        }
+      } else if (app.globalData.authority1 === 1) {
+        wx.navigateTo({
+          url: url
+        })
+      } else {
         wx.showToast({
           title: '您没有权限',
           icon: 'error'
         })
-      } else {
-        wx.navigateTo({
-          url: url,
-        })
       }
-
+    },
+    func1() {
+      wx.navigateTo({
+        url: '/pages/inquiryM/inquiryM',
+      })
+    },
+    func2() {
+      wx.navigateTo({
+        url: '/pages/historyM/historyM',
+      })
     },
     onChange(e) {
       //tabbar
@@ -630,7 +645,7 @@ Component({
           })
         }
       };
-      if (app.globalData.hasLogin && e.detail.value == 'label_4') {
+      if (app.globalData.hasLogin && e.detail.value === 'label_4') {
         //页面跳转
 
         wx.redirectTo({

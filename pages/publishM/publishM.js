@@ -537,12 +537,7 @@ Component({
               wx.showToast({
                 title: '发布成功',
               })
-              let now = new Date();
-              let entertime = now.getTime();
-              let endtime = now.getTime();
-              while (endtime - entertime < 2000) {
-                endtime = new Date().getTime()
-              }
+              app.sleep(2000)
               wx.redirectTo({
                 url: '/pages/home/home',
               })
@@ -604,12 +599,7 @@ Component({
               wx.showToast({
                 title: '发布成功',
               })
-              let now = new Date();
-              let entertime = now.getTime();
-              let endtime = now.getTime();
-              while (endtime - entertime < 2000) {
-                endtime = new Date().getTime();
-              }
+              app.sleep(1500)
               wx.redirectTo({
                 url: '/pages/home/home',
               })

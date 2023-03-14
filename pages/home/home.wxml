@@ -133,10 +133,10 @@
       </block>
     </swiper>
     <view class="gird_view">
-      <view class="gird_view_2" bindtap="goto">
+      <view class="gird_view_2" bindtap="func1">
         <text>查询稿件</text>
       </view>
-      <view class="gird_view_2" bindtap="goto">
+      <view class="gird_view_2" bindtap="func2">
         <text>历史稿件</text>
       </view>
     </view>

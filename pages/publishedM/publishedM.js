@@ -1,7 +1,5 @@
 // pages/publishedM/publishedM.js
-const app = getApp();
-let list_all = []
-let list_show = []
+const app = getApp()
 Page({
   /**
    * 生命周期函数--监听页面加载
@@ -11,7 +9,7 @@ Page({
     wx.request({
       url: 'http://1.15.118.125:8081/NIC/show?method=showNeed',
       success: (res) => {
-        list_all = res.data.data;
+        let list_all = res.data.data;
         console.log(res)
         let j = -1;
         let len = list_all.length;
@@ -63,17 +61,56 @@ Page({
             isUrge3: isUrge3,
             isUrge4: isUrge4,
           }
-        };
-        console.log(list_all);
+        }
+        console.log(list_show)
         this.setData({
           listm: list_show
         })
       }
     })
+
+    //paiban
     wx.request({
       url: 'http://1.15.118.125:8081/NIC/show?method=showNeedLayout',
-      success:(res)=>{
+      success: (res) => {
         console.log(res.data.data)
+        let list_all = res.data.data
+        let list_show = []
+        for (let i = 0; i < list_all.length; i++) {
+          let taglist = []
+          for (let j in list_all[i].tags) {
+            taglist.push(j + '-' + list_all[i].j)
+          }
+          let filelist = []
+          for (let k in list_all[i].files) {
+            let temp = {
+              name: k,
+              size: 'none'
+            }
+            filelist.push(temp)
+          }
+          let peoplelist = []
+          for (let m in list_all[i].postscript) {
+            let temp = {
+              name: m,
+              tel: '123456789',
+              detail: list_all[i].postscript[m]
+            }
+            peoplelist.push(temp)
+          }
+          let tempmission = {
+            text: list_all[i].description,
+            date: list_all[i].deadline,
+            tag: taglist,
+            file: filelist,
+            people: peoplelist,
+            showdetail: true
+          }
+          list_show.push(tempmission)
+        }
+        this.setData({
+          listp: list_show
+        })
       }
     })
   },
@@ -230,27 +267,6 @@ Page({
     hasMore: true,
     showLoading: true,
     start: 0,
-    listp: [{
-      text: "管理学创新实验班班会",
-      date: "1月14日 7:00",
-      tag: ["班会", "模板1"],
-      file: [{
-        name: "管理学创新实验班班会.doc",
-        size: "2.3 mb"
-      }],
-      people: [{
-          name: "方权泽",
-          tel: "13848440908",
-          detail: "一定要今天发哦"
-        },
-        {
-          name: "张赫",
-          tel: "13848440908",
-          detail: "一定要今天发哦"
-        },
-      ],
-      showdetail: true,
-    }]
   },
   showDetail(e) {
     console.log(e)

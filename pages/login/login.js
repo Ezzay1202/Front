@@ -1,13 +1,15 @@
 // pages/login/login.js
 const app = getApp()
-let userid = ''
-let password = ''
 Page({
   content(e) {
-    userid = e.detail.value
+    this.setData({
+      userid: e.detail.value
+    })
   },
   password(e) {
-    password = e.detail.value
+    this.setData({
+      password: e.detail.value
+    })
   },
 
   /**
@@ -77,13 +79,13 @@ Page({
     })
   },
   Login1() {
-    if (password === '') {
+    if (this.data.password === '') {
       wx.showToast({
         title: '请输入密码！',
         icon: 'error'
       })
     }
-    if (userid === '') {
+    if (this.data.userid === '') {
       wx.showToast({
         title: '请输入账户！',
         icon: 'error'
@@ -92,12 +94,12 @@ Page({
       wx.request({
         data: {
           data: {
-            password: '123456',
-            userid: 'U202116999'
+            password: '123456',//this.data.password
+            userid: this.data.userid
           },
           method: "signUp"
         },
-        url: 'http://1.15.118.125:8080/NIC/login',
+        url: 'http://1.15.118.125:8081/NIC/login',
         success: (res) => {
           console.log(res.data);
           if (res.data.code === 102) {
@@ -141,7 +143,7 @@ Page({
       data: {
         method: "tourist"
       },
-      url: 'http://1.15.118.125:8080/NIC/login',
+      url: 'http://1.15.118.125:8081/NIC/login',
       success: (res) => {
         if (res.data.code == 102) {
           app.globalData.hasLogin = true;
