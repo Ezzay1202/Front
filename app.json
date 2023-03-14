@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/home/home",
-
+    "pages/historyM/historyM",
     "pages/performance/performance",
     "pages/fcheckM/fcheckM",
     "pages/people/people",
@@ -9,7 +9,6 @@
     "pages/myinformation/myinformation",
     "pages/updateM/updateM",
     "pages/publishM/publishM",
-    "pages/historyM/historyM",
     "pages/login/login",
     "pages/submitP/submitP",
     "pages/mydate/mydate",

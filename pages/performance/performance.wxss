@@ -22,6 +22,27 @@ page {
   flex-direction: column;
 }
 
+.p-box {
+  position: fixed;
+  top: 85rpx;
+  height: 84vh;
+}
+
+.titlebox {
+  position: fixed;
+  z-index: 2;
+  width: 600rpx;
+  padding: .2em;
+  text-align: center;
+  border-bottom: 2rpx solid black;
+
+}
+
+.titlebox text {
+  font-weight: 500;
+  font-size: 40rpx;
+}
+
 .pandp {
   margin: .5em;
   background-color: white;
@@ -100,4 +121,19 @@ page {
 .upanddown>image {
   width: 30rpx;
   height: 30rpx;
+}
+
+.buttonbox {
+  position: fixed;
+  bottom: 38rpx;
+  display: flex;
+  align-items: center;
+}
+
+.buttonbox button {
+  font-size: 30rpx;
+  height: 68rpx;
+  width: 500rpx;
+  background-color: #060702;
+  color: white;
 }

@@ -1,12 +1,12 @@
 <!--pages/performance/performance.wxml-->
 <view class="container">
-  <view class="titlebox">
-    <text>人事部</text>
+  <view class="titlebox" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DEPART}}">
+    <text>{{departCurrentValue || '人事部' }}</text>
   </view>
-  <scroll-view class="p-box">
-    <block wx:for="{{performance}}" wx:if="index">
+  <scroll-view class="p-box" scroll-y="true">
+    <block wx:for="{{performance}}" wx:key="index">
       <view class='pandp'>
-        <view class="performance-box performance-items">
+        <view class="performance-box performance-items" bindtap="showPeople" data-index1="{{index}}">
           <view class="p-leftbox">
             <image src="{{item.complete? '/image/uncheck.png':'/image/check.png'}}" mode="" />
           </view>
@@ -19,19 +19,26 @@
         <view class="upanddown" hidden="{{!item.complete}}">
           <image src="/image/up.png" mode="" />
         </view>
-        <block wx:for="{{item.people}}" wx:key="index" hidden="{{!item.complete}}">
-          <view class="performance-box people-items">
-            <view class="peo-leftbox">
-              <image src="{{item.check? '/image/uncheck.png':'/image/check.png'}}" mode="" />
+        <view hidden="{{!item.complete}}">
+          <block wx:for="{{item.people}}" wx:key="index">
+            <view class="performance-box people-items" bindtap="checkPeople" data-index2="{{index}}">
+              <view class="peo-leftbox">
+                <image src="{{item.check? '/image/uncheck.png':'/image/check.png'}}" mode="" />
+              </view>
+              <view class="text-box">
+                <text>{{item.name}}</text>
+              </view>
             </view>
-            <view class="text-box">
-              <text>{{item.name}}</text>
-            </view>
-          </view>
-        </block>
+          </block>
 
+        </view>
       </view>
     </block>
-
   </scroll-view>
+  <view class="buttonbox">
+    <button>确定</button>
+  </view>
 </view>
+<t-picker visible="{{departVisible}}" value="{{departValue}}" data-key="depart" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+  <t-picker-item options="{{depart}}"></t-picker-item>
+</t-picker>
