@@ -1,61 +1,118 @@
 // pages/submitP/submitP.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-    listp:[{
-      text:"管理学创新实验班班会",
-      date:"1月14日 7:00",
-      tag:["班会","模板1"],
-      file:[{
-        name:"管理学创新实验班班会.doc",
-        size:"2.3 mb"
-      }],
-      people:[
-      {name:"方权泽",tel:"13848440908",detail:"一定要今天发哦"},
-      {name:"张赫",tel:"13848440908",detail:"一定要今天发哦"},
-      ],
-      showdetail:true,
-      url:'',
-    }]
-  },
-  content(e){
-    console.log(e)
+  data: {},
+  content(e) {
     let index = e.currentTarget.dataset.index
     let url = 'listp[' + index + '].url'
     this.setData({
-      [url]:e.detail.value
+      [url]: e.detail.value
     })
-    console.log(this.data.listp)
   },
-  goto(e){
+  goto(e) {
     console.log(e)
-    let url=e.currentTarget.dataset.url
+    let url = e.currentTarget.dataset.url
     wx.navigateTo({
-      url:`../seeM/seeM?url=${url}`,
+      url: `../seeM/seeM?url=${url}`,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
-  },
-  submitP(e){
-    console.log()
+    this.setData({
+      listp: []
+    })
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/take',
-      data:{
-        'method':'uploadURL',
-        //'data':{
-        //  'missionID':,
-       //   'userid':,
-        //  'url':
-        //}
+      url: 'http://1.15.118.125:8081/NIC/user',
+      data: {
+        'method': 'showLayout',
+        'data': {
+          'userid': app.globalData.userid
+        }
+      },
+      success: (res) => {
+        console.log(res.data)
+        let list_all = res.data.data
+        let list_show = []
+        for (let i = 0; i < list_all.length; i++) {
+          let taglist = []
+          for (let j in list_all[i].tags) {
+            for (let k = 0; k < list_all[i].tags[j].length; k++) {
+              taglist.push(j + '-' + list_all[i].tags[j][k])
+            }
+          }
+          let filelist = []
+          for (let k in list_all[i].files) {
+            let temp = {
+              name: k,
+              size: 'none'
+            }
+            filelist.push(temp)
+          }
+          let peoplelist = []
+          for (let m in list_all[i].postscript) {
+            let temp = {
+              name: m
+            }
+            peoplelist.push(temp)
+          }
+          let tempmission = {
+            missionID: list_all[i].missionID,
+            text: list_all[i].description,
+            date: list_all[i].deadline,
+            tag: taglist,
+            file: filelist,
+            people: peoplelist,
+            url: '',
+          }
+          list_show.push(tempmission)
+        }
+        this.setData({
+          listp: list_show
+        })
       }
     })
+  },
+  submitP(e) {
+    console.log(this.data.listp[e.currentTarget.dataset.index].url)
+    let url = this.data.listp[e.currentTarget.dataset.index].url
+    if (url != '') {
+      wx.request({
+        url: 'http://1.15.118.125:8081/NIC/take',
+        data: {
+          'method': 'uploadURL',
+          'data': {
+            'missionID': String(this.data.listp[e.currentTarget.dataset.index].missionID),
+            'userid': String(app.globalData.userid),
+            'url': this.data.listp[e.currentTarget.dataset.index].url
+          }
+        },
+        success: (res) => {
+          console.log(res.data)
+          if (res.data.code === 202) {
+            wx.showToast({
+              title: '上传成功'
+            })
+            this.onLoad()
+          } else {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'error'
+            })
+          }
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '请输入排版链接！',
+        icon: 'error'
+      })
+    }
   },
 
   /**

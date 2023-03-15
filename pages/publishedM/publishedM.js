@@ -6,6 +6,10 @@ Page({
    */
   onLoad(options) {
     let list_show = []
+    this.setData({
+      listm:[],
+      listp:[]
+    })
     wx.request({
       url: 'http://1.15.118.125:8081/NIC/show?method=showNeed',
       success: (res) => {
@@ -79,7 +83,9 @@ Page({
         for (let i = 0; i < list_all.length; i++) {
           let taglist = []
           for (let j in list_all[i].tags) {
-            taglist.push(j + '-' + list_all[i].j)
+            for(let k = 0;k < list_all[i].tags[j].length;k++){
+              taglist.push(j+'-'+list_all[i].tags[j][k])
+            }
           }
           let filelist = []
           for (let k in list_all[i].files) {
@@ -99,6 +105,7 @@ Page({
             peoplelist.push(temp)
           }
           let tempmission = {
+            missionID:list_all[i].missionID,
             text: list_all[i].description,
             date: list_all[i].deadline,
             tag: taglist,
@@ -111,11 +118,11 @@ Page({
         this.setData({
           listp: list_show
         })
+        
       }
     })
   },
   takePhoto(e) {
-    if (app.globalData.authority1 === 1) {
       wx.request({
         url: 'http://1.15.118.125:8081/NIC/take',
         data: {
@@ -154,16 +161,9 @@ Page({
           }
         }
       })
-    } else {
-      wx.showToast({
-        title: '您没有权限',
-        icon: "error"
-      })
-    }
   },
 
   takeArticle(e) {
-    if (app.globalData.authority1 === 1) {
       wx.request({
         url: 'http://1.15.118.125:8081/NIC/take',
         data: {
@@ -202,13 +202,45 @@ Page({
           }
         }
       })
-    } else {
-      wx.showToast({
-        title: '您没有权限',
-        icon: "error"
-      })
-    }
-
+  },
+  takeTypesetting(e){
+    wx.request({
+      url: 'http://1.15.118.125:8081/NIC/take',
+      data: {
+        "method": "layout",
+        "data": {
+          "userid": String(app.globalData.userid),
+          "missionID": String(e.currentTarget.dataset.id)
+        }
+      },
+      success: (res) => {
+        console.log(res.data)
+        if (res.data.code === 401) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'error'
+          })
+        }
+        if (res.data.code === 402) {
+          wx.showToast({
+            title: '接排版成功',
+          })
+          this.onLoad()
+        }
+        if (res.data.code === 99) {
+          wx.showToast({
+            title: '无此任务，请刷新界面',
+            icon: 'error'
+          })
+        }
+        if (res.data.code === 98) {
+          wx.showToast({
+            title: '错误！请联系开发者',
+            icon: 'error'
+          })
+        }
+      }
+    })
   },
 
   /**

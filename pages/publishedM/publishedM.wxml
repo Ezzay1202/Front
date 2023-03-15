@@ -65,7 +65,7 @@
       </view>
       <view class="n">
       <view class="buttonbox">
-        <button data-id="{{item.missionID}}">接搞</button>
+        <button data-id="{{item.missionID}}" bindtap='takeTypesetting'>接排版</button>
       </view>
     </view>
     </view>
