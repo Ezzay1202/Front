@@ -24,7 +24,8 @@ Page({
       src: "/image/myw.png"
     }, {
       name: "个人信息",
-      src: "/image/myi.png"
+      src: "/image/myi.png",
+      bindtap:'gotoMyi'
     }, {
       name: "我的时间",
       src: "/image/myt.png",
@@ -311,7 +312,7 @@ Page({
         this.setData({
           kcb_code: res.data.code
         })
-        if (res.data.code == 702) {
+        if (res.data.code === 702) {
           this.setData({
             kcb: res.data.data
           })
@@ -347,7 +348,7 @@ Page({
         },
         success: (res) => {
           console.log(res.data)
-          if (res.data.code == 702) {
+          if (res.data.code === 702) {
             wx.showToast({
               title: '导入成功!'
             })
@@ -421,5 +422,10 @@ Page({
         url: "/pages/mydate/mydate?kcb=" + JSON.stringify(this.data.kcb),
       })
     }
+  },
+  gotoMyi(){
+    wx.navigateTo({
+      url: '/pages/myinformation/myinformation',
+    })
   }
 })

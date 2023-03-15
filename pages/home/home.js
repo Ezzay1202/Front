@@ -457,7 +457,7 @@ Component({
       })
     },
     checkedTags(e) {
-      console.log('1')
+      console.log(this.data)
       this.setData({
         index1: e.currentTarget.dataset.index1
       })
@@ -467,7 +467,7 @@ Component({
       let temp = this.data.tag
       let temptagbox = this.data.tagbox
       let tempTag = this.data.categories[index1]['items'][index2]['label']
-      let templist = temp.get(this.data.categories[index1]['label'])
+      let templist = []
       let tempdict = {
         color: index1,
         tag: this.data.categories[index1]['label'] + '-' + tempTag
@@ -658,7 +658,7 @@ Component({
           url: "/pages/myself/myself",
         })
 
-      };
+      }
       if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
         //页面跳转
         wx.redirectTo({
