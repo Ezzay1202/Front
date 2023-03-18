@@ -46,7 +46,7 @@
         <view class="button-box">
           <button bindtap="showTimes">查看所有日程</button>
           <button style="background-color: #307090;" bindtap="addWorks">添加日程</button>
-          <button>查看课程表</button>
+          <button bindtap="gotoKcb">查看课程表</button>
         </view>
       </view>
       <view class="myday" hidden="{{showtime}}">

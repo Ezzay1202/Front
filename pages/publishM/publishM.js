@@ -285,6 +285,7 @@ Component({
       let index2 = this.data.index2
       let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
       let temp = this.data.tag
+      console.log(temp)
       let temptagbox = this.data.tagbox
       let tempTag = this.data.categories[index1]['items'][index2]['label']
       let templist = temp.get(this.data.categories[index1]['label'])

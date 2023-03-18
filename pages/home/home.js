@@ -449,8 +449,47 @@ Component({
 
 
   methods: {
+    onLoad() {
+      if (app.globalData.hasLogin) {
+        wx.request({
+          url: 'http://1.15.118.125:8080/NIC/lesson',
+          data: {
+            "method": "get",
+            "data": {
+              "weekStart": 1,
+              "weekEnd": 19,
+              "userid": app.globalData.userid
+            }
+          },
+          success: (res) => {
+            console.log(res.data)
+            app.globalData.kcb_code = res.data.code
+            if (app.globalData.kcb_code === 702) {
+              app.globalData.kcb = res.data.data
+            }
+          }
+        })
+
+
+
+        let a = {
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        }
+
+
+
+
+      }
+    },
+    //kcb
+    gotoKcb() {
+
+      //console.log(this.data.kcb)
+    },
     checkedTag(e) {
-      console.log('2')
       console.log(e)
       this.setData({
         index2: e.currentTarget.dataset.index2
@@ -464,30 +503,24 @@ Component({
       let index1 = this.data.index1
       let index2 = this.data.index2
       let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
-      let temp = this.data.tag
-      let temptagbox = this.data.tagbox
-      let tempTag = this.data.categories[index1]['items'][index2]['label']
-      let templist = []
-      let tempdict = {
-        color: index1,
-        tag: this.data.categories[index1]['label'] + '-' + tempTag
-      }
-      if (templist.includes(tempTag)) {
-        templist.splice(templist.indexOf(tempTag), 1)
-        temp.set(this.data.categories[index1]['label'], templist)
-        temptagbox.splice(temptagbox.indexOf(tempdict), 1)
+      let peopleRelated = this.data.peopleRelated //是一个Map
+      let peopleTemp = this.data.categories[index1].items[index2].label //人名
+      //console.log(peopleTemp)
+      let tempList = peopleRelated.get(this.data.categories[index1].title)
+      console.log(tempList)
+      if (tempList.includes(peopleTemp)) //检测Map中是否有此人名
+      {
+        tempList.splice(tempList.indexOf(peopleTemp), 1)
+        peopleRelated.set(this.data.categories[index1].title, tempList)
       } else {
-        templist.push(tempTag)
-        temp.set(this.data.categories[index1]['label'], templist)
-        temptagbox.push(tempdict)
+        tempList.push(peopleTemp)
+        peopleRelated.set(this.data.categories[index1].title, tempList)
       }
       this.setData({
         [checked]: !this.data.categories[index1].items[index2].checked,
-        tag: temp,
-        tagbox: temptagbox
+        peopleRelated: peopleRelated
       })
-      console.log(this.data.categories[index1].items[index2].checked)
-      //console.log(this.data.tag)
+      console.log(peopleRelated)
     },
     onClickPicker(e) {
       const {
@@ -568,6 +601,14 @@ Component({
       this.setData({
         isShow: "true"
       })
+      let peopleList = new Map()
+      peopleList.set('标题一', [])
+      peopleList.set('标题二', [])
+      peopleList.set('标题三', [])
+      peopleList.set('标题四', [])
+      this.setData({
+        peopleRelated: peopleList
+      })
     },
     goto(e) {
       console.log(e)
@@ -605,8 +646,7 @@ Component({
           wx.navigateTo({
             url: url
           })
-        }
-        else{
+        } else {
           wx.showToast({
             title: '您没有权限',
             icon: 'error'

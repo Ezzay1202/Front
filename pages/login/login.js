@@ -95,7 +95,7 @@
           data: {
             data: {
               password: '123456', //this.data.password
-              userid: this.data.userid
+              userid: 'U202116242'//this.data.userid
             },
             method: "signUp"
           },

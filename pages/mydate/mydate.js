@@ -6,7 +6,7 @@ const month = date.getMonth() + 1
 const day = date.getDate()
 const currentday = date.getDay()
 const week = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
-const Weekday = week[currentday]
+const Weekday = week[currentday] //周几
 const date_now = month + "-" + day
 let rank = 0
 Page({

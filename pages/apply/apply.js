@@ -117,7 +117,7 @@ Component({
     onChange(e) {
       missionID = e.detail.value.toString()
     },
-    missionSearch: function () {
+    missionSearch() {
       wx.request({
         url: 'http://1.15.118.125:8081/NIC/show',
         data: {
