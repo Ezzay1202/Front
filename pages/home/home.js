@@ -3,10 +3,14 @@ const app = getApp()
 const date = new Date()
 const year = date.getFullYear()
 const month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
-const day = date.getDate()
+const day = (date.getDate() + 1 < 10 ? '0' + (date.getDate() + 1) : date.getDate() + 1)
+const currentday = date.getDay() //0-7,0 = Sunday
+const week = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+const Weekday = week[currentday] //周几
 const hour = date.getHours()
 const minute = date.getMinutes()
 let place1 = ''
+const classTime = ['', '8:00', '8:45', '8:55', '9:40', '10:10', '10:55', '11:05', '11:50', '14:00', '14:45', '14:50', '15:35', '15:55', '16:40', '16:45', '17:30', '18:30', '19:15', '19:25', '20:10', '20:15', '21:00']
 
 Page({
 
@@ -87,6 +91,9 @@ const PICKER_KEY = {
 
 Component({
   data: {
+    eventname: '',
+    locationname: '',
+    eventList: [],
     picture: [{
       img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
       people: "乔晟豪"
@@ -269,19 +276,9 @@ Component({
         icon: 'user'
       },
     ],
-    todaywork: [{
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      },
-      {
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      },
-    ],
+    todaywork: [], //我的时间
+    //查看所有日程
+    
     day: [{
       date: "1/12 周四",
       work: [{
@@ -447,9 +444,8 @@ Component({
     [`${PICKER_KEY.People}Value`]: []
   },
 
-
-  methods: {
-    onLoad() {
+  lifetimes:{
+    attached(){
       if (app.globalData.hasLogin) {
         wx.request({
           url: 'http://1.15.118.125:8080/NIC/lesson',
@@ -467,23 +463,182 @@ Component({
             if (app.globalData.kcb_code === 702) {
               app.globalData.kcb = res.data.data
             }
+            // kcb 信息
+            /*for (let i = 0; i < res.data.data.length; i++) {
+              if (res.data.data[i]['week'] === app.globalData.week_kcb) {
+                //console.log(app.globalData.week_kcb)
+                let classList = res.data.data[i]['time'][(app.globalData.week_kcb + 1) % 7]['lesson']
+                console.log(classList)
+                let workList = []
+                for (let j = classList.length - 1; j > -1; j--) {
+                  //classList[j].time =>'9-11'
+                  let timeList = classList[j].time.split('-')
+                  //console.log(timeList)
+                  let lessonTemp = {
+                    name: classList[j].name,
+                    add: classList[j].location,
+                    time1: classTime[Number(timeList[0]) * 2 - 1],
+                    time2: classTime[Number(timeList[1]) * 2]
+                  }
+                  workList.push(lessonTemp)
+                }
+                this.setData({
+                  todaywork: workList
+                })
+
+              }
+            }*/
           }
         })
+        let dayList1 = []
+        // 日程查询
+        for (let i = 0; i < 3; i++) {
+          let date = new Date((new Date).getTime() + (24 * 60 * 60 * 1000) * (i+1))
+          wx.request({
+            url: 'http://1.15.118.125:8081/NIC/affair',
+            data: {
+              'method': 'get',
+              'data': {
+                'userid': app.globalData.userid,
+                'date': date.getFullYear() + '-' + ((date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)) + '-' + ((date.getDate() + 1 < 10 ? '0' + (date.getDate() + 1) : date.getDate() + 1))
+              }
+            },
+            success: (res) => {
+              console.log(res.data)
+              let affairList = res.data.affairID
+              let eventList = []
+              for (let j = 0; j < affairList.length; j++) {
+                let temp = {
+                  name: affairList[j].affairName,
+                  add: affairList[j].place,
+                  time1: affairList[j].beginTime,
+                  time2: affairList[j].endTime,
+                  id: affairList[j].affairID,
+                  date: affairList[j].date
+                  //involveUsers:affairList[j].involverUsers,
+                }
+                eventList.push(temp)
+              }
 
-
-
-        let a = {
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
+              let templist = this.data.eventList
+              templist.push(eventList)
+              let tempDay = {
+                date: ((date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)) + '/' + ((date.getDate() + 1 < 10 ? '0' + (date.getDate() + 1) : date.getDate() + 1)) + ' ' + week[currentday + i],
+                work: eventList[i]
+              }
+              dayList1[i] = tempDay
+              this.setData({
+                eventList: templist,
+                todaywork: templist[0]
+              })
+            }
+          })
         }
-
-
-
-
+        this.setData({
+          day: dayList1
+        })
       }
+      wx.request({
+        url: 'http://1.15.118.125:8081/NIC/allUser',
+        data: {
+          "method": "grouped",
+          "data": {
+            "groupItem": "department"
+          }
+        },
+        success: (res) => {
+          let people = []
+          let dep = []
+          let datas = res.data.data
+          console.log(datas)
+          let i = 0
+          let maps1 = {}
+          let maps2 = {}
+          let peopleList = new Map()
+          this.setData({
+            peopleRelated: peopleList
+          })
+          for (let k in datas) {
+            maps1.label = k
+            maps1.title = k
+            let tempRelated = this.data.peopleRelated //Map
+            console.log(tempRelated)
+            tempRelated.set(k,[])
+            this.setData({
+              peopleRelated:tempRelated
+            }) 
+            for (let j = 0; j < datas[k].length; j++) {
+              maps2.label = datas[k][j].username
+              maps2.checked = false
+              dep[j] = maps2
+              maps2 = {}
+            }
+            maps1.items = dep
+            dep = []
+            people[i++] = maps1
+            maps1 = {}
+          }
+          this.setData({
+            categories: people
+          })
+          console.log(this.data.categories);
+        }
+      })
+    }
+  },
+  methods: {
+    eventName(e) {
+      this.setData({
+        eventname: e.detail.value
+      })
     },
+    locationName(e) {
+      console.log(this.data)
+      this.setData({
+        locationname: e.detail.value
+      })
+    },
+    kcbSpider(e) {
+      console.log(this.data.eventname)
+      //起始时间 date1CurrentValue
+      //结束时间 date2CurrentValue
+      //相关人员 peopleRelated(Map)
+      if (this.data.eventname === '') {}
+      wx.request({
+        url: 'http://1.15.118.125:8081/NIC/affair',
+        data: {
+          'method': 'add',
+          'data': {
+            'pubisher': app.globalData.userid,
+            'affairName': this.data.eventname,
+            'place': this.data.locationname,
+            'date': '2023-5-1',
+            'beginTime': '14:30',
+            'endTime': '15:30',
+            'involveUsers': ['U202116999']
+          }
+        },
+        success: (res) => {
+          console.log(res.data)
+          if (res.data.code === 702) {
+            wx.showToast({
+              title: res.data.msg
+            })
+            app.sleep(2000)
+            this.cancelMask()
+          } else {
+            wx.showToast({
+              title: '添加失败',
+              icon: 'error'
+            })
+          }
+        }
+      })
+    },
+
+
+
+
     //kcb
     gotoKcb() {
 
@@ -508,6 +663,8 @@ Component({
       //console.log(peopleTemp)
       let tempList = peopleRelated.get(this.data.categories[index1].title)
       console.log(tempList)
+      console.log(this.data.categories)
+      //console.log(peopleRelated)
       if (tempList.includes(peopleTemp)) //检测Map中是否有此人名
       {
         tempList.splice(tempList.indexOf(peopleTemp), 1)
@@ -530,6 +687,9 @@ Component({
       this.setData({
         [`${key}Visible`]: true,
       });
+    },
+    addEvent(e) {
+
     },
 
     showCheck(e) {
@@ -559,7 +719,7 @@ Component({
       console.log('picker pick:', e);
     },
     joinArray(array) {
-      return array.join(' ');
+      return array.join('');
     },
     onPickerChange(e) {
       const {
@@ -571,7 +731,7 @@ Component({
         [`${key}Value`]: e.detail.value,
         [`${key}CurrentValue`]: this.joinArray(e.detail.label),
       });
-      if (e.detail.value.length == 4) {
+      if (e.detail.value.length === 4) {
         this.setData({
           list1: e.detail.value
         })
@@ -601,14 +761,6 @@ Component({
       this.setData({
         isShow: "true"
       })
-      let peopleList = new Map()
-      peopleList.set('标题一', [])
-      peopleList.set('标题二', [])
-      peopleList.set('标题三', [])
-      peopleList.set('标题四', [])
-      this.setData({
-        peopleRelated: peopleList
-      })
     },
     goto(e) {
       console.log(e)
@@ -632,9 +784,11 @@ Component({
         showtime: !this.data.showtime
       })
     },
-    cannelMask() {
+    cancelMask() {
       this.setData({
-        isShow: false
+        isShow: false,
+        eventname: '',
+        locationname: '',
       })
     },
     goTomoudle2(e) {

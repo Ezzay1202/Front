@@ -177,8 +177,8 @@
   <view class="mask-bac">
     <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
       <view class="input-box">
-        <input placeholder="事项名称" placeholder-class="p-class" type="text" bindinput="content" class="inputcs" />
-        <input placeholder="地点" placeholder-class="p-class" bindinput="password" class="inputcs" />
+        <input placeholder="事项名称" placeholder-class="p-class" type="text" bindinput="eventName" class="inputcs" />
+        <input placeholder="地点" placeholder-class="p-class" bindinput="locationName" class="inputcs" />
         <view class="inputcs pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
           <view class="pannel-label">起始时间</view>
           <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
@@ -197,7 +197,7 @@
         </view>
       </view>
       <view class="mbutton-box">
-        <button bindtap="cannelMask">取消</button>
+        <button bindtap="cancelMask">取消</button>
         <button style="background-color: var(--bu-color); color:white" bindtap="kcbSpider">确认</button>
       </view>
     </view>
@@ -206,7 +206,7 @@
         <view class="header">
           <view class="btn2 btn--cancel" aria-role="button" bindcancel="onPickerCancel">取消</view>
           <view class="title_c"></view>
-          <view class="btn2 btn--confirm" aria-role="button">确定</view>
+          <view class="btn2 btn--confirm" aria-role="button" bindtap="addEvent">确定</view>
         </view>
         <view class="side-bar-wrapper">
           <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">

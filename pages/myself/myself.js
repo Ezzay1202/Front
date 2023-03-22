@@ -18,7 +18,8 @@ Page({
     steps_num: 2,
     functions: [{
       name: "我的稿件",
-      src: "/image/mywo.png"
+      src: "/image/mywo.png",
+      goto:"gotoMywork"
     }, {
       name: "我的绩效",
       src: "/image/myw.png"
@@ -426,6 +427,11 @@ Page({
   gotoMyi(){
     wx.navigateTo({
       url: '/pages/myinformation/myinformation',
+    })
+  },
+  gotoMywork(){
+    wx.navigateTo({
+      url: '/pages/mywork/mywork',
     })
   }
 })
