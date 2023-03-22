@@ -2,7 +2,7 @@
 const app = getApp()
 const date = new Date()
 const year = date.getFullYear()
-const month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
+const month = date.getMonth() + 1
 const day = (date.getDate() + 1 < 10 ? '0' + (date.getDate() + 1) : date.getDate() + 1)
 const currentday = date.getDay() //0-7,0 = Sunday
 const week = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
@@ -278,22 +278,10 @@ Component({
     ],
     todaywork: [], //我的时间
     //查看所有日程
-    
+
     day: [{
       date: "1/12 周四",
-      work: [{
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-        {
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-      ],
+      work: [],
     }, {
       date: "1/12 周四",
       work: [{
@@ -444,8 +432,8 @@ Component({
     [`${PICKER_KEY.People}Value`]: []
   },
 
-  lifetimes:{
-    attached(){
+  lifetimes: {
+    attached() {
       if (app.globalData.hasLogin) {
         wx.request({
           url: 'http://1.15.118.125:8080/NIC/lesson',
@@ -463,44 +451,19 @@ Component({
             if (app.globalData.kcb_code === 702) {
               app.globalData.kcb = res.data.data
             }
-            // kcb 信息
-            /*for (let i = 0; i < res.data.data.length; i++) {
-              if (res.data.data[i]['week'] === app.globalData.week_kcb) {
-                //console.log(app.globalData.week_kcb)
-                let classList = res.data.data[i]['time'][(app.globalData.week_kcb + 1) % 7]['lesson']
-                console.log(classList)
-                let workList = []
-                for (let j = classList.length - 1; j > -1; j--) {
-                  //classList[j].time =>'9-11'
-                  let timeList = classList[j].time.split('-')
-                  //console.log(timeList)
-                  let lessonTemp = {
-                    name: classList[j].name,
-                    add: classList[j].location,
-                    time1: classTime[Number(timeList[0]) * 2 - 1],
-                    time2: classTime[Number(timeList[1]) * 2]
-                  }
-                  workList.push(lessonTemp)
-                }
-                this.setData({
-                  todaywork: workList
-                })
-
-              }
-            }*/
           }
         })
         let dayList1 = []
         // 日程查询
-        for (let i = 0; i < 3; i++) {
-          let date = new Date((new Date).getTime() + (24 * 60 * 60 * 1000) * (i+1))
+        for (let i = 0; i < 5; i++) {
+          let date = new Date((new Date).getTime() + (24 * 60 * 60 * 1000) * i)
           wx.request({
             url: 'http://1.15.118.125:8081/NIC/affair',
             data: {
               'method': 'get',
               'data': {
                 'userid': app.globalData.userid,
-                'date': date.getFullYear() + '-' + ((date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)) + '-' + ((date.getDate() + 1 < 10 ? '0' + (date.getDate() + 1) : date.getDate() + 1))
+                'date': date.getFullYear() + '-' + ((date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)) + '-' + ((date.getDate() + 1 < 10 ? '0' + (date.getDate()) : date.getDate()))
               }
             },
             success: (res) => {
@@ -521,22 +484,25 @@ Component({
               }
 
               let templist = this.data.eventList
-              templist.push(eventList)
+              templist[i] = (eventList)
               let tempDay = {
-                date: ((date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)) + '/' + ((date.getDate() + 1 < 10 ? '0' + (date.getDate() + 1) : date.getDate() + 1)) + ' ' + week[currentday + i],
-                work: eventList[i]
+                date: ((date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)) + '/' + ((date.getDate() + 1 < 10 ? '0' + (date.getDate() + 1) : date.getDate() + 1)) + ' ' + week[(currentday + i) % 7],
+                work: templist[i]
               }
               dayList1[i] = tempDay
               this.setData({
                 eventList: templist,
                 todaywork: templist[0]
               })
+              if (i === 4) {
+                console.log(dayList1)
+                this.setData({
+                  day: dayList1
+                })
+              }
             }
           })
         }
-        this.setData({
-          day: dayList1
-        })
       }
       wx.request({
         url: 'http://1.15.118.125:8081/NIC/allUser',
@@ -563,10 +529,10 @@ Component({
             maps1.title = k
             let tempRelated = this.data.peopleRelated //Map
             console.log(tempRelated)
-            tempRelated.set(k,[])
+            tempRelated.set(k, [])
             this.setData({
-              peopleRelated:tempRelated
-            }) 
+              peopleRelated: tempRelated
+            })
             for (let j = 0; j < datas[k].length; j++) {
               maps2.label = datas[k][j].username
               maps2.checked = false
@@ -593,13 +559,13 @@ Component({
       })
     },
     locationName(e) {
-      console.log(this.data)
+      console.log(this.data.peopleRelated.size)
       this.setData({
         locationname: e.detail.value
       })
     },
     kcbSpider(e) {
-      console.log(this.data.eventname)
+      console.log(this.data)
       //起始时间 date1CurrentValue
       //结束时间 date2CurrentValue
       //相关人员 peopleRelated(Map)
