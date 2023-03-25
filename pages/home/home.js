@@ -94,6 +94,7 @@ Component({
     eventname: '',
     locationname: '',
     eventList: [],
+    peoples:[],
     picture: [{
       img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
       people: "乔晟豪"
@@ -332,7 +333,7 @@ Component({
               "method": "get",
               "data": {
                 "weekStart": 1,
-                "weekEnd": 19,
+                "weekEnd": 22,
                 "userid": app.globalData.userid
               }
             },
@@ -658,7 +659,7 @@ Component({
       });
     },
     addWorks() {
-      if (app.hasLogin) {
+      if (app.globalData.hasLogin) {
         this.setData({
           isShow: "true"
         })
