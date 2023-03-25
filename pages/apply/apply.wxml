@@ -6,7 +6,7 @@
       <text >{{mag.date1}}——{{mag.date2}}</text>
       <text >{{mag.location}}</text>
       <text >{{mag.people}}</text>
-    </view>
+    </view> 
 </view>
 <block>
 <view class="demo" >

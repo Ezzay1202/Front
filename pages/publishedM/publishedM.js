@@ -159,6 +159,7 @@ Page({
               icon: 'error'
             })
           }
+          list_show.push(tempmission)
         }
       })
   },

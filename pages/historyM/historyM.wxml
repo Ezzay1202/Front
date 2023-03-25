@@ -36,7 +36,7 @@
 
 </view>
 
-<scroll-view class="container" style="position:absolute; top:210rpx" scroll-y="true" enable-flex="true">
+<scroll-view class="container" style="position:absolute; top:210rpx;   padding-bottom: 1vh;" scroll-y="true" enable-flex="true">
   <block wx:for="{{listm}}" wx:key="id">
     <view class="m">
       <view class="title">{{item.text}}</view>

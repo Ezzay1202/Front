@@ -174,11 +174,7 @@ Component({
         label: '发布',
         icon: 'check-rectangle'
       },
-      {
-        value: 'label_3',
-        label: '消息',
-        icon: 'notification'
-      },
+
       {
         value: 'label_4',
         label: '我的',

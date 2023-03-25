@@ -32,7 +32,8 @@ Page({
     },],
     activeId: [],
     max: 2,
-    index: 0,
+    index1: '',
+    index2: '',
     choose: true,
     itemTitle: '筛选',
     people: [{
@@ -116,31 +117,45 @@ Page({
     },],
     ImgSrc: []
   },
+
   showDep(e) {
     console.log(e)
-    let index1 = e.currentTarget.dataset.index
+    let index1 = e.currentTarget.dataset.index1
     let show_dep = 'people[' + index1 + '].show_dep'
     this.setData({
       [show_dep]: !this.data.people[index1].show_dep
     })
+    if (!this.data.people[index1].show_dep) {
+      this.setData({
+        flag: !this.data.flag
+      })
+    }
   },
   Choose(e) {
     this.setData({
       choose: !this.data.choose
     })
   },
-  indexOfMyArray(e) {
-    let index1 = e.currentTarget.dataset.index
+  // indexOfMyArray(e) {
+  //   let index1 = e.currentTarget.dataset.index1
+  //   this.setData({
+  //     index1: index1
+  //   })
+  // },
+  onChoose(e) {
     this.setData({
-      index: index1
+      index2: e.currentTarget.dataset.index2
     })
   },
-  onChoose(e) {
+  onChooses(e) {
     console.log(e)
     let choose = this.data.choose
-    if (choose) {
-      let index1 = this.data.index
-      let index2 = e.currentTarget.dataset.index1
+    if (choose && this.data.flag) {
+      this.setData({
+        index1: e.currentTarget.dataset.index1
+      })
+      let index1 = this.data.index1
+      let index2 = this.data.index2
       let checked = 'people[' + index1 + '].dep[' + index2 + '].checked'
       console.log(index1, index2, checked)
       this.setData({
@@ -148,6 +163,12 @@ Page({
       })
       if (this.data.people[index1].dep[index2].checked) {
         this.data.ImgSrc.push(this.data.people[index1].dep[index2].img)
+        this.setData({
+          ImgSrc: this.data.ImgSrc
+        })
+      }
+      if (!this.data.people[index1].dep[index2].checked) {
+        this.data.ImgSrc.splice(this.data.ImgSrc.indexOf(this.data.people[index1].dep[index2].img), 1)
         this.setData({
           ImgSrc: this.data.ImgSrc
         })
@@ -186,7 +207,45 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    wx.request({
+      url: 'http://1.15.118.125:8081/NIC/allUser',
+      data: {
+        "method": "grouped",
+        "data": {
+          "groupItem": "department"
+        }
+      },
+      success: (res) => {
+        let people = []
+        let dep = []
+        let datas = res.data.data
+        console.log(datas)
+        let i = 0
+        let maps1 = {}
+        let maps2 = {}
+        for (let k in datas) {
+          maps1.text = k
+          maps1.show_dep = true
+          for (let j = 0; j < datas[k].length; j++) {
+            console.log(datas[k][j]);
+            console.log(j);
+            maps2.checked = false
+            maps2.img = 'http://1.15.118.125:8080/NIC/work_files/' + datas[k][j].head
+            maps2.name = datas[k][j].username
+            maps2.tag_box = [datas[k][j].identity, datas[k][j].classStr]
+            dep[j] = maps2
+            maps2 = {}
+          }
+          maps1.dep = dep
+          dep = []
+          people[i++] = maps1
+          maps1 = {}
+        }
+        this.setData({
+          people: people
+        })
+      }
+    })
   },
 
   /**

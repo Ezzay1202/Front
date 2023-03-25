@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/exception/exception",
     "pages/home/home",
 
     "pages/managment/managment",
@@ -15,11 +16,7 @@
     "pages/login/login",
     "pages/submitP/submitP",
     "pages/mydate/mydate",
-    "pages/publishedM/publishedM",
-    "pages/inquiryM/inquiryM",
     "pages/seeM/seeM",
-    "pages/submitM/submitM",
-    "pages/checkM/checkM",
     "pages/apply/apply",
     "pages/index/index",
     "pages/logs/logs"
@@ -41,7 +38,8 @@
     "t-step-item": "tdesign-miniprogram/steps/step-item",
     "t-search": "tdesign-miniprogram/search/search",
     "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
-    "t-tab-bar-item": "tdesign-miniprogram/tab-bar/tab-bar-item"
+    "t-tab-bar-item": "tdesign-miniprogram/tab-bar/tab-bar-item",
+    "people": "/components/people/people"
   },
   "sitemapLocation": "sitemap.json"
 }

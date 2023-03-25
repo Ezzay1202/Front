@@ -174,7 +174,6 @@ Component({
     sideBarIndex: 0,
     scrollTop: 0,
     showcheck: false,
-    peoples: [],
     sideBarIndex: 0,
     showfunctions: true,
     showtime: true,
@@ -680,6 +679,11 @@ Component({
     showFunctions() {
       this.setData({
         showfunctions: !this.data.showfunctions
+      })
+    },
+    cancel() {
+      this.setData({
+        showcheck: !this.data.showcheck
       })
     },
     showTimes() {

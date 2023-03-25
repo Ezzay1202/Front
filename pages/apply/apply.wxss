@@ -1,38 +1,45 @@
 /* pages/apply/apply.wxss */
 
 
-.demo{
+.demo {
   width: 93%;
   display: block;
-  background-color:rgb(236,242,254);
+  background-color: rgb(236, 242, 254);
   margin: 1em;
-  border-radius:5%;
+  border-radius: 5%;
 }
+
 .demo-steps {
   padding-top: 1.5em;
   padding-left: 1em;
 }
-.demo-steps-item{
+
+.demo-steps-item {
   color: aliceblue;
 }
-.m{
+
+.m {
   height: 180rpx;
   width: 90%;
   display: block;
   padding: 0.3em;
-  background-color:rgb(236,242,254);
+  background-color: rgb(236, 242, 254);
   margin: 1em;
-  border-radius:10%;
+  border-radius: 10%;
   overflow: scroll;
 }
-.m .title{
+
+.m .title {
   font-size: 35rpx;
-  height:3.2em;
+  height: 3.2em;
+  text-align: center;
 }
-.m .text{
+
+.m .text {
   display: inline-block;
 }
-.m .text text{
+
+.m .text text {
   font-size: 25rpx;
   margin: .3em .5em;
   padding: 10rpx 20rpx;

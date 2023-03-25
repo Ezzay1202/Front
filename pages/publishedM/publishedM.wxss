@@ -220,3 +220,17 @@ page {
 .detail-box text {
   padding: 1em;
 }
+
+.none>image {
+  height: 20vh;
+  width: 20vh;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.none>view {
+  flex: 1;
+  font-size: 28rpx;
+  color: #888;
+  text-align: center;
+}

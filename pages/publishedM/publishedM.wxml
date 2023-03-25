@@ -1,75 +1,87 @@
 <t-tabs defaultValue="{{1}}" t-class="custom-tabs">
   <t-tab-panel label="待接稿件" value="1">
+<<<<<<< HEAD
+=======
+    <view class="none" wx:if="{{listm.length===0}}">
+      <image src="/image/缺省页_暂无消息.png"></image>
+      <view>您还没有待接稿件</view>
+    </view>
+>>>>>>> master
     <scroll-view class="container" scroll-y="true" enable-flex="true">
-  <block wx:for="{{listm}}" wx:key="id">
-    <view class="m">
-      <view class="title">{{item.text}}</view>
-      <view class="text">
-        <text style="flex:3;">{{item.date1}}—{{item.date2}}</text>
-        <text style="flex:1;">{{item.location}}</text>
-        <text style="flex:1;">{{item.people}}</text>
-      </view>
-      <view class="n">
-        <view class="tagbox">
-        <view style="--tag-color:#bb2304"  hidden="{{item.isUrge1}}">紧急稿件</view>
-        <view   hidden="{{item.isUrge2}}">缺文摄</view>
-        <view   hidden="{{item.isUrge3}}">缺文</view>
-        <view   hidden="{{item.isUrge4}}">缺摄</view>
+      <block wx:for="{{listm}}" wx:key="id">
+        <view class="m">
+          <view class="title">{{item.text}}</view>
+          <view class="text">
+            <text style="flex:3;">{{item.date1}}—{{item.date2}}</text>
+            <text style="flex:1;">{{item.location}}</text>
+            <text style="flex:1;">{{item.people}}</text>
+          </view>
+          <view class="n">
+            <view class="tagbox">
+              <view style="--tag-color:#bb2304" hidden="{{item.isUrge1}}">紧急稿件</view>
+              <view hidden="{{item.isUrge2}}">缺文摄</view>
+              <view hidden="{{item.isUrge3}}">缺文</view>
+              <view hidden="{{item.isUrge4}}">缺摄</view>
+            </view>
+            <view class="buttonbox">
+              <button hidden="{{item.isUrge4}}" bindtap="takePhoto" data-id="{{item.missionID}}">接摄</button>
+              <button hidden="{{item.isUrge3}}" bindtap="takeArticle" data-id="{{item.missionID}}">接文</button>
+            </view>
+          </view>
         </view>
-      <view class="buttonbox">
-        <button hidden="{{item.isUrge4}}" bindtap="takePhoto" data-id="{{item.missionID}}">接摄</button>
-        <button hidden="{{item.isUrge3}}" bindtap="takeArticle" data-id="{{item.missionID}}">接文</button>
-      </view>
-    </view>
-    </view>
-  </block>
+      </block>
     </scroll-view>
   </t-tab-panel>
   <t-tab-panel label="待接排版" value="0">
     <scroll-view class="container" scroll-y="true" enable-flex="true">
       <block wx:for="{{listp}}" wx:key="id">
-    <view class="m">
-      <view class="title">{{item.text}}</view>
-      <view class="tag-p">
-       <text style="--tag-color:#841339;">{{item.date}}</text>
-        <block wx:for="{{item.people}}" wx:key="index">
-          <text>{{item.name}}</text>
-        </block>
-        <button bindtap="showDetail" data-index="{{index}}">{{item.showdetail? "查看":"收回"}}详细信息</button>
-      </view>
-      <view class="detail" hidden="{{item.showdetail}}">
-        <view class="filebox">
-      <view class="right" wx:for="{{item.file}}"  wx:key="index">
-        <image  src="/image/下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}">
-        </image>
-        <view class="w" bindtap="previewFile" data-path="{{item.path}}">
-        <image src="/image/docm.png"  mode="aspectFill" ></image>
-        <text  class="name">{{item.name}}</text>
-        <text class="size">{{item.size}}</text>
-      </view>
-    </view>
-        </view>
-        <view class="tag-p detail-tag">
-          <block wx:for="{{item.tag}}"  wx:key="index">
-            <text>{{item}}</text>
-          </block>
-        </view>
-        <block wx:for="{{item.people}}" wx:key="index">
-          <view class="detail-people">
-            <text>{{item.name}}</text>
-            <view class="detail-box" >
-              <text>{{item.detail}}</text>
+        <view class="m">
+          <view class="title">{{item.text}}</view>
+          <view class="tag-p">
+            <text style="--tag-color:#841339;">{{item.date}}</text>
+            <block wx:for="{{item.people}}" wx:key="index">
+              <text>{{item.name}}</text>
+            </block>
+            <button bindtap="showDetail" data-index="{{index}}">{{item.showdetail? "查看":"收回"}}详细信息</button>
+          </view>
+          <view class="detail" hidden="{{item.showdetail}}">
+            <view class="filebox">
+              <view class="right" wx:for="{{item.file}}" wx:key="index">
+                <image src="/image/下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}">
+                </image>
+                <view class="w" bindtap="previewFile" data-path="{{item.path}}">
+                  <image src="/image/docm.png" mode="aspectFill"></image>
+                  <text class="name">{{item.name}}</text>
+                  <text class="size">{{item.size}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="tag-p detail-tag">
+              <block wx:for="{{item.tag}}" wx:key="index">
+                <text>{{item}}</text>
+              </block>
+            </view>
+            <block wx:for="{{item.people}}" wx:key="index">
+              <view class="detail-people">
+                <text>{{item.name}}</text>
+                <view class="detail-box">
+                  <text>{{item.detail}}</text>
+                </view>
+              </view>
+            </block>
+          </view>
+          <view class="n">
+            <view class="buttonbox">
+              <button data-id="{{item.missionID}}" bindtap='takeTypesetting'>接排版</button>
             </view>
           </view>
-        </block>
-      </view>
-      <view class="n">
+        </view>
+      </block>
+    </scroll-view>
+    <view class="n">
       <view class="buttonbox">
         <button data-id="{{item.missionID}}" bindtap='takeTypesetting'>接排版</button>
       </view>
     </view>
-    </view>
-  </block>
-    </scroll-view>
   </t-tab-panel>
 </t-tabs>

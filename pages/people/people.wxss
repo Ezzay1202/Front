@@ -121,7 +121,6 @@ t-search {
 .choose_box {
   position: fixed;
   top: 220rpx;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   padding: .5em;

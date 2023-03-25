@@ -1,0 +1,55 @@
+/* pages/exception/exception.wxss */
+.title {
+  width: 100%;
+  height: 10vh;
+  text-align: center;
+  line-height: 10vh;
+  font-size: 36rpx;
+  border-bottom: 2rpx solid rgb(102, 102, 192);
+  text-shadow: 0 0 2px gray;
+}
+
+.pannel-item {
+  display: flex;
+  align-items: center;
+  height: 85rpx;
+  padding: 0 32rpx;
+  font-size: 32rpx;
+  margin: 1em .5em;
+  background-color: #fff;
+}
+
+.pannel-label {
+  width: 160rpx;
+  margin-right: 32rpx;
+}
+
+.pannel-text {
+  flex: 1;
+  color: rgb(0, 0, 0);
+  opacity: 0.9;
+}
+
+.inputbox {
+  margin: 0 10rpx;
+  flex: 1;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+
+.inputbox input {
+  margin: .3em .3em;
+  width: 90%;
+  background-color: #fff;
+  color: black;
+  font-size: 30rpx;
+  padding: .5em;
+  border: 6rpx solid #629460;
+}
+
+button {
+  margin-top: 40rpx;
+  width: 400rpx;
+}

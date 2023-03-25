@@ -6,7 +6,7 @@
   </view>
   <van-dropdown-menu active-color="#135ba4" custom-class="dropdown-menu">
     <block wx:for="{{class}}" wx:key="index">
-      <van-dropdown-item value="{{ item.value1 }}" options="{{ item.option1 }}" />
+      <van-dropdown-item value="{{ item.value1 }}" options="{{ item.option1 }}" bind:change="convert" />
     </block>
 
     <van-dropdown-item id="item" title="{{ itemTitle }}">
@@ -28,29 +28,27 @@
   </view>
 </view>
 <scroll-view scroll-y="true" style="margin-top: {{choose? '440rpx':'220rpx'}}; height: {{choose? '60vh':'80vh'}};">
-  <block wx:for="{{people}}" wx:if="index">
-    <view>
-      <view bindtap="showDep" class="people_deptext" data-index="{{index}}">
-        <text>{{item.text}}</text>
-        <image src="{{item.show_dep? '/image/up.png':'/image/down.png'}}" mode="" />
-      </view>
+  <view wx:for="{{people}}" wx:key="index" bind:tap="onChooses" data-index1="{{index}}">
+    <view wx:if="{{isShow}}" bindtap="showDep" class="people_deptext" data-index1="{{index}}">
+      <text>{{item.text}}</text>
+      <image src="{{item.show_dep? '/image/up.png':'/image/down.png'}}" mode="" />
+    </view>
 
-      <view hidden="{{!item.show_dep}}" data-index="{{index}}" bindtap="indexOfMyArray">
-        <block wx:for="{{item.dep}}" wx:for-item="dep" wx:key="{{dep.value}}">
-          <view data-index1="{{index}}" bindtap="onChoose" class="people_info {{dep.checked&&choose ? 'people_info_checked': '' }}">
-            <t-icon wx:if="{{dep.checked&&choose}}" name="check" t-class="card__icon" ariaHidden="{{true}}" />
-            <image src="{{dep.img}}" mode="" />
-            <view class="text_box">
-              <text>{{dep.name}}</text>
-              <view class="tag_box">
-                <block wx:for="{{dep.tag_box}}" wx:key="index">
-                  <text>{{item}}</text>
-                </block>
-              </view>
+    <view hidden="{{!item.show_dep}}">
+      <block wx:for="{{item.dep}}" wx:for-item="dep" wx:key="{{dep.value}}">
+        <view data-index2="{{index}}" bindtap="onChoose" class="people_info {{dep.checked&&choose ? 'people_info_checked': '' }}">
+          <t-icon wx:if="{{dep.checked&&choose}}" name="check" t-class="card__icon" ariaHidden="{{true}}" />
+          <image src="{{dep.img}}" mode="" />
+          <view class="text_box">
+            <text>{{dep.name}}</text>
+            <view class="tag_box">
+              <block wx:for="{{dep.tag_box}}" wx:key="index">
+                <text>{{item}}</text>
+              </block>
             </view>
           </view>
-        </block>
-      </view>
+        </view>
+      </block>
     </view>
-  </block>
+  </view>
 </scroll-view>

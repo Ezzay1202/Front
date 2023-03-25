@@ -109,13 +109,13 @@ Page({
       },
       files: filesList,
       tag: [{
-          name: "优秀稿件",
-          show: true
-        },
-        {
-          name: "优秀稿件2",
-          show: false
-        },
+        name: "优秀稿件",
+        show: true
+      },
+      {
+        name: "优秀稿件2",
+        show: false
+      },
       ],
       missionID: data_temp.missionID,
       attitude: true,
