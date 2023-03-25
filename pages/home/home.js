@@ -94,7 +94,7 @@ Component({
     eventname: '',
     locationname: '',
     eventList: [],
-    peoples:[],
+    peoples: [],
     picture: [{
       img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
       people: "乔晟豪"
@@ -326,7 +326,7 @@ Component({
   lifetimes: {
     attached() {
       if (app.globalData.hasLogin) {
-        if(app.globalData.kcb_code != 702){
+        if (app.globalData.kcb_code != 702) {
           wx.request({
             url: 'http://1.15.118.125:8080/NIC/lesson',
             data: {
@@ -470,8 +470,22 @@ Component({
 
     //kcb
     gotoKcb() {
-
-      //console.log(this.data.kcb)
+      if (!app.globalData.hasLogin) {
+        wx.showToast({
+          title: '尚未登陆！',
+          icon: 'error'
+        })
+      } else
+      if (app.globalData.kcb_code != 702) {
+        wx.showToast({
+          title: '您未导入课程表!',
+          icon: 'error'
+        })
+      } else {
+        wx.navigateTo({
+          url: "/pages/mydate/mydate?kcb=" + JSON.stringify(app.globalData.kcb),
+        })
+      }
     },
     checkedTag(e) {
       console.log(e)
