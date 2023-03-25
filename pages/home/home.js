@@ -183,82 +183,8 @@ Component({
     interval: 5000,
     value: 'label_1',
     value_s: '',
-    categories: [{
-        label: '选项一',
-        title: '标题一',
-        badgeProps: {},
-        items: [{
-            label: '标题文字',
-            checked: true
-          },
-          {
-            label: '标题文字',
-            checked: false
-          },
-        ]
-      },
-      {
-        label: '选项二',
-        title: '标题二',
-        badgeProps: {
-          dot: true,
-        },
-        items: [{
-            label: '标题文字',
-            checked: false
-          },
-          {
-            label: '标题文字',
-            checked: false
-          },
-        ]
-      },
-      {
-        label: '选项三',
-        title: '标题三',
-        badgeProps: {},
-        items: [{
-            label: '标题文字',
-            checked: false
-          },
-          {
-            label: '标题文字',
-            checked: false
-          },
-        ]
-      },
-      {
-        label: '选项四',
-        title: '标题四',
-        badgeProps: {
-          count: 8,
-        },
-        items: [{
-            label: '标题文字',
-            checked: false
-          },
-          {
-            label: '标题文字',
-            checked: false
-          },
-        ]
-      },
-      {
-        label: '选项五',
-        title: '标题五',
-        badgeProps: {},
-        disabled: true,
-        items: [{
-            label: '标题文字',
-            checked: false
-          },
-          {
-            label: '标题文字',
-            checked: false
-          },
-        ]
-      },
-    ],
+    categories: [], // 人员列表
+    useridList: [],
     list: [{
         value: 'label_1',
         label: '首页',
@@ -277,42 +203,7 @@ Component({
       },
     ],
     todaywork: [], //我的时间
-    //查看所有日程
-
-    day: [{
-      date: "1/12 周四",
-      work: [],
-    }, {
-      date: "1/12 周四",
-      work: [{
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-        {
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-      ],
-    }, {
-      date: "1/12 周四",
-      work: [{
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-        {
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-      ],
-    }],
+    day: [], //查看所有日程
     step: [{
       text: '已接稿',
     }, {
@@ -454,8 +345,9 @@ Component({
           }
         })
         let dayList1 = []
+        let times = 5
         // 日程查询
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < times; i++) {
           let date = new Date((new Date).getTime() + (24 * 60 * 60 * 1000) * i)
           wx.request({
             url: 'http://1.15.118.125:8081/NIC/affair',
@@ -467,7 +359,7 @@ Component({
               }
             },
             success: (res) => {
-              console.log(res.data)
+              //console.log(res.data)
               let affairList = res.data.affairID
               let eventList = []
               for (let j = 0; j < affairList.length; j++) {
@@ -494,62 +386,71 @@ Component({
                 eventList: templist,
                 todaywork: templist[0]
               })
-              if (i === 4) {
-                console.log(dayList1)
-                this.setData({
-                  day: dayList1
-                })
+              let bool = true
+              while (bool) {
+                for (let n = 0; n < dayList1.length; n++) {
+                  if (dayList1[n] === undefined) {
+                    break
+                  }
+                  if (n === dayList1.length - 1) {
+                    bool = false
+                    this.setData({
+                      day: dayList1
+                    })
+                  }
+                }
               }
             }
           })
         }
-      }
-      wx.request({
-        url: 'http://1.15.118.125:8081/NIC/allUser',
-        data: {
-          "method": "grouped",
-          "data": {
-            "groupItem": "department"
-          }
-        },
-        success: (res) => {
-          let people = []
-          let dep = []
-          let datas = res.data.data
-          console.log(datas)
-          let i = 0
-          let maps1 = {}
-          let maps2 = {}
-          let peopleList = new Map()
-          this.setData({
-            peopleRelated: peopleList
-          })
-          for (let k in datas) {
-            maps1.label = k
-            maps1.title = k
-            let tempRelated = this.data.peopleRelated //Map
-            console.log(tempRelated)
-            tempRelated.set(k, [])
-            this.setData({
-              peopleRelated: tempRelated
-            })
-            for (let j = 0; j < datas[k].length; j++) {
-              maps2.label = datas[k][j].username
-              maps2.checked = false
-              dep[j] = maps2
-              maps2 = {}
+        wx.request({
+          url: 'http://1.15.118.125:8081/NIC/allUser',
+          data: {
+            "method": "grouped",
+            "data": {
+              "groupItem": "department"
             }
-            maps1.items = dep
-            dep = []
-            people[i++] = maps1
-            maps1 = {}
+          },
+          success: (res) => {
+            let people = []
+            let dep = []
+            let datas = res.data.data
+            //console.log(datas)
+            let i = 0
+            let maps1 = {}
+            let maps2 = {}
+            let peopleList = new Map()
+            this.setData({
+              peopleRelated: peopleList
+            })
+            for (let k in datas) {
+              maps1.label = k
+              maps1.title = k
+              let tempRelated = this.data.peopleRelated //Map
+              //console.log(tempRelated)
+              tempRelated.set(k, [])
+              this.setData({
+                peopleRelated: tempRelated
+              })
+              for (let j = 0; j < datas[k].length; j++) {
+                maps2.label = datas[k][j].username
+                maps2.userid = datas[k][j].userid
+                maps2.checked = false
+                dep[j] = maps2
+                maps2 = {}
+              }
+              maps1.items = dep
+              dep = []
+              people[i++] = maps1
+              maps1 = {}
+            }
+            this.setData({
+              categories: people
+            })
+            console.log(this.data.categories);
           }
-          this.setData({
-            categories: people
-          })
-          console.log(this.data.categories);
-        }
-      })
+        })
+      }
     }
   },
   methods: {
@@ -559,48 +460,12 @@ Component({
       })
     },
     locationName(e) {
-      console.log(this.data.peopleRelated.size)
+      //console.log(this.data.peopleRelated.size)
       this.setData({
         locationname: e.detail.value
       })
     },
-    kcbSpider(e) {
-      console.log(this.data)
-      //起始时间 date1CurrentValue
-      //结束时间 date2CurrentValue
-      //相关人员 peopleRelated(Map)
-      if (this.data.eventname === '') {}
-      wx.request({
-        url: 'http://1.15.118.125:8081/NIC/affair',
-        data: {
-          'method': 'add',
-          'data': {
-            'pubisher': app.globalData.userid,
-            'affairName': this.data.eventname,
-            'place': this.data.locationname,
-            'date': '2023-5-1',
-            'beginTime': '14:30',
-            'endTime': '15:30',
-            'involveUsers': ['U202116999']
-          }
-        },
-        success: (res) => {
-          console.log(res.data)
-          if (res.data.code === 702) {
-            wx.showToast({
-              title: res.data.msg
-            })
-            app.sleep(2000)
-            this.cancelMask()
-          } else {
-            wx.showToast({
-              title: '添加失败',
-              icon: 'error'
-            })
-          }
-        }
-      })
-    },
+    kcbSpider(e) {},
 
 
 
@@ -624,26 +489,40 @@ Component({
       let index1 = this.data.index1
       let index2 = this.data.index2
       let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
+      let useridList = this.data.useridList // 所有选中成员的userid
       let peopleRelated = this.data.peopleRelated //是一个Map
-      let peopleTemp = this.data.categories[index1].items[index2].label //人名
+      let peopleTemp = this.data.categories[index1].items[index2].label //一个人名
+      let useridTemp = this.data.categories[index1].items[index2].userid //
       //console.log(peopleTemp)
       let tempList = peopleRelated.get(this.data.categories[index1].title)
+
       console.log(tempList)
       console.log(this.data.categories)
       //console.log(peopleRelated)
       if (tempList.includes(peopleTemp)) //检测Map中是否有此人名
       {
         tempList.splice(tempList.indexOf(peopleTemp), 1)
+        useridList.splice(useridList.indexOf(useridTemp), 1)
         peopleRelated.set(this.data.categories[index1].title, tempList)
       } else {
         tempList.push(peopleTemp)
+        useridList.push(useridTemp)
         peopleRelated.set(this.data.categories[index1].title, tempList)
+      }
+      let number = []
+      let k = 0
+      for (let p of peopleRelated) {
+        for (let q = 0; q < p[1].length; q++) {
+          number[k++] = p[1][q]
+        }
       }
       this.setData({
         [checked]: !this.data.categories[index1].items[index2].checked,
-        peopleRelated: peopleRelated
+        peopleRelated: peopleRelated,
+        peoples: number,
+        useridList: useridList
       })
-      console.log(peopleRelated)
+      console.log(useridList)
     },
     onClickPicker(e) {
       const {
@@ -655,7 +534,65 @@ Component({
       });
     },
     addEvent(e) {
-
+      console.log(this.data)
+      if (this.data.eventname === '') {
+        wx.showToast({
+          title: '请输入事项名称',
+          icon: 'error'
+        })
+      } else if (this.data.locationname === '') {
+        wx.showToast({
+          title: '请输入地点',
+          icon: 'error'
+        })
+      } else if (!this.data.date2Visible) {
+        wx.showToast({
+          title: '请输入起始时间',
+          icon: 'error'
+        })
+      } else if (!this.data.date1Visible) {
+        wx.showToast({
+          title: '请输入结束时间',
+          icon: 'error'
+        })
+      } else if (this.data.useridList === []) {
+        wx.showToast({
+          title: '请选择人员',
+          icon: 'error'
+        })
+      } else {
+        wx.request({
+          url: 'http://1.15.118.125:8081/NIC/affair',
+          data: {
+            'method': 'add',
+            'data': {
+              'pubisher': app.globalData.userid,
+              'affairName': this.data.eventname,
+              'place': this.data.locationname,
+              'date': year + '-' + ((this.data.date1Value[0] > 10) ? (this.data.date1Value[0]) : ('0' + this.data.date1Value[0])) + '-' + ((this.data.date1Value[1] > 10) ? (this.data.date1Value[1]) : ('0' + this.data.date1Value[1])),
+              'beginTime': ((this.data.date1Value[2] > 10) ? (this.data.date1Value[2]) : ('0' + this.data.date1Value[2])) + ':' + ((this.data.date1Value[3] > 10) ? (this.data.date1Value[3]) : ('0' + this.data.date1Value[3])),
+              'endTime': ((this.data.date2Value[0] > 10) ? (this.data.date2Value[0]) : ('0' + this.data.date2Value[0])) + ':' + ((this.data.date2Value[1] > 10) ? (this.data.date2Value[1]) : ('0' + this.data.date2Value[1])),
+              'involveUsers': this.data.useridList
+            }
+          },
+          success: (res) => {
+            console.log(res.data)
+            if (res.data.code === 702) {
+              wx.showToast({
+                title: res.data.msg
+              })
+              app.sleep(2000)
+              this.cancelMask()
+              this.attached()
+            } else {
+              wx.showToast({
+                title: '添加失败',
+                icon: 'error'
+              })
+            }
+          }
+        })
+      }
     },
 
     showCheck(e) {

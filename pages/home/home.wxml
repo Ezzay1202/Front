@@ -123,7 +123,7 @@
     </view>
   </swiper-item>
   <swiper-item style="background-color: white;">
-    <swiper class="swiper_show" indicator-dots="true">
+    <swiper class="swiper_show" indicator-dots="true" autoplay="{{true}}" circular="{{true}}" interval="3000">
       <block wx:for="{{swiper_show}}" wx:key="index">
         <swiper-item bindtap="goto" data-url="{{item.url}}">
           <image src="{{item.image}}" mode="scaleToFill"></image>
@@ -192,21 +192,21 @@
         </view>
         <view class="inputcs pannel-item" bind:tap="showCheck">
           <view class="pannel-label">相关人员</view>
-          <view class="pannel-text {{peoples.length ? '' : 'empty'}}"> {{'共有'+peoples.length+'人' || '选择相关人员' }}</view>
+          <view class="pannel-text {{peoples? '' : 'empty'}}"> {{'共有'+peoples.length+'人'}}</view>
           <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
         </view>
       </view>
       <view class="mbutton-box">
         <button bindtap="cancelMask">取消</button>
-        <button style="background-color: var(--bu-color); color:white" bindtap="kcbSpider">确认</button>
+        <button style="background-color: var(--bu-color); color:white" bindtap="addEvent">确认</button>
       </view>
     </view>
     <t-popup visible="{{showcheck}}" bind:visible-change="onVisibleChange" placement="bottom">
       <view class="block2">
         <view class="header">
-          <view class="btn2 btn--cancel" aria-role="button" bindcancel="onPickerCancel">取消</view>
+          <view class="btn2 btn--cancel" aria-role="button" bindtap="cancel">取消</view>
           <view class="title_c"></view>
-          <view class="btn2 btn--confirm" aria-role="button" bindtap="addEvent">确定</view>
+          <view class="btn2 btn--confirm" aria-role="button" bindtap="cancel">确定</view>
         </view>
         <view class="side-bar-wrapper">
           <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
