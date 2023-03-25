@@ -30,7 +30,7 @@ App({
     authority3: 0,//辅导员权限（稿件二审）
     missionCompleted: [],
     missionTaken: [],
-    week_kcb: 6,
+    week_kcb: 0,
     kcb:[],
     kcb_code:0
   }

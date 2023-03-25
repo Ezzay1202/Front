@@ -1,8 +1,7 @@
 {
   "pages": [
-    "pages/exception/exception",
     "pages/home/home",
-
+    "pages/exception/exception",
     "pages/managment/managment",
     "pages/myinformation/myinformation",
     "pages/people/people",
