@@ -10,7 +10,11 @@ Component({
     },
     peoples: {
       type: Array,
-      value: 0
+      value: []
+    },
+    useridList: {
+      type: Array,
+      value: []
     }
   },
 
@@ -57,6 +61,7 @@ Component({
             })
             for (let j = 0; j < datas[k].length; j++) {
               maps2.label = datas[k][j].username
+              maps2.userid = datas[k][j].userid
               maps2.checked = false
               dep[j] = maps2
               maps2 = {}
@@ -95,8 +100,10 @@ Component({
       let index1 = this.data.index1
       let index2 = this.data.index2
       let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
+      let useridList = this.data.useridList // 所有选中成员的userid
       let peopleRelated = this.data.peopleRelated //是一个Map
       let peopleTemp = this.data.categories[index1].items[index2].label //人名
+      let useridTemp = this.data.categories[index1].items[index2].userid
       //console.log(peopleTemp)
       let tempList = peopleRelated.get(this.data.categories[index1].title)
       console.log(peopleRelated)
@@ -106,9 +113,11 @@ Component({
       if (tempList.includes(peopleTemp)) //检测Map中是否有此人名
       {
         tempList.splice(tempList.indexOf(peopleTemp), 1)
+        useridList.splice(useridList.indexOf(useridTemp), 1)
         peopleRelated.set(this.data.categories[index1].title, tempList)
       } else {
         tempList.push(peopleTemp)
+        useridList.push(useridTemp)
         peopleRelated.set(this.data.categories[index1].title, tempList)
       }
       let number = []
@@ -121,7 +130,8 @@ Component({
       }
       this.setData({
         [checked]: !this.data.categories[index1].items[index2].checked,
-        peoples: number
+        peoples: number,
+        useridList: useridList
       })
       console.log(peopleRelated)
     },
@@ -132,7 +142,8 @@ Component({
       })
       this.triggerEvent('sync', {
         value: this.properties.visible,
-        peoples: this.properties.peoples
+        peoples: this.properties.peoples,
+        useridList: this.properties.useridList
       })
     },
 

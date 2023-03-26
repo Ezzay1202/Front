@@ -13,8 +13,16 @@
 
 <block>
   <view class="pannel-item" bind:tap="showCheck2">
-    <view class="pannel-label">接稿</view>
+    <view class="pannel-label">接文</view>
     <view class="pannel-text {{peoples2 ? '' : 'empty'}}"> {{'共有'+peoples2.length+'人' || '选择相关人员' }}</view>
+    <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+  </view>
+</block>
+
+<block>
+  <view class="pannel-item" bind:tap="showCheck7">
+    <view class="pannel-label">接摄</view>
+    <view class="pannel-text {{peoples7 ? '' : 'empty'}}"> {{'共有'+peoples7.length+'人' || '选择相关人员' }}</view>
     <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
   </view>
 </block>
@@ -55,11 +63,12 @@
   <input placeholder="请输入稿件链接" placeholder-class="p-class" type="text" bindinput="content" data-index="{{index}}" class="inputp" />
 </view>
 
-<button type="primary">提交</button>
+<button type="primary" bind:tap="sendAll">提交</button>
 
-<people visible="{{showCheck1}}" bindsync="send1" peoples="{{peoples1}}"></people>
-<people visible="{{showCheck2}}" bindsync="send2" peoples="{{peoples2}}"></people>
-<people visible="{{showCheck3}}" bindsync="send3" peoples="{{peoples3}}"></people>
-<people visible="{{showCheck4}}" bindsync="send4" peoples="{{peoples4}}"></people>
-<people visible="{{showCheck5}}" bindsync="send5" peoples="{{peoples5}}"></people>
-<people visible="{{showCheck6}}" bindsync="send6" peoples="{{peoples6}}"></people>
+<people visible="{{showCheck1}}" bindsync="send1" peoples="{{peoples1}}" useridList="{{useridList1}}"></people>
+<people visible="{{showCheck2}}" bindsync="send2" peoples="{{peoples2}}" useridList="{{useridList2}}"></people>
+<people visible="{{showCheck3}}" bindsync="send3" peoples="{{peoples3}}" useridList="{{useridList3}}"></people>
+<people visible="{{showCheck4}}" bindsync="send4" peoples="{{peoples4}}" useridList="{{useridList4}}"></people>
+<people visible="{{showCheck5}}" bindsync="send5" peoples="{{peoples5}}" useridList="{{useridList5}}"></people>
+<people visible="{{showCheck6}}" bindsync="send6" peoples="{{peoples6}}" useridList="{{useridList6}}"></people>
+<people visible="{{showCheck7}}" bindsync="send7" peoples="{{peoples7}}" useridList="{{useridList7}}"></people>

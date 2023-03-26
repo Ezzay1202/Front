@@ -478,11 +478,6 @@ Component({
           icon: 'none',
           title: '请填写结束时间',
         })
-      } else if (this.data.list3 == null) {
-        wx.showToast({
-          icon: 'none',
-          title: '请填写小记者',
-        })
       } else if (place1 == '') {
         wx.showToast({
           icon: 'none',
@@ -508,7 +503,7 @@ Component({
         wx.request({
           url: 'http://1.15.118.125:8081/NIC/manage',
           data: {
-            "method": "alter",
+            "method": "addFinished",
             "data": {
               "tags": tags,
               "element": 0,
@@ -526,24 +521,20 @@ Component({
                 "endMinute": this.data.list2[1],
               },
               "reporterNeeds": {
-                "photo": this.data.list3[0],
-                "article": this.data.list3[1]
+                "photo": 0,
+                "article": 0
               }
             }
           },
           success: (res) => {
             console.log(res)
             if (res.data.code == 202) {
-              wx.showToast({
-                title: '发布成功',
-              })
-              app.sleep(2000)
-              wx.redirectTo({
-                url: '/pages/home/home',
+              wx.navigateTo({
+                url: "/pages/exception/exception?missionID=" + JSON.stringify(res.data.missionID),
               })
             } else {
               wx.showToast({
-                title: '发布失败',
+                title: '添加失败',
                 icon: 'error'
               })
             }
