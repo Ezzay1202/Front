@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/home/home",
+    "pages/publishedM/publishedM",
     "pages/updateN/updateN",
     "pages/updateM/updateM",
     "pages/exception/exception",
-    "pages/home/home",
     "pages/managment/managment",
     "pages/myinformation/myinformation",
     "pages/people/people",

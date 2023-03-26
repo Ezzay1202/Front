@@ -221,6 +221,14 @@ page {
   padding: 1em;
 }
 
+.none {
+  position: fixed;
+  width: 100%;
+  bottom: 40vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .none>image {
   height: 20vh;
   width: 20vh;
