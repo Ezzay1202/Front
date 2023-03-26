@@ -94,6 +94,7 @@ Component({
     eventname: '',
     locationname: '',
     eventList: [],
+    peoples: [],
     picture: [{
       img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
       people: "乔晟豪"
@@ -325,24 +326,26 @@ Component({
   lifetimes: {
     attached() {
       if (app.globalData.hasLogin) {
-        wx.request({
-          url: 'http://1.15.118.125:8080/NIC/lesson',
-          data: {
-            "method": "get",
-            "data": {
-              "weekStart": 1,
-              "weekEnd": 19,
-              "userid": app.globalData.userid
+        if (app.globalData.kcb_code != 702) {
+          wx.request({
+            url: 'http://1.15.118.125:8080/NIC/lesson',
+            data: {
+              "method": "get",
+              "data": {
+                "weekStart": 1,
+                "weekEnd": 22,
+                "userid": app.globalData.userid
+              }
+            },
+            success: (res) => {
+              console.log(res.data)
+              app.globalData.kcb_code = res.data.code
+              if (app.globalData.kcb_code === 702) {
+                app.globalData.kcb = res.data.data
+              }
             }
-          },
-          success: (res) => {
-            console.log(res.data)
-            app.globalData.kcb_code = res.data.code
-            if (app.globalData.kcb_code === 702) {
-              app.globalData.kcb = res.data.data
-            }
-          }
-        })
+          })
+        }
         let dayList1 = []
         let times = 5
         // 日程查询
@@ -385,18 +388,14 @@ Component({
                 eventList: templist,
                 todaywork: templist[0]
               })
-              let bool = true
-              while (bool) {
-                for (let n = 0; n < dayList1.length; n++) {
-                  if (dayList1[n] === undefined) {
-                    break
-                  }
-                  if (n === dayList1.length - 1) {
-                    bool = false
-                    this.setData({
-                      day: dayList1
-                    })
-                  }
+              for (let n = 0; n < dayList1.length; n++) {
+                if (dayList1[n] === undefined) {
+                  break
+                }
+                if (n === times - 1) {
+                  this.setData({
+                    day: dayList1
+                  })
                 }
               }
             }
@@ -471,8 +470,22 @@ Component({
 
     //kcb
     gotoKcb() {
-
-      //console.log(this.data.kcb)
+      if (!app.globalData.hasLogin) {
+        wx.showToast({
+          title: '尚未登陆！',
+          icon: 'error'
+        })
+      } else
+      if (app.globalData.kcb_code != 702) {
+        wx.showToast({
+          title: '您未导入课程表!',
+          icon: 'error'
+        })
+      } else {
+        wx.navigateTo({
+          url: "/pages/mydate/mydate?kcb=" + JSON.stringify(app.globalData.kcb),
+        })
+      }
     },
     checkedTag(e) {
       console.log(e)
@@ -660,9 +673,17 @@ Component({
       });
     },
     addWorks() {
-      this.setData({
-        isShow: "true"
-      })
+      if (app.globalData.hasLogin) {
+        this.setData({
+          isShow: "true"
+        })
+      } else {
+        wx.showToast({
+          title: '您没有权限！',
+          icon: 'error'
+        })
+      }
+
     },
     goto(e) {
       console.log(e)

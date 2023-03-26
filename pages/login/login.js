@@ -190,6 +190,7 @@ Page({
             app.globalData.authority3 = res.data.data.authority3
             app.globalData.username = res.data.data.username
             app.globalData.userid = res.data.data.userid
+            app.globalData.week_kcb = res.data.time.week
             wx.showToast({
                 title: '登录成功',
               }),
