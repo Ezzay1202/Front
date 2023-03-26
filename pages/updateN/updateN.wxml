@@ -30,7 +30,7 @@
     <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE2}}">
       <view class="pannel-label">结束时间</view>
       <view class="pannel-text {{date2CurrentValue.length ? '' : 'empty'}}"> {{date2CurrentValue || '选择时间' }}</view>
-      <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" /> 
     </view>
   </block>
 
