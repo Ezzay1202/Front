@@ -151,6 +151,15 @@
           </view>
           <button bindtap="uploadFile">选择稿件及照片</button>
         </view>
+
+        <view class="box tagbox">
+          <view class="tag-item">
+            <block wx:for="{{tagbox2}}" wx:key="index">
+              <view class="tag">{{item.tag}}</view>
+            </block>
+          </view>
+          <button bind:tap="showCheck2">选择稿件类型</button>
+        </view>
         <block>
           <view class="pannel-item-other pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE}}">
             <view class="pannel-label">截止时间</view>
@@ -173,6 +182,55 @@
       </block>
 
     </view>
+
+    <t-popup visible="{{showcheck2}}" bind:visible-change="onVisibleChange2" placement="bottom">
+      <view class="block2">
+        <view class="header">
+          <view class="btn2 btn--cancel" aria-role="button" bindtap="cancelCheck2">取消</view>
+          <view class="title"></view>
+          <view class="btn2 btn--confirm" aria-role="button" bindtap="showCheck2">确定</view>
+        </view>
+        <view class="side-bar-wrapper">
+          <t-side-bar value="{{sideBarIndex2}}" bind:change="onSideBarChange2">
+            <t-side-bar-item wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" disabled="{{item.disabled}}" badge-props="{{item.badgeProps}}" />
+          </t-side-bar>
+          <view class="content">
+            <scroll-view style="transform: translateY(-{{sideBarIndex * 100}}%)" wx:for="{{categories}}" wx:key="index" class="section" scroll-y scroll-with-animation show-scrollbar="{{true}}" data-index12="{{index12}}" wx:for-index='index12' bindtap="checkedTags2" enhanced="{{true}}">
+              <view class="title2">{{item.title || item.label}}</view>
+              <view class="t-grid">
+                <view style="margin-left:0px; margin-top:0px" class="t-grid__content">
+                  <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" wx:for-index='index22'>
+                    <view hover-stay-time="200" style="width:33.33333333333333%" class="t-grid-item t-sidebar" bindtap="checkedTag2" data-index22="{{index22}}">
+                      <view>
+                        <view class="t-grid-item__content t-sidebar-content">
+                          <view class="t-grid-item__words t-grid-item__words--vertical">
+                            <view class="t-grid-item__text t-sidebar-text{{cargo.checked ? '-checked' : ' '}}">
+                              {{cargo.label}}
+                            </view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </view>
+              <!-- <t-grid column="{{3}}" border="{{false}}">
+                <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
+                  <t-grid-item 
+                  t-class-text="t-sidebar-text{{cargo.checked ? '-checked' : ' '}}" 
+                  t-class="t-sidebar" t-class-content="t-sidebar-content"
+                  data-index2="{{index}}"
+                  bindtap="checkedTag" 
+                  text="{{cargo.label}}" >
+                  </t-grid-item>
+                </block>
+              </t-grid> -->
+
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+    </t-popup>
   </t-tab-panel>
 </t-tabs>
 

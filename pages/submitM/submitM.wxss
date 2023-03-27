@@ -184,3 +184,25 @@ page {
   color: #13a4a4;
   border: 1px solid #13a4a4 !important;
 }
+
+.none {
+  position: fixed;
+  width: 100%;
+  bottom: 40vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.none>image {
+  height: 20vh;
+  width: 20vh;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.none>view {
+  flex: 1;
+  font-size: 28rpx;
+  color: #888;
+  text-align: center;
+}

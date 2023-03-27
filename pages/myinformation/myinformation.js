@@ -75,7 +75,7 @@ Page({
   },
 
   changeName(e) {
-    console.log(e)
+    //console.log(e)
     this.setData({
       index: e.currentTarget.dataset.index,
       showName: !this.data.showName

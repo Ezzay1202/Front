@@ -5,15 +5,17 @@
     <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{center}}" />
   </view>
   <van-dropdown-menu active-color="#135ba4" custom-class="dropdown-menu">
-    <block wx:for="{{class}}" wx:key="index">
-      <van-dropdown-item value="{{ item.value1 }}" options="{{ item.option1 }}" />
-    </block>
 
     <van-dropdown-item id="item" title="时间">
-      <van-datetime-picker type="year-month" value="{{ currentDate }}" min-date="{{ minDate }}" bind:input="onInput" />
+      <van-datetime-picker type="year-month" value="{{ currentDate }}" bind:input="onInput" confirm-button-text="" cancel-button-text="" />
     </van-dropdown-item>
 
     <van-dropdown-item id="item" title="{{ itemTitle }}">
+      <view class="header">
+
+        <view class="title"></view>
+        <view class="btn2 btn--confirm" aria-role="button" bindtap="send">确定</view>
+      </view>
       <view class="side-bar-wrapper">
         <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
           <t-side-bar-item class="font_32" wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" disabled="{{item.disabled}}" badge-props="{{item.badgeProps}}" />
@@ -36,7 +38,7 @@
 
 </view>
 
-<scroll-view class="container" style="position:absolute; top:210rpx;   padding-bottom: 1vh;" scroll-y="true" enable-flex="true"> 
+<scroll-view class="container" style="position:absolute; top:210rpx;   padding-bottom: 1vh;" scroll-y="true" enable-flex="true">
   <block wx:for="{{listm}}" wx:key="id">
     <view class="m">
       <view class="title">{{item.text}}</view>

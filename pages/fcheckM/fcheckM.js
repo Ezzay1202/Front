@@ -84,7 +84,7 @@ Page({
       },
       complete: (res) => {
         wx.hideLoading({
-          success: (res) => {},
+          success: (res) => { },
         })
       }
     })
@@ -495,7 +495,7 @@ Page({
             },
             complete: (res) => {
               wx.hideLoading({
-                success: (res) => {},
+                success: (res) => { },
               })
             }
           })

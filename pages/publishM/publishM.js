@@ -99,11 +99,17 @@ Component({
     test1: 0,
     index1: 0,
     index2: 0,
+    index12: 0,
+    index22: 0,
     sideBarIndex: 0,
+    sideBarIndex2: 0,
+
     scrollTop: 0,
     categories: [],
     tagbox: [],
+    tagbox2: [],
     showcheck: false,
+    showcheck2: false,
     fileArray: [],
     step: [{
       text: '已写稿',
@@ -245,6 +251,11 @@ Component({
         showcheck: e.detail.visible,
       });
     },
+    onVisibleChange2(e) {
+      this.setData({
+        showcheck2: e.detail.visible,
+      });
+    },
     cancelCheck(e) {
       this.setData({
         showcheck: !this.data.showcheck
@@ -255,6 +266,16 @@ Component({
         showcheck: !this.data.showcheck
       })
     },
+    cancelCheck2(e) {
+      this.setData({
+        showcheck2: !this.data.showcheck2
+      })
+    },
+    showCheck2(e) {
+      this.setData({
+        showcheck2: !this.data.showcheck2
+      })
+    },
     onSideBarChange(e) {
       console.log(e.detail)
       const {
@@ -263,6 +284,16 @@ Component({
 
       this.setData({
         sideBarIndex: value
+      });
+    },
+    onSideBarChange2(e) {
+      console.log(e.detail)
+      const {
+        value
+      } = e.detail;
+
+      this.setData({
+        sideBarIndex2: value
       });
     },
     checkedTag(e) {
@@ -301,6 +332,47 @@ Component({
         [checked]: !this.data.categories[index1].items[index2].checked,
         tag: temp,
         tagbox: temptagbox
+      })
+      console.log(this.data.categories[index1].items[index2].checked)
+      //console.log(this.data.tag)
+    },
+
+    checkedTag2(e) {
+      console.log(e)
+      this.setData({
+        index22: e.currentTarget.dataset.index22
+      })
+    },
+    checkedTags2(e) {
+      console.log('1')
+      this.setData({
+        index12: e.currentTarget.dataset.index12
+      })
+      let index1 = this.data.index12
+      let index2 = this.data.index22
+      let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
+      let temp = this.data.tag
+      console.log(temp)
+      let temptagbox = this.data.tagbox2
+      let tempTag = this.data.categories[index1]['items'][index2]['label']
+      let templist = temp.get(this.data.categories[index1]['label'])
+      let tempdict = {
+        color: index1,
+        tag: this.data.categories[index1]['label'] + '-' + tempTag
+      }
+      if (templist.includes(tempTag)) {
+        templist.splice(templist.indexOf(tempTag), 1)
+        temp.set(this.data.categories[index1]['label'], templist)
+        temptagbox.splice(temptagbox.indexOf(tempdict), 1)
+      } else {
+        templist.push(tempTag)
+        temp.set(this.data.categories[index1]['label'], templist)
+        temptagbox.push(tempdict)
+      }
+      this.setData({
+        [checked]: !this.data.categories[index1].items[index2].checked,
+        tag2: temp,
+        tagbox2: temptagbox
       })
       console.log(this.data.categories[index1].items[index2].checked)
       //console.log(this.data.tag)
@@ -563,11 +635,18 @@ Component({
         wx.showLoading({
           title: '请稍等...',
         })
+        let obj = Object.create(null);
+        for (let [k, v] of this.data.tag2) {
+          obj[k] = v;
+        }
+        let tags = JSON.stringify(obj)
+        console.log(tags)
         wx.request({
           url: 'http://1.15.118.125:8081/NIC/manage',
           data: {
             "method": "add",
             "data": {
+              "tags": tags,
               "element": 1,
               "publisher": app.globalData.userid,
               "description": description2

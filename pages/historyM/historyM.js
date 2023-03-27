@@ -2,9 +2,8 @@ const image = 'https://tdesign.gtimg.com/miniprogram/images/example2.png';
 
 
 // pages/historyM/historyM.js
-Page({ 
+Page({
   offsetTopList: [],
-  test:'1',
   /**
    * 页面的初始数据
    */
@@ -12,132 +11,16 @@ Page({
     sideBarIndex: 0,
     index1Tump: 0,
     index2Tump: 0,
-    categories: [{
-        label: '教学建设',
-        title: '教学建设',
-        items: [{
-            label: "研讨会",
-            checked: true
-          },
-          {
-            label: "座谈会",
-            checked: false
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "座谈会"
-          },
-          {
-            label: "管院国奖故事"
-          },
-        ]
-      },
-      {
-        label: '选项',
-        title: '标题',
-        items: [{
-          label: "研讨会"
-        }]
-      },
-      {
-        label: '选项',
-        title: '标题',
-        items: [{
-          label: "研讨会"
-        }]
-      },
-      {
-        label: '选项',
-        title: '标题',
-        items: [{
-          label: "研讨会"
-        }]
-      },
-      {
-        label: '选项',
-        title: '标题',
-        items: [{
-          label: "研讨会"
-        }]
-      },
-    ],
+    categories: [],
 
     currentDate: new Date().getTime(),
-    minDate: new Date().getTime(),
     switch1: 'true',
     switch2: 'true',
     switchTitle1: '包邮',
     switchTitle2: '团购',
     itemTitle: '筛选',
-    class: [{
-      value1: 0,
-      option1: [{
-          text: '按时间排序',
-          value: 0,
-          icon: ''
-        },
-        {
-          text: '按分数排序',
-          value: 1,
-          icon: ''
-        },
-        {
-          text: '按状态排序',
-          value: 2,
-          icon: ''
-        },
-      ],
-    }, ],
+
+    tagbox: [],
 
     listm: [{
         text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
@@ -236,6 +119,10 @@ Page({
     index1: 0
   },
 
+  confirm(e) {
+
+  },
+
   goto(e) {
     console.log(e)
     let url = e.currentTarget.dataset.url
@@ -267,7 +154,88 @@ Page({
       currentDate: event.detail,
     });
   },
+
+  send(e) {
+    let obj = Object.create(null);
+    for (let [k, v] of this.data.tag) {
+      obj[k] = v;
+    }
+    let tags = JSON.stringify(obj)
+    console.log(tags)
+    wx.request({
+      url: 'http://1.15.118.125:8081/NIC/show',
+      data: {
+        "method": "showByInput",
+        "data": {
+
+        }
+      },
+      success: (res) => {
+        console.log(res)
+        if (res.data.code === 202) {
+          wx.showToast({
+            title: '发布成功',
+          })
+          app.sleep(2000)
+          wx.redirectTo({
+            url: '/pages/home/home',
+          })
+        } else {
+          wx.showToast({
+            title: '发布失败',
+            icon: 'error'
+          })
+        }
+      }
+    })
+  },
+
   onLoad() {
+    let list1 = []
+    let list2 = []
+    let temp3 = []
+    wx.request({
+      url: 'http://1.15.118.125:8081/NIC/manage?method=getTag',
+      success: (res) => {
+        console.log(res.data.data)
+        list1 = res.data.data['list1'][0]
+        list2 = res.data.data['list2']
+        let len = list1.length === list2.length ? list1.length : 0
+        let tag = new Map()
+        for (let i = 0; i < len; i++) {
+          tag.set(list1[i], [])
+          let temp = {
+            label: list1[i],
+            title: list1[i],
+            items: []
+          }
+          for (let j = 0; j < list2[i].length; j++) {
+            let temp2 = {
+              label: list2[i][j],
+              checked: false
+            }
+            temp['items'] = temp['items'].concat(temp2)
+          }
+          temp3 = temp3.concat(temp)
+          this.setData({
+            categories: temp3,
+            tag: tag
+          })
+          //console.log(temp3)
+        }
+      }
+    })
+
+    wx.request({
+      url: 'http://1.15.118.125:8081/NIC/show',
+      data: {
+        "method": "showFinished"
+      },
+      success: (res) => {
+        console.log(res.data.data);
+      }
+    })
+
     //console.log('1')
     const query = wx.createSelectorQuery().in(this);
     query
@@ -287,7 +255,6 @@ Page({
     });
   },
   checkedTag(e) {
-    console.log('2')
     console.log(e)
     this.setData({
       index2: e.currentTarget.dataset.index2
@@ -301,11 +268,31 @@ Page({
     let index1 = this.data.index1
     let index2 = this.data.index2
     let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
-    console.log(index1, index2)
+    let temp = this.data.tag
+    console.log(temp)
+    let temptagbox = this.data.tagbox
+    let tempTag = this.data.categories[index1]['items'][index2]['label']
+    let templist = temp.get(this.data.categories[index1]['label'])
+    let tempdict = {
+      color: index1,
+      tag: this.data.categories[index1]['label'] + '-' + tempTag
+    }
+    if (templist.includes(tempTag)) {
+      templist.splice(templist.indexOf(tempTag), 1)
+      temp.set(this.data.categories[index1]['label'], templist)
+      temptagbox.splice(temptagbox.indexOf(tempdict), 1)
+    } else {
+      templist.push(tempTag)
+      temp.set(this.data.categories[index1]['label'], templist)
+      temptagbox.push(tempdict)
+    }
     this.setData({
-      [checked]: !this.data.categories[index1].items[index2].checked
+      [checked]: !this.data.categories[index1].items[index2].checked,
+      tag: temp,
+      tagbox: temptagbox
     })
     console.log(this.data.categories[index1].items[index2].checked)
+    //console.log(this.data.tag)
   },
 
   /**
