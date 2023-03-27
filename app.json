@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/submitM/submitM",
+    "pages/fcheckM/fcheckM",
     "pages/publishedM/publishedM",
-    "pages/checkM/checkM",
+    "pages/updateN/updateN",
+    "pages/updateM/updateM",
     "pages/exception/exception",
     "pages/managment/managment",
     "pages/myinformation/myinformation",
@@ -11,9 +12,7 @@
     "pages/performance/performance",
     "pages/myself/myself",
     "pages/historyM/historyM",
-    "pages/fcheckM/fcheckM",
     "pages/mywork/mywork",
-    "pages/updateM/updateM",
     "pages/publishM/publishM",
     "pages/login/login",
     "pages/submitP/submitP",
@@ -21,7 +20,10 @@
     "pages/seeM/seeM",
     "pages/apply/apply",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/inquiryM/inquiryM",
+    "pages/checkM/checkM",
+    "pages/submitM/submitM"
   ],
   "window": {
     "backgroundTextStyle": "light",

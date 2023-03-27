@@ -30,6 +30,10 @@
     </scroll-view>
   </t-tab-panel>
   <t-tab-panel label="待接排版" value="0">
+    <view class="none" wx:if="{{listm.length===0}}">
+      <image src="/image/缺省页_暂无消息.png"></image>
+      <view>您还没有待接排版</view>
+    </view>
     <scroll-view class="container" scroll-y="true" enable-flex="true">
       <block wx:for="{{listp}}" wx:key="id">
         <view class="m">

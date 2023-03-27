@@ -18,7 +18,6 @@ Page({
     const resultInfo = JSON.parse(options.resultInfo)
     console.log(resultInfo)
     let people = []
-    let
     for (let i = 0; i < resultInfo.mag.article.length; i++) {
       let temp = {
         name: resultInfo.mag.article[i].username,
