@@ -176,7 +176,7 @@ Page({
         data: {
           data: {
             password: '123456', //this.data.password
-            userid: 'U202116242' //this.data.userid
+            userid: this.data.userid //this.data.userid
           },
           method: "signUp"
         },

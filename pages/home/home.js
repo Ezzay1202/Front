@@ -361,7 +361,7 @@ Component({
               }
             },
             success: (res) => {
-              //console.log(res.data)
+              console.log(res.data)
               let affairList = res.data.affairID
               let eventList = []
               for (let j = 0; j < affairList.length; j++) {
@@ -557,12 +557,12 @@ Component({
           title: '请输入地点',
           icon: 'error'
         })
-      } else if (!this.data.date2Visible) {
+      } else if (this.data.date1CurrentValue === undefined) {
         wx.showToast({
           title: '请输入起始时间',
           icon: 'error'
         })
-      } else if (!this.data.date1Visible) {
+      } else if (this.data.date2CurrentValue === undefined) {
         wx.showToast({
           title: '请输入结束时间',
           icon: 'error'
@@ -595,7 +595,7 @@ Component({
               })
               app.sleep(2000)
               this.cancelMask()
-              this.attached()
+              this.onLoad()
             } else {
               wx.showToast({
                 title: '添加失败',
@@ -708,9 +708,17 @@ Component({
       })
     },
     showTimes() {
-      this.setData({
-        showtime: !this.data.showtime
-      })
+      if (app.globalData.hasLogin) {
+        this.setData({
+          showtime: !this.data.showtime
+        })
+      } else {
+        wx.showToast({
+          title: '尚未登录!',
+          icon: 'error'
+        })
+      }
+
     },
     cancelMask() {
       this.setData({

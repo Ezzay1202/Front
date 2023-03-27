@@ -17,7 +17,23 @@ Page({
     }
     const resultInfo = JSON.parse(options.resultInfo)
     console.log(resultInfo)
+    let people = []
+    for (let i = 0; i < resultInfo.mag.article.length; i++) {
+      let temp = {
+        name: resultInfo.mag.article[i].username,
+        job: '文'
+      }
+      people.push(temp)
+    }
+    for (let i = 0; i < resultInfo.mag.photo.length; i++) {
+      let temp = {
+        name: resultInfo.mag.photo[i].username,
+        job: '摄'
+      }
+      people.push(temp)
+    }
     this.setData({
+      people: people,
       missionID: resultInfo.missionID,
       mag: resultInfo.mag,
       tag: resultInfo.tag,
