@@ -2,8 +2,9 @@ const image = 'https://tdesign.gtimg.com/miniprogram/images/example2.png';
 
 
 // pages/historyM/historyM.js
-Page({
+Page({ 
   offsetTopList: [],
+  test:'1',
   /**
    * 页面的初始数据
    */
