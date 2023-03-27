@@ -1,28 +1,33 @@
 /* pages/mydate/mydate.wxss */
 page {
+  background-size: auto 100vh;
   padding: 30rpx 20rpx;
   background-image: url(https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png);
   background-position: 50%;
   background-color: rgb(238, 238, 238);
-  --bg-color:rgba(255, 255, 255, 0.3);
-  --class-height:110rpx;
-  --bu-color:#0b1f51;
+  --bg-color: rgba(255, 255, 255, 0.3);
+  --class-height: 110rpx;
+  --bu-color: #0b1f51;
 }
-.flex-row{
+
+.flex-row {
   display: flex;
 }
-.flex-column{
+
+.flex-column {
   display: flex;
   flex-direction: column;
 }
+
 .head {
+  height: 10vh;
   margin-bottom: 20rpx;
 }
 
 .head-left {
   border-radius: 10rpx;
   height: 125rpx;
-  background:var(--bg-color);
+  background: var(--bg-color);
   width: 90rpx;
   margin-right: 10rpx;
   position: relative;
@@ -52,11 +57,13 @@ page {
   left: 2px;
   bottom: 2px;
 }
-.week{
+
+.week {
   padding: 10rpx;
- flex:1;
- margin: .5em 0;
+  flex: 1;
+  margin: .5em 0;
 }
+
 .head-week {
   font-size: 26rpx;
   font-weight: bold;
@@ -108,32 +115,35 @@ page {
   color: #7e7a7a;
   text-align: center;
 }
-.container{
-  height:1000rpx;
-  overflow:scroll;
+
+.container {
+  height: 83vh;
+  overflow: scroll;
   margin-top: .5rem;
   display: grid;
   grid-template-areas: "time word";
   grid-template-columns: 1fr 6fr;
   box-sizing: border-box;
 }
-.swiper{
+
+.swiper {
   width: 600rpx;
-  height:1444rpx;
+  height: 1444rpx;
   position: relative;
 }
+
 .container-right {
   grid-area: word;
   border-radius: 10rpx;
   background-color: var(--bg-color);
   width: 600rpx;
-  height:1444rpx;
+  height: 1444rpx;
   position: relative;
   box-sizing: border-box;
   padding: 20rpx 10rpx;
-  display:grid;
-  grid-template-columns: repeat(7,1fr);
-  grid-template-rows: repeat(12,1fr);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(12, 1fr);
 }
 
 .con-icon {
@@ -149,7 +159,7 @@ page {
 .con-item {
   text-align: center;
   border-radius: 10rpx;
-  margin-right: 10rpx;
+  margin-right: 3rpx;
   margin-bottom: 5rpx;
   font-size: 17rpx;
   color: #fff;
@@ -161,13 +171,17 @@ page {
   justify-items: center;
   align-items: center;
   opacity: 0.8;
-  border: 1px solid white;
+
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  /* border: 1px solid white; */
 }
 
 @keyframes show {
   0% {
     margin-left: 20rpx;
   }
+
   100% {
     margin-left: 0;
   }
@@ -181,7 +195,8 @@ page {
 .con-item:last-child {
   margin-right: 0;
 }
-.textbox{
+
+.textbox {
   display: -webkit-flex;
   flex-direction: column;
   -webkit-box-align: center;
@@ -190,21 +205,23 @@ page {
 /* 多行文字换行 */
 .line_ellipsis {
   overflow: hidden;
+  display: -webkit-box;
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
-  -webkit-box-orient:vertical;
+  -webkit-box-orient: vertical;
 }
 
 /* 弹框 */
 
-.mask-bac{
+.mask-bac {
   position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
+
 .modal {
   width: 600rpx;
   height: 750rpx;
@@ -220,7 +237,8 @@ page {
   font-size: 27rpx;
   line-height: 40rpx;
 }
-.modal .input-box{
+
+.modal .input-box {
   margin-top: 100rpx;
   margin-left: 25rpx;
   padding: .3em;
@@ -229,38 +247,39 @@ page {
   flex-direction: column;
 }
 
-.phonecs{
+.phonecs {
   background-color: #e5f4ae;
   margin-bottom: 1em;
   color: black;
-  width:450rpx;
+  width: 450rpx;
   font-size: 30rpx;
   padding: .5em;
   border: 6rpx outset #0f0c0d;
 }
 
-.passwordcs{
-  width:450rpx;
+.passwordcs {
+  width: 450rpx;
   font-size: 30rpx;
   padding: .5em;
   border: 6rpx outset #0f0c0d;
 }
-.modal .button-box{
-  position:absolute;
-  bottom:100rpx;
-  width:540rpx;
+
+.modal .button-box {
+  position: absolute;
+  bottom: 100rpx;
+  width: 540rpx;
   margin: .5em 0;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
 }
 
-.button-box >button{
-  flex:1;
+.button-box>button {
+  flex: 1;
   width: 300rpx;
   font-size: 29rpx;
-  margin: 0 25rpx .5em ;
+  margin: 0 25rpx .5em;
   padding: 0;
   color: var(--bu-color);
   background-color: #aef4e0;
@@ -279,4 +298,3 @@ page {
   transition: all 1s;
   opacity: 1;
 }
-

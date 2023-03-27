@@ -1,8 +1,10 @@
 {
   "component": true,
   "usingComponents": {
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
     "t-tabs": "tdesign-miniprogram/tabs/tabs",
-    "t-tab-panel":  "tdesign-miniprogram/tabs/tab-panel",
+    "t-tab-panel": "tdesign-miniprogram/tabs/tab-panel",
     "t-search": "tdesign-miniprogram/search/search",
     "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
     "t-tab-bar-item": "tdesign-miniprogram/tab-bar/tab-bar-item",

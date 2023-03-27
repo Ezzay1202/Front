@@ -49,18 +49,17 @@ page {
   flex: 3;
   margin: .6em 5%;
   display: flex;
-  overflow: hidden;
+  border: 2rpx solid black;
+  box-shadow: 0 1px 5px 0 #efefef;
   box-sizing: border-box;
   padding: 1em;
   flex-direction: column;
-  background-color: rgb(236, 242, 254);
   border-radius: 5%;
 }
 
 .score {
   flex: 2;
   margin: .5em;
-  border-bottom: 1px solid #ccc;
 }
 
 .star {
@@ -91,26 +90,33 @@ page {
 }
 
 .content {
+  padding: 0 1em;
   flex: 2;
   margin: .5em;
-  overflow: hidden;
   box-sizing: border-box;
-}
-
-.content .left {
-  text-align: center;
-  font-size: 28rpx;
-  color: lightgrey
-}
-
-.content .right {
   width: 610rpx;
   font-size: 24rpx;
-  float: left;
+  display: flex;
   color: #888;
 }
 
-.content .right text {
+/* .content .left {
+  text-align: center;
+  font-size: 28rpx;
+  color: lightgrey
+} */
+
+.content .right {
+  flex: 1;
+  margin-top: 6rpx;
+  margin-left: 10rpx;
+}
+
+.right text {
+  font-size: 34rpx;
+}
+
+/* .content .right text {
   font-size: 24rpx;
   padding: 13rpx 24rpx;
   float: left;
@@ -118,11 +124,11 @@ page {
   border-radius: 10rpx;
   margin-right: 34rpx;
   margin-top: 20rpx;
-}
+} */
 
 .conts {
   flex: 3;
-  margin: .6rem 5%;
+  margin: .6rem 5% 0;
   border-radius: 5%;
   display: flex;
 }
@@ -133,17 +139,18 @@ textarea {
   color: rgba(0, 0, 0, 0.9);
   font-size: 24rpx;
   line-height: 20rpx;
+  height: 220rpx;
   padding-bottom: 16rpx;
 }
 
 .areas {
   flex: 1;
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(245, 245, 245);
   margin: 1em 3%;
   font-size: 30rpx;
   overflow: scroll;
-  border: 2px solid #13a4a4 !important;
-
+  border: 1px solid #13a4a4 !important;
+  box-shadow: 0 0rpx 10rpx 0 #13a4a4;
 }
 
 .currentWordNumber {
@@ -289,7 +296,6 @@ textarea {
 }
 
 .btn button {
-  flex: 1;
   width: 600rpx;
   height: 80rpx;
   line-height: 80rpx;
@@ -297,8 +303,17 @@ textarea {
   bottom: 37rpx;
 }
 
-.btn_go {
-  margin-top: 2em;
+.btn_lan {
+  margin: 0 2rem;
+  font-size: 25rpx !important;
+  flex: 0;
+  bottom: 0rpx !important;
+  color: #13a4a4;
+  border: 1px solid #13a4a4 !important;
+}
+
+.btn_back {
+  margin-top: 1em;
   color: #13a4a4;
   border: 1px solid #13a4a4 !important;
 }
@@ -307,8 +322,8 @@ button:after {
   border: 0;
 }
 
-.btn_back {
-  margin-top: 1em;
+.btn_go {
+  margin-top: 2em;
   background-color: #13a4a4;
   color: white;
 }
@@ -478,4 +493,22 @@ button:after {
   top: 50%;
   transition: all 1s;
   opacity: 1;
+}
+
+.pop_box {
+  padding: 1.5em 0;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.pop_item {
+  padding: .5em 1.5em;
+  margin: .2em 0 0;
+  box-shadow: 0 0 5rpx 0 #efefef;
+  border-bottom: 1rpx solid #efefef;
+}
+
+.pop_item text {
+  font-size: 30rpx;
 }

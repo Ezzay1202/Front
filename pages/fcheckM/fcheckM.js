@@ -43,7 +43,16 @@ Page({
       file_download: resultInfo.files
     })
   },
+  showPopup() {
+    this.setData({ show: true });
+  },
 
+  onClose() {
+    this.setData({ show: false });
+  },
+  handleChange() {
+    this.setData({ checked: !this.data.checked });
+  },
   downloadFile(e) {
     let arr = e.currentTarget.dataset.id
     console.log(arr)
@@ -61,7 +70,7 @@ Page({
       },
       complete: (res) => {
         wx.hideLoading({
-          success: (res) => {},
+          success: (res) => { },
         })
       }
     })
@@ -70,6 +79,21 @@ Page({
    * 页面的初始数据
    */
   data: {
+    often: [{
+      detail: '写的不错哦，继续加油'
+    }, {
+      detail: '写的不错哦，继续加油'
+    }, {
+      detail: '写的不错哦，继续加油,写的不错哦，继续加油写的不错哦，继续加油写的不错哦，继续加油写的不错哦，继续加油'
+    }, {
+      detail: '写的不错哦，继续加油'
+    }, {
+      detail: '写的不错哦，继续加油'
+    }, {
+      detail: '写的不错哦，继续加油,写的不错哦，继续加油写的不错哦，继续加油写的不错哦，继续加油写的不错哦，继续加油'
+    }],
+    show: false,
+    checked: true,
     showMask: false,
     mode: '',
     monthVisible: false,
@@ -90,7 +114,7 @@ Page({
     }, {
       name: "李钰",
       job: "审稿",
-    }, ],
+    },],
     review: '',
     remarks: '',
     isManagement: false,
@@ -474,7 +498,7 @@ Page({
             },
             complete: (res) => {
               wx.hideLoading({
-                success: (res) => {},
+                success: (res) => { },
               })
             }
           })

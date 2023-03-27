@@ -79,10 +79,10 @@
         </view>
       </block>
     </scroll-view>
-    <view class="n">
+    <!-- <view class="n">
       <view class="buttonbox">
         <button data-id="{{item.missionID}}" bindtap='takeTypesetting'>接排版</button>
       </view>
-    </view>
+    </view> -->
   </t-tab-panel>
 </t-tabs>

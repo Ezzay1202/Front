@@ -91,6 +91,13 @@ const PICKER_KEY = {
 
 Component({
   data: {
+    stickyProps: {
+      zIndex: 20,
+    },
+    currentTab: 1,
+    swiperViewHeight: '',
+    maxswiperViewHeight: [0, 0],
+    arr: ['.v1', '.v2'],
     eventname: '',
     locationname: '',
     eventList: [],
@@ -110,19 +117,32 @@ Component({
     }, {
       img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
       people: "乔晟豪"
-    }, ],
+    },],
+    news: [{
+      url: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2A8PfImrPNmiaLpqzmPfm3mHSUiaUmLgOkjLVeULdckc3Y0SRqMruU3eNIS9jW7icd9Guhm35CPdvAGQ/0?wx_fmt=jpeg",
+      text: '支部建设|“管工渗透共建，学悟两会精神 ”——华科大•电子科大两校两院联合开展主题党日活动'
+    }, {
+      url: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2A8PfImrPNmiaLpqzmPfm3mHSUiaUmLgOkjLVeULdckc3Y0SRqMruU3eNIS9jW7icd9Guhm35CPdvAGQ/0?wx_fmt=jpeg",
+      text: '支部建设|“管工渗透共建，学悟两会精神 ”——华科大•电子科大两校两院联合开展主题党日活动'
+    }, {
+      url: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2A8PfImrPNmiaLpqzmPfm3mHSUiaUmLgOkjLVeULdckc3Y0SRqMruU3eNIS9jW7icd9Guhm35CPdvAGQ/0?wx_fmt=jpeg",
+      text: '支部建设|“管工渗透共建，学悟两会精神 ”——华科大•电子科大两校两院联合开展主题党日活动'
+    }, {
+      url: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2A8PfImrPNmiaLpqzmPfm3mHSUiaUmLgOkjLVeULdckc3Y0SRqMruU3eNIS9jW7icd9Guhm35CPdvAGQ/0?wx_fmt=jpeg",
+      text: '支部建设|“管工渗透共建，学悟两会精神 ”——华科大•电子科大两校两院联合开展主题党日活动'
+    }],
     boxshow: [{
-        image: "http://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2CPGoKg3rLAVNiaIjRHRgucKpf2D0xGKXEABncIfmRpeiaAvvRjlibycFw2r9EOiaHJYDOJ2yQp23PX3Q/0?wx_fmt=jpeg",
-        text: "W.0.W | 我与兔年那些不得不说的事！"
-      },
-      {
-        image: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2Ac8wK5HibkMhAmDeXRps44clAPtULQic6IObMB7rB5uscibPfTbM0GqLwXsFrZqR2GCyg0FSKicc0uPg/0?wx_fmt=jpeg",
-        text: "M.O.M新春特辑 | 年味儿速递：快看！这些管院er用镜头记录下了年前幸福的瞬间~"
-      },
-      {
-        image: "https://mmbiz.qpic.cn/mmbiz_png/gbpAf4uUr2B1uZSbxb6SdAEtqm0fNDDSL1arFMsgCcENBibMQbtpRREMp47auxa2uqHzdKXHlcTqRgqasGTpAKg/0?wx_fmt=png",
-        text: "W.O.W | 惊！原来距离我成为学霸需要的时间是......"
-      }
+      image: "http://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2CPGoKg3rLAVNiaIjRHRgucKpf2D0xGKXEABncIfmRpeiaAvvRjlibycFw2r9EOiaHJYDOJ2yQp23PX3Q/0?wx_fmt=jpeg",
+      text: "W.0.W | 我与兔年那些不得不说的事！"
+    },
+    {
+      image: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2Ac8wK5HibkMhAmDeXRps44clAPtULQic6IObMB7rB5uscibPfTbM0GqLwXsFrZqR2GCyg0FSKicc0uPg/0?wx_fmt=jpeg",
+      text: "M.O.M新春特辑 | 年味儿速递：快看！这些管院er用镜头记录下了年前幸福的瞬间~"
+    },
+    {
+      image: "https://mmbiz.qpic.cn/mmbiz_png/gbpAf4uUr2B1uZSbxb6SdAEtqm0fNDDSL1arFMsgCcENBibMQbtpRREMp47auxa2uqHzdKXHlcTqRgqasGTpAKg/0?wx_fmt=png",
+      text: "W.O.W | 惊！原来距离我成为学霸需要的时间是......"
+    }
 
     ],
     isShow: false,
@@ -185,22 +205,30 @@ Component({
     value_s: '',
     categories: [], // 人员列表
     useridList: [],
+    nowCheck: 1,
+    titleBox: [{
+      value: 1,
+      title: '精彩摄影'
+    }, {
+      value: 2,
+      title: '新闻速览'
+    }],
     list: [{
-        value: 'label_1',
-        label: '首页',
-        icon: 'home'
-      },
-      {
-        value: 'label_2',
-        label: '发布',
-        icon: 'check-rectangle'
-      },
+      value: 'label_1',
+      label: '首页',
+      icon: 'home'
+    },
+    {
+      value: 'label_2',
+      label: '发布',
+      icon: 'check-rectangle'
+    },
 
-      {
-        value: 'label_4',
-        label: '我的',
-        icon: 'user'
-      },
+    {
+      value: 'label_4',
+      label: '我的',
+      icon: 'user'
+    },
     ],
     todaywork: [], //我的时间
     day: [], //查看所有日程
@@ -214,47 +242,47 @@ Component({
       text: '辅导员审稿',
     }, {
       text: '排版',
-    }, ],
+    },],
     listm: [{
-        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-        date: "2022-11-30",
-        location: "管理学院105",
-        people: [{
-          key: 1,
-          name: "陶柯羽"
-        }, {
-          key: 2,
-          name: "高原"
-        }, {
-          key: 5,
-          name: "徐文慧"
-        }, {
-          key: 4,
-          name: "张赫"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-        score: 4.5
-      },
-      {
-        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-        date: "2022-11-30",
-        location: "管理学院105",
-        people: [{
-          key: 1,
-          name: "陶柯羽"
-        }, {
-          key: 2,
-          name: "高原"
-        }, {
-          key: 5,
-          name: "徐文慧"
-        }, {
-          key: 4,
-          name: "张赫"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-        score: 4.5
-      },
+      text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
+      date: "2022-11-30",
+      location: "管理学院105",
+      people: [{
+        key: 1,
+        name: "陶柯羽"
+      }, {
+        key: 2,
+        name: "高原"
+      }, {
+        key: 5,
+        name: "徐文慧"
+      }, {
+        key: 4,
+        name: "张赫"
+      },],
+      url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
+      score: 4.5
+    },
+    {
+      text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
+      date: "2022-11-30",
+      location: "管理学院105",
+      people: [{
+        key: 1,
+        name: "陶柯羽"
+      }, {
+        key: 2,
+        name: "高原"
+      }, {
+        key: 5,
+        name: "徐文慧"
+      }, {
+        key: 4,
+        name: "张赫"
+      },],
+      url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
+      score: 4.5
+    },
     ],
     time: 2 * 24 * 60 * 60 * 1000,
     timeData: {},
@@ -452,6 +480,75 @@ Component({
     }
   },
   methods: {
+    changeTitle(e) {
+      let index = e.currentTarget.dataset.indext;
+      this.setData({
+        nowCheck: index
+      })
+    },
+    bindChange: function (e) {
+      var that = this;
+      that.setData({
+        currentTab: e.detail.current
+      });
+      this.setSwiperHeight(this.data.arr[e.detail.current], e.detail.current)
+    },
+    setSwiperHeight: function (v, num) {
+      let query = wx.createSelectorQuery().in(this);
+      query.select(v).boundingClientRect();
+      query.exec((res) => {
+        let headerHeight = res[0].height;
+        this.setData({
+          swiperViewHeight: headerHeight
+        });
+        console.log(this.data.swiperViewHeight)
+        if (this.data.swiperViewHeight >= this.data.maxswiperViewHeight[num]) {
+          console.log(this.data.swiperViewHeight)
+          let maxswiperViewHeight = 'maxswiperViewHeight[' + num + ']'
+          this.setData({
+            [maxswiperViewHeight]: this.data.swiperViewHeight
+          })
+        }
+      });
+
+    },
+    onLoad: function (options) {
+      this.setSwiperHeight(this.data.arr[1], 1)
+      if (app.globalData.hasLogin) {
+        wx.request({
+          url: 'http://1.15.118.125:8080/NIC/lesson',
+          data: {
+            "method": "get",
+            "data": {
+              "weekStart": 1,
+              "weekEnd": 19,
+              "userid": app.globalData.userid
+            }
+          },
+          success: (res) => {
+            console.log(res.data)
+            app.globalData.kcb_code = res.data.code
+            if (app.globalData.kcb_code === 702) {
+              app.globalData.kcb = res.data.data
+            }
+          }
+        })
+
+
+
+        let a = {
+          name: "概率论",
+          add: "D888",
+          time1: "8:00",
+          time2: "10:00",
+        }
+
+
+
+
+      }
+
+    },
     eventName(e) {
       this.setData({
         eventname: e.detail.value
@@ -463,7 +560,7 @@ Component({
         locationname: e.detail.value
       })
     },
-    kcbSpider(e) {},
+    kcbSpider(e) { },
 
 
 
@@ -476,16 +573,16 @@ Component({
           icon: 'error'
         })
       } else
-      if (app.globalData.kcb_code != 702) {
-        wx.showToast({
-          title: '您未导入课程表!',
-          icon: 'error'
-        })
-      } else {
-        wx.navigateTo({
-          url: "/pages/mydate/mydate?kcb=" + JSON.stringify(app.globalData.kcb),
-        })
-      }
+        if (app.globalData.kcb_code != 702) {
+          wx.showToast({
+            title: '您未导入课程表!',
+            icon: 'error'
+          })
+        } else {
+          wx.navigateTo({
+            url: "/pages/mydate/mydate?kcb=" + JSON.stringify(app.globalData.kcb),
+          })
+        }
     },
     checkedTag(e) {
       console.log(e)
@@ -640,7 +737,7 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker change:', );
+      console.log('picker change:',);
       this.setData({
         [`${key}Visible`]: false,
         [`${key}Value`]: e.detail.value,

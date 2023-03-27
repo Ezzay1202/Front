@@ -43,23 +43,26 @@
     </view>
     <!--内容-->
     <view class='content'>
-      <view class='left'>
-        点击添加tag
-      </view>
       <view class='right'>
-        <block wx:for="{{tag}}" wx:key="index">
+        <text>设为优秀稿件</text>
+        <!-- <block wx:for="{{tag}}" wx:key="index">
           <text bindtap='labelx' class="{{item.show===true ? 'labelColor':'' }}">{{item.name}}</text>
         </block>
-        <text bindtap='label' class="{{attitude===true ? 'labelColor':''}}" data-index="{{attitude}}">小清新</text>
+        <text bindtap='label' class="{{attitude===true ? 'labelColor':''}}" data-index="{{attitude}}">小清新</text> -->
       </view>
+      <van-switch active-color="#13a4a4" checked="{{ checked}}" bind:change="handleChange" size='25px' />
     </view>
   </view>
   <!--textarea-->
   <view class="conts">
     <textarea class="areas" placeholder='请输入您对该稿件的评价' bindinput="inputRemarks">
            <!-- <text class="currentWordNumber">{{currentWordNumber| }}/{{max}}</text> -->
-       </textarea>
+    </textarea>
+
   </view>
+</view>
+<view style="bottom: 0;">
+  <button class="btn_lan" bindtap="showPopup">选择常用语</button>
 </view>
 <block>
   <view class="filebox" style="padding: 1em;">
@@ -112,8 +115,17 @@
       </view>
       <view class="mbutton-box">
         <button bindtap="cancelMask">取消</button>
-          <button style="background-color: var(--bu-color); color:white" bindtap="missionRollback">确认</button>
+        <button style="background-color: var(--bu-color); color:white" bindtap="missionRollback">确认</button>
       </view>
     </view>
   </view>
 </view>
+<van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 40%" bind:close="onClose">
+  <view class="pop_box">
+    <block wx:for="{{often}}" wx:key="index">
+      <view class="pop_item">
+        <text>{{item.detail}}</text>
+      </view>
+    </block>
+  </view>
+</van-popup>

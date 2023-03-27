@@ -6,170 +6,186 @@
 </view>
 -->
 
-<swiper style="overflow: scroll; height:3000rpx" current="1">
+<swiper bindchange="bindChange" class='swp' style="height:{{maxswiperViewHeight[currentTab]}}px" current="{{currentTab}}">
   <swiper-item>
-    <view class="first-container">
-      <view class='middle-container'>
-        <view class="view_2">
-          <block wx:for="{{functions_show}}" wx:key="index">
-            <view class="view_tupianwenzi view_tupianwenzi-four" bindtap="goTomoudle2" data-index="{{index}}">
-              <image class="image_tupian-four" src="{{item.img}}"></image>
-              <text class="text_1-four">{{item.name}}</text>
+    <view class="v1">
+      <view class="first-container">
+        <view class='middle-container'>
+          <view class="view_2">
+            <block wx:for="{{functions_show}}" wx:key="index">
+              <view class="view_tupianwenzi view_tupianwenzi-four" bindtap="goTomoudle2" data-index="{{index}}">
+                <image class="image_tupian-four" src="{{item.img}}"></image>
+                <text class="text_1-four">{{item.name}}</text>
+              </view>
+            </block>
+          </view>
+          <view class="view_tupianwenzi view_tupianwenzi-four" bindtap="showFunctions">
+            <image class="image_tupian-four" src="/image/kx.png"></image>
+            <text class="text_1-four">{{showfunctions? "更多功能":"收回"}}</text>
+          </view>
+        </view>
+
+        <view class="hidden-container" hidden="{{showfunctions}}">
+          <block wx:for="{{functions}}" wx:key="index">
+            <view class="view_tupianwenzi view_tupianwenzi-five" bindtap="goTomoudle2" data-index="{{index}}">
+              <image class="image_tupian-five" src="{{item.img}}"></image>
+              <text class="text_1-five">{{item.name}}</text>
             </view>
           </block>
         </view>
-        <view class="view_tupianwenzi view_tupianwenzi-four" bindtap="showFunctions">
-          <image class="image_tupian-four" src="/image/kx.png"></image>
-          <text class="text_1-four">{{showfunctions? "更多功能":"收回"}}</text>
-        </view>
       </view>
-      <view class="hidden-container" hidden="{{showfunctions}}">
-        <block wx:for="{{functions}}" wx:key="index">
-          <view class="view_tupianwenzi view_tupianwenzi-five" bindtap="goTomoudle2" data-index="{{index}}">
-            <image class="image_tupian-five" src="{{item.img}}"></image>
-            <text class="text_1-five">{{item.name}}</text>
-          </view>
-        </block>
-      </view>
-    </view>
-    <view class="outview">
-      <text class="text">我的时间</text>
-      <text style="margin-top: .4em; " class="date">今天</text>
-      <view class="flex-column">
-        <block wx:for="{{todaywork}}" wx:key="index">
-          <view class="mywork">
-            <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
-            <text>{{item.add}}</text>
-            <text>{{item.time1}}-{{item.time2}}</text>
-          </view>
-        </block>
-        <view class="button-box">
-          <button bindtap="showTimes">查看所有日程</button>
-          <button style="background-color: #307090;" bindtap="addWorks">添加日程</button>
-          <button bindtap="gotoKcb">查看课程表</button>
-        </view>
-      </view>
-      <view class="myday" hidden="{{showtime}}">
-        <block wx:for="{{day}}" wx:key="index">
-          <text class="date sticky">{{item.date}}</text>
-          <block wx:for="{{item.work}}" wx:key="index">
+      <view class="outview">
+        <text class="text">我的时间</text>
+        <text style="margin-top: .4em; " class="date">今天</text>
+        <view class="flex-column">
+          <block wx:for="{{todaywork}}" wx:key="index">
             <view class="mywork">
               <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
               <text>{{item.add}}</text>
               <text>{{item.time1}}-{{item.time2}}</text>
             </view>
           </block>
-        </block>
-      </view>
-    </view>
-    <view class="outview worklist">
-      <text class="text">我的工作</text>
-      <swiper class="swiper">
-        <swiper-item class="swiper">
-          <text>待写稿稿件</text>
-          <block wx:for="{{listm}}" wx:key="id">
-            <view class="myM-ing">
-              <view class="m-ing">
-                <view class="title">{{item.text}}</view>
-                <t-steps current="{{steps_num}}" current-status="error" bind:change="onFirstChange" readonly="true">
-                  <block wx:for="{{step}}" wx:key="index">
-                    <t-step-item t-class-content="t-class-content" t-class-title="t-class-title" title="{{item.text}}" content="{{item.content}}" />
-                  </block>
-                </t-steps>
+          <view class="button-box">
+            <button bindtap="showTimes">查看所有日程</button>
+            <button style="background-color: #307090;" bindtap="addWorks">添加日程</button>
+            <button bindtap="gotoKcb">查看课程表</button>
+          </view>
+        </view>
+        <view class="myday" hidden="{{showtime}}">
+          <block wx:for="{{day}}" wx:key="index">
+            <text class="date sticky">{{item.date}}</text>
+            <block wx:for="{{item.work}}" wx:key="index">
+              <view class="mywork">
+                <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
+                <text>{{item.add}}</text>
+                <text>{{item.time1}}-{{item.time2}}</text>
               </view>
-              <view class="countdown">
-                <block wx:if="true">
-                  <van-count-down use-slot time="{{ time }}" format="DD 天 HH 时 mm 分" bind:change="onTimeChange">
-                    <text>距离任务开始还有</text>
-                    <text class="item">{{ timeData.days }}</text>
-                    <text>天</text>
-                    <text class="item">{{ timeData.hours }}</text>
-                    <text>:</text>
-                    <text class="item">{{ timeData.minutes }}</text>
-                  </van-count-down>
-                </block>
-
-              </view>
-              <view class="button-box">
-                <button style="font-size: 28rpx; padding: 0;">去提交稿件</button>
-              </view>
-              <text>相似稿件</text>
-              <view class="myM-history" style="padding: 0; margin-bottom:1em; ">
-                <block wx:for="{{listm}}" wx:key="id">
-                  <view class="m">
-                    <view class="title">{{item.text}}</view>
-                    <view class="text">
-                      <text>{{item.date}}</text>
-                      <text>{{item.location}}</text>
-                      <button bindtap="goto" data-url="{{item.url}}">点击浏览</button>
-                    </view>
-                    <view class="n">
-                      <view class="people">
-                        <block wx:for="{{item.people}}" wx:key="index">
-                          <text data-id="{{item.key}}">{{item.name}}</text>
-                        </block>
-                      </view>
-                      <view class="score">
-                        {{item.score}}分
-                      </view>
-                    </view>
-                  </view>
-                </block>
-              </view>
-            </view>
+            </block>
           </block>
-        </swiper-item>
-      </swiper>
+        </view>
+      </view>
+      <view class="outview worklist">
+        <text class="text">我的工作</text>
+        <swiper class="swiper">
+          <swiper-item class="swiper">
+            <text>待写稿稿件</text>
+            <block wx:for="{{listm}}" wx:key="id">
+              <view class="myM-ing">
+                <view class="m-ing">
+                  <view class="title">{{item.text}}</view>
+                  <t-steps current="{{steps_num}}" current-status="error" bind:change="onFirstChange" readonly="true">
+                    <block wx:for="{{step}}" wx:key="index">
+                      <t-step-item t-class-content="t-class-content" t-class-title="t-class-title" title="{{item.text}}" content="{{item.content}}" />
+                    </block>
+                  </t-steps>
+                </view>
+                <view class="countdown">
+                  <block wx:if="true">
+                    <van-count-down use-slot time="{{ time }}" format="DD 天 HH 时 mm 分" bind:change="onTimeChange">
+                      <text>距离任务开始还有</text>
+                      <text class="item">{{ timeData.days }}</text>
+                      <text>天</text>
+                      <text class="item">{{ timeData.hours }}</text>
+                      <text>:</text>
+                      <text class="item">{{ timeData.minutes }}</text>
+                    </van-count-down>
+                  </block>
+
+                </view>
+                <view class="button-box">
+                  <button style="font-size: 28rpx; padding: 0;">去提交稿件</button>
+                </view>
+                <text>相似稿件</text>
+                <view class="myM-history" style="padding: 0; margin-bottom:1em; ">
+                  <block wx:for="{{listm}}" wx:key="id">
+                    <view class="m">
+                      <view class="title">{{item.text}}</view>
+                      <view class="text">
+                        <text>{{item.date}}</text>
+                        <text>{{item.location}}</text>
+                        <button bindtap="goto" data-url="{{item.url}}">点击浏览</button>
+                      </view>
+                      <view class="n">
+                        <view class="people">
+                          <block wx:for="{{item.people}}" wx:key="index">
+                            <text data-id="{{item.key}}">{{item.name}}</text>
+                          </block>
+                        </view>
+                        <view class="score">
+                          {{item.score}}分
+                        </view>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </view>
+            </block>
+          </swiper-item>
+        </swiper>
+      </view>
     </view>
   </swiper-item>
   <swiper-item style="background-color: white;">
-    <swiper class="swiper_show" indicator-dots="true" autoplay="{{true}}" circular="{{true}}" interval="3000">
-      <block wx:for="{{swiper_show}}" wx:key="index">
-        <swiper-item bindtap="goto" data-url="{{item.url}}">
-          <image src="{{item.image}}" mode="scaleToFill"></image>
-          <view class="swiper_text">
+    <view class="v2">
+      <swiper class="swiper_show" indicator-dots="true">
+        <block wx:for="{{swiper_show}}" wx:key="index">
+          <swiper-item bindtap="goto" data-url="{{item.url}}">
+            <image src="{{item.image}}" mode="scaleToFill"></image>
+            <view class="swiper_text">
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="gird_view">
+        <view class="gird_view_2" bindtap="func1">
+          <text>查询稿件</text>
+        </view>
+        <view class="gird_view_2" bindtap="func2">
+          <text>历史稿件</text>
+        </view>
+      </view>
+      <view class="video_box">
+        <video muted="true" autoplay="true" src="http://cm.hust.edu.cn/js/zhuanye20220614.mp4" />
+      </view>
+      <view class="showflow">
+        <!---->
+        <scroll-view scroll-x="true" style="padding: .2em;">
+          <view class="showflow_items">
+            <block wx:for="{{boxshow}}" wx:key="index">
+              <view class="showflow_box">
+                <image src="{{item.image}}" mode="" />
+                <text>{{item.text}}</text>
+              </view>
+            </block>
           </view>
-        </swiper-item>
-      </block>
-    </swiper>
-    <view class="gird_view">
-      <view class="gird_view_2" bindtap="func1">
-        <text>查询稿件</text>
+        </scroll-view>
       </view>
-      <view class="gird_view_2" bindtap="func2">
-        <text>历史稿件</text>
+      <view class="showflow_title_box">
+        <block wx:for="{{titleBox}}" wx:key="index">
+          <view class="showflow_title" style="color: {{nowCheck===item.value? '#38499a':'gray'}};" bindtap="changeTitle" data-indext="{{item.value}}">{{item.title}}</view>
+        </block>
       </view>
-    </view>
-    <view class="video_box">
-      <video muted="true" autoplay="true" src="http://cm.hust.edu.cn/js/zhuanye20220614.mp4" />
-    </view>
-    <view class="showflow">
-      <!---->
-      <scroll-view scroll-x="true" style="padding: .2em;">
-        <view class="showflow_items">
-          <block wx:for="{{boxshow}}" wx:key="index">
-            <view class="showflow_box">
-              <image src="{{item.image}}" mode="" />
+      <scroll-view hidden="{{!(nowCheck===1)}}" scroll-y="true" style="margin-top: 10rpx; max-height: 85vh;">
+        <block wx:for="{{picture}}" wx:key="index">
+          <view class="image_box">
+            <image src="{{item.img}}" mode="aspectFill" />
+            <view style="background-color: rgba(0, 0, 0, 0.6); width :85%; text-align: right; color: #efefef; margin:.3em;">
+              摄影师：{{item.people}}
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+      <scroll-view hidden="{{!(nowCheck===2)}}" scroll-y="true" style="margin-top: 10rpx; max-height: 85vh;">
+        <view class="news-box">
+          <block wx:for="{{news}}" wx:key="index">
+            <view class="news-item">
+              <image src="{{item.url}}" mode="" />
               <text>{{item.text}}</text>
             </view>
           </block>
         </view>
       </scroll-view>
     </view>
-    <view style="width: 100%; text-align: center;margin-top: 20rpx;">
-      <text class="showflow_title">精彩摄影</text>
-    </view>
-    <scroll-view scroll-y="true" style="margin-top: 10rpx;">
-      <block wx:for="{{picture}}" wx:key="index">
-        <view class="image_box">
-          <image src="{{item.img}}" mode="aspectFill" />
-          <view style="background-color: rgba(0, 0, 0, 0.6); width :85%; text-align: right; color: #efefef; margin:.3em;">
-            摄影师：{{item.people}}
-          </view>
-        </view>
-      </block>
-
-    </scroll-view>
   </swiper-item>
 </swiper>
 

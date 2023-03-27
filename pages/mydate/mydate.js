@@ -75,69 +75,69 @@ Page({
   data: {
     time: {
       one: [{
-          index: 1,
-          timeStart: '08:00',
-          timeEnd: '08:45'
-        },
-        {
-          index: 2,
-          timeStart: '08:55',
-          timeEnd: '09:40'
-        },
-        {
-          index: 3,
-          timeStart: '09:50',
-          timeEnd: '10:45'
-        },
-        {
-          index: 4,
-          timeStart: '10:50',
-          timeEnd: '11:35'
-        },
-        {
-          index: 5,
-          timeStart: '13:30',
-          timeEnd: '14:15'
-        },
-        {
-          index: 6,
-          timeStart: '14:25',
-          timeEnd: '15:10'
-        },
-        {
-          index: 7,
-          timeStart: '15:20',
-          timeEnd: '16:05'
-        },
-        {
-          index: 8,
-          timeStart: '16:15',
-          timeEnd: '17:00'
-        },
-        {
-          index: 9,
-          timeStart: '13:30',
-          timeEnd: '14:15'
-        },
-        {
-          index: 10,
-          timeStart: '14:25',
-          timeEnd: '15:10'
-        },
-        {
-          index: 11,
-          timeStart: '15:20',
-          timeEnd: '16:05'
-        },
-        {
-          index: 12,
-          timeStart: '16:15',
-          timeEnd: '17:00'
-        },
+        index: 1,
+        timeStart: '08:00',
+        timeEnd: '08:45'
+      },
+      {
+        index: 2,
+        timeStart: '08:55',
+        timeEnd: '09:40'
+      },
+      {
+        index: 3,
+        timeStart: '09:50',
+        timeEnd: '10:45'
+      },
+      {
+        index: 4,
+        timeStart: '10:50',
+        timeEnd: '11:35'
+      },
+      {
+        index: 5,
+        timeStart: '13:30',
+        timeEnd: '14:15'
+      },
+      {
+        index: 6,
+        timeStart: '14:25',
+        timeEnd: '15:10'
+      },
+      {
+        index: 7,
+        timeStart: '15:20',
+        timeEnd: '16:05'
+      },
+      {
+        index: 8,
+        timeStart: '16:15',
+        timeEnd: '17:00'
+      },
+      {
+        index: 9,
+        timeStart: '13:30',
+        timeEnd: '14:15'
+      },
+      {
+        index: 10,
+        timeStart: '14:25',
+        timeEnd: '15:10'
+      },
+      {
+        index: 11,
+        timeStart: '15:20',
+        timeEnd: '16:05'
+      },
+      {
+        index: 12,
+        timeStart: '16:15',
+        timeEnd: '17:00'
+      },
       ],
     },
     isShow: false,
-    color: ["#8fb3a5", "#be6476", "#819b77", "#b8a070", "#1f8faf", "#419b89", "#8e7f64", "#6476be", "#e07050", "8faf1f"],
+    color: ["#8fb3a5", "#be6476", "#819b77", "#b8a070", "#1f8faf", "#419b89", "#8e7f64", "#6476be", "#e07050", "#8faf1f"],
   },
 
   /**

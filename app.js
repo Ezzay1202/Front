@@ -12,7 +12,7 @@ App({
       }
     })
   },
-  sleep(time){
+  sleep(time) {
     let now = new Date()
     let entertime = now.getTime()
     let endtime = now.getTime()
@@ -31,7 +31,7 @@ App({
     missionCompleted: [],
     missionTaken: [],
     week_kcb: 0,
-    kcb:[],
-    kcb_code:0
+    kcb: [],
+    kcb_code: 0
   }
 })

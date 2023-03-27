@@ -1,7 +1,10 @@
 {
-  "usingComponents": {  
+  "usingComponents": {
     "t-icon": "tdesign-miniprogram/icon/icon",
     "t-picker": "tdesign-miniprogram/picker/picker",
-    "t-picker-item": "tdesign-miniprogram/picker/picker-item"
+    "t-picker-item": "tdesign-miniprogram/picker/picker-item",
+    "t-cell": "tdesign-miniprogram/cell/cell",
+    "van-switch": "@vant/weapp/switch/index",
+    "van-popup": "@vant/weapp/popup/index"
   }
 }
