@@ -5,7 +5,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(app.globalData.authority3)
+    // console.log(app.globalData.authority3)
     if (app.globalData.authority3 === 1) {
       this.setData({
         isManagement: true
@@ -32,6 +32,14 @@ Page({
       }
       people.push(temp)
     }
+    if (resultInfo.mag.editor != undefined) {
+      console.log(resultInfo.mag.editor)
+      let temp = {
+        name: resultInfo.mag.editor.username,
+        job: '审'
+      }
+      people.push(temp)
+    }
     this.setData({
       people: people,
       missionID: resultInfo.missionID,
@@ -44,14 +52,20 @@ Page({
     })
   },
   showPopup() {
-    this.setData({ show: true });
+    this.setData({
+      show: true
+    });
   },
 
   onClose() {
-    this.setData({ show: false });
+    this.setData({
+      show: false
+    });
   },
   handleChange() {
-    this.setData({ checked: !this.data.checked });
+    this.setData({
+      checked: !this.data.checked
+    });
   },
   downloadFile(e) {
     let arr = e.currentTarget.dataset.id
@@ -70,7 +84,7 @@ Page({
       },
       complete: (res) => {
         wx.hideLoading({
-          success: (res) => { },
+          success: (res) => {},
         })
       }
     })
@@ -102,23 +116,12 @@ Page({
     // 指定选择区间起始值
     start: '2000-01-01 00:00:00',
     end: '2030-09-09 12:12:12',
-
     isManagement: true,
     mag: {},
-    people: [{
-      name: "乔晟豪",
-      job: "文",
-    }, {
-      name: "蔡毅洲",
-      job: "摄",
-    }, {
-      name: "李钰",
-      job: "审稿",
-    },],
+    people: [],
     review: '',
     remarks: '',
     isManagement: false,
-    mag: {},
     tag: [],
     attitude: true,
     code: 1,
@@ -134,13 +137,7 @@ Page({
     // textarea
     min: 5, //最少字数
     max: 300, //最多字数 (根据自己需求改变) 
-    file_download: [{
-      name: "管理学创新",
-      state: 1,
-    }, {
-      name: "管理学创新",
-      state: 0,
-    }],
+    file_download: [],
     file_upload: [],
     date1Visible: false,
     months: Array.from(new Array(12), (_, index) => ({
@@ -498,7 +495,7 @@ Page({
             },
             complete: (res) => {
               wx.hideLoading({
-                success: (res) => { },
+                success: (res) => {},
               })
             }
           })
@@ -506,6 +503,86 @@ Page({
       })
 
     }
+  },
+  goToinformation(e){
+    let data = {
+      username:"烟霞状元",
+      name:"乔",
+      man:"true",
+      poisition:"人事部部长",
+      info:[{
+        column:"1/4",
+        row:"1/2",
+        color:"black",
+        btext:"烟霞状元",
+        stext:"昵称",
+        f:"changeName"
+      },{
+        column:"3/5",
+        row:"2/3",
+        color:"#574c45",
+        btext:"乔晟豪",
+        stext:"姓名",
+        f:""
+      },{
+        column:"3/5",
+        row:"2/3",
+        color:"#574c45",
+        btext:"乔",
+        stext:"姓名",
+        f:""
+      },{
+        column:"3/5",
+        row:"3/4",
+        color:"#6a63a6",
+        btext:"人事部部长",
+        stext:"身份",
+        f:""
+      },{
+        column:"1/5",
+        row:"4/5",
+        color:"#0e6e8c",
+        btext:"13848440908",
+        stext:"联系方式",
+        f:"changeName"
+      },{
+        column:"1/2",
+        row:"5/6",
+        color:"#0e6e8c",
+        btext:"88",
+        stext:"当月绩效",
+        f:""
+      },{
+        column:"1/2",
+        row:"5/6",
+        color:"#d56937",
+        btext:"88",
+        stext:"当月绩效",
+        f:""
+      },{
+        column:"2/3",
+        row:"5/6",
+        color:"#8fb3a5",
+        btext:"30",
+        stext:"完成任务",
+        f:""
+      },{
+        column:"3/5",
+        row:"5/7",
+        color:"#4a2028",
+        btext:"888",
+        stext:"总绩效",
+        class:"-max",
+        f:""
+      }],
+      showName:false,
+      index:0,
+    }
+
+    wx.navigateTo({
+      url: '/pages/myinformation/myinformation?resultInfo=' + JSON.stringify(data),
+    })
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

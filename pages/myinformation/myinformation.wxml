@@ -31,7 +31,7 @@
     <input placeholder="{{info[index].btext}}" 	placeholder-class="p-class" type="text" bindinput="content" class="inputcs" />
   </view>
   <view class="mbutton-box">
-    <button bindtap="cannelMask">取消</button>    
+    <button bindtap="cancelMask">取消</button>    
     <button style="background-color: var(--bu-color); color:white" bindtap="kcbSpider">确认</button>   
  </view>
  </view>

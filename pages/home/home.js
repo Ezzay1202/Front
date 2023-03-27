@@ -501,9 +501,9 @@ Component({
         this.setData({
           swiperViewHeight: headerHeight
         });
-        console.log(this.data.swiperViewHeight)
+        //console.log(this.data.swiperViewHeight)
         if (this.data.swiperViewHeight >= this.data.maxswiperViewHeight[num]) {
-          console.log(this.data.swiperViewHeight)
+          //console.log(this.data.swiperViewHeight)
           let maxswiperViewHeight = 'maxswiperViewHeight[' + num + ']'
           this.setData({
             [maxswiperViewHeight]: this.data.swiperViewHeight

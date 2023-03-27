@@ -27,7 +27,7 @@ Page({
       },
       success: (res) => {
         console.log(res.data.data)
-        list_all = res.data.data;
+        list_all = res.data.data
         let j = -1;
         let len = list_all.length;
         for (let i = 0; i < len; i++) {
@@ -76,10 +76,12 @@ Page({
             location: list_all[j].place,
             people: article + photo,
             articleList: list_all[j].reporters.article, //个人信息
-            photoList:list_all[j].reporters.photo,
+            photoList:list_all[j].reporters.photo,//
+            editor:list_all[j].statusChanger['编辑部审稿'],
             state: state,
             name: name[0],
             detail: detail[0]
+
           }
         }
         this.setData({
@@ -110,7 +112,8 @@ Page({
         location: data_temp.location,
         people: data_temp.people, //1文1摄
         article: data_temp.articleList,
-        photo: data_temp.photoList
+        photo: data_temp.photoList,
+        editor: data_temp.editor, //
       },
       files: filesList,
       /*
