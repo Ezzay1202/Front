@@ -121,6 +121,7 @@ Page({
       type: 'all', //选择文件的类型
       success: (res) => {
         console.log(res.tempFiles)
+        res.tempFiles[0].size = (res.tempFiles[0].size/(1024*1024)).toFixed(1)+'M'
         this.setData({
           [fileArray]: this.data.listm[index1].fileArray.concat(res.tempFiles)
         })

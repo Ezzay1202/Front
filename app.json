@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/submitM/submitM",
+    "pages/publishedM/publishedM",
+    "pages/checkM/checkM",
     "pages/exception/exception",
     "pages/managment/managment",
     "pages/myinformation/myinformation",

@@ -44,8 +44,8 @@ Page({
               }
             }
           }
-          let article = list_all[j].reporterNeeds.article + "文"
-          let photo = list_all[j].reporterNeeds.photo + "摄"
+          let article = list_all[j].reporterNeeds.article + "文" // 1文
+          let photo = list_all[j].reporterNeeds.photo + "摄" // 1摄
           let minbegin = list_all[j].time.beginMinute
           let minend = list_all[j].time.endMinute
           if (minbegin < 10) {
@@ -75,6 +75,8 @@ Page({
             date2: date2,
             location: list_all[j].place,
             people: article + photo,
+            articleList: list_all[j].reporters.article, //个人信息
+            photoList:list_all[j].reporters.photo,
             state: state,
             name: name[0],
             detail: detail[0]
@@ -83,12 +85,13 @@ Page({
         this.setData({
           listm: list_show
         })
+        console.log(this.data.listm)
       }
     })
   },
   func1(e) {
     let i = e.currentTarget.dataset.id
-    let data_temp = list_show[i]
+    let data_temp = this.data.listm[i]
     let filesList = []
     for (let i = 0; i < data_temp.files.length; i++) {
       let temp = {
@@ -105,9 +108,12 @@ Page({
         date1: data_temp.date1,
         date2: data_temp.date2,
         location: data_temp.location,
-        people: data_temp.people
+        people: data_temp.people, //1文1摄
+        article: data_temp.articleList,
+        photo: data_temp.photoList
       },
       files: filesList,
+      /*
       tag: [{
         name: "优秀稿件",
         show: true
@@ -117,6 +123,7 @@ Page({
         show: false
       },
       ],
+      */
       missionID: data_temp.missionID,
       attitude: true,
       code: 1,
