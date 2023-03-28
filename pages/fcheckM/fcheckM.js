@@ -33,7 +33,7 @@ Page({
       people.push(temp)
     }
     if (resultInfo.mag.editor != undefined) {
-      console.log(resultInfo.mag.editor)
+      //console.log(resultInfo.mag.editor)
       let temp = {
         name: resultInfo.mag.editor.username,
         job: '审'
@@ -505,11 +505,9 @@ Page({
     }
   },
   goToinformation(e){
+    console.log(e.currentTarget.dataset.index)
+    let i = e.currentTarget.dataset.index
     let data = {
-      username:"烟霞状元",
-      name:"乔",
-      man:"true",
-      poisition:"人事部部长",
       info:[{
         column:"1/4",
         row:"1/2",
@@ -521,14 +519,7 @@ Page({
         column:"3/5",
         row:"2/3",
         color:"#574c45",
-        btext:"乔晟豪",
-        stext:"姓名",
-        f:""
-      },{
-        column:"3/5",
-        row:"2/3",
-        color:"#574c45",
-        btext:"乔",
+        btext:this.data.people[i].name,
         stext:"姓名",
         f:""
       },{

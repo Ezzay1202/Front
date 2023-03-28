@@ -1,6 +1,6 @@
 // pages/submitM/submitM.js
-const app = getApp();
-let index1 = 0;
+const app = getApp()
+let index1 = 0
 let list_all = []
 let list_show = []
 Page({

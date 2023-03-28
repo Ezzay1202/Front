@@ -19,8 +19,8 @@
         </view>
       </view>
       <view class="people_box">
-        <block wx:for="{{people}}" wx:key="index">
-          <view class="people_item" bindtap="goToinformation">
+        <block wx:for="{{people}}" wx:key="index" >
+          <view class="people_item" bindtap="goToinformation" data-index="{{index}}">
             <image src="/image/啸天.png" mode="" />
             <text class="name">{{item.name}}</text>
             <text class="job">{{item.job}}</text>
