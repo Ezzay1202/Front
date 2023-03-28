@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/home/home",
+
     "pages/mywork/mywork",
+    "pages/updateN/updateN",
     "pages/diyhome/diyhome",
     "pages/managment/managment",
     "pages/checkM/checkM",

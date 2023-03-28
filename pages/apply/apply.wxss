@@ -2,9 +2,10 @@
 
 
 .demo {
-  width: 93%;
   display: block;
-  background-color: rgb(236, 242, 254);
+  background-color: #fff;
+  border: 4rpx outset #021a40;
+  box-shadow: 5px 5px #dfdfeb;
   margin: 1em;
   border-radius: 5%;
 }
@@ -19,31 +20,39 @@
 }
 
 .m {
-  height: 180rpx;
-  width: 90%;
-  display: block;
-  padding: 0.3em;
-  background-color: rgb(236, 242, 254);
-  margin: 1em;
-  border-radius: 10%;
-  overflow: scroll;
+  flex: 1;
+  align-items: stretch;
+  padding: 1em;
+  margin: .5em 5%;
+  border-radius: 3%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 4rpx outset #021a40;
+  box-shadow: 5px 5px #dfdfeb;
 }
 
 .m .title {
+  flex: 1;
   font-size: 35rpx;
-  height: 3.2em;
-  text-align: center;
+  max-height: 3em;
+  margin-bottom: .5em;
+  overflow: scroll;
 }
 
 .m .text {
-  display: inline-block;
+  margin: .2em;
+  max-height: 3em;
+  overflow: scroll;
+  display: flex;
 }
 
 .m .text text {
-  font-size: 25rpx;
-  margin: .3em .5em;
-  padding: 10rpx 20rpx;
+  text-align: center;
+  font-size: 26rpx;
+  margin: .3em .8em .3em 0;
+  padding: .5em;
   color: white;
-  background-color: #13a4a4;
-  border-radius: 4rpx;
+  background-color: #307090;
+  border-radius: .3em;
 }

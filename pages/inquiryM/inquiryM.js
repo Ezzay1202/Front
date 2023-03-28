@@ -3,7 +3,7 @@ const app = getApp();
 let missionID = '';
 let a = '';
 let b = '';
-let c = ''; 
+let c = '';
 let d = '';
 let e = '';
 let f = '';
@@ -158,6 +158,29 @@ Component({
     }
   },
   data: {
-    listm: []
+    step: [{
+      text: '已接稿',
+    }, {
+      text: '已写稿',
+    }, {
+      text: '编辑部审稿',
+    }, {
+      text: '辅导员审稿',
+    }, {
+      text: '排版',
+    },],
+    listm_ing: [{
+      text: "管理学创新实验班班会",
+      steps_num: 1,
+    }, {
+      text: "管理学创新实验班班会",
+      steps_num: 0,
+    }, {
+      text: "管理学创新实验班班会",
+      steps_num: 1,
+    }, {
+      text: "管理学创新实验班班会",
+      steps_num: 1,
+    }],
   }
 });

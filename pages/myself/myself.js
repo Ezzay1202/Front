@@ -14,19 +14,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    headP: '/image/啸天.png',
     value: 'label_4',
     steps_num: 2,
     functions: [{
       name: "我的稿件",
       src: "/image/mywo.png",
-      goto:"gotoMywork"
+      goto: "gotoMywork"
     }, {
       name: "我的绩效",
       src: "/image/myw.png"
     }, {
       name: "个人信息",
       src: "/image/myi.png",
-      bindtap:'gotoMyi'
+      bindtap: 'gotoMyi'
     }, {
       name: "我的时间",
       src: "/image/myt.png",
@@ -424,12 +425,12 @@ Page({
       })
     }
   },
-  gotoMyi(){
+  gotoMyi() {
     wx.navigateTo({
       url: '/pages/myinformation/myinformation',
     })
   },
-  gotoMywork(){
+  gotoMywork() {
     wx.navigateTo({
       url: '/pages/mywork/mywork',
     })

@@ -2,10 +2,10 @@
 <view class='container'>
   <!-- 第1部分 -->
   <view class='top-container'>
-    <image class='bg-img' src='/image/啸天.png'></image>
+    <image class='bg-img' src='{{headP}}'></image>
   </view>
   <view class="head">
-    <image src='/image/啸天.png'></image>
+    <image src='{{headP}}'></image>
     <text>烟霞状元</text>
   </view>
   <!-- 第2部分 -->
@@ -88,19 +88,19 @@
       </view>
     </block>
     <view class="performance-box performance-items" style="background-color: #00303f;">
-        <view class="p-leftbox">
-          <image src="/image/kx.png" mode="" />
-        </view>
-        <view class="p-rightbox flex-column" >
-          <text style="font-size: 30rpx; font-weight: 500;  color: white;">例会迟到早退/未提前请假旷会</text>
-          <text class="text-mini" style=" color: white;">任务类型：日常表现</text>
-          <text class="text-mini" style="color: white;">初始分数：20分 || 扣除分数：-4分/-10分</text>
-        </view>
+      <view class="p-leftbox">
+        <image src="/image/kx.png" mode="" />
+      </view>
+      <view class="p-rightbox flex-column">
+        <text style="font-size: 30rpx; font-weight: 500;  color: white;">例会迟到早退/未提前请假旷会</text>
+        <text class="text-mini" style=" color: white;">任务类型：日常表现</text>
+        <text class="text-mini" style="color: white;">初始分数：20分 || 扣除分数：-4分/-10分</text>
+      </view>
     </view>
-   <view style="width: 100%; text-align: right; ">
-    <text style="font-size: 26rpx; margin-right: 24rpx; color: rgb(150, 150, 150);" bindtap="showDetail">{{showdetail? '查看详情':'收起'}}</text>
-   </view>
-   <view hidden="{{showdetail}}" class="detailbox flex-column" >
+    <view style="width: 100%; text-align: right; ">
+      <text style="font-size: 26rpx; margin-right: 24rpx; color: rgb(150, 150, 150);" bindtap="showDetail">{{showdetail? '查看详情':'收起'}}</text>
+    </view>
+    <view hidden="{{showdetail}}" class="detailbox flex-column">
       <text>1.月考核= 部门业务（80分）+日常表现（20分）</text>
       <text>2.学期考核= 月考核平均分*80%＋个人总评</text>
       <text>3.月考核平均分 = ∑月考核真实分数/考核月数</text>
@@ -139,7 +139,7 @@
 <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}" t-class="t-tab-bar">
   <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}" bindtap="onChange">
     {{item.label}}
-</t-tab-bar-item>
+  </t-tab-bar-item>
 </t-tab-bar>
 <!-- 详情弹框 -->
 <view class="mask" hidden="{{!isShow}}">

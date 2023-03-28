@@ -22,7 +22,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) { },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -103,7 +103,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) { },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -176,7 +176,7 @@ Page({
         data: {
           data: {
             password: '123456', //this.data.password
-            userid: this.data.userid //this.data.userid
+            userid: 'U202116251' //this.data.userid
           },
           method: "signUp"
         },
@@ -192,8 +192,8 @@ Page({
             app.globalData.userid = res.data.data.userid
             app.globalData.week_kcb = res.data.time.week
             wx.showToast({
-                title: '登录成功',
-              }),
+              title: '登录成功',
+            }),
               app.sleep(1200)
             wx.getUserProfile({
               desc: '是否授权？',
@@ -268,8 +268,8 @@ Page({
           app.globalData.username = res.data.data.username
           app.globalData.userid = res.data.data.userid
           wx.showToast({
-              title: '登录成功',
-            }),
+            title: '登录成功',
+          }),
             app.sleep(1200)
           wx.getUserProfile({
             desc: '是否授权？',

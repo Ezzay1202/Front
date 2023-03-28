@@ -111,7 +111,7 @@ Component({
     }, {
       img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
       people: "乔晟豪"
-    }, { 
+    }, {
       img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
       people: "乔晟豪"
     }, {
@@ -177,15 +177,15 @@ Component({
       goto: "/pages/submitM/submitM"
     }, {
       name: "历史稿件",
-      img: '/image/submitM.png',
+      img: '/image/histroyM.png',
       goto: "/pages/historyM/historyM"
     }, {
       name: "提交排版",
-      img: '/image/submitM.png',
+      img: '/image/submitP.png',
       goto: "/pages/submitP/submitP"
     }, {
       name: "稿件记录",
-      img: '/image/submitM.png',
+      img: '/image/updateM.png',
       goto: "/pages/updateN/updateN"
     }],
 

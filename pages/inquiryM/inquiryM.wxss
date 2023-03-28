@@ -56,3 +56,31 @@
   color: #888;
   text-align: center;
 }
+
+.m-ing {
+  background-color: white;
+  width: 650rpx;
+  padding: 1em;
+  /* border: 4rpx solid #135ba4; */
+  box-shadow: 1rpx 1rpx 5rpx 2rpx #dfdfeb;
+  margin: 15rpx 1rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.n-ing {
+  margin: .3em;
+  padding: .2em;
+  border-top: 1px dashed black;
+}
+
+.t-class-content {
+  margin-top: .2em !important;
+  max-height: 1.3em;
+  overflow: scroll;
+}
+
+.t-class-title {
+  font-size: 22rpx !important;
+  font-weight: 100;
+}
