@@ -121,7 +121,7 @@ Component({
       content: "已有其他辅导员审核稿件"
     }, {
       text: '排版',
-    },],
+    }, ],
     first: 1,
     second: 1,
     third: 1,
@@ -171,20 +171,20 @@ Component({
 
     value: 'label_2',
     list: [{
-      value: 'label_1',
-      label: '首页',
-      icon: 'home'
-    },
-    {
-      value: 'label_2',
-      label: '发布',
-      icon: 'check-rectangle'
-    },
-    {
-      value: 'label_4',
-      label: '我的',
-      icon: 'user'
-    },
+        value: 'label_1',
+        label: '首页',
+        icon: 'home'
+      },
+      {
+        value: 'label_2',
+        label: '发布',
+        icon: 'check-rectangle'
+      },
+      {
+        value: 'label_4',
+        label: '我的',
+        icon: 'user'
+      },
     ],
   },
   methods: {
@@ -237,8 +237,8 @@ Component({
       } = e.currentTarget.dataset;
 
       this.setData({
-        cur: item,
-      },
+          cur: item,
+        },
         () => {
           this.setData({
             showcheck: true
@@ -626,15 +626,12 @@ Component({
           icon: 'none',
           title: '请填写稿件备注',
         })
-      } else if (fileArray.length == 0) {
+      } else if (fileArray.length === 0) {
         wx.showToast({
           icon: 'none',
           title: '请上传文件',
         })
       } else {
-        wx.showLoading({
-          title: '请稍等...',
-        })
         let obj = Object.create(null);
         for (let [k, v] of this.data.tag2) {
           obj[k] = v;
@@ -660,34 +657,27 @@ Component({
               wx.uploadFile({
                 filePath: fileArray[i].path,
                 name: 'file',
-                url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + missionID,
+                url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + missionID + '&userid=' + app.globalData.userid.toString(),
                 header: {
                   "Content-Type": "multipart/form-data"
                 },
                 success: (res) => {
-                  let json = JSON.parse(res.data)
+                  json = JSON.parse(res.data)
                   console.log(json)
                 }
               })
             }
-            if (json.data.code == 202) {
               wx.showToast({
                 title: '发布成功',
               })
               app.sleep(1500)
               wx.redirectTo({
                 url: '/pages/home/home',
-              })
-            } else {
-              wx.showToast({
-                title: '提交失败',
-                icon: 'error'
-              })
-            }
+              })      
           },
           complete: (res) => {
             wx.hideLoading({
-              success: (res) => { },
+              success: (res) => {},
             })
           }
         })
