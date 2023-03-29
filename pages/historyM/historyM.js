@@ -21,101 +21,6 @@ Page({
     itemTitle: '筛选',
 
     tagbox: [],
-
-    listm: [{
-        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-        date: "2022-11-30",
-        location: "管理学院105继续继续",
-        people: [{
-          key: 1,
-          name: "陶柯羽"
-        }, {
-          key: 2,
-          name: "高原"
-        }, {
-          key: 5,
-          name: "徐文慧"
-        }, {
-          key: 4,
-          name: "张赫"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-        score: 4.5
-      },
-      {
-        text: "学习二十大，管院在行动 | 管理学院“领跑计划”学生骨干成长训练营开展专题培训 继续",
-        date: "2022-11-29",
-        location: "校史馆",
-        people: [{
-          key: 1,
-          name: "杨彬雪"
-        }, {
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "桂云凤"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/yReSTZQn5L9UC4eE2zsYNw",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      }
-    ],
     index1: 0
   },
 
@@ -195,7 +100,7 @@ Page({
     let list2 = []
     let temp3 = []
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/manage?method=getTag',
+      url: 'http://1.15.118.125:8081/NIC/manage?method=getTag', //获取Tag
       success: (res) => {
         console.log(res.data.data)
         list1 = res.data.data['list1'][0]
@@ -232,7 +137,37 @@ Page({
         "method": "showFinished"
       },
       success: (res) => {
-        console.log(res.data.data);
+        console.log(res.data.data)
+        let missionList = res.data.data
+        let listm = []
+        for (let i = 0; i < missionList.length; i++) {
+          let people = []
+          if(missionList[i].statusChanger['编辑部审稿'] != undefined){
+            for (let i of missionList[i].reporters.article.concat(missionList[i].reporters.photo).concat(missionList[i].statusChanger['编辑部审稿']).concat(missionList[i].statusChanger['辅导员审核'])) {
+              console.log(i)
+              people.push(i.username)
+            }
+          }
+
+          for(let j in people){
+            let temp = {
+              key:j,
+              name:people[j]
+            }
+            people[j] = temp
+          }
+          let tempMission = {
+            text: missionList[i].title,
+            date: missionList[i].time.year + '-' + ((missionList[i].time.month + 1 < 10 ? '0' + (missionList[i].time.month + 1) : missionList[i].time.month + 1)) + '-' + ((missionList[i].time.day + 1 < 10 ? '0' + (missionList[i].time.day) : missionList[i].time.day)),
+            location: missionList[i].place,
+            people: people,
+            url: missionList[i].articleURL
+          }
+          listm.push(tempMission)
+        }
+        this.setData({
+          listm:listm
+        })
       }
     })
 
