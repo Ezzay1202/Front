@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/home/home",
-
     "pages/mywork/mywork",
     "pages/updateN/updateN",
     "pages/diyhome/diyhome",

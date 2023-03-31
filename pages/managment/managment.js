@@ -1,6 +1,5 @@
 // pages/managment/managment.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -25,7 +24,7 @@ Page({
       btext: "3",
       stext: "待审核任务",
       class: 'maxnum',
-      f: "changeName"
+      f: "checkMission"
     }, {
       column: "3/5",
       row: "3/5",
@@ -33,7 +32,7 @@ Page({
       btext: "4",
       stext: " 进行中任务",
       class: 'maxnum',
-      f: ""
+      f: "goToMywork"
     },
     //  {
     //   column: "1/5",
@@ -74,6 +73,16 @@ Page({
     let check = 'people.[' + index1 + '].check'
     this.setData({
       [check]: !this.data.people[index1].check
+    })
+  },
+  checkMission(){
+    wx.navigateTo({
+      url: '/pages/checkM/checkM',
+    })
+  },
+  goToMywork(){
+    wx.navigateTo({
+      url: '/pages/mywork/mywork',
     })
   },
   /**

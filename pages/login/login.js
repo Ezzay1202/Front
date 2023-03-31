@@ -176,7 +176,7 @@ Page({
         data: {
           data: {
             password: '123456', //this.data.password
-            userid: 'U202116251' //this.data.userid
+            userid: 'U202116242' //this.data.userid
           },
           method: "signUp"
         },
@@ -190,7 +190,12 @@ Page({
             app.globalData.authority3 = res.data.data.authority3
             app.globalData.username = res.data.data.username
             app.globalData.userid = res.data.data.userid
+            //app.globalData.phoneNumber = res.data.data.phoneNumber
             app.globalData.week_kcb = res.data.time.week
+            //app.globalData.nickname = res.data.data.nickname
+            app.globalData.identity = res.data.data.identity
+            app.globalData.missionTaken = res.data.data.missionTaken
+            app.globalData.missionCompleted = res.data.data.missionCompleted
             wx.showToast({
               title: '登录成功',
             }),
