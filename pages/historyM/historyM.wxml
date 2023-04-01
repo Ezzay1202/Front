@@ -53,9 +53,9 @@
             <text data-id="{{item.key}}">{{item.name}}</text>
           </block>
         </view>
-        <view class="score">
+        <!-- <view class="score">
           {{item.score}}分
-        </view>
+        </view> -->
       </view>
     </view>
   </block>

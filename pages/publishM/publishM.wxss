@@ -6,7 +6,8 @@
 
 
 .block {
-  background-color: rgb(236, 242, 254);
+  border: 2px solid #4472ca !important;
+  box-shadow: 0 2rpx 10rpx 0 #4472ca;
   padding: .5em;
   display: flex;
   flex-direction: column;
@@ -21,7 +22,7 @@
 }
 
 .box {
-  margin: .6rem 5%;
+  margin: .3rem 5%;
   display: flex;
   border-radius: 5%;
   box-sizing: border-box;
@@ -60,7 +61,7 @@
 }
 
 .filebox {
-  background-color: rgb(236, 242, 254);
+  background-color: white
 }
 
 .filebox .right {
@@ -72,9 +73,10 @@
 }
 
 .filebox .right .n {
-  flex: 1;
+  width: 75vw;
+  box-shadow: 0 0.5px 3px 0 #13a4a4;
   background-color: white;
-  border: 2px outset #13a4a4;
+  border: 2px solid #13a4a4;
   margin-left: .5em;
   display: grid;
   grid-template-columns: 1fr 4fr;
@@ -87,7 +89,7 @@
   padding: .2em;
   margin: .2em;
   border: 0px solid #888;
-  width: 12em;
+  width: 60vw;
 }
 
 .filebox .right .n .name {
@@ -115,8 +117,8 @@
 }
 
 .filebox .right>image {
-  width: 3em;
-  height: 3em;
+  width: 10vw;
+  height: 10vw;
   align-self: center;
   text-align: center;
   border-radius: 10rpx;
@@ -127,13 +129,12 @@
   flex: 3;
   margin: .5em;
   font-size: 26rpx;
-  background-color: rgb(236, 242, 254);
   color: #13a4a4;
   border: 1px solid #13a4a4 !important;
 }
 
 .conts {
-  margin: .6rem 5%;
+  margin: .3rem 5%;
   border-radius: 5%;
   display: flex;
 }
@@ -154,11 +155,10 @@ textarea {
   font-size: 30rpx;
   overflow: scroll;
   border: 2px solid #13a4a4 !important;
-  height: 5em;
+  height: 11vh;
 }
 
 .btn {
-  flex: 1;
   width: 600rpx;
   height: 80rpx;
   line-height: 80rpx;
@@ -166,7 +166,6 @@ textarea {
   color: #13a4a4;
   border: 1px solid #13a4a4 !important;
   margin-top: 2em;
-  bottom: 37rpx;
 }
 
 button:after {
@@ -180,17 +179,17 @@ button:after {
 .pannel-item {
   display: flex;
   align-items: center;
-  height: 85rpx;
-  padding: 0 32rpx;
-  font-size: 32rpx;
-  margin: 1em .5em;
+  height: 3em;
+  padding: .2em;
+  font-size: 2.5vh;
+  margin: .5em .5em;
   background-color: #fff;
 }
 
 .pannel-item-other {
-  margin: 0 1em;
+  padding: 0 5%;
   margin-bottom: -13rpx;
-  background-color: #f0ecfe;
+  font-size: 32rpx;
   border-radius: 5%;
 }
 

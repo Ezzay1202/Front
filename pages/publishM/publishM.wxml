@@ -5,7 +5,7 @@
   <t-tab-panel label="日常任务" value="0">
     <view class="container" style="align-items: stretch; justify-content: stretch; height: 82vh; overflow: scroll;">
       <view class="conts title_box">
-        <textarea class="areas" placeholder='输入稿件的标题' bindinput="setDescription1">
+        <textarea maxlength='-1' class="areas" placeholder='输入稿件的标题' bindinput="setDescription1">
        </textarea>
       </view>
       <!-- <view class="demo-textarea">
@@ -128,7 +128,7 @@
 
   </t-tab-panel>
   <t-tab-panel label="其他任务" value="1">
-    <view style="overflow: scroll; max-height:1000rpx">
+    <view class="container" style="align-items: stretch; justify-content: stretch; height: 82vh; overflow: scroll;">
       <view class="block">
         <text>请选择任务状态</text>
         <t-steps current="{{first}}" bind:change="onFirstChange">
@@ -137,9 +137,16 @@
           </block>
         </t-steps>
       </view>
-
+      <view class="box tagbox">
+        <view class="tag-item">
+          <block wx:for="{{tagbox2}}" wx:key="index">
+            <view class="tag">{{item.tag}}</view>
+          </block>
+        </view>
+        <button bind:tap="showCheck2">选择稿件类型</button>
+      </view>
       <block>
-        <view class="box filebox" style="padding: 1em;">
+        <view class="box filebox">
           <view class="right" wx:for="{{fileArray}}" wx:key="index">
             <image src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
             </image>
@@ -152,14 +159,7 @@
           <button bindtap="uploadFile">选择稿件及照片</button>
         </view>
 
-        <view class="box tagbox">
-          <view class="tag-item">
-            <block wx:for="{{tagbox2}}" wx:key="index">
-              <view class="tag">{{item.tag}}</view>
-            </block>
-          </view>
-          <button bind:tap="showCheck2">选择稿件类型</button>
-        </view>
+
         <block>
           <view class="pannel-item-other pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE}}">
             <view class="pannel-label">截止时间</view>
@@ -173,12 +173,15 @@
           <t-picker-item options="{{hour}}"></t-picker-item>
         </t-picker>
         <view class="conts">
-          <textarea class="areas" placeholder='添加稿件的备注' bindinput="setDescription2">
+          <textarea maxlength='-1' class="areas" placeholder='添加稿件的备注' bindinput="setDescription2">
        </textarea>
         </view>
 
         <!--提交评价-->
-        <button class='btn' bindtap='publishMission2'>发布任务</button>
+        <view class="apply">
+          <button bindtap="publishMission2">发布任务</button>
+        </view>
+        <!-- <button class='btn' bindtap='publishMission2'>发布任务</button> -->
       </block>
 
     </view>

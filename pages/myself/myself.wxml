@@ -50,64 +50,69 @@
                 <text data-id="{{item.key}}">{{item.name}}</text>
               </block>
             </view>
-            <view class="score">
+            <!-- <view class="score">
               {{item.score}}分
-            </view>
+            </view> -->
           </view>
         </view>
       </block>
     </view>
   </view>
   <view class="myM">
-    <text class="text">我的绩效</text>
-    <view class="scorebox">
-      <view class="scoreitem">
-        <view class="curperformance">
-          <text>20</text>
-          <text style="color: black; font-size: 30rpx;">/100</text>
+    <!-- <view class="tip">
+      <image src="/image/please.png" mode=""/>
+    </view> -->
+    <view class=" blur">
+      <text class="text">我的绩效</text>
+      <view class="scorebox">
+        <view class="scoreitem">
+          <view class="curperformance">
+            <text>20</text>
+            <text style="color: black; font-size: 30rpx;">/100</text>
+          </view>
+          <text>当月绩效</text>
         </view>
-        <text>当月绩效</text>
-      </view>
-      <view class="scoreitem">
-        <view class="curperformance">
-          <text>20</text>
+        <view class="scoreitem">
+          <view class="curperformance">
+            <text>20</text>
+          </view>
+          <text>总绩效</text>
         </view>
-        <text>总绩效</text>
       </view>
-    </view>
-    <block wx:for="{{performance}}" wx:if="index">
-      <view class="performance-box performance-items">
+      <block wx:for="{{performance}}" wx:if="index">
+        <view class="performance-box performance-items">
+          <view class="p-leftbox">
+            <image src="{{item.complete? '/image/sx.png':'/image/kx.png'}}" mode="" />
+          </view>
+          <view class="p-rightbox flex-column">
+            <text style="font-size: 30rpx; font-weight: 500;">{{item.title}}</text>
+            <text class="text-mini">任务类型：{{item.style? "部门业务-附加项":"部门业务"}}</text>
+            <text class="text-mini" style="color: {{item.style? '#005995':'#f05945'}};">分数：{{item.score}}分</text>
+          </view>
+        </view>
+      </block>
+      <view class="performance-box performance-items" style="background-color: #00303f;">
         <view class="p-leftbox">
-          <image src="{{item.complete? '/image/sx.png':'/image/kx.png'}}" mode="" />
+          <image src="/image/kx.png" mode="" />
         </view>
         <view class="p-rightbox flex-column">
-          <text style="font-size: 30rpx; font-weight: 500;">{{item.title}}</text>
-          <text class="text-mini">任务类型：{{item.style? "部门业务-附加项":"部门业务"}}</text>
-          <text class="text-mini" style="color: {{item.style? '#005995':'#f05945'}};">分数：{{item.score}}分</text>
+          <text style="font-size: 30rpx; font-weight: 500;  color: white;">例会迟到早退/未提前请假旷会</text>
+          <text class="text-mini" style=" color: white;">任务类型：日常表现</text>
+          <text class="text-mini" style="color: white;">初始分数：20分 || 扣除分数：-4分/-10分</text>
         </view>
       </view>
-    </block>
-    <view class="performance-box performance-items" style="background-color: #00303f;">
-      <view class="p-leftbox">
-        <image src="/image/kx.png" mode="" />
+      <view style="width: 100%; text-align: right; ">
+        <text style="font-size: 26rpx; margin-right: 24rpx; color: rgb(150, 150, 150);" bindtap="showDetail">{{showdetail? '查看详情':'收起'}}</text>
       </view>
-      <view class="p-rightbox flex-column">
-        <text style="font-size: 30rpx; font-weight: 500;  color: white;">例会迟到早退/未提前请假旷会</text>
-        <text class="text-mini" style=" color: white;">任务类型：日常表现</text>
-        <text class="text-mini" style="color: white;">初始分数：20分 || 扣除分数：-4分/-10分</text>
+      <view hidden="{{showdetail}}" class="detailbox flex-column">
+        <text>1.月考核= 部门业务（80分）+日常表现（20分）</text>
+        <text>2.学期考核= 月考核平均分*80%＋个人总评</text>
+        <text>3.月考核平均分 = ∑月考核真实分数/考核月数</text>
+        <text>4.当月考核分数上限80，学期考核不设上限</text>
       </view>
-    </view>
-    <view style="width: 100%; text-align: right; ">
-      <text style="font-size: 26rpx; margin-right: 24rpx; color: rgb(150, 150, 150);" bindtap="showDetail">{{showdetail? '查看详情':'收起'}}</text>
-    </view>
-    <view hidden="{{showdetail}}" class="detailbox flex-column">
-      <text>1.月考核= 部门业务（80分）+日常表现（20分）</text>
-      <text>2.学期考核= 月考核平均分*80%＋个人总评</text>
-      <text>3.月考核平均分 = ∑月考核真实分数/考核月数</text>
-      <text>4.当月考核分数上限80，学期考核不设上限</text>
     </view>
   </view>
-  <view class="myM flex-column">
+  <!-- <view class="myM flex-column">
     <text class="text">我的时间</text>
     <text style="margin-top: .4em; " class="date">今天</text>
     <view class="mytoday">
@@ -131,7 +136,7 @@
         </block>
       </block>
     </view>
-  </view>
+  </view> -->
   <image></image>
 </view>
 
@@ -142,8 +147,8 @@
   </t-tab-bar-item>
 </t-tab-bar>
 <!-- 详情弹框 -->
-<view class="mask" hidden="{{!isShow}}">
-  <view class="mask-bac">
+<view class="mask" hidden="{{!isShow}}" catchtouchmove="true">
+  <view class="mask-bac" catchtouchmove='true'>
     <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
       <view class="input-box">
         <input placeholder="HUST学号" placeholder-class="p-class" type="text" bindinput="content" class="phonecs" />

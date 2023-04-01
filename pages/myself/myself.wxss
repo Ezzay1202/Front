@@ -145,7 +145,7 @@ page {
 
 .myM-ing {
   padding: 1em;
-  max-height: 260rpx;
+  max-height: 25vh;
   overflow: scroll;
 }
 
@@ -153,7 +153,7 @@ page {
   width: 85%;
   align-items: stretch;
   padding: 1em;
-  border: .2em outset #135ba4;
+  box-shadow: 0 1px 5px #135ba4;
   margin: .5em;
   border-radius: 5%;
   display: flex;
@@ -168,7 +168,7 @@ page {
 
 .myM-history {
   padding: .5em;
-  max-height: 330rpx;
+  max-height: 26vh;
   overflow: scroll;
 }
 
@@ -176,10 +176,10 @@ page {
   width: 85%;
   align-items: stretch;
   padding: 1em;
-  border: .1em solid rgb(236, 242, 254);
-  background-color: #ecfbfe;
-  margin: .5em;
-  border-radius: 10%;
+  background-color: #fff;
+  border: 4rpx outset #021a40;
+  box-shadow: 0 1px 5px #021a40;
+  margin: .5em 5%;
   display: flex;
   flex-direction: column;
 }
@@ -189,7 +189,11 @@ page {
   font-size: 30rpx;
   max-height: 3em;
   margin-bottom: .5em;
-  overflow: scroll;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .m .text {
@@ -227,7 +231,6 @@ page {
   margin: .2em;
   display: flex;
   max-height: 3rem;
-  max-width: 80%;
   align-items: center;
   overflow: scroll;
 }
@@ -409,13 +412,13 @@ page {
 
 .modal {
   width: 600rpx;
-  height: 750rpx;
+  height: 50vh;
   border-radius: 20rpx;
   position: fixed;
   z-index: 11;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #aef4e0;
+  background: white;
   box-sizing: border-box;
   padding: 1em;
   color: #7e7a7a;
@@ -433,7 +436,7 @@ page {
 }
 
 .phonecs {
-  background-color: #e5f4ae;
+  /* background-color: #e5f4ae; */
   margin-bottom: 1em;
   color: black;
   width: 450rpx;
@@ -455,7 +458,6 @@ page {
   width: 540rpx;
   margin: .5em 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   box-sizing: border-box;
 }
@@ -467,7 +469,7 @@ page {
   margin: 0 25rpx .5em;
   padding: 0;
   color: var(--bu-color);
-  background-color: #aef4e0;
+  /* background-color: #aef4e0; */
   border: 1px solid var(--bu-color) !important;
   border-radius: 2%;
 }
@@ -482,4 +484,24 @@ page {
   top: 50%;
   transition: all 1s;
   opacity: 1;
+}
+
+.blur {
+  position: relative;
+  filter: blur(5px);
+  user-select: none;
+}
+
+.tip {
+  position: relative;
+  top: 230px;
+  z-index: 10;
+  font-weight: 700;
+  text-align: center;
+  font-size: 40rpx;
+}
+
+.tip image {
+  height: 100rpx;
+  width: 100rpx;
 }

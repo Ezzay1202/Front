@@ -127,3 +127,9 @@
   width: 80%;
   height: 80%;
 }
+
+.blur {
+  position: relative;
+  filter: blur(10px);
+  user-select: none;
+}

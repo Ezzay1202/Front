@@ -142,17 +142,17 @@ Page({
         let listm = []
         for (let i = 0; i < missionList.length; i++) {
           let people = []
-          if(missionList[i].statusChanger['编辑部审稿'] != undefined){
+          if (missionList[i].statusChanger['编辑部审稿'] != undefined) {
             for (let i of missionList[i].reporters.article.concat(missionList[i].reporters.photo).concat(missionList[i].statusChanger['编辑部审稿']).concat(missionList[i].statusChanger['辅导员审核'])) {
               console.log(i)
               people.push(i.username)
             }
           }
 
-          for(let j in people){
+          for (let j in people) {
             let temp = {
-              key:j,
-              name:people[j]
+              key: j,
+              name: people[j]
             }
             people[j] = temp
           }
@@ -166,7 +166,7 @@ Page({
           listm.push(tempMission)
         }
         this.setData({
-          listm:listm
+          listm: listm
         })
       }
     })

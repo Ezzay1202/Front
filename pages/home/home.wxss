@@ -208,15 +208,16 @@ t-search {
 }
 
 .myM-ing {
-  box-shadow: 10rpx 15rpx 10rpx -15rpx #009999;
-  padding: 1em;
+  box-shadow: 0 1px 5px 0 #efefef;
+  padding: .5em;
+  margin: .5em;
 }
 
 .m-ing {
   width: 85%;
   align-items: stretch;
   padding: 1em;
-  border: .2em outset #135ba4;
+  box-shadow: 0 1px 5px #135ba4;
   margin: .5em;
   border-radius: 5%;
   display: flex;

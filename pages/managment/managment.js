@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    value: 'label_4',
     people: [{
       name: '组长会',
       check: true
@@ -49,6 +50,7 @@ Page({
       color: "#d56937",
       btext: "50",
       stext: "人员系统",
+      blur:true,
       f: ""
     }, {
       column: "2/3",
@@ -63,9 +65,57 @@ Page({
       color: "#4a2028",
       btext: "888",
       stext: "组织总绩效",
+      blur:true,
       class: "maxnum",
       f: ""
     }],
+    list: [{
+      value: 'label_1',
+      label: '首页',
+      icon: 'home'
+    },
+    {
+      value: 'label_2',
+      label: '发布',
+      icon: 'check-rectangle'
+    },
+    {
+      value: 'label_4',
+      label: '我的',
+      icon: 'user'
+    },
+    ],
+  },
+  onChange(e) {
+    //tabbar
+    this.setData({
+      value: e.detail.value,
+    });
+    if (app.globalData.hasLogin && e.detail.value == 'label_2') {
+      //页面跳转
+      if (app.globalData.authority2 == 1) {
+        wx.redirectTo({
+          url: "/pages/publishM/publishM",
+        })
+      } else {
+        wx.showToast({
+          title: '您没有权限',
+          icon: 'none'
+        })
+      }
+    }
+    if (e.detail.value == 'label_1') {
+      //页面跳转
+      wx.redirectTo({
+        url: "/pages/home/home",
+      })
+    }
+    if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
+      //页面跳转
+      wx.redirectTo({
+        url: "/pages/login/login",
+      })
+    }
   },
   checkitems(e) {
     console.log(e);

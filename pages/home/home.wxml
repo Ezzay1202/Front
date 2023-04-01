@@ -20,7 +20,7 @@
             </block>
           </view>
           <view class="view_tupianwenzi view_tupianwenzi-four" bindtap="showFunctions">
-            <image class="image_tupian-four" src="/image/kx.png"></image>
+            <image class="image_tupian-four" src="/image/more.png"></image>
             <text class="text_1-four">{{showfunctions? "更多功能":"收回"}}</text>
           </view>
         </view>
@@ -66,9 +66,8 @@
       </view>
       <view class="outview worklist">
         <text class="text">我的工作</text>
-        <swiper class="swiper">
-          <swiper-item class="swiper">
-            <text>待写稿稿件</text>
+        <view class="swiper">
+          <view class="swiper">
             <block wx:for="{{listm}}" wx:key="id">
               <view class="myM-ing">
                 <view class="m-ing">
@@ -95,8 +94,8 @@
                 <view class="button-box">
                   <button style="font-size: 28rpx; padding: 0;">去提交稿件</button>
                 </view>
-                <text>相似稿件</text>
-                <view class="myM-history" style="padding: 0; margin-bottom:1em; ">
+                <!-- <text>相似稿件</text> -->
+                <!-- <view class="myM-history" style="padding: 0; margin-bottom:1em; ">
                   <block wx:for="{{listm}}" wx:key="id">
                     <view class="m">
                       <view class="title">{{item.text}}</view>
@@ -117,17 +116,17 @@
                       </view>
                     </view>
                   </block>
-                </view>
+                </view> -->
               </view>
             </block>
-          </swiper-item>
-        </swiper>
+          </view>
+        </view>
       </view>
     </view>
   </swiper-item>
   <swiper-item style="background-color: white;">
     <view class="v2">
-      <swiper class="swiper_show" indicator-dots="true">
+      <swiper class="swiper_show" indicator-dots="true" autoplay="true" circular="true">
         <block wx:for="{{swiper_show}}" wx:key="index">
           <swiper-item bindtap="goto" data-url="{{item.url}}">
             <image src="{{item.image}}" mode="scaleToFill"></image>
@@ -193,8 +192,8 @@
   <view class="mask-bac">
     <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
       <view class="input-box">
-        <input placeholder="事项名称" placeholder-class="p-class" type="text" bindinput="eventName" class="inputcs" />
-        <input placeholder="地点" placeholder-class="p-class" bindinput="locationName" class="inputcs" />
+        <input placeholder="事项名称" placeholder-class="p-class" type="text" bindinput="eventName" class="inputcs" value="{{eventname}}" />
+        <input placeholder="地点" placeholder-class="p-class" bindinput="locationName" class="inputcs" value="{{locationname}}" />
         <view class="inputcs pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
           <view class="pannel-label">起始时间</view>
           <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
@@ -208,7 +207,7 @@
         </view>
         <view class="inputcs pannel-item" bind:tap="showCheck">
           <view class="pannel-label">相关人员</view>
-          <view class="pannel-text {{peoples? '' : 'empty'}}"> {{'共有'+peoples.length+'人'}}</view>
+          <view class="pannel-text {{peoples.length===0? 'empty' : ''}}"> {{'共有'+peoples.length+'人'}}</view>
           <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
         </view>
       </view>
