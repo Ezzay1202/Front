@@ -102,51 +102,12 @@ Component({
     locationname: '',
     eventList: [],
     peoples: [],
-    picture: [{
+    picture: [/*{
       img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
       people: "乔晟豪"
-    }, {
-      img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
-      people: "乔晟豪"
-    }, {
-      img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
-      people: "乔晟豪"
-    }, {
-      img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
-      people: "乔晟豪"
-    }, {
-      img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
-      people: "乔晟豪"
-    },],
-    news: [{
-      url: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2A8PfImrPNmiaLpqzmPfm3mHSUiaUmLgOkjLVeULdckc3Y0SRqMruU3eNIS9jW7icd9Guhm35CPdvAGQ/0?wx_fmt=jpeg",
-      text: '支部建设|“管工渗透共建，学悟两会精神 ”——华科大•电子科大两校两院联合开展主题党日活动',
-      image: '',
-    }, {
-      url: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2A8PfImrPNmiaLpqzmPfm3mHSUiaUmLgOkjLVeULdckc3Y0SRqMruU3eNIS9jW7icd9Guhm35CPdvAGQ/0?wx_fmt=jpeg",
-      text: '支部建设|“管工渗透共建，学悟两会精神 ”——华科大•电子科大两校两院联合开展主题党日活动'
-    }, {
-      url: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2A8PfImrPNmiaLpqzmPfm3mHSUiaUmLgOkjLVeULdckc3Y0SRqMruU3eNIS9jW7icd9Guhm35CPdvAGQ/0?wx_fmt=jpeg",
-      text: '支部建设|“管工渗透共建，学悟两会精神 ”——华科大•电子科大两校两院联合开展主题党日活动'
-    }, {
-      url: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2A8PfImrPNmiaLpqzmPfm3mHSUiaUmLgOkjLVeULdckc3Y0SRqMruU3eNIS9jW7icd9Guhm35CPdvAGQ/0?wx_fmt=jpeg",
-      text: '支部建设|“管工渗透共建，学悟两会精神 ”——华科大•电子科大两校两院联合开展主题党日活动'
-    }],
-    boxshow: [{
-      image: "http://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2CPGoKg3rLAVNiaIjRHRgucKpf2D0xGKXEABncIfmRpeiaAvvRjlibycFw2r9EOiaHJYDOJ2yQp23PX3Q/0?wx_fmt=jpeg",
-      text: "W.0.W | 我与兔年那些不得不说的事！",
-      url: ''
-    },
-    {
-      image: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2Ac8wK5HibkMhAmDeXRps44clAPtULQic6IObMB7rB5uscibPfTbM0GqLwXsFrZqR2GCyg0FSKicc0uPg/0?wx_fmt=jpeg",
-      text: "M.O.M新春特辑 | 年味儿速递：快看！这些管院er用镜头记录下了年前幸福的瞬间~"
-    },
-    {
-      image: "https://mmbiz.qpic.cn/mmbiz_png/gbpAf4uUr2B1uZSbxb6SdAEtqm0fNDDSL1arFMsgCcENBibMQbtpRREMp47auxa2uqHzdKXHlcTqRgqasGTpAKg/0?wx_fmt=png",
-      text: "W.O.W | 惊！原来距离我成为学霸需要的时间是......"
-    }
-
-    ],
+    }*/],
+    news: [],
+    boxshow: [],
     isShow: false,
     functions_show: [{
       name: "待接任务",
@@ -348,11 +309,12 @@ Component({
         success:(res)=>{
           console.log(res.data)
           this.setData({
-            swiper_show:res.data.top,
-            boxshow:res.data.middle,
-            news:res.data.news,
-            picture:res.data.photo,
+            swiper_show:res.data.data.top,
+            boxshow:res.data.data.middle,
+            news:res.data.data.news,
+            picture:res.data.data.photo
           })
+          console.log(this.data.news)
         }
       })
 

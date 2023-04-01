@@ -167,7 +167,7 @@
       <scroll-view hidden="{{!(nowCheck===1)}}" scroll-y="true" style="margin-top: 10rpx; max-height: 85vh;">
         <block wx:for="{{picture}}" wx:key="index">
           <view class="image_box">
-            <image src="{{item.img}}" mode="aspectFill" />
+            <image src="{{item.image}}" mode="aspectFill" />
             <view style="background-color: rgba(0, 0, 0, 0.6); width :85%; text-align: right; color: #efefef; margin:.3em;">
               摄影师：{{item.people}}
             </view>
@@ -178,7 +178,7 @@
         <view class="news-box">
           <block wx:for="{{news}}" wx:key="index">
             <view class="news-item">
-              <image src="{{item.url}}" mode="" />
+              <image src="{{item.image}}" mode="" />
               <text>{{item.text}}</text>
             </view>
           </block>
