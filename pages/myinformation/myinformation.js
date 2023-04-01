@@ -8,6 +8,23 @@ Page({
     info: [],
     showName: false,
     index: 0,
+    man: true,
+    picture: '/image/啸天.png'
+  },
+
+  changePhoto(e) {
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ['image'],
+      sourceType: ['album', 'camera'],
+      camera: 'back',
+      success: (res) => {
+        console.log(res.tempFiles[0].tempFilePath)
+        this.setData({
+          picture: res.tempFiles[0].tempFilePath
+        })
+      }
+    })
   },
 
   changeName(e) {
@@ -30,55 +47,58 @@ Page({
     const resultInfo = JSON.parse(options.resultInfo)
     console.log(resultInfo)
     this.setData({
+      man: true,
       info: [{
         column: "1/4",
         row: "1/2",
-        color: "black",
-        btext: resultInfo.info[0].btext,//resultInfo.username,
-        stext: "昵称",
-        f: "changeName"
+        color: "#7b8341",
+        btext: 'U202116251',//resultInfo.info[0].btext,//resultInfo.username,
+        stext: "学号",
+        f: ""
       }, {
         column: "3/5",
         row: "2/3",
-        color: "#574c45",
+        color: "#626a29",
         btext: resultInfo.info[1].btext,
         stext: "姓名",
         f: ""
       }, {
         column: "3/5",
         row: "3/4",
-        color: "#6a63a6",
+        color: "#5a6241",
         btext: resultInfo.info[2].btext,
         stext: "身份",
         f: ""
       }, {
         column: "1/5",
         row: "4/5",
-        color: "#0e6e8c",
-        btext: resultInfo.info[3].btext,
+        color: "#949441",
+        btext: '13848440908',//resultInfo.info[3].btext,
         stext: "联系方式",
-        f: "changeName"
+        f: ""
       }, {
         column: "1/2",
         row: "5/6",
-        color: "#0e6e8c",
+        color: "#deded5",
         btext: resultInfo.info[4].btext,
+        blur: true,
         stext: "当月绩效",
         f: ""
       }, {
         column: "2/3",
         row: "5/6",
-        color: "#8fb3a5",
+        color: "#322c18",
         btext: resultInfo.info[5].btext,
         stext: "完成任务",
         f: ""
       }, {
         column: "3/5",
         row: "5/7",
-        color: "#4a2028",
+        color: "#deded5",
         btext: resultInfo.info[6].btext,
         stext: "总绩效",
         class: "-max",
+        blur: true,
         f: ""
       }],
       showName: false,

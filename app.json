@@ -1,23 +1,26 @@
 {
   "pages": [
     "pages/home/home",
+
+    "pages/login/login",
+
+
+    "pages/managment/managment",
+
+    "pages/publishM/publishM",
     "pages/mywork/mywork",
     "pages/updateN/updateN",
     "pages/diyhome/diyhome",
-    "pages/managment/managment",
     "pages/checkM/checkM",
     "pages/submitM/submitM",
     "pages/mydate/mydate",
     "pages/exception/exception",
     "pages/performance/performance",
     "pages/myinformation/myinformation",
-    "pages/people/people",
     "pages/myself/myself",
     "pages/historyM/historyM",
     "pages/fcheckM/fcheckM",
     "pages/updateM/updateM",
-    "pages/publishM/publishM",
-    "pages/login/login",
     "pages/submitP/submitP",
     "pages/publishedM/publishedM",
     "pages/inquiryM/inquiryM",

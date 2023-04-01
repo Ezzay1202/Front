@@ -148,13 +148,13 @@ Component({
     })),
 
     wen: Array.from(new Array(3), (_, index) => ({
-      label: `${index + 1}文`,
-      value: index + 1,
+      label: `${index}文`,
+      value: index,
     })),
 
     she: Array.from(new Array(3), (_, index) => ({
-      label: `${index + 1}摄`,
-      value: index + 1,
+      label: `${index}摄`,
+      value: index,
     })),
     [`${PICKER_KEY.DATE}Value`]: [month, day, hour],
     [`${PICKER_KEY.DATE1}Value`]: [month, day, hour, minute],
@@ -163,20 +163,20 @@ Component({
 
     value: 'label_2',
     list: [{
-        value: 'label_1',
-        label: '首页',
-        icon: 'home'
-      },
-      {
-        value: 'label_2',
-        label: '发布',
-        icon: 'check-rectangle'
-      },
-      {
-        value: 'label_4',
-        label: '我的',
-        icon: 'user'
-      },
+      value: 'label_1',
+      label: '首页',
+      icon: 'home'
+    },
+    {
+      value: 'label_2',
+      label: '发布',
+      icon: 'check-rectangle'
+    },
+    {
+      value: 'label_4',
+      label: '我的',
+      icon: 'user'
+    },
     ],
   },
   methods: {
@@ -229,8 +229,8 @@ Component({
       } = e.currentTarget.dataset;
 
       this.setData({
-          cur: item,
-        },
+        cur: item,
+      },
         () => {
           this.setData({
             showcheck: true
@@ -671,7 +671,8 @@ Component({
                   "Content-Type": "multipart/form-data"
                 },
                 success: (res) => {
-                  json = JSON.parse(res.data)
+                  console.log(res.data)
+                  let json = JSON.parse(res.data)
                   console.log(json)
                 }
               })
@@ -679,7 +680,6 @@ Component({
             wx.showToast({
               title: '发布成功',
             })
-
             app.sleep(1500)
             wx.redirectTo({
               url: '/pages/home/home',
@@ -687,7 +687,7 @@ Component({
           },
           complete: (res) => {
             wx.hideLoading({
-              success: (res) => {},
+              success: (res) => { },
             })
           }
         })

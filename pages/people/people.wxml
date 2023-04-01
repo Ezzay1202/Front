@@ -1,7 +1,8 @@
 <!--pages/people/people.wxml-->
 <view style="position: fixed; top: 0; z-index: 2; width:750rpx; background-color: white;">
   <view class="search" style="background-color: white;padding:.5em; flex-direction: row;">
-    <image bindtap="Choose" src="{{choose? '/image/s.png':'/image/uns .png' }}" mode="" />
+    <image src="{{choose? '/image/s.png':'/image/uns .png' }}" mode="" />
+    <!-- <image bindtap="Choose" src="{{choose? '/image/s.png':'/image/uns .png' }}" mode="" /> -->
     <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{center}}" />
   </view>
   <van-dropdown-menu active-color="#135ba4" custom-class="dropdown-menu">

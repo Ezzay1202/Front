@@ -34,7 +34,7 @@ Page({
     max: 2,
     index1: '',
     index2: '',
-    choose: true,
+    choose: false,
     itemTitle: '筛选',
     people: [{
       text: "人事部",
