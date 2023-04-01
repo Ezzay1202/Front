@@ -22,7 +22,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) { },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -103,7 +103,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) { },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -176,7 +176,7 @@ Page({
         data: {
           data: {
             password: '123456', //this.data.password
-            userid: 'U202116242' //this.data.userid
+            userid: this.data.userid
           },
           method: "signUp"
         },
@@ -197,8 +197,8 @@ Page({
             app.globalData.missionTaken = res.data.data.missionTaken
             app.globalData.missionCompleted = res.data.data.missionCompleted
             wx.showToast({
-              title: '登录成功',
-            }),
+                title: '登录成功',
+              }),
               app.sleep(1200)
             wx.getUserProfile({
               desc: '是否授权？',
@@ -210,7 +210,7 @@ Page({
                     console.log(res)
                     let datalist2 = res
                     wx.request({
-                      url: '',
+                      url: '', //
                       data: {
                         'encryptedData': datalist1.encryptedData,
                         'iv': datalist1.iv,
@@ -225,6 +225,13 @@ Page({
                     })
                   }
                 })
+              }
+            })
+            
+            wx.requestSubscribeMessage({
+              tmplIds: ['Fehs8jFNXvAJixC7KkudGdsH1uKw5t_-UnehkRMfaB8', 'Fehs8jFNXvAJixC7KkudGaGyx-3_zmdEYjk-5zCbG1g', '9stBRAqDVcQt15Oi4FgLw75P7xpzb9YrifSX7-jLGoQ'],
+              success: (res) => {
+                console.log(res)
               }
             })
             wx.redirectTo({
@@ -253,80 +260,5 @@ Page({
       })
     }
   },
-  Login2() {
-    wx.request({
-      data: {
-        data: {
-          password: '123456', //this.data.password
-          userid: this.data.userid
-        },
-        method: "signUp"
-      },
-      url: 'http://1.15.118.125:8081/NIC/login',
-      success: (res) => {
-        console.log(res.data);
-        if (res.data.code === 102) {
-          app.globalData.hasLogin = true
-          app.globalData.authority1 = res.data.data.authority1
-          app.globalData.authority2 = res.data.data.authority2
-          app.globalData.authority3 = res.data.data.authority3
-          app.globalData.username = res.data.data.username
-          app.globalData.userid = res.data.data.userid
-          wx.showToast({
-            title: '登录成功',
-          }),
-            app.sleep(1200)
-          wx.getUserProfile({
-            desc: '是否授权？',
-            success: (res) => {
-              console.log(res)
-              let datalist1 = res
-              wx.login({
-                success: (res) => {
-                  console.log(res)
-                  let datalist2 = res
-                  wx.request({
-                    url: '',
-                    data: {
-                      'encryptedData': datalist1.encryptedData,
-                      'iv': datalist1.iv,
-                      'signature': datalist1.signature,
-                      'rawData': datalist1.rawData,
-                      'code': datalist2.code,
-                      'userid': app.globalData.userid
-                    },
-                    success: (res) => {
-                      console.log(res)
-                    }
-                  })
-                }
-              })
-            }
-          })
-          wx.redirectTo({
-            url: '/pages/home/home',
-          })
-        }
-        if (res.data.code === 99) {
-          wx.showToast({
-            title: '查无此用户',
-            icon: 'error'
-          })
-        }
-        if (res.data.code === 101) {
-          wx.showToast({
-            title: '密码错误',
-            icon: 'error'
-          })
-        }
-        if (res.data.code === 103) {
-          wx.showToast({
-            title: 'Error',
-            icon: 'error'
-          })
-        }
-      }
-    })
-  }
-}
-)
+  Login2() {}
+})

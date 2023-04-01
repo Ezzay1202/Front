@@ -287,19 +287,7 @@ Component({
     time: 2 * 24 * 60 * 60 * 1000,
     timeData: {},
 
-    swiper_show: [{
-      url: "https://mp.weixin.qq.com/s/QgZSCvkBxFSRbH_wZg2S9Q",
-      image: "https://mmbiz.qpic.cn/mmbiz_png/gbpAf4uUr2BUXONjIriayQ15PiadXdAnDibVGqiaSbgibc3PtuojCkEolxKgroPRrG3Ly41hRNw5tGsbn6wEr6LkXgw/0?wx_fmt=png",
-      name: "秋日限定 | 小管邀请你抓住秋天最后的尾巴"
-    }, {
-      url: "https://mp.weixin.qq.com/s/7UwvBVLlALpGn0SYwd8y1Q",
-      image: "https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2Bkb3kzXMldhB2l9Wx85CqibicPsMsPD1R3kGTeic4fubWnsb3WNUW9baictFMq1ic0QDKsZTTd5XLkskQ/0?wx_fmt=jpeg",
-      name: "腊月二十七 | 孩童街上嬉，沐浴剃精细"
-    }, {
-      url: "https://mp.weixin.qq.com/s/7UwvBVLlALpGn0SYwd8y1Q",
-      image: "http://mmbiz.qpic.cn/mmbiz_png/gbpAf4uUr2A9OWFDMY9bsxibgQkKflB0fNND7xgVIts7Y093Kibib8jkwIanJ7a9FFQpBK8rthUlt2Pdc0TaDgqaA/0?wx_fmt=png",
-      name: "我们的故事——管理学院学生工作2022年度记忆"
-    }],
+    swiper_show: [],
 
     PICKER_KEY,
     [`${PICKER_KEY.DATE1}Visible`]: false,
@@ -353,6 +341,22 @@ Component({
 
   lifetimes: {
     attached() {
+      wx.request({
+        url: 'http://1.15.118.125:8081/NIC/frontpage?method=show',
+        success:(res)=>{
+          console.log(res.data)
+          this.setData({
+            swiper_show:res.data.top,
+            boxshow:res.data.middle,
+            news:res.data.news,
+            picture:res.data.photo,
+          })
+        }
+      })
+
+
+
+
       if (app.globalData.hasLogin) {
         if (app.globalData.kcb_code != 702) {
           wx.request({

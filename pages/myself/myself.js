@@ -437,7 +437,7 @@ Page({
     }, {
       btext: '0'
     }, {
-      btext: app.globalData.missionCompleted.length
+      btext: app.globalData.missionCompleted.length //
     }, {
       btext: '0'
     }]

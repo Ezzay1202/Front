@@ -281,7 +281,7 @@ Page({
     this.setData({
       review: value
     })
-    console.log(this.data.review)
+    //console.log(this.data.review)
     if (len > this.data.max)
       return;
     this.setData({
@@ -324,7 +324,14 @@ Page({
         title: '请输入评价！',
         icon: 'error'
       })
-    } //else if (this.data.remarks == '') {
+    } 
+    if(this.data.files === []){
+      wx.showToast({
+        title: '请选择稿件!',
+        icon: 'error'
+      })
+    }
+    //else if (this.data.remarks == '') {
     // wx.showToast({
     //    title: '请输入备注！',
     //     icon: 'error'

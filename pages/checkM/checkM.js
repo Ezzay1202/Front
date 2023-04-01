@@ -76,8 +76,8 @@ Page({
             location: list_all[j].place,
             people: article + photo,
             articleList: list_all[j].reporters.article, //个人信息
-            photoList:list_all[j].reporters.photo,//
-            editor:list_all[j].statusChanger['编辑部审稿'],
+            photoList: list_all[j].reporters.photo, //
+            editor: list_all[j].statusChanger['编辑部审稿'],
             state: state,
             name: name[0],
             detail: detail[0]
@@ -109,24 +109,13 @@ Page({
         text: data_temp.text,
         date1: data_temp.date1,
         date2: data_temp.date2,
-        location: data_temp.location,
+        location: (data_temp.location === undefined) ? '' : data_temp.location,
         people: data_temp.people, //1文1摄
-        article: data_temp.articleList,
-        photo: data_temp.photoList,
-        editor: data_temp.editor, //
+        article: (data_temp.articleList === undefined) ? '' : data_temp.articleList,
+        photo: (data_temp.photoList === undefined) ? '' : data_temp.photoList,
+        editor: (data_temp.editor === undefined) ? '' : data_temp.editor, //
       },
       files: filesList,
-      /*
-      tag: [{
-        name: "优秀稿件",
-        show: true
-      },
-      {
-        name: "优秀稿件2",
-        show: false
-      },
-      ],
-      */
       missionID: data_temp.missionID,
       attitude: true,
       code: 1,

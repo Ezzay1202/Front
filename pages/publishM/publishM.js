@@ -3,7 +3,7 @@
 const app = getApp();
 const date = new Date()
 const year = date.getFullYear()
-const month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
+const month = date.getMonth() + 1
 const day = date.getDate()
 const hour = date.getHours()
 const minute = date.getMinutes()
@@ -14,15 +14,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    this.setData({
-      year: year,
-      month: month,
-      day: day,
-      hour: hour,
-      minute: minute,
-    })
-  },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -113,18 +105,18 @@ Component({
     fileArray: [],
     step: [{
       text: '已写稿',
+      content: '需要编辑部审稿',
+      hidden: false
     }, {
-      text: '编辑部审稿',
-      content: "需要编辑部帮助润色稿件"
+      text: '编辑部已审稿',
+      content: "需要辅导员审稿",
+      hidden: true
     }, {
-      text: '辅导员审稿',
-      content: "已有其他辅导员审核稿件"
-    }, {
-      text: '排版',
-    }, ],
-    first: 1,
-    second: 1,
-    third: 1,
+      text: '辅导员已审稿',
+      content: "需要排版",
+      hidden: true
+    }],
+    currentStep: 0,
     stickyProps: {
       zIndex: 2,
     },
@@ -378,7 +370,7 @@ Component({
       //console.log(this.data.tag)
     },
 
-    uploadFile: function (e) {
+    uploadFile(e) {
       console.log(e)
       wx.chooseMessageFile({
         count: 10, //选择文件的数量
@@ -425,21 +417,12 @@ Component({
         })
       }
     },
-    onFirstChange(e) {
+    currentStepChange(e) {
       //选择任务状态
       this.setData({
-        first: e.detail.current
-      });
-    },
-    onSecondChange(e) {
-      this.setData({
-        second: e.detail.current
-      });
-    },
-    onThirdChange(e) {
-      this.setData({
-        third: e.detail.current
-      });
+        currentStep: e.detail.current
+      })
+      console.log(this.data.currentStep)
     },
     setPlace(e) {
       place1 = e.detail.value
@@ -536,27 +519,27 @@ Component({
     },
 
     publishMission() {
-      if (this.data.list1 == null) {
+      if (this.data.list1 === null) {
         wx.showToast({
           icon: 'none',
           title: '请填写起始时间',
         })
-      } else if (this.data.list2 == null) {
+      } else if (this.data.list2 === null) {
         wx.showToast({
           icon: 'none',
           title: '请填写结束时间',
         })
-      } else if (this.data.list3 == null) {
+      } else if (this.data.list3 === null) {
         wx.showToast({
           icon: 'none',
           title: '请填写小记者',
         })
-      } else if (place1 == '') {
+      } else if (place1 === '') {
         wx.showToast({
           icon: 'none',
           title: '请填写地点',
         })
-      } else if (description1 == '') {
+      } else if (description1 === '') {
         wx.showToast({
           icon: 'none',
           title: '请填写活动内容',
@@ -605,6 +588,17 @@ Component({
               wx.showToast({
                 title: '发布成功',
               })
+/*
+              wx.request({
+                url: 'https://1.15.118.125:8081/NIC',
+                data: {
+                  'missionID': res.data.missionID
+                },
+                success: (res) => {
+                  console.log(res)
+                }
+              })
+              */
               app.sleep(2000)
               wx.redirectTo({
                 url: '/pages/home/home',
@@ -619,9 +613,18 @@ Component({
         })
       }
     },
-    publishMission2() {
+    publishMission2(e) {
+      //console.log(this.data)
       let fileArray = this.data.fileArray
-      if (description2 == '') {
+      console.log(fileArray)
+      let description = ''
+      for(let i of fileArray){
+        if(i.name.includes('docx')||i.name.includes('doc')){
+          description = i.name.split('.doc')[0]
+          break
+        }
+      }
+      if (description2 === '') {
         wx.showToast({
           icon: 'none',
           title: '请填写稿件备注',
@@ -644,9 +647,15 @@ Component({
             "method": "add",
             "data": {
               "tags": tags,
-              "element": 1,
+              "element": this.data.currentStep + 1,
               "publisher": app.globalData.userid,
-              "description": description2
+              "description": description,//description2
+              "time": {
+                "year": year,
+                "month": this.data.dateValue[0],
+                "day": this.data.dateValue[1],
+                "beginHour": this.data.dateValue[2]
+              },
             }
           },
           success: (res) => {
@@ -667,13 +676,14 @@ Component({
                 }
               })
             }
-              wx.showToast({
-                title: '发布成功',
-              })
-              app.sleep(1500)
-              wx.redirectTo({
-                url: '/pages/home/home',
-              })      
+            wx.showToast({
+              title: '发布成功',
+            })
+
+            app.sleep(1500)
+            wx.redirectTo({
+              url: '/pages/home/home',
+            })
           },
           complete: (res) => {
             wx.hideLoading({

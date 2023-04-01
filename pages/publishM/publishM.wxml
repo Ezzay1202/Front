@@ -133,7 +133,7 @@
         <text>请选择任务状态</text>
         <t-steps current="{{first}}" bind:change="onFirstChange">
           <block wx:for="{{step}}" wx:key="index">
-            <t-step-item title="{{item.text}}" content="{{item.content}}" />
+            <t-step-item title="{{item.text}}" content="{{item.content}}" hidden="{{item.hidden}}"/>
           </block>
         </t-steps>
       </view>
