@@ -11,7 +11,7 @@ Page({
   onLoad(options) {
     let list_show = []
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/user',
+      url: 'https://www.hustnic.tech:8081/NIC/user',
       data: {
         "method": "userInfo",
         "data": {
@@ -83,7 +83,7 @@ Page({
       wx.uploadFile({
         filePath: this.data.listm[i].fileArray[j].path,
         name: 'file',
-        url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + this.data.listm[i].missionID.toString() + '&userid=' + app.globalData.userid.toString(),
+        url: 'https://www.hustnic.tech:8081/NIC/upload?missionID=' + this.data.listm[i].missionID.toString() + '&userid=' + app.globalData.userid.toString(),
         header: {
           "Content-Type": "multipart/form-data"
         },

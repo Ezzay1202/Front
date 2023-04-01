@@ -75,7 +75,7 @@ Page({
       mask: true
     })
     wx.setClipboardData({
-      data: 'http://1.15.118.125:8080/NIC/work_files/' + this.data.file_download[arr].name,
+      data: 'https://www.hustnic.tech:8080/NIC/work_files/' + this.data.file_download[arr].name,
       success: (res) => {
         wx.showToast({
           title: '文件下载链接已复制到剪贴板',
@@ -171,7 +171,7 @@ Page({
   },
   missionRollback() {
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/manage',
+      url: 'https://www.hustnic.tech:8081/NIC/manage',
       data: {
         'method': 'return',
         'data': {
@@ -348,7 +348,7 @@ Page({
         wx.uploadFile({
           filePath: this.data.file_upload[i].path,
           name: 'file',
-          url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + this.data.missionID.toString() + '&userid=' + app.globalData.userid.toString() + '&kind=' + kind,
+          url: 'https://www.hustnic.tech:8081/NIC/upload?missionID=' + this.data.missionID.toString() + '&userid=' + app.globalData.userid.toString() + '&kind=' + kind,
           header: {
             "Content-Type": "multipart/form-data"
           },
@@ -361,7 +361,7 @@ Page({
                 if (kind === 'editor') {
                   console.log(kind)
                   wx.request({
-                    url: 'http://1.15.118.125:8081/NIC/manage',
+                    url: 'https://www.hustnic.tech:8081/NIC/manage',
                     data: {
                       "method": "examine",
                       "data": {
@@ -395,7 +395,7 @@ Page({
                 if (kind === 'teacher') {
                   console.log(kind)
                   wx.request({
-                    url: 'http://1.15.118.125:8081/NIC/manage',
+                    url: 'https://www.hustnic.tech:8081/NIC/manage',
                     data: {
                       "method": "examine",
                       "data": {
@@ -482,7 +482,7 @@ Page({
         title: '请稍等...',
       })
       wx.downloadFile({
-        url: 'http://1.15.118.125:8081/NIC/work_files/' + this.data.file_download[e.currentTarget.dataset.id].name,
+        url: 'https://www.hustnic.tech:8081/NIC/work_files/' + this.data.file_download[e.currentTarget.dataset.id].name,
         success: (res) => {
           console.log(res)
           tempFilePath = res.tempFilePath

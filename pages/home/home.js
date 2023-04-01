@@ -305,7 +305,7 @@ Component({
   lifetimes: {
     attached() {
       wx.request({
-        url: 'http://1.15.118.125:8081/NIC/frontpage?method=show',
+        url: 'https://www.hustnic.tech:8081/NIC/frontpage?method=show',
         success:(res)=>{
           console.log(res.data)
           this.setData({
@@ -324,7 +324,7 @@ Component({
       if (app.globalData.hasLogin) {
         if (app.globalData.kcb_code != 702) {
           wx.request({
-            url: 'http://1.15.118.125:8080/NIC/lesson',
+            url: 'https://www.hustnic.tech:8080/NIC/lesson',
             data: {
               "method": "get",
               "data": {
@@ -348,7 +348,7 @@ Component({
         for (let i = 0; i < times; i++) {
           let date = new Date((new Date).getTime() + (24 * 60 * 60 * 1000) * i)
           wx.request({
-            url: 'http://1.15.118.125:8081/NIC/affair',
+            url: 'https://www.hustnic.tech:8081/NIC/affair',
             data: {
               'method': 'get',
               'data': {
@@ -398,7 +398,7 @@ Component({
           })
         }
         wx.request({
-          url: 'http://1.15.118.125:8081/NIC/allUser',
+          url: 'https://www.hustnic.tech:8081/NIC/allUser',
           data: {
             "method": "grouped",
             "data": {
@@ -445,6 +445,7 @@ Component({
           }
         })
       }
+      this.setSwiperHeight(this.data.arr[1], 1)
     }
   },
   methods: {
@@ -461,7 +462,7 @@ Component({
       });
       this.setSwiperHeight(this.data.arr[e.detail.current], e.detail.current)
     },
-    setSwiperHeight: function (v, num) {
+    setSwiperHeight (v, num) {
       let query = wx.createSelectorQuery().in(this);
       query.select(v).boundingClientRect();
       query.exec((res) => {
@@ -478,39 +479,6 @@ Component({
           })
         }
       });
-
-    },
-    onLoad: function (options) {
-      this.setSwiperHeight(this.data.arr[1], 1)
-      if (app.globalData.hasLogin) {
-        wx.request({
-          url: 'http://1.15.118.125:8080/NIC/lesson',
-          data: {
-            "method": "get",
-            "data": {
-              "weekStart": 1,
-              "weekEnd": 19,
-              "userid": app.globalData.userid
-            }
-          },
-          success: (res) => {
-            console.log(res.data)
-            app.globalData.kcb_code = res.data.code
-            if (app.globalData.kcb_code === 702) {
-              app.globalData.kcb = res.data.data
-            }
-          }
-        })
-
-
-
-        let a = {
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        }
-      }
 
     },
 
@@ -636,7 +604,7 @@ Component({
         })
       } else {
         wx.request({
-          url: 'http://1.15.118.125:8081/NIC/affair',
+          url: 'https://www.hustnic.tech:8081/NIC/affair',
           data: {
             'method': 'add',
             'data': {

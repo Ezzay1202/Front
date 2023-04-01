@@ -68,7 +68,7 @@ Page({
     let tags = JSON.stringify(obj)
     console.log(tags)
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/show',
+      url: 'https://www.hustnic.tech:8081/NIC/show',
       data: {
         "method": "showByInput",
         "data": {
@@ -100,7 +100,7 @@ Page({
     let list2 = []
     let temp3 = []
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/manage?method=getTag', //获取Tag
+      url: 'https://www.hustnic.tech:8081/NIC/manage?method=getTag', //获取Tag
       success: (res) => {
         console.log(res.data.data)
         list1 = res.data.data['list1'][0]
@@ -132,7 +132,7 @@ Page({
     })
 
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/show',
+      url: 'https://www.hustnic.tech:8081/NIC/show',
       data: {
         "method": "showFinished"
       },

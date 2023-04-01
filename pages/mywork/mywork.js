@@ -196,7 +196,7 @@ Page({
    */
   onLoad(options) {
     wx.request({
-      url: 'http://1.15.118.125:8081/',
+      url: 'https://www.hustnic.tech:8081/',
       data:{},
       success:(res)=>{
         console.log(res.data)

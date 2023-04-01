@@ -11,7 +11,7 @@ Page({
       listp:[]
     })
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/show?method=showNeed',
+      url: 'https://www.hustnic.tech:8081/NIC/show?method=showNeed',
       success: (res) => {
         let list_all = res.data.data;
         console.log(res)
@@ -75,7 +75,7 @@ Page({
 
     //paiban
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/show?method=showNeedLayout',
+      url: 'https://www.hustnic.tech:8081/NIC/show?method=showNeedLayout',
       success: (res) => {
         console.log(res.data.data)
         let list_all = res.data.data
@@ -124,7 +124,7 @@ Page({
   },
   takePhoto(e) {
       wx.request({
-        url: 'http://1.15.118.125:8081/NIC/take',
+        url: 'https://www.hustnic.tech:8081/NIC/take',
         data: {
           "method": "take",
           "data": {
@@ -165,7 +165,7 @@ Page({
 
   takeArticle(e) {
       wx.request({
-        url: 'http://1.15.118.125:8081/NIC/take',
+        url: 'https://www.hustnic.tech:8081/NIC/take',
         data: {
           "method": "take",
           "data": {
@@ -205,7 +205,7 @@ Page({
   },
   takeTypesetting(e){
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/take',
+      url: 'https://www.hustnic.tech:8081/NIC/take',
       data: {
         "method": "layout",
         "data": {

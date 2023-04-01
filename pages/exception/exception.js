@@ -140,7 +140,7 @@ Page({
       "写稿": a5,
     }
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/manage',
+      url: 'https://www.hustnic.tech:8081/NIC/manage',
       data: {
         "method": "addFinished",
         "data": {

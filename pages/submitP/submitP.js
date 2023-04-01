@@ -28,7 +28,7 @@ Page({
       listp: []
     })
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/user',
+      url: 'https://www.hustnic.tech:8081/NIC/user',
       data: {
         'method': 'showLayout',
         'data': {
@@ -83,7 +83,7 @@ Page({
     let url = this.data.listp[e.currentTarget.dataset.index].url
     if (url != '') {
       wx.request({
-        url: 'http://1.15.118.125:8081/NIC/take',
+        url: 'https://www.hustnic.tech:8081/NIC/take',
         data: {
           'method': 'uploadURL',
           'data': {

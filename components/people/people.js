@@ -31,7 +31,7 @@ Component({
   lifetimes: {
     attached() {
       wx.request({
-        url: 'http://1.15.118.125:8081/NIC/allUser',
+        url: 'https://www.hustnic.tech:8081/NIC/allUser',
         data: {
           "method": "grouped",
           "data": {

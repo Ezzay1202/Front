@@ -208,7 +208,7 @@ Page({
    */
   onLoad(options) {
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/allUser',
+      url: 'https://www.hustnic.tech:8081/NIC/allUser',
       data: {
         "method": "grouped",
         "data": {
@@ -230,7 +230,7 @@ Page({
             console.log(datas[k][j]);
             console.log(j);
             maps2.checked = false
-            maps2.img = 'http://1.15.118.125:8080/NIC/work_files/' + datas[k][j].head
+            maps2.img = 'https://www.hustnic.tech:8080/NIC/work_files/' + datas[k][j].head
             maps2.name = datas[k][j].username
             maps2.tag_box = [datas[k][j].identity, datas[k][j].classStr]
             dep[j] = maps2

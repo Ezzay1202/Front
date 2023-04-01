@@ -5,6 +5,14 @@ App({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    let sessionId = wx.getStorageSync('SESSIONID')
+    let expiredTime = wx.getStorageSync('EXPIREDTIME')
+    let now = +new Date()
+    if (now - expiredTime <= 1 * 24 * 60 * 60 * 1000 * 180) {
+      this.globalData.sessionId = sessionId
+      this.globalData.expiredTime = expiredTime
+    }
+
     // 登录
     wx.login({
       success: res => {
@@ -34,6 +42,8 @@ App({
     missionTaken: [],
     week_kcb: 0,
     kcb: [],
-    kcb_code: 0
+    kcb_code: 0,
+    sessionID: null,
+    expiredTime: 0
   }
 })

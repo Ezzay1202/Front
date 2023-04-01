@@ -19,7 +19,7 @@ Page({
       list_all: []
     })
     wx.request({
-      url: 'http://1.15.118.125:8081/NIC/show?method=showGotDraft',
+      url: 'https://www.hustnic.tech:8081/NIC/show?method=showGotDraft',
       data: {
         'data': {
           'kind': kind

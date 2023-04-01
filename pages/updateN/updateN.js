@@ -192,7 +192,7 @@ Component({
       let list2 = []
       let temp3 = []
       wx.request({
-        url: 'http://1.15.118.125:8081/NIC/manage?method=getTag',
+        url: 'https://www.hustnic.tech:8081/NIC/manage?method=getTag',
         success: (res) => {
           console.log(res.data.data)
           list1 = res.data.data['list1'][0]
@@ -501,7 +501,7 @@ Component({
         let tags = JSON.stringify(obj)
         console.log(tags)
         wx.request({
-          url: 'http://1.15.118.125:8081/NIC/manage',
+          url: 'https://www.hustnic.tech:8081/NIC/manage',
           data: {
             "method": "addFinished",
             "data": {
@@ -559,7 +559,7 @@ Component({
           title: '请稍等...',
         })
         wx.request({
-          url: 'http://1.15.118.125:8081/NIC/manage',
+          url: 'https://www.hustnic.tech:8081/NIC/manage',
           data: {
             "method": "add",
             "data": {
@@ -576,7 +576,7 @@ Component({
               wx.uploadFile({
                 filePath: fileArray[i].path,
                 name: 'file',
-                url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + missionID,
+                url: 'https://www.hustnic.tech:8081/NIC/upload?missionID=' + missionID,
                 header: {
                   "Content-Type": "multipart/form-data"
                 },

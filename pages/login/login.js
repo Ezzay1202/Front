@@ -180,7 +180,7 @@ Page({
           },
           method: "signUp"
         },
-        url: 'http://1.15.118.125:8081/NIC/login',
+        url: 'https://www.hustnic.tech:8081/NIC/login',
         success: (res) => {
           console.log(res.data);
           if (res.data.code === 102) {
@@ -196,6 +196,15 @@ Page({
             app.globalData.identity = res.data.data.identity
             app.globalData.missionTaken = res.data.data.missionTaken
             app.globalData.missionCompleted = res.data.data.missionCompleted
+
+            // 把 SessionId 和过期时间放在内存中的全局对象和本地缓存里边
+            app.globalData.sessionId = res.data.sessionId
+            wx.setStorageSync('SESSIONID', res.data.sessionId)
+            // 假设登录态保持1天
+            let expiredTime = +new Date() + 1 * 24 * 60 * 60 * 1000* 180
+            app.globalData.expiredTime = expiredTime
+            wx.setStorageSync('EXPIREDTIME', expiredTime)
+
             wx.showToast({
                 title: '登录成功',
               }),
@@ -227,7 +236,7 @@ Page({
                 })
               }
             })
-            
+
             wx.requestSubscribeMessage({
               tmplIds: ['Fehs8jFNXvAJixC7KkudGdsH1uKw5t_-UnehkRMfaB8', 'Fehs8jFNXvAJixC7KkudGaGyx-3_zmdEYjk-5zCbG1g', '9stBRAqDVcQt15Oi4FgLw75P7xpzb9YrifSX7-jLGoQ'],
               success: (res) => {
