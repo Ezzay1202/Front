@@ -649,13 +649,8 @@ Component({
               "tags": tags,
               "element": this.data.currentStep + 1,
               "publisher": app.globalData.userid,
-              "description": description,//description2
-              "time": {
-                "year": year,
-                "month": this.data.dateValue[0],
-                "day": this.data.dateValue[1],
-                "beginHour": this.data.dateValue[2]
-              },
+              "postscript": description,//description2
+              "time": this.data.dateValue[0]+'月'+this.data.dateValue[1]+'日'+this.data.dateValue[1]+'时'+'00分'
             }
           },
           success: (res) => {
@@ -679,6 +674,15 @@ Component({
             }
             wx.showToast({
               title: '发布成功',
+            })
+            wx.request({
+              url: '',//
+              data:{
+                'missionID':missionID
+              },
+              success:(res)=>{
+                console.log(res)
+              }
             })
             app.sleep(1500)
             wx.redirectTo({
