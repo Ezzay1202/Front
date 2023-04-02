@@ -624,12 +624,14 @@ Component({
           break
         }
       }
+      /*
       if (description2 === '') {
         wx.showToast({
           icon: 'none',
           title: '请填写稿件备注',
         })
-      } else if (fileArray.length === 0) {
+      } 
+      else */if (fileArray.length === 0) {
         wx.showToast({
           icon: 'none',
           title: '请上传文件',
