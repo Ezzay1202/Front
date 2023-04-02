@@ -117,7 +117,9 @@ t-search {
 }
 
 
-.myM-history {}
+.myM-history {
+  background-color: white;
+}
 
 .m {
   align-items: stretch;

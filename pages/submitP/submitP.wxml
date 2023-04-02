@@ -1,6 +1,6 @@
 <!--pages/submitP/submitP.wxml-->
 <view class="none" wx:if="{{listp.length===0}}">
-  <image src="/image/缺省页_暂无消息.png"></image>
+  <image src="http://1.15.118.125:8080/NIC/work_files/image//缺省页_暂无消息.png"></image>
   <view>您还没有待提交的排版</view>
 </view>
 <scroll-view class="container" scroll-y="true" enable-flex="true">

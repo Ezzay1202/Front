@@ -131,9 +131,9 @@
     <view class="container" style="align-items: stretch; justify-content: stretch; height: 82vh; overflow: scroll;">
       <view class="block">
         <text>请选择任务状态</text>
-        <t-steps current="{{first}}" bind:change="onFirstChange">
+        <t-steps  current="{{first}}" bind:change="currentStepChange">
           <block wx:for="{{step}}" wx:key="index">
-            <t-step-item title="{{item.text}}" content="{{item.content}}" hidden="{{item.hidden}}"/>
+            <t-step-item title="{{item.text}}" content="{{item.content}}" hidden="{{item.hidden}}" t-class-content='t-class-content'/>
           </block>
         </t-steps>
       </view>
@@ -148,10 +148,10 @@
       <block>
         <view class="box filebox">
           <view class="right" wx:for="{{fileArray}}" wx:key="index">
-            <image src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
+            <image src="http://1.15.118.125:8080/NIC/work_files/image//删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
             </image>
             <view class="n" bindtap="previewFile" data-path="{{item.path}}">
-              <image src="/image/docm.png" mode="aspectFill"></image>
+              <image src="http://1.15.118.125:8080/NIC/work_files/image//docm.png" mode="aspectFill"></image>
               <text class="name">{{item.name}}</text>
               <text class="size">{{item.size}}</text>
             </view>
@@ -160,22 +160,23 @@
         </view>
 
 
-        <block>
+        <block wx:if="{{currentStep===2}}">
           <view class="pannel-item-other pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE}}">
             <view class="pannel-label">截止时间</view>
             <view class="pannel-text {{dateCurrentValue.length ? '' : 'empty'}}"> {{dateCurrentValue || '选择时间' }}</view>
             <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
           </view>
+          <view class="conts">
+            <textarea maxlength='-1' class="areas" placeholder='添加稿件的备注' bindinput="setDescription2">
+       </textarea>
+          </view>
+
         </block>
         <t-picker visible="{{dateVisible}}" value="{{dateValue}}" data-key="date" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
           <t-picker-item options="{{months}}"></t-picker-item>
           <t-picker-item options="{{days}}"></t-picker-item>
           <t-picker-item options="{{hour}}"></t-picker-item>
         </t-picker>
-        <view class="conts">
-          <textarea maxlength='-1' class="areas" placeholder='添加稿件的备注' bindinput="setDescription2">
-       </textarea>
-        </view>
 
         <!--提交评价-->
         <view class="apply">

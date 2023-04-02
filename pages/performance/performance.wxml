@@ -8,7 +8,7 @@
       <view class='pandp'>
         <view class="performance-box performance-items" bindtap="showPeople" data-index1="{{index}}">
           <view class="p-leftbox">
-            <image src="{{item.complete? '/image/uncheck.png':'/image/check.png'}}" mode="" />
+            <image src="{{item.complete? 'http://1.15.118.125:8080/NIC/work_files/image//uncheck.png':'http://1.15.118.125:8080/NIC/work_files/image//check.png'}}" mode="" />
           </view>
           <view class="p-rightbox flex-column">
             <text style="font-size: 30rpx; font-weight: 500;">{{item.title}}</text>
@@ -17,13 +17,13 @@
           </view>
         </view>
         <view class="upanddown" hidden="{{!item.complete}}">
-          <image src="/image/up.png" mode="" />
+          <image src="http://1.15.118.125:8080/NIC/work_files/image//up.png" mode="" />
         </view>
         <view hidden="{{!item.complete}}">
           <block wx:for="{{item.people}}" wx:key="index">
             <view class="performance-box people-items" bindtap="checkPeople" data-index2="{{index}}">
               <view class="peo-leftbox">
-                <image src="{{item.check? '/image/uncheck.png':'/image/check.png'}}" mode="" />
+                <image src="{{item.check? 'http://1.15.118.125:8080/NIC/work_files/image//uncheck.png':'http://1.15.118.125:8080/NIC/work_files/image//check.png'}}" mode="" />
               </view>
               <view class="text-box">
                 <text>{{item.name}}</text>

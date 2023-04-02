@@ -111,44 +111,44 @@ Component({
     isShow: false,
     functions_show: [{
       name: "待接任务",
-      img: '/image/publishedM.png',
+      img: 'http://1.15.118.125:8080/NIC/work_files/image//publishedM.png',
       goto: "/pages/publishedM/publishedM"
     }, {
       name: "查询稿件",
-      img: '/image/apply.png',
+      img: 'http://1.15.118.125:8080/NIC/work_files/image//apply.png',
       goto: "/pages/inquiryM/inquiryM"
     }, {
       name: "审核稿件",
-      img: '/image/checkM.png',
+      img: 'http://1.15.118.125:8080/NIC/work_files/image//checkM.png',
       goto: "/pages/checkM/checkM"
     }],
     functions: [{
       name: "待接任务",
-      img: '/image/publishedM.png',
+      img: 'http://1.15.118.125:8080/NIC/work_files/image//publishedM.png',
       goto: "/pages/publishedM/publishedM"
     }, {
       name: "查询稿件",
-      img: '/image/apply.png',
+      img: 'http://1.15.118.125:8080/NIC/work_files/image//apply.png',
       goto: "/pages/inquiryM/inquiryM"
     }, {
       name: "审核稿件",
-      img: '/image/checkM.png',
+      img: 'http://1.15.118.125:8080/NIC/work_files/image//checkM.png',
       goto: "/pages/checkM/checkM"
     }, {
       name: "提交稿件",
-      img: '/image/submitM.png',
+      img: 'http://1.15.118.125:8080/NIC/work_files/image//submitM.png',
       goto: "/pages/submitM/submitM"
     }, {
       name: "历史稿件",
-      img: '/image/histroyM.png',
+      img: 'http://1.15.118.125:8080/NIC/work_files/image//histroyM.png',
       goto: "/pages/historyM/historyM"
     }, {
       name: "提交排版",
-      img: '/image/submitP.png',
+      img: 'http://1.15.118.125:8080/NIC/work_files/image//submitP.png',
       goto: "/pages/submitP/submitP"
     }, {
       name: "稿件记录",
-      img: '/image/updateM.png',
+      img: 'http://1.15.118.125:8080/NIC/work_files/image//updateM.png',
       goto: "/pages/updateN/updateN"
     }],
 
@@ -306,13 +306,13 @@ Component({
     attached() {
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/frontpage?method=show',
-        success:(res)=>{
+        success: (res) => {
           console.log(res.data)
           this.setData({
-            swiper_show:res.data.data.top,
-            boxshow:res.data.data.middle,
-            news:res.data.data.news,
-            picture:res.data.data.photos
+            swiper_show: res.data.data.top,
+            boxshow: res.data.data.middle,
+            news: res.data.data.news,
+            picture: res.data.data.photos
           })
           console.log(this.data.news)
         }
@@ -454,6 +454,7 @@ Component({
       this.setData({
         nowCheck: index
       })
+      this.setSwiperHeight(this.data.arr[1], 1)
     },
     bindChange: function (e) {
       var that = this;
@@ -462,7 +463,7 @@ Component({
       });
       this.setSwiperHeight(this.data.arr[e.detail.current], e.detail.current)
     },
-    setSwiperHeight (v, num) {
+    setSwiperHeight(v, num) {
       let query = wx.createSelectorQuery().in(this);
       query.select(v).boundingClientRect();
       query.exec((res) => {
@@ -732,6 +733,7 @@ Component({
       this.setData({
         showfunctions: !this.data.showfunctions
       })
+      this.setSwiperHeight(this.data.arr[0], 0)
     },
     cancel() {
       this.setData({
@@ -743,9 +745,11 @@ Component({
         this.setData({
           showtime: !this.data.showtime
         })
+        this.setSwiperHeight(this.data.arr[0], 0)
+
       } else {
         wx.showToast({
-          title: '尚未登录!',
+          title: '尚未登录!',
           icon: 'error'
         })
       }

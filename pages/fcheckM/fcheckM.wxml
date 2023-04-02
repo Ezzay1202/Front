@@ -10,18 +10,18 @@
     </view>
     <view class="filebox" style="border-top: 1px dashed #888;">
       <view class="right" wx:for="{{file_download}}" wx:key="index">
-        <image src="/image/下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}" data-id="{{item.arr}}">
+        <image src="http://1.15.118.125:8080/NIC/work_files/image/下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}" data-id="{{item.arr}}">
         </image>
         <view class="n" style="box-shadow: 0 2rpx 10rpx 0rpx {{item.state===1? '':'#13a4a4;'}};" bindtap="previewFile" data-path="{{item.path}}" data-id="{{item.arr}}">
-          <image src="/image/docm.png" mode="aspectFill"></image>
+          <image src="http://1.15.118.125:8080/NIC/work_files/image/docm.png" mode="aspectFill"></image>
           <text class="name">{{item.name}}-{{item.state===1? "编辑部":'记者部'}}</text>
           <text class="size">{{item.size}}</text>
         </view>
       </view>
       <view class="people_box">
-        <block wx:for="{{people}}" wx:key="index" >
+        <block wx:for="{{people}}" wx:key="index">
           <view class="people_item" bindtap="goToinformation" data-index="{{index}}">
-            <image src="/image/啸天.png" mode="" />
+            <image src="http://1.15.118.125:8080/NIC/work_files/image/啸天.png" mode="" />
             <text class="name">{{item.name}}</text>
             <text class="job">{{item.job}}</text>
           </view>
@@ -61,16 +61,17 @@
 
   </view>
 </view>
-<view style="bottom: 0;">
+<!-- <view style="bottom: 0;">
+
   <button class="btn_lan" bindtap="showPopup">选择常用语</button>
-</view>
+</view> -->
 <block>
   <view class="filebox" style="padding: 1em;">
     <view class="right" wx:for="{{file_upload}}" wx:key="index">
-      <image src="/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
+      <image src="http://1.15.118.125:8080/NIC/work_files/image/删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
       </image>
       <view class="n" bindtap="previewFile" data-path="{{item.path}}">
-        <image src="/image/docm.png" mode="aspectFill"></image>
+        <image src="http://1.15.118.125:8080/NIC/work_files/image/docm.png" mode="aspectFill"></image>
         <text class="name">{{item.name}}</text>
         <text class="size">{{item.size}}</text>
       </view>

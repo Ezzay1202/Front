@@ -14,24 +14,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    headP: '/image/啸天.png',
+    headP: 'http://1.15.118.125:8080/NIC/work_files/image//啸天.png',
     value: 'label_4',
     steps_num: 2,
     functions: [{
       name: "我的稿件",
-      src: "/image/mywo.png",
+      src: "http://1.15.118.125:8080/NIC/work_files/image//mywo.png",
       goto: "gotoMywork"
     }, {
       name: "我的绩效",
-      src: "/image/myw.png",
+      src: "http://1.15.118.125:8080/NIC/work_files/image//myw.png",
       bindtap: 'gotoMyper'
     }, {
       name: "个人信息",
-      src: "/image/myi.png",
+      src: "http://1.15.118.125:8080/NIC/work_files/image//myi.png",
       bindtap: 'gotoMyi'
     }, {
       name: "我的时间",
-      src: "/image/myt.png",
+      src: "http://1.15.118.125:8080/NIC/work_files/image//myt.png",
       bindtap: "gotoMydate"
     }],
     list: [{

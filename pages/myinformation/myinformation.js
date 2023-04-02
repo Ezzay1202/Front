@@ -9,7 +9,7 @@ Page({
     showName: false,
     index: 0,
     man: true,
-    picture: '/image/啸天.png'
+    picture: 'http://1.15.118.125:8080/NIC/work_files/image//啸天.png'
   },
 
   changePhoto(e) {

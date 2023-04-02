@@ -1,7 +1,7 @@
 <!--pages/people/people.wxml-->
 <view style="position: fixed; top: 0; z-index: 2; width:750rpx; background-color: white;">
   <view class="search" style="background-color: white;padding:.5em; flex-direction: row;">
-    <image src="{{choose? '/image/s.png':'/image/uns .png' }}" mode="" />
+    <image src="{{choose? 'http://1.15.118.125:8080/NIC/work_files/image//s.png':'http://1.15.118.125:8080/NIC/work_files/image//uns .png' }}" mode="" />
     <!-- <image bindtap="Choose" src="{{choose? '/image/s.png':'/image/uns .png' }}" mode="" /> -->
     <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{center}}" />
   </view>

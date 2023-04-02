@@ -4,6 +4,9 @@
   margin-bottom: 16px;
 }
 
+.t-class-content {
+  max-width: 100rpx;
+}
 
 .block {
   border: 2px solid #4472ca !important;
