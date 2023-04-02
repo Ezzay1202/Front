@@ -21,14 +21,20 @@ Page({
     for (let i = 0; i < resultInfo.mag.article.length; i++) {
       let temp = {
         name: resultInfo.mag.article[i].username,
-        job: '文'
+        job: '文',
+        tel:resultInfo.mag.article[i].tel,
+        userid:resultInfo.mag.article[i].userid,
+        QQ:resultInfo.mag.article[i].QQ
       }
       people.push(temp)
     }
     for (let i = 0; i < resultInfo.mag.photo.length; i++) {
       let temp = {
         name: resultInfo.mag.photo[i].username,
-        job: '摄'
+        job: '摄',
+        tel:resultInfo.mag.photo[i].tel,
+        userid:resultInfo.mag.photo[i].userid,
+        QQ:resultInfo.mag.photo[i].QQ
       }
       people.push(temp)
     }
@@ -36,7 +42,10 @@ Page({
       //console.log(resultInfo.mag.editor)
       let temp = {
         name: resultInfo.mag.editor.username,
-        job: '审'
+        job: '审',
+        tel:resultInfo.mag.editor.tel,
+        userid:resultInfo.mag.editor.userid,
+        QQ:resultInfo.mag.editor.QQ
       }
       people.push(temp)
     }
@@ -75,7 +84,7 @@ Page({
       mask: true
     })
     wx.setClipboardData({
-      data: 'https://www.hustnic.tech:8080/NIC/work_files/' + this.data.file_download[arr].name,
+      data: 'http://www.hustnic.tech:8080/NIC/work_files/' + this.data.file_download[arr].name,
       success: (res) => {
         wx.showToast({
           title: '文件下载链接已复制到剪贴板',

@@ -324,7 +324,7 @@ Component({
       if (app.globalData.hasLogin) {
         if (app.globalData.kcb_code != 702) {
           wx.request({
-            url: 'https://www.hustnic.tech:8080/NIC/lesson',
+            url: 'http://www.hustnic.tech:8080/NIC/lesson',
             data: {
               "method": "get",
               "data": {

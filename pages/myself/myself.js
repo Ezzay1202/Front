@@ -301,7 +301,7 @@ Page({
   },
   getKcb() {
     wx.request({
-      url: 'https://www.hustnic.tech:8080/NIC/lesson',
+      url: 'http://www.hustnic.tech:8080/NIC/lesson',
       data: {
         "method": "get",
         "data": {
@@ -341,7 +341,7 @@ Page({
         mask: true //防止多次点击
       })
       wx.request({
-        url: 'https://www.hustnic.tech:8080/NIC/lesson',
+        url: 'http://www.hustnic.tech:8080/NIC/lesson',
         data: {
           "method": "add",
           "data": {
