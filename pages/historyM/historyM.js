@@ -158,7 +158,7 @@ Page({
           }
           let tempMission = {
             text: missionList[i].title,
-            date: missionList[i].time.year + '-' + ((missionList[i].time.month + 1 < 10 ? '0' + (missionList[i].time.month + 1) : missionList[i].time.month + 1)) + '-' + ((missionList[i].time.day + 1 < 10 ? '0' + (missionList[i].time.day) : missionList[i].time.day)),
+            date: missionList[i].time.year + '-' + ((missionList[i].time.month + 1 < 10 ? '0' + (missionList[i].time.month) : missionList[i].time.month)) + '-' + ((missionList[i].time.day + 1 < 10 ? '0' + (missionList[i].time.day) : missionList[i].time.day)),
             location: missionList[i].place,
             people: people,
             url: missionList[i].articleURL

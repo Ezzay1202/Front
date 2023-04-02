@@ -163,20 +163,20 @@ Component({
 
     value: 'label_2',
     list: [{
-      value: 'label_1',
-      label: '首页',
-      icon: 'home'
-    },
-    {
-      value: 'label_2',
-      label: '发布',
-      icon: 'check-rectangle'
-    },
-    {
-      value: 'label_4',
-      label: '我的',
-      icon: 'user'
-    },
+        value: 'label_1',
+        label: '首页',
+        icon: 'home'
+      },
+      {
+        value: 'label_2',
+        label: '发布',
+        icon: 'check-rectangle'
+      },
+      {
+        value: 'label_4',
+        label: '我的',
+        icon: 'user'
+      },
     ],
   },
   methods: {
@@ -229,8 +229,8 @@ Component({
       } = e.currentTarget.dataset;
 
       this.setData({
-        cur: item,
-      },
+          cur: item,
+        },
         () => {
           this.setData({
             showcheck: true
@@ -588,17 +588,17 @@ Component({
               wx.showToast({
                 title: '发布成功',
               })
-/*
-              wx.request({
-                url: 'https://1.15.118.125:8081/NIC',
-                data: {
-                  'missionID': res.data.missionID
-                },
-                success: (res) => {
-                  console.log(res)
-                }
-              })
-              */
+              /*
+                            wx.request({
+                              url: 'https://1.15.118.125:8081/NIC',
+                              data: {
+                                'missionID': res.data.missionID
+                              },
+                              success: (res) => {
+                                console.log(res)
+                              }
+                            })
+                            */
               app.sleep(2000)
               wx.redirectTo({
                 url: '/pages/home/home',
@@ -618,8 +618,8 @@ Component({
       let fileArray = this.data.fileArray
       console.log(fileArray)
       let description = ''
-      for(let i of fileArray){
-        if(i.name.includes('docx')||i.name.includes('doc')){
+      for (let i of fileArray) {
+        if (i.name.includes('docx') || i.name.includes('doc')) {
           description = i.name.split('.doc')[0]
           break
         }
@@ -647,15 +647,17 @@ Component({
             "method": "add",
             "data": {
               "tags": tags,
+              "desription":description,
               "element": this.data.currentStep + 1,
               "publisher": app.globalData.userid,
-              "postscript": description,//description2
-              "time": this.data.dateValue[0]+'月'+this.data.dateValue[1]+'日'+this.data.dateValue[1]+'时'+'00分'
+              "postscript": {}, 
+              "deadline": this.data.dateValue[0] + '月' + this.data.dateValue[1] + '日' + this.data.dateValue[1] + '时' + '00分'
             }
           },
           success: (res) => {
             console.log(res.data)
             let missionID = res.data.missionID
+            console.log(missionID)
             for (let i = 0; i < fileArray.length; i++) {
               console.log(fileArray[i])
               wx.uploadFile({
@@ -676,11 +678,11 @@ Component({
               title: '发布成功',
             })
             wx.request({
-              url: '',//
-              data:{
-                'missionID':missionID
+              url: '', //
+              data: {
+                'missionID': missionID
               },
-              success:(res)=>{
+              success: (res) => {
                 console.log(res)
               }
             })
@@ -691,7 +693,7 @@ Component({
           },
           complete: (res) => {
             wx.hideLoading({
-              success: (res) => { },
+              success: (res) => {},
             })
           }
         })

@@ -145,6 +145,13 @@ Page({
             wx.showToast({
               title: '接摄成功',
             })
+            wx.request({
+              url: '',//
+              data:{
+                'missionID':e.currentTarget.dataset.id,
+                'userid':app.globalData.userid
+              }
+            })
             this.onLoad()
           }
           if (res.data.code === 99) {
@@ -169,8 +176,8 @@ Page({
         data: {
           "method": "take",
           "data": {
-            "userid": app.globalData.userid.toString(),
-            "missionID": e.currentTarget.dataset.id.toString(),
+            "userid": app.globalData.userid,
+            "missionID": e.currentTarget.dataset.id,
             "kind": "article"
           }
         },
@@ -185,6 +192,13 @@ Page({
           if (res.data.code === 402) {
             wx.showToast({
               title: '接文成功'
+            })
+            wx.request({
+              url: '',//
+              data:{
+                'missionID':e.currentTarget.dataset.id,
+                'userid':app.globalData.userid
+              }
             })
             this.onLoad()
           }
@@ -224,6 +238,13 @@ Page({
         if (res.data.code === 402) {
           wx.showToast({
             title: '接排版成功',
+          })
+          wx.request({
+            url: '',//
+            data:{
+              'missionID':e.currentTarget.dataset.id,
+              'userid':app.globalData.userid
+            }
           })
           this.onLoad()
         }

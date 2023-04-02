@@ -52,7 +52,7 @@ Page({
         column: "1/4",
         row: "1/2",
         color: "#7b8341",
-        btext: 'U202116251',//resultInfo.info[0].btext,//resultInfo.username,
+        btext: resultInfo.info[0].btext,//resultInfo.username,
         stext: "学号",
         f: ""
       }, {
@@ -73,7 +73,7 @@ Page({
         column: "1/5",
         row: "4/5",
         color: "#949441",
-        btext: '13848440908',//resultInfo.info[3].btext,
+        btext: resultInfo.info[3].btext,
         stext: "联系方式",
         f: ""
       }, {

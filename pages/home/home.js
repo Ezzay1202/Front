@@ -312,7 +312,7 @@ Component({
             swiper_show:res.data.data.top,
             boxshow:res.data.data.middle,
             news:res.data.data.news,
-            picture:res.data.data.photo
+            picture:res.data.data.photos
           })
           console.log(this.data.news)
         }
@@ -324,7 +324,7 @@ Component({
       if (app.globalData.hasLogin) {
         if (app.globalData.kcb_code != 702) {
           wx.request({
-            url: 'http://www.hustnic.tech:8080/NIC/lesson',
+            url: 'https://www.hustnic.tech:8081/NIC/lesson',
             data: {
               "method": "get",
               "data": {
@@ -358,7 +358,7 @@ Component({
             },
             success: (res) => {
               console.log(res.data)
-              let affairList = res.data.affairID
+              let affairList = res.data.data
               let eventList = []
               for (let j = 0; j < affairList.length; j++) {
                 let temp = {

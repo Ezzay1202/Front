@@ -521,15 +521,16 @@ Page({
     }
   },
   goToinformation(e){
-    console.log(e.currentTarget.dataset.index)
+    console.log(this.data.people)
     let i = e.currentTarget.dataset.index
+
     let data = {
       info:[{
         column:"1/4",
         row:"1/2",
         color:"black",
-        btext:"烟霞状元",
-        stext:"昵称",
+        btext:this.data.people[i].userid,
+        stext:"学号",
         f:"changeName"
       },{
         column:"3/5",
@@ -542,28 +543,28 @@ Page({
         column:"3/5",
         row:"3/4",
         color:"#6a63a6",
-        btext:"人事部部长",
+        btext:this.data.people[i].job,
         stext:"身份",
         f:""
       },{
         column:"1/5",
         row:"4/5",
         color:"#0e6e8c",
-        btext:"13848440908",
+        btext:this.data.people[i].tel,
         stext:"联系方式",
         f:"changeName"
       },{
         column:"1/2",
         row:"5/6",
         color:"#0e6e8c",
-        btext:"88",
+        btext:"",
         stext:"当月绩效",
         f:""
       },{
         column:"1/2",
         row:"5/6",
         color:"#d56937",
-        btext:"88",
+        btext:"",
         stext:"当月绩效",
         f:""
       },{
@@ -577,7 +578,7 @@ Page({
         column:"3/5",
         row:"5/7",
         color:"#4a2028",
-        btext:"888",
+        btext:"",
         stext:"总绩效",
         class:"-max",
         f:""

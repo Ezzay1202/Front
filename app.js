@@ -7,10 +7,14 @@ App({
     wx.setStorageSync('logs', logs)
     let sessionId = wx.getStorageSync('SESSIONID')
     let expiredTime = wx.getStorageSync('EXPIREDTIME')
+    let userid = wx.getStorage('USERID')
+    let password = wx.getStorage("PASSWORD")
     let now = +new Date()
     if (now - expiredTime <= 1 * 24 * 60 * 60 * 1000 * 180) {
       this.globalData.sessionId = sessionId
       this.globalData.expiredTime = expiredTime
+      this.globalData.userid = userid
+      this.globalData.password = password
     }
 
     // 登录
@@ -31,6 +35,7 @@ App({
   globalData: {
     hasLogin: false,
     userid: "",
+    password:"",
     username: "",
     nickname: "",
     phoneNumber: "",
