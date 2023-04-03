@@ -181,13 +181,13 @@ Page({
               app.globalData.authority2 = res.data.data.authority2
               app.globalData.authority3 = res.data.data.authority3
               app.globalData.username = res.data.data.username
-              app.globalData.userid = res.data.data.userid
-              //app.globalData.phoneNumber = res.data.data.phoneNumber
+              app.globalData.userid = res.data.data.userid     
+              app.globalData.head = res.data.data.head
+              //app.globalData.tel = res.data.data.tel
               app.globalData.week_kcb = res.data.time.week
-              //app.globalData.nickname = res.data.data.nickname
               app.globalData.identity = res.data.data.identity
               app.globalData.missionTaken = res.data.data.missionTaken
-              app.globalData.missionCompleted = res.data.data.missionCompleted
+              app.globalData.finishedPerformance = res.data.data.finishedPerformance
 
               // 把 SessionId 和过期时间放在内存中的全局对象和本地缓存里边
               app.globalData.sessionId = res.data.sessionId

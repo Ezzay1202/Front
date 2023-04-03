@@ -434,17 +434,17 @@ Page({
   },
   gotoMyi() {
     let info = [{
-      btext: app.globalData.nickname
+      btext: app.globalData.userid
     }, {
       btext: app.globalData.username
     }, {
       btext: app.globalData.identity
     }, {
-      btext: app.globalData.phoneNumber
+      btext: app.globalData.tel
     }, {
       btext: '0'
     }, {
-      btext: app.globalData.missionCompleted.length //
+      btext: app.globalData.finishedPerformance.length //
     }, {
       btext: '0'
     }]

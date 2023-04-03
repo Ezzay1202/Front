@@ -624,14 +624,13 @@ Component({
           break
         }
       }
-      /*
-      if (description2 === '') {
+
+      if (this.data.currentStep === 2 && description2 === '') {
         wx.showToast({
           icon: 'none',
           title: '请填写稿件备注',
         })
-      } 
-      else */if (fileArray.length === 0) {
+      } else if (fileArray.length === 0) {
         wx.showToast({
           icon: 'none',
           title: '请上传文件',
@@ -643,16 +642,22 @@ Component({
         }
         let tags = JSON.stringify(obj)
         console.log(tags)
+        let postscript = {}
+        if (this.data.currentStep === 2) {
+          postscript = {
+            username: description2
+          }
+        }
         wx.request({
           url: 'https://www.hustnic.tech:8081/NIC/manage',
           data: {
             "method": "add",
             "data": {
               "tags": tags,
-              "desription":description,
+              "desription": description,
               "element": this.data.currentStep + 1,
               "publisher": app.globalData.userid,
-              "postscript": {}, 
+              "postscript": postscript,
               "deadline": this.data.dateValue[0] + '月' + this.data.dateValue[1] + '日' + this.data.dateValue[1] + '时' + '00分'
             }
           },
