@@ -35,7 +35,7 @@ App({
   globalData: {
     hasLogin: false,
     userid: "",
-    password:"",
+    password: "",
     username: "",
     head:"",//headurl
     tel: "",

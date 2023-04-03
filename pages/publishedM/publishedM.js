@@ -7,8 +7,8 @@ Page({
   onLoad(options) {
     let list_show = []
     this.setData({
-      listm:[],
-      listp:[]
+      listm: [],
+      listp: []
     })
     wx.request({
       url: 'https://www.hustnic.tech:8081/NIC/show?method=showNeed',
@@ -83,12 +83,12 @@ Page({
         for (let i = 0; i < list_all.length; i++) {
           let taglist = []
           for (let j in list_all[i].tags) {
-            for(let k = 0;k < list_all[i].tags[j].length;k++){
-              taglist.push(j+'-'+list_all[i].tags[j][k])
+            for (let k = 0; k < list_all[i].tags[j].length; k++) {
+              taglist.push(j + '-' + list_all[i].tags[j][k])
             }
           }
           let filelist = []
-          for (let k in list_all[i].files) {
+          for (let k of list_all[i].files) {
             let temp = {
               name: k,
               size: 'none'
@@ -105,7 +105,7 @@ Page({
             peoplelist.push(temp)
           }
           let tempmission = {
-            missionID:list_all[i].missionID,
+            missionID: list_all[i].missionID,
             text: list_all[i].description,
             date: list_all[i].deadline,
             tag: taglist,
@@ -118,106 +118,129 @@ Page({
         this.setData({
           listp: list_show
         })
-        
+
+      }
+    })
+  },
+  downloadFile(e) {
+    let arr = e.currentTarget.dataset.index
+    console.log(arr)
+    wx.showLoading({
+      title: '下载中...',
+      mask: true
+    })
+    wx.setClipboardData({
+      data: 'http://www.hustnic.tech:8080/NIC/work_files/' + this.data.listp[this.data.index1].file[arr].name,
+      success: (res) => {
+        wx.showToast({
+          title: '文件下载链接已复制到剪贴板',
+          icon: 'none'
+        })
+      },
+      complete: (res) => {
+        wx.hideLoading({
+          success: (res) => { },
+        })
       }
     })
   },
   takePhoto(e) {
-      wx.request({
-        url: 'https://www.hustnic.tech:8081/NIC/take',
-        data: {
-          "method": "take",
-          "data": {
-            "userid": app.globalData.userid.toString(),
-            "missionID": e.currentTarget.dataset.id.toString(),
-            "kind": "photo"
-          }
-        },
-        success: (res) => {
-          console.log(res.data)
-          if (res.data.code === 401) {
-            wx.showToast({
-              title: res.data.msg,
-              icon: 'error'
-            })
-          }
-          if (res.data.code === 402) {
-            wx.showToast({
-              title: '接摄成功',
-            })
-            wx.request({
-              url: '',//
-              data:{
-                'missionID':e.currentTarget.dataset.id,
-                'userid':app.globalData.userid
-              }
-            })
-            this.onLoad()
-          }
-          if (res.data.code === 99) {
-            wx.showToast({
-              title: '无此任务，请刷新界面',
-              icon: 'error'
-            })
-          }
-          if (res.data.code === 98) {
-            wx.showToast({
-              title: '错误！请联系开发者',
-              icon: 'error'
-            })
-          }
+    wx.request({
+      url: 'https://www.hustnic.tech:8081/NIC/take',
+      data: {
+        "method": "take",
+        "data": {
+          "userid": app.globalData.userid.toString(),
+          "missionID": e.currentTarget.dataset.id.toString(),
+          "kind": "photo"
         }
-      })
+      },
+      success: (res) => {
+        console.log(res.data)
+        if (res.data.code === 401) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'error'
+          })
+        }
+        if (res.data.code === 402) {
+          wx.showToast({
+            title: '接摄成功',
+          })
+          wx.request({
+            url: '',//
+            data: {
+              'missionID': e.currentTarget.dataset.id,
+              'userid': app.globalData.userid
+            }
+          })
+          this.onLoad()
+        }
+        if (res.data.code === 99) {
+          wx.showToast({
+            title: '无此任务，请刷新界面',
+            icon: 'error'
+          })
+        }
+        if (res.data.code === 98) {
+          wx.showToast({
+            title: '错误！请联系开发者',
+            icon: 'error'
+          })
+        }
+      }
+    })
   },
 
   takeArticle(e) {
-      wx.request({
-        url: 'https://www.hustnic.tech:8081/NIC/take',
-        data: {
-          "method": "take",
-          "data": {
-            "userid": app.globalData.userid,
-            "missionID": e.currentTarget.dataset.id,
-            "kind": "article"
-          }
-        },
-        success: (res) => {
-          console.log(res.data)
-          if (res.data.code === 401) {
-            wx.showToast({
-              title: res.data.msg,
-              icon: 'error'
-            })
-          }
-          if (res.data.code === 402) {
-            wx.showToast({
-              title: '接文成功'
-            })
-            wx.request({
-              url: '',//
-              data:{
-                'missionID':e.currentTarget.dataset.id,
-                'userid':app.globalData.userid
-              }
-            })
-            this.onLoad()
-          }
-          if (res.data.code === 99) {
-            wx.showToast({
-              title: '无此任务，请刷新界面',
-              icon: 'error'
-            })
-          }
-          if (res.data.code === 98) {
-            wx.showToast({
-              title: '请联系开发者',
-              icon: 'error'
-            })
-          }
+    wx.request({
+      url: 'https://www.hustnic.tech:8081/NIC/take',
+      data: {
+        "method": "take",
+        "data": {
+          "userid": app.globalData.userid,
+          "missionID": e.currentTarget.dataset.id,
+          "kind": "article"
         }
-      })
+      },
+      success: (res) => {
+        console.log(res.data)
+        if (res.data.code === 401) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'error'
+          })
+        }
+        if (res.data.code === 402) {
+          wx.showToast({
+            title: '接文成功'
+          })
+          wx.request({
+            url: '',//
+            data: {
+              'missionID': e.currentTarget.dataset.id,
+              'userid': app.globalData.userid
+            }
+          })
+          this.onLoad()
+        }
+        if (res.data.code === 99) {
+          wx.showToast({
+            title: '无此任务，请刷新界面',
+            icon: 'error'
+          })
+        }
+        if (res.data.code === 98) {
+          wx.showToast({
+            title: '请联系开发者',
+            icon: 'error'
+          })
+        }
+      }
+    })
   },
-  takeTypesetting(e){
+
+  takeTypesetting(e) {
     wx.request({
       url: 'https://www.hustnic.tech:8081/NIC/take',
       data: {
@@ -241,9 +264,9 @@ Page({
           })
           wx.request({
             url: '',//
-            data:{
-              'missionID':e.currentTarget.dataset.id,
-              'userid':app.globalData.userid
+            data: {
+              'missionID': e.currentTarget.dataset.id,
+              'userid': app.globalData.userid
             }
           })
           this.onLoad()
@@ -320,13 +343,15 @@ Page({
     hasMore: true,
     showLoading: true,
     start: 0,
+    index1: ''
   },
   showDetail(e) {
     console.log(e)
     let index = e.currentTarget.dataset.index
     let showdetail = 'listp[' + index + '].showdetail'
     this.setData({
-      [showdetail]: !this.data.listp[index].showdetail
+      [showdetail]: !this.data.listp[index].showdetail,
+      index1: index
     })
   }
 })

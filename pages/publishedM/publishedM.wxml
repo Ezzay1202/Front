@@ -48,7 +48,7 @@
           <view class="detail" hidden="{{item.showdetail}}">
             <view class="filebox">
               <view class="right" wx:for="{{item.file}}" wx:key="index">
-                <image src="http://1.15.118.125:8080/NIC/work_files/image//下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}">
+                <image src="http://1.15.118.125:8080/NIC/work_files/image//下载.png" bindtap="downloadFile" data-item="{{item}}" data-index="{{index}}" >
                 </image>
                 <view class="w" bindtap="previewFile" data-path="{{item.path}}">
                   <image src="http://1.15.118.125:8080/NIC/work_files/image//docm.png" mode="aspectFill"></image>

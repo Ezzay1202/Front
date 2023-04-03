@@ -456,8 +456,8 @@ van-count-down>text {
 }
 
 .showflow_title_box {
-  position: sticky;
-  top: 0;
+  /* position: sticky;
+  top: 0; */
   margin: 10rpx 15% 0;
   text-align: center;
   margin-top: 10px;

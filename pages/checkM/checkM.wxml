@@ -9,8 +9,12 @@
       <view class="title  {{item.state===1? 'title_back':''}}">{{item.text}}</view>
       <view class="text">
         <text>{{item.date1}}{{item.date2}}</text>
-        <text>{{item.location}}</text>
-        <text>{{item.people}}</text>
+        <block wx:if="{{item.date2!=''}}">
+          <text>{{item.location}}0</text>
+        </block>
+        <block wx:if="{{item.date2!=''}}">
+          <text>{{item.people}}1</text>
+        </block>
       </view>
       <view class="detail-people" hidden="{{item.state === 0}}">
         <text>{{item.name}}</text>

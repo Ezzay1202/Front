@@ -433,6 +433,7 @@ Page({
     }
   },
   gotoMyi() {
+    console.log(app)
     let info = [{
       btext: app.globalData.userid
     }, {

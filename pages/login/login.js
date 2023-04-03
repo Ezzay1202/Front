@@ -93,7 +93,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) { },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -154,23 +154,23 @@ Page({
       wx.showToast({
         title: '请输入密码！',
         icon: 'error',
-        mask:true
+        mask: true
       })
     }
     if (this.data.userid === '' || app.globalData.userid === '') {
       wx.showToast({
         title: '请输入账户！',
         icon: 'error',
-        mask:true
+        mask: true
       })
     } else {
       let userid = (this.data.userid === '') ? app.globalData.userid : this.data.userid
-      let password = (this.data.password === '') ? 
-      globalData.password : this.data.password
+      let password = (this.data.password === '') ?
+        globalData.password : this.data.password
       wx.showLoading({
         title: '登陆中...',
         mask: true,
-        success:()=>{
+        success: () => {
           wx.request({
             data: {
               data: {
@@ -195,7 +195,7 @@ Page({
                 app.globalData.identity = res.data.data.identity
                 app.globalData.missionTaken = res.data.data.missionTaken
                 app.globalData.finishedPerformance = res.data.data.finishedPerformance
-    
+
                 // 把 SessionId 和过期时间放在内存中的全局对象和本地缓存里边
                 app.globalData.sessionId = res.data.sessionId
                 wx.setStorageSync('SESSIONID', res.data.sessionId)
@@ -206,11 +206,11 @@ Page({
                 let expiredTime = +new Date() + 1 * 24 * 60 * 60 * 1000 * 180
                 app.globalData.expiredTime = expiredTime
                 wx.setStorageSync('EXPIREDTIME', expiredTime)
-    
+
                 wx.showToast({
-                    title: '登录成功',
-                    mask:true
-                  }),
+                  title: '登录成功',
+                  mask: true
+                }),
                   app.sleep(1200)
                 wx.getUserProfile({
                   desc: '是否授权？',
@@ -239,7 +239,7 @@ Page({
                     })
                   }
                 })
-    
+
                 wx.requestSubscribeMessage({
                   tmplIds: ['Fehs8jFNXvAJixC7KkudGdsH1uKw5t_-UnehkRMfaB8', 'Fehs8jFNXvAJixC7KkudGaGyx-3_zmdEYjk-5zCbG1g', '9stBRAqDVcQt15Oi4FgLw75P7xpzb9YrifSX7-jLGoQ'],
                   success: (res) => {
@@ -254,33 +254,33 @@ Page({
                 wx.showToast({
                   title: '查无此用户',
                   icon: 'error',
-                  mask:true
+                  mask: true
                 })
               }
               if (res.data.code === 101) {
                 wx.showToast({
                   title: '密码错误',
                   icon: 'error',
-                  mask:true
+                  mask: true
                 })
               }
               if (res.data.code === 103) {
                 wx.showToast({
                   title: 'Error',
                   icon: 'error',
-                  mask:true
+                  mask: true
                 })
               }
             }
           })
         },
-        complete:()=>{
+        complete: () => {
           wx.hideLoading({
-            success: (res) => {},
+            success: (res) => { },
           })
         }
       })
     }
   },
-  Login2() {}
+  Login2() { }
 })

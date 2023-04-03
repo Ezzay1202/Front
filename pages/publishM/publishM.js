@@ -14,7 +14,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) { },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -163,20 +163,20 @@ Component({
 
     value: 'label_2',
     list: [{
-        value: 'label_1',
-        label: '首页',
-        icon: 'home'
-      },
-      {
-        value: 'label_2',
-        label: '发布',
-        icon: 'check-rectangle'
-      },
-      {
-        value: 'label_4',
-        label: '我的',
-        icon: 'user'
-      },
+      value: 'label_1',
+      label: '首页',
+      icon: 'home'
+    },
+    {
+      value: 'label_2',
+      label: '发布',
+      icon: 'check-rectangle'
+    },
+    {
+      value: 'label_4',
+      label: '我的',
+      icon: 'user'
+    },
     ],
   },
   methods: {
@@ -229,8 +229,8 @@ Component({
       } = e.currentTarget.dataset;
 
       this.setData({
-          cur: item,
-        },
+        cur: item,
+      },
         () => {
           this.setData({
             showcheck: true
@@ -513,7 +513,7 @@ Component({
       }
       if (e.detail.value == 'label_4') {
         wx.redirectTo({
-          url: '/pages/myself/myself',
+          url: '/pages/managment/managment',
         })
       }
     },

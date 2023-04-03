@@ -4,9 +4,9 @@
   <view class="m">
     <view class="title">{{mag.text}}</view>
     <view class="text">
-      <text style="flex:3;">{{mag.date1}}{{mag.date2}}</text>
-      <text style="flex:1;">{{mag.location}}</text>
-      <text style="flex:1;">{{mag.people}}</text>
+      <text style="flex:3;">{{mag.date1}}{{mag.date2===''? '':'—'}}{{mag.date2}}</text>
+      <text style="flex:1; {{mag.date2===''? 'background:white;':' '}}">{{mag.location}}</text>
+      <text style="flex:1;  {{mag.date2===''? 'background:white;':' '}}">{{mag.people}}</text>
     </view>
     <view class="filebox" style="border-top: 1px dashed #888;">
       <view class="right" wx:for="{{file_download}}" wx:key="index">

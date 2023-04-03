@@ -1,4 +1,6 @@
 // pages/managment/managment.js
+const app = getApp()
+
 Page({
   /**
    * 页面的初始数据
@@ -50,7 +52,7 @@ Page({
       color: "#d56937",
       btext: "50",
       stext: "人员系统",
-      blur:true,
+      blur: true,
       f: ""
     }, {
       column: "2/3",
@@ -65,7 +67,7 @@ Page({
       color: "#4a2028",
       btext: "888",
       stext: "组织总绩效",
-      blur:true,
+      blur: true,
       class: "maxnum",
       f: ""
     }],
@@ -125,12 +127,12 @@ Page({
       [check]: !this.data.people[index1].check
     })
   },
-  checkMission(){
+  checkMission() {
     wx.navigateTo({
       url: '/pages/checkM/checkM',
     })
   },
-  goToMywork(){
+  goToMywork() {
     wx.navigateTo({
       url: '/pages/mywork/mywork',
     })

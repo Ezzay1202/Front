@@ -23,6 +23,8 @@ Page({
         url: "https://mp.weixin.qq.com/s/HVmzDgdhLzOJUcBnIMy0fg"
       })
     }
+    this.setSwiperHeight(this.data.arr[1], 1)
+
   },
 
   /**
@@ -320,7 +322,6 @@ Component({
 
 
 
-
       if (app.globalData.hasLogin) {
         if (app.globalData.kcb_code != 702) {
           wx.request({
@@ -449,6 +450,13 @@ Component({
     }
   },
   methods: {
+    onPageScroll() {
+      this.setSwiperHeight(this.data.arr[1], 1)
+
+    },
+    changeTitle1() {
+      this.setSwiperHeight(this.data.arr[1], 1)
+    },
     changeTitle(e) {
       let index = e.currentTarget.dataset.indext;
       this.setData({
@@ -472,13 +480,13 @@ Component({
           swiperViewHeight: headerHeight
         });
         console.log(this.data.swiperViewHeight)
-        if (this.data.swiperViewHeight >= this.data.maxswiperViewHeight[num]) {
-          console.log(this.data.swiperViewHeight)
-          let maxswiperViewHeight = 'maxswiperViewHeight[' + num + ']'
-          this.setData({
-            [maxswiperViewHeight]: this.data.swiperViewHeight
-          })
-        }
+        // if (this.data.swiperViewHeight >= this.data.maxswiperViewHeight[num]) {
+        //   console.log(this.data.swiperViewHeight)
+        //   let maxswiperViewHeight = 'maxswiperViewHeight[' + num + ']'
+        //   this.setData({
+        //     [maxswiperViewHeight]: this.data.swiperViewHeight
+        //   })
+        // }
       });
 
     },
