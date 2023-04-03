@@ -22,9 +22,10 @@ Page({
       let temp = {
         name: resultInfo.mag.article[i].username,
         job: '文',
-        tel:resultInfo.mag.article[i].tel,
-        userid:resultInfo.mag.article[i].userid,
-        QQ:resultInfo.mag.article[i].QQ
+        tel: resultInfo.mag.article[i].tel,
+        userid: resultInfo.mag.article[i].userid,
+        QQ: resultInfo.mag.article[i].QQ,
+        head: resultInfo.mag.article[i].head,
       }
       people.push(temp)
     }
@@ -32,20 +33,22 @@ Page({
       let temp = {
         name: resultInfo.mag.photo[i].username,
         job: '摄',
-        tel:resultInfo.mag.photo[i].tel,
-        userid:resultInfo.mag.photo[i].userid,
-        QQ:resultInfo.mag.photo[i].QQ
+        tel: resultInfo.mag.photo[i].tel,
+        userid: resultInfo.mag.photo[i].userid,
+        QQ: resultInfo.mag.photo[i].QQ,
+        head: resultInfo.mag.article[i].head,
       }
       people.push(temp)
     }
-    if (resultInfo.mag.editor != undefined) {
+    if (resultInfo.mag.editor != undefined && this.data.isManagement) {
       //console.log(resultInfo.mag.editor)
       let temp = {
         name: resultInfo.mag.editor.username,
         job: '审',
-        tel:resultInfo.mag.editor.tel,
-        userid:resultInfo.mag.editor.userid,
-        QQ:resultInfo.mag.editor.QQ
+        tel: resultInfo.mag.editor.tel,
+        userid: resultInfo.mag.editor.userid,
+        QQ: resultInfo.mag.editor.QQ,
+        head: resultInfo.mag.article[i].head,
       }
       people.push(temp)
     }
@@ -93,7 +96,7 @@ Page({
       },
       complete: (res) => {
         wx.hideLoading({
-          success: (res) => { },
+          success: (res) => {},
         })
       }
     })
@@ -120,7 +123,7 @@ Page({
     showMask: false,
     mode: '',
     monthVisible: false,
-    month: '2021-09',
+    month: '',
     monthText: '',
     // 指定选择区间起始值
     start: '2000-01-01 00:00:00',
@@ -136,11 +139,11 @@ Page({
     code: 1,
     code1: 2,
     userStars: [
-      "/image/kx.png",
-      "/image/kx.png",
-      "/image/kx.png",
-      "/image/kx.png",
-      "/image/kx.png",
+      'http://1.15.118.125:8080/NIC/work_files/image/kx.png',
+      'http://1.15.118.125:8080/NIC/work_files/image/kx.png',
+      'http://1.15.118.125:8080/NIC/work_files/image/kx.png',
+      'http://1.15.118.125:8080/NIC/work_files/image/kx.png',
+      'http://1.15.118.125:8080/NIC/work_files/image/kx.png',
     ],
     wjxScore: 0,
     // textarea
@@ -254,12 +257,12 @@ Page({
     var len = tempUserStars.length; // 获取星星数组的长度
     for (var i = 0; i < len; i++) {
       if (i <= index) { // 小于等于index的是满心
-        tempUserStars[i] = "/image/sx.png";
+        tempUserStars[i] = 'http://1.15.118.125:8080/NIC/work_files/image/sx.png'
         that.setData({
           wjxScore: i + 1,
         })
       } else { // 其他是空心
-        tempUserStars[i] = "/image/kx.png"
+        tempUserStars[i] = 'http://1.15.118.125:8080/NIC/work_files/image/kx.png'
       }
     }
     // 重新赋值就可以显示了
@@ -333,8 +336,8 @@ Page({
         title: '请输入评价！',
         icon: 'error'
       })
-    } 
-    if(this.data.files === []){
+    }
+    if (this.data.files === []) {
       wx.showToast({
         title: '请选择稿件!',
         icon: 'error'
@@ -511,7 +514,7 @@ Page({
             },
             complete: (res) => {
               wx.hideLoading({
-                success: (res) => { },
+                success: (res) => {},
               })
             }
           })
@@ -520,71 +523,34 @@ Page({
 
     }
   },
-  goToinformation(e){
+  goToinformation(e) {
     console.log(this.data.people)
     let i = e.currentTarget.dataset.index
 
     let data = {
-      info:[{
-        column:"1/4",
-        row:"1/2",
-        color:"black",
-        btext:this.data.people[i].userid,
-        stext:"学号",
-        f:"changeName"
-      },{
-        column:"3/5",
-        row:"2/3",
-        color:"#574c45",
-        btext:this.data.people[i].name,
-        stext:"姓名",
-        f:""
-      },{
-        column:"3/5",
-        row:"3/4",
-        color:"#6a63a6",
-        btext:this.data.people[i].job,
-        stext:"身份",
-        f:""
-      },{
-        column:"1/5",
-        row:"4/5",
-        color:"#0e6e8c",
-        btext:this.data.people[i].tel,
-        stext:"联系方式",
-        f:"changeName"
-      },{
-        column:"1/2",
-        row:"5/6",
-        color:"#0e6e8c",
-        btext:"",
-        stext:"当月绩效",
-        f:""
-      },{
-        column:"1/2",
-        row:"5/6",
-        color:"#d56937",
-        btext:"",
-        stext:"当月绩效",
-        f:""
-      },{
-        column:"2/3",
-        row:"5/6",
-        color:"#8fb3a5",
-        btext:"30",
-        stext:"完成任务",
-        f:""
-      },{
-        column:"3/5",
-        row:"5/7",
-        color:"#4a2028",
-        btext:"",
-        stext:"总绩效",
-        class:"-max",
-        f:""
+      info: [{
+        btext: this.data.people[i].userid
+      }, {
+        btext: this.data.people[i].name,
+      }, {
+        btext: this.data.people[i].job
+      }, {
+        btext: this.data.people[i].tel,
+      }, {
+        btext: "",
+        stext: "当月绩效"
+      }, {
+        btext: "30",
+        stext: "完成任务"
+      }, {
+        btext: "",
+        stext: "总绩效",
+        class: "-max",
+        f: ""
       }],
-      showName:false,
-      index:0,
+      head: this.data.people[i].head,
+      showName: false,
+      index: 0,
     }
 
     wx.navigateTo({

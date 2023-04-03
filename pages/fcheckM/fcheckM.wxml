@@ -4,7 +4,7 @@
   <view class="m">
     <view class="title">{{mag.text}}</view>
     <view class="text">
-      <text style="flex:3;">{{mag.date1}}—{{mag.date2}}</text>
+      <text style="flex:3;">{{mag.date1}}{{mag.date2}}</text>
       <text style="flex:1;">{{mag.location}}</text>
       <text style="flex:1;">{{mag.people}}</text>
     </view>

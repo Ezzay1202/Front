@@ -40,6 +40,7 @@ App({
     head:"",//headurl
     tel: "",
     identity: "",
+    head:'',
     authority1: 0, //记者权限（接任务）
     authority2: 0, //编辑部成员（发布任务和审核稿件权限）
     authority3: 0, //辅导员权限（稿件二审）

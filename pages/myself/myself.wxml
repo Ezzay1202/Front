@@ -81,8 +81,8 @@
       </view>
       <block wx:for="{{performance}}" wx:if="index">
         <view class="performance-box performance-items">
-          <view class="p-leftbox">
-            <image src="{{item.complete? 'http://1.15.118.125:8080/NIC/work_files/image//sx.png':'http://1.15.118.125:8080/NIC/work_files/image//kx.png'}}" mode="" />
+          <view class="p-leftbox">  
+            <image src="{{item.complete? ('http://1.15.118.125:8080/NIC/work_files/image//sx.png'):('http://1.15.118.125:8080/NIC/work_files/image//kx.png')}}" mode="" />
           </view>
           <view class="p-rightbox flex-column">
             <text style="font-size: 30rpx; font-weight: 500;">{{item.title}}</text>

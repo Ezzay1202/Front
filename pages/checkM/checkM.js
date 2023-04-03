@@ -60,8 +60,8 @@ Page({
           if (list_all[j].reporterNeeds.photo === undefined) {
             photo = ''
           }
-          let date1 = list_all[j].time.month + "月" + list_all[j].time.day + "日" + list_all[j].time.beginHour + ":" + minbegin + '-'
-          let date2 = list_all[j].time.endHour + ":" + minend
+          let date1 = list_all[j].time.month + "月" + list_all[j].time.day + "日" + list_all[j].time.beginHour + ":" + minbegin
+          let date2 = '-'+list_all[j].time.endHour + ":" + minend
           if (minbegin === undefined) {
             date2 = ''
             date1 = list_all[j].time.month + "月" + list_all[j].time.day + "日"

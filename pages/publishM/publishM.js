@@ -517,37 +517,43 @@ Component({
         })
       }
     },
-
+    //
     publishMission() {
       if (this.data.list1 === null) {
         wx.showToast({
           icon: 'none',
           title: '请填写起始时间',
+          mask: true
         })
       } else if (this.data.list2 === null) {
         wx.showToast({
           icon: 'none',
           title: '请填写结束时间',
+          mask: true
         })
       } else if (this.data.list3 === null) {
         wx.showToast({
           icon: 'none',
           title: '请填写小记者',
+          mask: true
         })
       } else if (place1 === '') {
         wx.showToast({
           icon: 'none',
           title: '请填写地点',
+          mask: true
         })
       } else if (description1 === '') {
         wx.showToast({
           icon: 'none',
           title: '请填写活动内容',
+          mask: true
         })
       } else if (this.data.list2[0] < this.data.list1[2] || (this.data.list2[0] == this.data.list1[2] && this.data.list1[3] > this.data.list2[1])) {
         wx.showToast({
           icon: 'none',
           title: '请填写正确的结束时间',
+          mask: true
         })
       } else {
         let obj = Object.create(null);
@@ -587,18 +593,8 @@ Component({
             if (res.data.code === 202) {
               wx.showToast({
                 title: '发布成功',
+                mask: true
               })
-              /*
-                            wx.request({
-                              url: 'https://1.15.118.125:8081/NIC',
-                              data: {
-                                'missionID': res.data.missionID
-                              },
-                              success: (res) => {
-                                console.log(res)
-                              }
-                            })
-                            */
               app.sleep(2000)
               wx.redirectTo({
                 url: '/pages/home/home',
@@ -606,10 +602,11 @@ Component({
             } else {
               wx.showToast({
                 title: '发布失败',
-                icon: 'error'
+                icon: 'error',
+                mask: true
               })
             }
-          }
+          },
         })
       }
     },
@@ -621,7 +618,7 @@ Component({
       for (let i of fileArray) {
         if (i.name.includes('docx') || i.name.includes('doc')) {
           description = i.name.split('.doc')[0]
-          break
+          console.log(description)
         }
       }
 
@@ -629,11 +626,13 @@ Component({
         wx.showToast({
           icon: 'none',
           title: '请填写稿件备注',
+          mask: true
         })
       } else if (fileArray.length === 0) {
         wx.showToast({
           icon: 'none',
           title: '请上传文件',
+          mask: true
         })
       } else {
         let obj = Object.create(null);
@@ -654,7 +653,7 @@ Component({
             "method": "add",
             "data": {
               "tags": tags,
-              "desription": description,
+              "description": description,
               "element": this.data.currentStep + 1,
               "publisher": app.globalData.userid,
               "postscript": postscript,
@@ -683,6 +682,7 @@ Component({
             }
             wx.showToast({
               title: '发布成功',
+              mask: true
             })
             wx.request({
               url: '', //
@@ -698,12 +698,8 @@ Component({
               url: '/pages/home/home',
             })
           },
-          complete: (res) => {
-            wx.hideLoading({
-              success: (res) => {},
-            })
-          }
         })
+
       }
     }
   },

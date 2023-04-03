@@ -8,8 +8,7 @@ Page({
     info: [],
     showName: false,
     index: 0,
-    man: true,
-    picture: 'http://1.15.118.125:8080/NIC/work_files/image//啸天.png'
+    man: true
   },
 
   changePhoto(e) {
@@ -101,6 +100,7 @@ Page({
         blur: true,
         f: ""
       }],
+      picture:resultInfo.head,
       showName: false,
       index: 0
     })
