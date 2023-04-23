@@ -99,7 +99,7 @@ Page({
           for (let m in list_all[i].postscript) {
             let temp = {
               name: m,
-              tel: '123456789',
+              //tel: '123456789',
               detail: list_all[i].postscript[m]
             }
             peoplelist.push(temp)

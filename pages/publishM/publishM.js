@@ -644,7 +644,7 @@ Component({
         let postscript = {}
         if (this.data.currentStep === 2) {
           postscript = {
-            username: description2
+            [app.globalData.username]: description2//
           }
         }
         wx.request({

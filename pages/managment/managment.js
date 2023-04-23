@@ -24,7 +24,7 @@ Page({
       column: "1/3",
       row: "3/5",
       color: "black",
-      btext: "3",
+      btext: "3",//
       stext: "待审核任务",
       class: 'maxnum',
       f: "checkMission"
@@ -32,7 +32,7 @@ Page({
       column: "3/5",
       row: "3/5",
       color: "#574c45",
-      btext: "4",
+      btext: "4",//
       stext: " 进行中任务",
       class: 'maxnum',
       f: "goToMywork"
@@ -141,7 +141,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    wx.request({
+      url: 'https://www.hustnic.tech:8081/NIC/show?method=showGotDraft',
+      data: {
+        'data': {
+          'kind': 'teacher'
+        }
+      },
+      success: (res) =>{
+        console.log(res.data.data)
+        this.setData({
+          [info[0].btext]:res.data.data.length
+        })
+      }
+      })
   },
 
   /**

@@ -174,14 +174,14 @@ Page({
           wx.request({
             data: {
               data: {
-                password: '123456', //password,
-                userid: 'U202116999' //userid
+                password: password,
+                userid: userid
               },
               method: "signUp"
             },
             url: 'https://www.hustnic.tech:8081/NIC/login',
             success: (res) => {
-              console.log(res.data);
+              console.log(res.data)
               if (res.data.code === 102) {
                 app.globalData.hasLogin = true
                 app.globalData.authority1 = res.data.data.authority1

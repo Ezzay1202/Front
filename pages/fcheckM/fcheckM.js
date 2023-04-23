@@ -48,7 +48,7 @@ Page({
         tel: resultInfo.mag.editor.tel,
         userid: resultInfo.mag.editor.userid,
         QQ: resultInfo.mag.editor.QQ,
-        head: resultInfo.mag.article[i].head,
+        head: resultInfo.mag.editor.head,
       }
       people.push(temp)
     }
