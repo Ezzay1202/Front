@@ -1,6 +1,6 @@
 <!--pages/historyM/historyM.wxml-->
 
-<view style="position: fixed; z-index: 2; width:750rpx; background-color: white;">
+<view style="position: fixed; z-index: 2; width:750rpx; background-color: white;" class="blur">
   <view class="container" style="background-color: white;padding:.5em;">
     <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{center}}" />
   </view>

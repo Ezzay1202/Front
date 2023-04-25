@@ -87,7 +87,7 @@ Page({
       mask: true
     })
     wx.setClipboardData({
-      data: 'http://www.hustnic.tech:8080/NIC/work_files/' + this.data.file_download[arr].name,
+      data: 'https://www.hustnic.tech/NIC/work_files/' + this.data.file_download[arr].name,
       success: (res) => {
         wx.showToast({
           title: '文件下载链接已复制到剪贴板',
@@ -96,7 +96,7 @@ Page({
       },
       complete: (res) => {
         wx.hideLoading({
-          success: (res) => {},
+          success: (res) => { },
         })
       }
     })
@@ -139,11 +139,11 @@ Page({
     code: 1,
     code1: 2,
     userStars: [
-      'http://1.15.118.125:8080/NIC/work_files/image/kx.png',
-      'http://1.15.118.125:8080/NIC/work_files/image/kx.png',
-      'http://1.15.118.125:8080/NIC/work_files/image/kx.png',
-      'http://1.15.118.125:8080/NIC/work_files/image/kx.png',
-      'http://1.15.118.125:8080/NIC/work_files/image/kx.png',
+      'https://www.hustnic.tech/NIC/work_files/image/kx.png',
+      'https://www.hustnic.tech/NIC/work_files/image/kx.png',
+      'https://www.hustnic.tech/NIC/work_files/image/kx.png',
+      'https://www.hustnic.tech/NIC/work_files/image/kx.png',
+      'https://www.hustnic.tech/NIC/work_files/image/kx.png',
     ],
     wjxScore: 0,
     // textarea
@@ -257,12 +257,12 @@ Page({
     var len = tempUserStars.length; // 获取星星数组的长度
     for (var i = 0; i < len; i++) {
       if (i <= index) { // 小于等于index的是满心
-        tempUserStars[i] = 'http://1.15.118.125:8080/NIC/work_files/image/sx.png'
+        tempUserStars[i] = 'https://www.hustnic.tech/NIC/work_files/image/sx.png'
         that.setData({
           wjxScore: i + 1,
         })
       } else { // 其他是空心
-        tempUserStars[i] = 'http://1.15.118.125:8080/NIC/work_files/image/kx.png'
+        tempUserStars[i] = 'https://www.hustnic.tech/NIC/work_files/image/kx.png'
       }
     }
     // 重新赋值就可以显示了
@@ -494,7 +494,7 @@ Page({
         title: '请稍等...',
       })
       wx.downloadFile({
-        url: 'https://www.hustnic.tech:8081/NIC/work_files/' + this.data.file_download[e.currentTarget.dataset.id].name,
+        url: 'https://www.hustnic.tech/NIC/work_files/' + this.data.file_download[e.currentTarget.dataset.id].name,
         success: (res) => {
           console.log(res)
           tempFilePath = res.tempFilePath
@@ -514,7 +514,7 @@ Page({
             },
             complete: (res) => {
               wx.hideLoading({
-                success: (res) => {},
+                success: (res) => { },
               })
             }
           })

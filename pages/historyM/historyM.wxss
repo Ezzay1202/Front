@@ -3,6 +3,12 @@ page {
   --people-color: #13a4a4;
 }
 
+.blur {
+  position: relative;
+  filter: blur(5px);
+  user-select: none;
+}
+
 .header {
   display: flex;
   align-items: center;

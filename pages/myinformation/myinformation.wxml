@@ -6,7 +6,7 @@
   </view>
   <view style="grid-column:4/5;  grid-row:1/2; box-shadow: 0 1px 5px 0 {{man? '#2b808d': '#f9c5ca'}}; background-color: white;" class="box">
     <view class="set">
-      <image src="{{man? 'http://1.15.118.125:8080/NIC/work_files/image/男.png' : 'http://1.15.118.125:8080/NIC/work_files/image/女.png'}}"></image>
+      <image src="{{man? 'https://www.hustnic.tech/NIC/work_files/image/男.png' : 'https://www.hustnic.tech/NIC/work_files/image/女.png'}}"></image>
     </view>
     <text style="color: black;">性别</text>
   </view>

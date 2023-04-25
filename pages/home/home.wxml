@@ -20,7 +20,7 @@
             </block>
           </view>
           <view class="view_tupianwenzi view_tupianwenzi-four" bindtap="showFunctions">
-            <image class="image_tupian-four" src="http://1.15.118.125:8080/NIC/work_files/image//more.png"></image>
+            <image class="image_tupian-four" src="https://www.hustnic.tech/NIC/work_files/image/more.png"></image>
             <text class="text_1-four">{{showfunctions? "更多功能":"收回"}}</text>
           </view>
         </view>
@@ -40,7 +40,7 @@
         <view class="flex-column">
           <block wx:if="{{todaywork.length===0}}">
             <view class="myworknone">
-              <image src="http://1.15.118.125:8080/NIC/work_files/image//缺省页_暂无消息.png" mode="" />
+              <image src="https://www.hustnic.tech/NIC/work_files/image/缺省页_暂无消息.png" mode="" />
               <text>今天已经没有日程啦</text>
             </view>
           </block>
@@ -70,7 +70,7 @@
           </block>
         </view>
       </view>
-      <view class="outview worklist">
+      <view class="outview worklist blur">
         <text class="text">我的工作</text>
         <view class="swiper">
           <view class="swiper">
@@ -150,7 +150,7 @@
         </view>
       </view>
       <view class="video_box">
-        <video muted="true" autoplay="true" src="http://cm.hust.edu.cn/js/zhuanye20220614.mp4" />
+        <video muted="true" autoplay="false" src="https://www.hustnic.tech/NIC/work_files/video.mp4" />
       </view>
       <view class="showflow">
         <!---->

@@ -30,7 +30,7 @@ Page({
     wx.request({
       url: 'https://www.hustnic.tech:8081/NIC/user',
       data: {
-        'method': 'showLayout',
+        'method': 'showLayout',//showFinished
         'data': {
           'userid': app.globalData.userid
         }

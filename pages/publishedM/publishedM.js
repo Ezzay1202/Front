@@ -144,6 +144,42 @@ Page({
       }
     })
   },
+  previewFile(e) {
+    let arr = e.currentTarget.dataset.index
+    console.log(e)
+    let tempFilePath = ''
+    wx.showLoading({
+      title: '请稍等...',
+    })
+    wx.downloadFile({
+      url: 'https://www.hustnic.tech/NIC/work_files/' + this.data.listp[this.data.index1].file[arr].name,
+      success: (res) => {
+        console.log(res)
+        tempFilePath = res.tempFilePath
+        // 文件预览
+        wx.openDocument({
+          filePath: tempFilePath, // 文件地址
+          showMenu: true,
+          success: function (res) {
+            //console.log('成功')
+          },
+          fail: function (error) {
+            console.log(error)
+            wx.showToast({
+              title: '无法预览！',
+              icon: 'error'
+            })
+          },
+          complete: (res) => {
+            wx.hideLoading({
+              success: (res) => { },
+            })
+          }
+        })
+      }
+    })
+
+  },
   takePhoto(e) {
     wx.request({
       url: 'https://www.hustnic.tech:8081/NIC/take',

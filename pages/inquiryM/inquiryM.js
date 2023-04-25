@@ -169,18 +169,18 @@ Component({
     }, {
       text: '排版',
     },],
-    listm_ing: [{
-      text: "管理学创新实验班班会",
-      steps_num: 1,
-    }, {
-      text: "管理学创新实验班班会",
-      steps_num: 0,
-    }, {
-      text: "管理学创新实验班班会",
-      steps_num: 1,
-    }, {
-      text: "管理学创新实验班班会",
-      steps_num: 1,
-    }],
+    // listm_ing: [{
+    //   text: "管理学创新实验班班会",
+    //   steps_num: 1,
+    // }, {
+    //   text: "管理学创新实验班班会",
+    //   steps_num: 0,
+    // }, {
+    //   text: "管理学创新实验班班会",
+    //   steps_num: 1,
+    // }, {
+    //   text: "管理学创新实验班班会",
+    //   steps_num: 1,
+    // }],
   }
 });

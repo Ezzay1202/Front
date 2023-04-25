@@ -5,7 +5,7 @@
       <view wx:for="{{people}}" wx:key="index">
         <view class="performance-box people-items" data-index1="{{index}}" bindtap="checkitems">
           <view class="peo-leftbox">
-            <image src="{{item.check? 'http://1.15.118.125:8080/NIC/work_files/image//uncheck.png':'http://1.15.118.125:8080/NIC/work_files/image//check.png'}}" mode="" />
+            <image src="{{item.check? 'https://www.hustnic.tech/NIC/work_files/image//uncheck.png':'https://www.hustnic.tech/NIC/work_files//check.png'}}" mode="" />
           </view>
           <view class="text-box">
             <text>{{item.name}}</text>

@@ -14,7 +14,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) { },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -163,20 +163,20 @@ Component({
 
     value: 'label_2',
     list: [{
-      value: 'label_1',
-      label: '首页',
-      icon: 'home'
-    },
-    {
-      value: 'label_2',
-      label: '发布',
-      icon: 'check-rectangle'
-    },
-    {
-      value: 'label_4',
-      label: '我的',
-      icon: 'user'
-    },
+        value: 'label_1',
+        label: '首页',
+        icon: 'home'
+      },
+      {
+        value: 'label_2',
+        label: '发布',
+        icon: 'check-rectangle'
+      },
+      {
+        value: 'label_4',
+        label: '我的',
+        icon: 'user'
+      },
     ],
   },
   methods: {
@@ -229,8 +229,8 @@ Component({
       } = e.currentTarget.dataset;
 
       this.setData({
-        cur: item,
-      },
+          cur: item,
+        },
         () => {
           this.setData({
             showcheck: true
@@ -512,11 +512,18 @@ Component({
         })
       }
       if (e.detail.value == 'label_4') {
-        wx.redirectTo({
-          url: '/pages/managment/managment',
-        })
+        if (app.globalData.authority3 === 1) {
+          wx.redirectTo({
+            url: '/pages/managment/managment',
+          })
+        } else {
+          wx.redirectTo({
+            url: "/pages/myself/myself",
+          })
+        }
       }
     },
+
     //
     publishMission() {
       if (this.data.list1 === null) {
@@ -547,6 +554,12 @@ Component({
         wx.showToast({
           icon: 'none',
           title: '请填写活动内容',
+          mask: true
+        })
+      } else if (this.data.list3[0] + this.data.list3[1] === 0) {
+        wx.showToast({
+          icon: 'none',
+          title: '请选择正确人数！',
           mask: true
         })
       } else if (this.data.list2[0] < this.data.list1[2] || (this.data.list2[0] == this.data.list1[2] && this.data.list1[3] > this.data.list2[1])) {
@@ -644,7 +657,7 @@ Component({
         let postscript = {}
         if (this.data.currentStep === 2) {
           postscript = {
-            [app.globalData.username]: description2//
+            [app.globalData.username]: description2 //
           }
         }
         wx.request({

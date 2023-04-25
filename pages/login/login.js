@@ -150,14 +150,14 @@ Page({
     })
   },
   Login1() {
-    if (this.data.password === '' || app.globalData.password === '') {
+    if (this.data.password === '' && app.globalData.password === '') {
       wx.showToast({
         title: '请输入密码！',
         icon: 'error',
         mask: true
       })
     }
-    if (this.data.userid === '' || app.globalData.userid === '') {
+    if (this.data.userid === '' && app.globalData.userid === '') {
       wx.showToast({
         title: '请输入账户！',
         icon: 'error',
@@ -174,8 +174,8 @@ Page({
           wx.request({
             data: {
               data: {
-                password: password,
-                userid: userid
+                password: password, //password,
+                userid: userid //userid
               },
               method: "signUp"
             },
@@ -190,7 +190,7 @@ Page({
                 app.globalData.username = res.data.data.username
                 app.globalData.userid = res.data.data.userid
                 app.globalData.head = res.data.data.head
-                //app.globalData.tel = res.data.data.tel
+                app.globalData.tel = res.data.data.tel
                 app.globalData.week_kcb = res.data.time.week
                 app.globalData.identity = res.data.data.identity
                 app.globalData.missionTaken = res.data.data.missionTaken

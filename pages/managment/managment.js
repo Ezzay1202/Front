@@ -24,7 +24,6 @@ Page({
       column: "1/3",
       row: "3/5",
       color: "black",
-      btext: "3",//
       stext: "待审核任务",
       class: 'maxnum',
       f: "checkMission"
@@ -32,7 +31,6 @@ Page({
       column: "3/5",
       row: "3/5",
       color: "#574c45",
-      btext: "4",//
       stext: " 进行中任务",
       class: 'maxnum',
       f: "goToMywork"
@@ -58,7 +56,6 @@ Page({
       column: "2/3",
       row: "5/6",
       color: "#8fb3a5",
-      btext: "30",
       stext: "本月任务",
       f: ""
     }, {
@@ -150,10 +147,40 @@ Page({
       },
       success: (res) =>{
         console.log(res.data.data)
+        let number1 = 'info[0].btext'
         this.setData({
-          [info[0].btext]:res.data.data.length
+          [number1]:res.data.data.length
         })
       }
+      })
+      wx.request({
+        url: 'https://www.hustnic.tech:8081/NIC/show',
+        data:{
+          'method':'showAll',
+          'data':{
+            'kind':'current'
+          }
+        },
+        success:(res)=>{
+          console.log(res.data)
+          let number2 = 'info[1].btext'
+          this.setData({
+            [number2]:res.data.data.length
+          })
+        }
+      })
+      wx.request({
+        url: 'https://www.hustnic.tech:8081/NIC/show',
+        data:{
+          'method':'showMonthly'
+        },
+        success:(res)=>{
+          console.log(res.data)
+          let number3 = 'info[3].btext'
+          this.setData({
+            [number3]:res.data.data.length
+          })
+        }
       })
   },
 

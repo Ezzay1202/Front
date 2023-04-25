@@ -104,53 +104,55 @@ Component({
     locationname: '',
     eventList: [],
     peoples: [],
-    picture: [/*{
-      img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
-      people: "乔晟豪"
-    }*/],
+    picture: [
+      /*{
+            img: "https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
+            people: "乔晟豪"
+          }*/
+    ],
     news: [],
     boxshow: [],
     isShow: false,
     functions_show: [{
       name: "待接任务",
-      img: 'http://1.15.118.125:8080/NIC/work_files/image//publishedM.png',
+      img: 'https://www.hustnic.tech/NIC/work_files/image//publishedM.png',
       goto: "/pages/publishedM/publishedM"
     }, {
       name: "查询稿件",
-      img: 'http://1.15.118.125:8080/NIC/work_files/image//apply.png',
+      img: 'https://www.hustnic.tech/NIC/work_files/image//apply.png',
       goto: "/pages/inquiryM/inquiryM"
     }, {
       name: "审核稿件",
-      img: 'http://1.15.118.125:8080/NIC/work_files/image//checkM.png',
+      img: 'https://www.hustnic.tech/NIC/work_files/image//checkM.png',
       goto: "/pages/checkM/checkM"
     }],
     functions: [{
       name: "待接任务",
-      img: 'http://1.15.118.125:8080/NIC/work_files/image//publishedM.png',
+      img: 'https://www.hustnic.tech/NIC/work_files/image//publishedM.png',
       goto: "/pages/publishedM/publishedM"
     }, {
       name: "查询稿件",
-      img: 'http://1.15.118.125:8080/NIC/work_files/image//apply.png',
+      img: 'https://www.hustnic.tech/NIC/work_files/image//apply.png',
       goto: "/pages/inquiryM/inquiryM"
     }, {
       name: "审核稿件",
-      img: 'http://1.15.118.125:8080/NIC/work_files/image//checkM.png',
+      img: 'https://www.hustnic.tech/NIC/work_files/image//checkM.png',
       goto: "/pages/checkM/checkM"
     }, {
       name: "提交稿件",
-      img: 'http://1.15.118.125:8080/NIC/work_files/image//submitM.png',
+      img: 'https://www.hustnic.tech/NIC/work_files/image//submitM.png',
       goto: "/pages/submitM/submitM"
     }, {
       name: "历史稿件",
-      img: 'http://1.15.118.125:8080/NIC/work_files/image//histroyM.png',
+      img: 'https://www.hustnic.tech/NIC/work_files/image//histroyM.png',
       goto: "/pages/historyM/historyM"
     }, {
       name: "提交排版",
-      img: 'http://1.15.118.125:8080/NIC/work_files/image//submitP.png',
+      img: 'https://www.hustnic.tech/NIC/work_files/image//submitP.png',
       goto: "/pages/submitP/submitP"
     }, {
       name: "稿件记录",
-      img: 'http://1.15.118.125:8080/NIC/work_files/image//updateM.png',
+      img: 'https://www.hustnic.tech/NIC/work_files/image//updateM.png',
       goto: "/pages/updateN/updateN"
     }],
 
@@ -179,21 +181,21 @@ Component({
       title: '新闻速览'
     }],
     list: [{
-      value: 'label_1',
-      label: '首页',
-      icon: 'home'
-    },
-    {
-      value: 'label_2',
-      label: '发布',
-      icon: 'check-rectangle'
-    },
+        value: 'label_1',
+        label: '首页',
+        icon: 'home'
+      },
+      {
+        value: 'label_2',
+        label: '发布',
+        icon: 'check-rectangle'
+      },
 
-    {
-      value: 'label_4',
-      label: '我的',
-      icon: 'user'
-    },
+      {
+        value: 'label_4',
+        label: '我的',
+        icon: 'user'
+      },
     ],
     todaywork: [], //我的时间
     day: [], //查看所有日程
@@ -207,47 +209,47 @@ Component({
       text: '辅导员审稿',
     }, {
       text: '排版',
-    },],
+    }, ],
     listm: [{
-      text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-      date: "2022-11-30",
-      location: "管理学院105",
-      people: [{
-        key: 1,
-        name: "陶柯羽"
-      }, {
-        key: 2,
-        name: "高原"
-      }, {
-        key: 5,
-        name: "徐文慧"
-      }, {
-        key: 4,
-        name: "张赫"
-      },],
-      url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-      score: 4.5
-    },
-    {
-      text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-      date: "2022-11-30",
-      location: "管理学院105",
-      people: [{
-        key: 1,
-        name: "陶柯羽"
-      }, {
-        key: 2,
-        name: "高原"
-      }, {
-        key: 5,
-        name: "徐文慧"
-      }, {
-        key: 4,
-        name: "张赫"
-      },],
-      url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-      score: 4.5
-    },
+        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
+        date: "2022-11-30",
+        location: "管理学院105",
+        people: [{
+          key: 1,
+          name: "陶柯羽"
+        }, {
+          key: 2,
+          name: "高原"
+        }, {
+          key: 5,
+          name: "徐文慧"
+        }, {
+          key: 4,
+          name: "张赫"
+        }, ],
+        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
+        score: 4.5
+      },
+      {
+        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
+        date: "2022-11-30",
+        location: "管理学院105",
+        people: [{
+          key: 1,
+          name: "陶柯羽"
+        }, {
+          key: 2,
+          name: "高原"
+        }, {
+          key: 5,
+          name: "徐文慧"
+        }, {
+          key: 4,
+          name: "张赫"
+        }, ],
+        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
+        score: 4.5
+      },
     ],
     time: 2 * 24 * 60 * 60 * 1000,
     timeData: {},
@@ -502,7 +504,7 @@ Component({
         locationname: e.detail.value
       })
     },
-    kcbSpider(e) { },
+    kcbSpider(e) {},
 
 
 
@@ -515,16 +517,16 @@ Component({
           icon: 'error'
         })
       } else
-        if (app.globalData.kcb_code != 702) {
-          wx.showToast({
-            title: '您未导入课程表!',
-            icon: 'error'
-          })
-        } else {
-          wx.navigateTo({
-            url: "/pages/mydate/mydate?kcb=" + JSON.stringify(app.globalData.kcb),
-          })
-        }
+      if (app.globalData.kcb_code != 702) {
+        wx.showToast({
+          title: '您未导入课程表!',
+          icon: 'error'
+        })
+      } else {
+        wx.navigateTo({
+          url: "/pages/mydate/mydate?kcb=" + JSON.stringify(app.globalData.kcb),
+        })
+      }
     },
     checkedTag(e) {
       console.log(e)
@@ -586,65 +588,65 @@ Component({
     },
     addEvent(e) {
       console.log(this.data)
-      if (this.data.eventname === '') {
-        wx.showToast({
-          title: '请输入事项名称',
-          icon: 'error'
-        })
-      } else if (this.data.locationname === '') {
-        wx.showToast({
-          title: '请输入地点',
-          icon: 'error'
-        })
-      } else if (this.data.date1CurrentValue === undefined) {
-        wx.showToast({
-          title: '请输入起始时间',
-          icon: 'error'
-        })
-      } else if (this.data.date2CurrentValue === undefined) {
-        wx.showToast({
-          title: '请输入结束时间',
-          icon: 'error'
-        })
-      } else if (this.data.useridList === []) {
-        wx.showToast({
-          title: '请选择人员',
-          icon: 'error'
-        })
-      } else {
-        wx.request({
-          url: 'https://www.hustnic.tech:8081/NIC/affair',
-          data: {
-            'method': 'add',
-            'data': {
-              'pubisher': app.globalData.userid,
-              'affairName': this.data.eventname,
-              'place': this.data.locationname,
-              'date': year + '-' + ((this.data.date1Value[0] > 10) ? (this.data.date1Value[0]) : ('0' + this.data.date1Value[0])) + '-' + ((this.data.date1Value[1] > 10) ? (this.data.date1Value[1]) : ('0' + this.data.date1Value[1])),
-              'beginTime': ((this.data.date1Value[2] > 10) ? (this.data.date1Value[2]) : ('0' + this.data.date1Value[2])) + ':' + ((this.data.date1Value[3] > 10) ? (this.data.date1Value[3]) : ('0' + this.data.date1Value[3])),
-              'endTime': ((this.data.date2Value[0] > 10) ? (this.data.date2Value[0]) : ('0' + this.data.date2Value[0])) + ':' + ((this.data.date2Value[1] > 10) ? (this.data.date2Value[1]) : ('0' + this.data.date2Value[1])),
-              'involveUsers': this.data.useridList
+        if (this.data.eventname === '') {
+          wx.showToast({
+            title: '请输入事项名称',
+            icon: 'error'
+          })
+        } else if (this.data.locationname === '') {
+          wx.showToast({
+            title: '请输入地点',
+            icon: 'error'
+          })
+        } else if (this.data.date1CurrentValue === undefined) {
+          wx.showToast({
+            title: '请输入起始时间',
+            icon: 'error'
+          })
+        } else if (this.data.date2CurrentValue === undefined) {
+          wx.showToast({
+            title: '请输入结束时间',
+            icon: 'error'
+          })
+        } else if (this.data.useridList === []) {
+          wx.showToast({
+            title: '请选择人员',
+            icon: 'error'
+          })
+        } else {
+          wx.request({
+            url: 'https://www.hustnic.tech:8081/NIC/affair',
+            data: {
+              'method': 'add',
+              'data': {
+                'pubisher': app.globalData.userid,
+                'affairName': this.data.eventname,
+                'place': this.data.locationname,
+                'date': year + '-' + ((this.data.date1Value[0] > 10) ? (this.data.date1Value[0]) : ('0' + this.data.date1Value[0])) + '-' + ((this.data.date1Value[1] > 10) ? (this.data.date1Value[1]) : ('0' + this.data.date1Value[1])),
+                'beginTime': ((this.data.date1Value[2] > 10) ? (this.data.date1Value[2]) : ('0' + this.data.date1Value[2])) + ':' + ((this.data.date1Value[3] > 10) ? (this.data.date1Value[3]) : ('0' + this.data.date1Value[3])),
+                'endTime': ((this.data.date2Value[0] > 10) ? (this.data.date2Value[0]) : ('0' + this.data.date2Value[0])) + ':' + ((this.data.date2Value[1] > 10) ? (this.data.date2Value[1]) : ('0' + this.data.date2Value[1])),
+                'involveUsers': this.data.useridList
+              }
+            },
+            success: (res) => {
+              console.log(res.data)
+              if (res.data.code === 702) {
+                wx.showToast({
+                  title: res.data.msg
+                })
+                app.sleep(2000)
+                this.cancelMask()
+                this.onLoad()
+              } else {
+                wx.showToast({
+                  title: '添加失败',
+                  icon: 'error'
+                })
+              }
             }
-          },
-          success: (res) => {
-            console.log(res.data)
-            if (res.data.code === 702) {
-              wx.showToast({
-                title: res.data.msg
-              })
-              app.sleep(2000)
-              this.cancelMask()
-              this.onLoad()
-            } else {
-              wx.showToast({
-                title: '添加失败',
-                icon: 'error'
-              })
-            }
-          }
-        })
+          })
+        }
 
-      }
     },
 
     showCheck(e) {
@@ -680,7 +682,7 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker change:',);
+      console.log('picker change:', );
       this.setData({
         [`${key}Visible`]: false,
         [`${key}Value`]: e.detail.value,
@@ -713,7 +715,7 @@ Component({
       });
     },
     addWorks() {
-      if (app.globalData.hasLogin) {
+      if (app.globalData.authority2 === 1) {
         this.setData({
           isShow: "true"
         })

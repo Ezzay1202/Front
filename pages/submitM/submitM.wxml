@@ -1,6 +1,6 @@
 <!--pages/submitM/submitM.wxml-->
 <view class="none" wx:if="{{listm.length===0}}">
-  <image src="http://1.15.118.125:8080/NIC/work_files/image//缺省页_暂无消息.png"></image>
+  <image src="https://www.hustnic.tech/NIC/work_files/image//缺省页_暂无消息.png"></image>
   <view>您还没有待提交的稿件</view>
 </view>
 <scroll-view class="container" scroll-y="true" enable-flex="true">
@@ -20,10 +20,10 @@
       </view>
       <view class="filebox">
         <view class="right" wx:for="{{item.fileArray}}" wx:key="index">
-          <image src="http://1.15.118.125:8080/NIC/work_files/image//删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
+          <image src="https://www.hustnic.tech/NIC/work_files/image//删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
           </image>
           <view class="n" bindtap="previewFile" data-path="{{item.path}}">
-            <image src="http://1.15.118.125:8080/NIC/work_files/image//docm.png" mode="aspectFill"></image>
+            <image src="https://www.hustnic.tech/NIC/work_files/image//docm.png" mode="aspectFill"></image>
             <text class="name">{{item.name}}</text>
             <text class="size">{{item.size}}</text>
           </view>

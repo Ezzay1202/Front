@@ -19,7 +19,7 @@
   </view>
 </view>
 <view class="flex">
-  <view class="myM flex-column">
+  <view class="myM flex-column blur">
     <text class="text">我的稿件</text>
     <text style="margin-top: .4em;">进行中稿件</text>
     <view class="myM-ing">
@@ -81,8 +81,8 @@
       </view>
       <block wx:for="{{performance}}" wx:if="index">
         <view class="performance-box performance-items">
-          <view class="p-leftbox">  
-            <image src="{{item.complete? ('http://1.15.118.125:8080/NIC/work_files/image//sx.png'):('http://1.15.118.125:8080/NIC/work_files/image//kx.png')}}" mode="" />
+          <view class="p-leftbox">
+            <image src="{{item.complete? ('https://www.hustnic.tech/NIC/work_files/image//sx.png'):('https://www.hustnic.tech/NIC/work_files/image//kx.png')}}" mode="" />
           </view>
           <view class="p-rightbox flex-column">
             <text style="font-size: 30rpx; font-weight: 500;">{{item.title}}</text>
@@ -93,7 +93,7 @@
       </block>
       <view class="performance-box performance-items" style="background-color: #00303f;">
         <view class="p-leftbox">
-          <image src="http://1.15.118.125:8080/NIC/work_files/image//kx.png" mode="" />
+          <image src="https://www.hustnic.tech/NIC/work_files/image//kx.png" mode="" />
         </view>
         <view class="p-rightbox flex-column">
           <text style="font-size: 30rpx; font-weight: 500;  color: white;">例会迟到早退/未提前请假旷会</text>

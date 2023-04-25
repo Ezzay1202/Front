@@ -148,10 +148,10 @@
       <block>
         <view class="box filebox">
           <view class="right" wx:for="{{fileArray}}" wx:key="index">
-            <image src="http://1.15.118.125:8080/NIC/work_files/image//删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
+            <image src="https://www.hustnic.tech/NIC/work_files/image//删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
             </image>
             <view class="n" bindtap="previewFile" data-path="{{item.path}}">
-              <image src="http://1.15.118.125:8080/NIC/work_files/image//docm.png" mode="aspectFill"></image>
+              <image src="https://www.hustnic.tech/NIC/work_files/image//docm.png" mode="aspectFill"></image>
               <text class="name">{{item.name}}</text>
               <text class="size">{{item.size}}</text>
             </view>
