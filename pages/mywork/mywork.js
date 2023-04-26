@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    deltext: '',
+    delstep: '',
     steps_num: 2,
     mainActiveIndex: 0,
     activeId: [],
@@ -119,6 +121,26 @@ Page({
       data:{
         'method':'alter'
       }
+    })
+  },
+  gotoHistory() {
+    wx.navigateTo({
+      url: '/pages/historyM/historyM',
+    })
+  },
+  cancelMask() {
+    this.setData({
+      showDelete: false,
+      deltext: ''
+    })
+  },
+  deleteM(e) {
+    let index = e.currentTarget.dataset.index
+    let step = this.data.listm_ing[index].steps_num - 1
+    this.setData({
+      showDelete: true,
+      deltext: this.data.listm_ing[index].text,
+      delstep: this.data.step[step].text
     })
   },
   gotoHistory() {
