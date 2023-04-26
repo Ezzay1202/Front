@@ -36,7 +36,7 @@ Page({
         tel: resultInfo.mag.photo[i].tel,
         userid: resultInfo.mag.photo[i].userid,
         QQ: resultInfo.mag.photo[i].QQ,
-        head: resultInfo.mag.article[i].head,
+        head: resultInfo.mag.photo[i].head,
       }
       people.push(temp)
     }
@@ -365,6 +365,7 @@ Page({
             "Content-Type": "multipart/form-data"
           },
           success: (res) => {
+            console.log(res)
             let json = JSON.parse(res.data)
             console.log(json)
             if (json.code === 502) {

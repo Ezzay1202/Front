@@ -150,7 +150,7 @@
         </view>
       </view>
       <view class="video_box">
-        <video muted="true" autoplay="false" src="https://www.hustnic.tech/NIC/work_files/video.mp4" />
+        <video muted="true" src="https://www.hustnic.tech/NIC/work_files/video.mp4" />
       </view>
       <view class="showflow">
         <!---->

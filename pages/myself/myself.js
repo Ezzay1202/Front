@@ -14,13 +14,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    headP: app.globalData.head,
+
     value: 'label_4',
     steps_num: 2,
     functions: [{
       name: "我的稿件",
       src: "https://www.hustnic.tech/NIC/work_files/image/mywo.png",
-      goto: "gotoMywork"
+      bindtap: "gotoMywork"
     }, {
       name: "我的绩效",
       src: "https://www.hustnic.tech/NIC/work_files/image/myw.png",
@@ -244,6 +244,9 @@ Page({
    */
   onLoad(options) {
     this.getKcb()
+    this.setData({
+      headP: app.globalData.head
+    })
   },
 
   /**
@@ -458,8 +461,12 @@ Page({
     })
   },
   gotoMywork() {
-    wx.navigateTo({
-      url: '/pages/mywork/mywork',
+    wx.showToast({
+      title: '敬请期待',
+      icon: 'error'
     })
+    // wx.navigateTo({
+    //   url: '/pages/mywork/mywork',
+    // })
   }
 })

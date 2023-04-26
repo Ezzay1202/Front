@@ -15,7 +15,6 @@ page{
   border-radius: 10rpx;
   margin: .5em;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.2);
   box-shadow: 5rpx 5rpx #efefef;
 }
 .box >image{

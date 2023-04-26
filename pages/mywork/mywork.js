@@ -54,117 +54,10 @@ Page({
         },
       ],
     }, ],
-    listm_ing: [{
-      text: "管理学创新实验班班会",
-      steps_num: 1,
-    }, {
-      text: "管理学创新实验班班会",
-      steps_num: 1,
-    }, {
-      text: "管理学创新实验班班会",
-      steps_num: 1,
-    }, {
-      text: "管理学创新实验班班会",
-      steps_num: 1,
-    }],
-    listm: [{
-        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-        date: "2022-11-30",
-        location: "管理学院105",
-        people: [{
-          key: 1,
-          name: "陶柯羽"
-        }, {
-          key: 2,
-          name: "高原"
-        }, {
-          key: 5,
-          name: "徐文慧"
-        }, {
-          key: 4,
-          name: "张赫"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-        score: 4.5
-      },
-      {
-        text: "学习二十大，管院在行动 | 管理学院“领跑计划”学生骨干成长训练营开展专题培训",
-        date: "2022-11-29",
-        location: "校史馆",
-        people: [{
-          key: 1,
-          name: "杨彬雪"
-        }, {
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "桂云凤"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/yReSTZQn5L9UC4eE2zsYNw",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      }
-    ],
     step: [{
-      text: '已接稿',
+      text: '接稿',
     }, {
-      text: '已写稿',
+      text: '写稿',
     }, {
       text: '编辑部审稿',
     }, {
@@ -172,6 +65,66 @@ Page({
     }, {
       text: '排版',
     }, ],
+  },
+  cancelMask() {
+    this.setData({
+      showDelete: false,
+      deltext: ''
+    })
+  },
+  deleteM(e) {
+    let index = e.currentTarget.dataset.index
+    //let step = this.data.listm_ing[index].steps_num - 1
+    console.log(index)
+    this.setData({
+      showDelete: true,
+      deltext: this.data.listm_ing[index].text,
+      delmissionID:this.data.listm_ing[index].missionID
+      //delstep: this.data.step[step].text
+    })
+  },
+  missionDelete(){
+    wx.request({
+      url: 'https://www.hustnic.tech:8081/NIC/manage',
+      data:{
+        'method':'delete',
+        'data':{
+          'missionID':this.data.delmissionID
+        }
+      },
+      success:(res)=>{
+        console.log(res.data)
+        if(res.data.code === 202){
+          wx.showToast({
+            title: res.data.msg
+          })
+        }else{
+          wx.showToast({
+            title: '删除失败！',
+            icon:'error'
+          })
+        }
+      }
+    })
+    this.setData({
+      showDelete:false
+    })
+    this.onLoad()
+  },
+  missionChange(e){
+    let index = e.currentTarget.dataset.index
+    console.log(index)
+    wx.request({
+      url: 'https://www.hustnic.tech:8081/NIC/manage',
+      data:{
+        'method':'alter'
+      }
+    })
+  },
+  gotoHistory() {
+    wx.navigateTo({
+      url: '/pages/historyM/historyM',
+    })
   },
   goto(e) {
     console.log(e)
@@ -221,10 +174,37 @@ Page({
       },
       success: (res) => {
         console.log(res.data.data)
+        let datalist = res.data.data
         let listm_ing = []
-        for (let i = 0; i < res.data.date.length; i++) {
-          let tempMission = {}
+        for (let i = 0; i < datalist.length; i++) {
+          let steps_num = 0
+          if(datalist[i].status['接稿'] != '未达成'){
+            steps_num += 1
+            if(datalist[i].status['写稿'] != '未达成'){
+              steps_num += 1
+              if(datalist[i].status['编辑部审稿'] != '未达成'){
+                steps_num += 1
+                if(datalist[i].status['辅导员审核'] != '未达成'){
+                  steps_num += 1
+                  if(datalist[i].status['接排版'] != '未达成'){
+                    steps_num += 1
+                  }
+                }
+              }
+            }
+
+          }
+          let tempMission = {
+            missionID:datalist[i].missionID,
+            text:datalist[i].description,
+            steps_num:steps_num,
+
+          }
+          listm_ing.push(tempMission)
         }
+        this.setData({
+          listm_ing:listm_ing
+        })
       }
     })
   },

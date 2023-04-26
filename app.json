@@ -1,14 +1,10 @@
 {
   "pages": [
-    "pages/home/home",
-
-    "pages/login/login",
-
-
-    "pages/managment/managment",
-
-    "pages/publishM/publishM",
     "pages/mywork/mywork",
+    "pages/home/home",
+    "pages/login/login",
+    "pages/managment/managment",
+    "pages/publishM/publishM",
     "pages/updateN/updateN",
     "pages/diyhome/diyhome",
     "pages/checkM/checkM",

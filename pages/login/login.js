@@ -282,5 +282,10 @@ Page({
       })
     }
   },
-  Login2() { }
+  gotoHome() {
+    wx.navigateTo({
+      url: '/pages/home/home',
+    })
+  }
+  // Login2() { }
 })

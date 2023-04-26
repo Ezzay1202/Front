@@ -14,7 +14,7 @@
         </image>
         <view class="n" style="box-shadow: 0 2rpx 10rpx 0rpx {{item.state===1? '':'#13a4a4;'}};" bindtap="previewFile" data-path="{{item.path}}" data-id="{{item.arr}}">
           <image src="https://www.hustnic.tech/NIC/work_files/image/docm.png" mode="aspectFill"></image>
-          <text class="name">{{item.name}}-{{item.state===1? "编辑部":'记者部'}}</text>
+          <text class="name">{{item.name}}-{{item.state===1? "编辑部":'小记者'}}</text>
           <text class="size">{{item.size}}</text>
         </view>
       </view>
@@ -117,7 +117,7 @@
       </view>
       <view class="mbutton-box">
         <button bindtap="cancelMask">取消</button>
-        <button style="background-color: var(--bu-color); color:white" bindtap="missionRollback">确认</button>
+        <button style="background-color: var(--bu-color); color:white" bindtap="">确认</button>
       </view>
     </view>
   </view>

@@ -1,6 +1,8 @@
 /* pages/mywork/mywork.wxss */
 page {
   background-color: #fcfcff;
+  --bu-color: #0b1f51;
+
 }
 
 t-search {
@@ -221,4 +223,85 @@ t-search {
   font-size: 30rpx;
   padding: .3rem .3rem 0;
   color: #a63f53;
+}
+
+.btn-history {
+  width: 600rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  color: black;
+  background-color: white;
+  border: 1px solid black !important;
+  box-shadow: 0 1rpx 4rpx 0 black;
+}
+
+.mask-bac {
+  z-index: 11;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  width: 600rpx;
+  height: 400rpx;
+  border-radius: 20rpx;
+  position: fixed;
+  z-index: 11;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  box-sizing: border-box;
+  padding: 1em;
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+
+.imbox {
+  margin: 10rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.imbox text {
+  font-size: 35rpx;
+  margin-top: 10rpx;
+  text-align: center;
+}
+
+.modal .mbutton-box {
+  position: absolute;
+  bottom: 50rpx;
+  width: 540rpx;
+  margin: .5em 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.mbutton-box>button {
+  flex: 1;
+  font-size: 29rpx;
+  margin: 0 10rpx .5em;
+  padding: 0;
+  color: var(--bu-color);
+  background-color: white;
+  border: 1px solid var(--bu-color) !important;
+  border-radius: 2%;
+}
+
+.modal.noShow {
+  top: -0%;
+  opacity: 0;
+  transition: all 1s;
+}
+
+.modal.show {
+  top: 50%;
+  transition: all 1s;
+  opacity: 1;
 }

@@ -21,7 +21,7 @@
      <!-- 登录按钮 -->
      <view class="button">
          <button bindtap="Login1" style="background-color: #245a3d; color: white;border:white;">登录</button>
-         <button bindtap="Login2">游客登录</button>
+         <button bindtap="gotoHome">取消</button>
      </view>
    </view>
  </view>

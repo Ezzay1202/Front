@@ -1,6 +1,6 @@
 <!--pages/historyM/historyM.wxml-->
 
-<view style="position: fixed; z-index: 2; width:750rpx; background-color: white;" class="blur">
+<!-- <view style="position: fixed; z-index: 2; width:750rpx; background-color: white;" class="blur style="position:absolute; top:210rpx;   padding-bottom: 1vh;"">
   <view class="container" style="background-color: white;padding:.5em;">
     <t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{center}}" />
   </view>
@@ -36,9 +36,9 @@
 
   </van-dropdown-menu>
 
-</view>
+</view> -->
 
-<scroll-view class="container" style="position:absolute; top:210rpx;   padding-bottom: 1vh;" scroll-y="true" enable-flex="true">
+<scroll-view class="container" scroll-y="true" enable-flex="true">
   <block wx:for="{{listm}}" wx:key="id">
     <view class="m">
       <view class="title">{{item.text}}</view>

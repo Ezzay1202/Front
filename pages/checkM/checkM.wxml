@@ -13,7 +13,7 @@
           <text>{{item.location}}0</text>
         </block>
         <block wx:if="{{item.date2!=''}}">
-          <text>{{item.people}}1</text>
+          <text>{{item.people}}</text>
         </block>
       </view>
       <view class="detail-people" hidden="{{item.state === 0}}">

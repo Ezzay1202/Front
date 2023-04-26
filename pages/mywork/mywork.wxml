@@ -19,9 +19,9 @@
 <scroll-view scroll-y="true" enable-flex="true" class="myM flex-column">
   <text style="margin-top: .4em;" class="text_big">进行中稿件</text>
   <view class="myM-ing">
-    <block wx:for="{{listm_ing}}" wx:key="id">
+    <block wx:for="{{listm_ing}}" wx:key="index">
       <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}">
-        <view slot="left" class="hidden_swiper left">
+        <view slot="left" class="hidden_swiper left" bindtap='missionChange' data-index="{{index}}">
           <text>更改</text>
         </view>
         <view class="m-ing">
@@ -32,14 +32,15 @@
             </block>
           </t-steps>
         </view>
-        <view slot="right" class="hidden_swiper right">
+        <view slot="right" class="hidden_swiper right" bindtap="deleteM" data-index="{{index}}">
           <text>删除</text>
         </view>
       </van-swipe-cell>
     </block>
   </view>
-  <text style="margin-top: 1em;" class="text_big">历史稿件</text>
-  <view class="myM-history">
+  <button class='btn-history' bindtap="gotoHistory">查看历史稿件</button>
+  <!-- <text style="margin-top: 1em;" class="text_big">历史稿件</text> -->
+  <!-- <view class="myM-history">
     <block wx:for="{{listm}}" wx:key="id">
       <view class="m">
         <view class="title">{{item.text}}</view>
@@ -60,5 +61,20 @@
         </view>
       </view>
     </block>
-  </view>
+  </view> -->
 </scroll-view>
+<view class="mask" hidden="{{!showDelete}}">
+  <view class="mask-bac">
+    <view class="modal flex-column j_c {{showDelete ? 'show':'noShow'}}" style="background: {{current.color}};">
+      <view class="imbox">
+        <text>您确认删除</text>
+        <text style="font-weight:bold;">{{deltext}}</text>
+        <text style="font-weight:bold;">{{delstep}}</text>
+      </view>
+      <view class="mbutton-box">
+        <button bindtap="cancelMask">取消</button>
+        <button style="background-color: var(--bu-color); color:white" bindtap="missionDelete">确认</button>
+      </view>
+    </view>
+  </view>
+</view>
