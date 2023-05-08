@@ -22,7 +22,7 @@ function updateMoveInfo(state, event) {
 function moveContainer(state, reset) {
   if (state.direction === DIRECTION.HOR) {
     var offset = reset ? state.offsetX : state.offsetX + state.moveX;
-    // console.log(DIRECTION.HOR, state.moveX);
+    // //console.log(DIRECTION.HOR, state.moveX);
     if (offset > 0) {
       offset = Math.min(state.width * moveThreshold, offset);
     } else {
@@ -31,7 +31,7 @@ function moveContainer(state, reset) {
     setOffset(state, offset, 0, !reset);
   } else {
     var offset = reset ? state.offsetY : state.offsetY + state.moveY;
-    // console.log(DIRECTION.VER, state.moveY);
+    // //console.log(DIRECTION.VER, state.moveY);
     if (offset > 0) {
       offset = Math.min(state.height * moveThreshold, offset);
     } else {

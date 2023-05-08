@@ -117,7 +117,7 @@ Page({
     }
   },
   checkitems(e) {
-    console.log(e);
+    //console.log(e);
     let index1 = e.currentTarget.dataset.index1;
     let check = 'people.[' + index1 + '].check'
     this.setData({
@@ -146,7 +146,7 @@ Page({
         }
       },
       success: (res) =>{
-        console.log(res.data.data)
+        //console.log(res.data.data)
         let number1 = 'info[0].btext'
         this.setData({
           [number1]:res.data.data.length
@@ -162,7 +162,7 @@ Page({
           }
         },
         success:(res)=>{
-          console.log(res.data)
+          //console.log(res.data)
           let number2 = 'info[1].btext'
           this.setData({
             [number2]:res.data.data.length
@@ -175,7 +175,7 @@ Page({
           'method':'showMonthly'
         },
         success:(res)=>{
-          console.log(res.data)
+          //console.log(res.data)
           let number3 = 'info[3].btext'
           this.setData({
             [number3]:res.data.data.length

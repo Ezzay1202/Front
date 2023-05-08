@@ -95,7 +95,7 @@ Component({
           }
         },
         success: (res) => {
-          console.log(res.data.data[0])
+          //console.log(res.data.data[0])
 
           if (res.data.code == 302) {
             let current = 0
@@ -140,7 +140,7 @@ Component({
               e: e,
               f: f
             }
-            console.log(data_temp)
+            //console.log(data_temp)
             wx.showToast({
               title: '查询成功'
             })

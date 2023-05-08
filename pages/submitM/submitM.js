@@ -20,7 +20,7 @@ Page({
       },
       success: (res) => {
         list_all = res.data.data
-        console.log(res)
+        //console.log(res)
         if (list_all === undefined) {
           // 还没有接任务
         } else {
@@ -58,7 +58,7 @@ Page({
             }
           }
         }
-        console.log(list_show)
+        //console.log(list_show)
         this.setData({
           listm: list_show
         })
@@ -79,7 +79,7 @@ Page({
     let len = this.data.listm[i].fileArray.length
     let count = 0
     for (let j = 0; j < len; j++) {
-      console.log(this.data.listm[i].fileArray[j].path)
+      //console.log(this.data.listm[i].fileArray[j].path)
       wx.uploadFile({
         filePath: this.data.listm[i].fileArray[j].path,
         name: 'file',
@@ -89,7 +89,7 @@ Page({
         },
         success: (res) => {
           let json = JSON.parse(res.data)
-          console.log(json)
+          //console.log(json)
           if (json.code === 502) {
             count += 1
             if (count === len) {
@@ -112,33 +112,33 @@ Page({
   },
   // 文件上传
   uploadFile(e) {
-    console.log(e)
+    //console.log(e)
     index1 = e.currentTarget.dataset.index
-    console.log(index1)
+    //console.log(index1)
     let fileArray = 'listm[' + index1 + '].fileArray'
     wx.chooseMessageFile({
       count: 10, //选择文件的数量
       type: 'all', //选择文件的类型
       success: (res) => {
-        console.log(res.tempFiles)
+        //console.log(res.tempFiles)
         res.tempFiles[0].size = (res.tempFiles[0].size/(1024*1024)).toFixed(1)+'M'
         this.setData({
           [fileArray]: this.data.listm[index1].fileArray.concat(res.tempFiles)
         })
       }
     })
-    console.log(this.data.listm[index1].fileArray)
+    //console.log(this.data.listm[index1].fileArray)
   },
   removefile(e) {
-    console.log(index1)
+    //console.log(index1)
     let index = e.currentTarget.dataset.index
     let fileArray = 'listm[' + index1 + '].fileArray'
-    console.log(e, index)
+    //console.log(e, index)
     this.data.listm[index1].fileArray.splice(index, 1)
     this.setData({
       [fileArray]: this.data.listm[index1].fileArray
     })
-    console.log(this.data.listm[index1].fileArray)
+    //console.log(this.data.listm[index1].fileArray)
   },
   // 预览附件
   previewFile(e) {
@@ -158,10 +158,10 @@ Page({
         fileType: string, // 文件类型
         filePath: e.currentTarget.dataset.path, // 文件地址
         success: function (res) {
-          console.log('成功')
+          //console.log('成功')
         },
         fail: function (error) {
-          console.log("失败")
+          //console.log("失败")
         }
       })
     }

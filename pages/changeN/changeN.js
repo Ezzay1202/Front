@@ -7,15 +7,14 @@ const month = date.getMonth() + 1
 const day = date.getDate()
 const hour = date.getHours()
 const minute = date.getMinutes()
-let place1 = ''
-let description1 = ''
-let description2 = ''
-Page({
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {},
+const PICKER_KEY = {
+  DATE: 'date',
+  DATE1: 'date1',
+  DATE2: 'date2',
+  People: 'people',
+}
 
+Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -68,19 +67,9 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    list1: [],
-    list2: [],
-    list3: [],
-    place1: ''
-  },
+  data: {},
 })
-const PICKER_KEY = {
-  DATE: 'date',
-  DATE1: 'date1',
-  DATE2: 'date2',
-  People: 'people',
-};
+
 
 Component({
   offsetTopList: [],
@@ -95,7 +84,10 @@ Component({
     index22: 0,
     sideBarIndex: 0,
     sideBarIndex2: 0,
-
+    list1: [],
+    list2: [],
+    list3: [],
+    place1: '',
     scrollTop: 0,
     categories: [],
     tagbox: [],
@@ -103,24 +95,11 @@ Component({
     showcheck: false,
     showcheck2: false,
     fileArray: [],
-    step: [{
-      text: '已写稿',
-      content: '需要编辑部审稿',
-      hidden: false
-    }, {
-      text: '编辑部已审稿',
-      content: "需要辅导员审稿",
-      hidden: true
-    }, {
-      text: '辅导员已审稿',
-      content: "需要排版",
-      hidden: true
-    }],
-    currentStep: 0,
     stickyProps: {
       zIndex: 2,
     },
     PICKER_KEY,
+
     [`${PICKER_KEY.DATE}Visible`]: false,
     [`${PICKER_KEY.DATE1}Visible`]: false,
     [`${PICKER_KEY.DATE2}Visible`]: false,
@@ -162,25 +141,11 @@ Component({
     [`${PICKER_KEY.People}Value`]: [],
 
     value: 'label_2',
-    list: [{
-        value: 'label_1',
-        label: '首页',
-        icon: 'home'
-      },
-      {
-        value: 'label_2',
-        label: '发布',
-        icon: 'check-rectangle'
-      },
-      {
-        value: 'label_4',
-        label: '我的',
-        icon: 'user'
-      },
-    ],
   },
   methods: {
-    onLoad(options) {
+    onLoad: async function (options) {
+      const resultInfo = JSON.parse(options.resultInfo)
+      //console.log(resultInfo)
       let list1 = []
       let list2 = []
       let temp3 = []
@@ -211,11 +176,46 @@ Component({
               categories: temp3,
               tag: tag
             })
-            ////console.log(temp3)
+          }
+          //设置稿件类型
+          //console.log(temp3) //categories
+          for (let i in resultInfo.tags) {
+            for (let j of resultInfo.tags[i]) {
+              for (let k in temp3) {
+                if (temp3[k].label === i) {
+                  for (let m = 0; m < temp3[k].items.length; m++) {
+                    if (temp3[k].items[m].label === j) {
+                      this.checkedTag(m)
+                      this.checkedTags(parseInt(k,10))
+                      break
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       })
+
+      this.setData({
+        [`${PICKER_KEY.DATE1}CurrentValue`]: resultInfo.time.month + '月 ' + resultInfo.time.day + '日 ' + resultInfo.time.hour + '时 ' + resultInfo.time.minute + '分',
+        [`${PICKER_KEY.DATE2}CurrentValue`]: resultInfo.time.endHour + '时 ' + resultInfo.time.endMinute + '分',
+        [`${PICKER_KEY.People}CurrentValue`]: resultInfo.reporterNeeds.article + '文 ' + resultInfo.reporterNeeds.photo + '摄',
+        [`${PICKER_KEY.DATE1}Value`]: [resultInfo.time.month, resultInfo.time.day, resultInfo.time.hour, resultInfo.time.minute],
+        [`${PICKER_KEY.DATE2}Value`]: [resultInfo.time.endHour, resultInfo.time.endMinute],
+        [`${PICKER_KEY.People}Value`]: [resultInfo.reporterNeeds.article, resultInfo.reporterNeeds.photo],
+        list1:[resultInfo.time.month, resultInfo.time.day, resultInfo.time.hour, resultInfo.time.minute],
+        list2:[resultInfo.time.endHour, resultInfo.time.endMinute],
+        list3:[resultInfo.reporterNeeds.article, resultInfo.reporterNeeds.photo],
+        place1: resultInfo.place,
+        description1: resultInfo.text,
+        missionID:resultInfo.missionID
+      })
     },
+    step1() {
+
+    },
+    step2() {},
     checkedTag(e) {
       //console.log('2')
       //console.log(e)
@@ -290,15 +290,27 @@ Component({
     },
     checkedTag(e) {
       //console.log(e)
-      this.setData({
-        index2: e.currentTarget.dataset.index2
-      })
+      if (String(typeof e) === 'number') {
+        //console.log('number')
+        this.setData({
+          index2: e
+        })
+      } else {
+        this.setData({
+          index2: e.currentTarget.dataset.index2 //大类
+        })
+      }
     },
     checkedTags(e) {
-      //console.log('1')
-      this.setData({
-        index1: e.currentTarget.dataset.index1
-      })
+      if (String(typeof e) === 'number') {
+        this.setData({
+          index1: e
+        })
+      } else {
+        this.setData({
+          index1: e.currentTarget.dataset.index1
+        })
+      }
       let index1 = this.data.index1
       let index2 = this.data.index2
       let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
@@ -328,111 +340,15 @@ Component({
       //console.log(this.data.categories[index1].items[index2].checked)
       ////console.log(this.data.tag)
     },
-
-    checkedTag2(e) {
-      //console.log(e)
-      this.setData({
-        index22: e.currentTarget.dataset.index22
-      })
-    },
-    checkedTags2(e) {
-      //console.log('1')
-      this.setData({
-        index12: e.currentTarget.dataset.index12
-      })
-      let index1 = this.data.index12
-      let index2 = this.data.index22
-      let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
-      let temp = this.data.tag
-      //console.log(temp)
-      let temptagbox = this.data.tagbox2
-      let tempTag = this.data.categories[index1]['items'][index2]['label']
-      let templist = temp.get(this.data.categories[index1]['label'])
-      let tempdict = {
-        color: index1,
-        tag: this.data.categories[index1]['label'] + '-' + tempTag
-      }
-      if (templist.includes(tempTag)) {
-        templist.splice(templist.indexOf(tempTag), 1)
-        temp.set(this.data.categories[index1]['label'], templist)
-        temptagbox.splice(temptagbox.indexOf(tempdict), 1)
-      } else {
-        templist.push(tempTag)
-        temp.set(this.data.categories[index1]['label'], templist)
-        temptagbox.push(tempdict)
-      }
-      this.setData({
-        [checked]: !this.data.categories[index1].items[index2].checked,
-        tag2: temp,
-        tagbox2: temptagbox
-      })
-      //console.log(this.data.categories[index1].items[index2].checked)
-      ////console.log(this.data.tag)
-    },
-
-    uploadFile(e) {
-      //console.log(e)
-      wx.chooseMessageFile({
-        count: 10, //选择文件的数量
-        type: 'all', //选择文件的类型
-        success: (res) => {
-          //console.log(res.tempFiles)
-          this.setData({
-            fileArray: this.data.fileArray.concat(res.tempFiles)
-          })
-        }
-      })
-    },
-    removefile(e) {
-      let index = e.currentTarget.dataset.index
-      //console.log(e, index)
-      this.data.fileArray.splice(index, 1)
-      this.setData({
-        fileArray: this.data.fileArray
-      })
-    },
-    // 预览附件
-    previewFile(e) {
-      var string = ''
-      string = e.currentTarget.dataset.path.substring(e.currentTarget.dataset.path.indexOf(".") + 1)
-      if (string == 'png' || string == 'jpg' || string == 'gif' || string == 'jpeg') {
-        // 图片预览
-        var arr = []
-        arr.push(e.currentTarget.dataset.path)
-        wx.previewImage({
-          current: e.currentTarget.dataset.path,
-          urls: arr
-        })
-      } else {
-        // 文件预览
-        wx.openDocument({
-          fileType: string, // 文件类型
-          filePath: e.currentTarget.dataset.path, // 文件地址
-          success: function (res) {
-            //console.log('成功')
-          },
-          fail: function (error) {
-            //console.log("失败")
-          }
-        })
-      }
-    },
-    currentStepChange(e) {
-      //选择任务状态
-      this.setData({
-        currentStep: e.detail.current
-      })
-      //console.log(this.data.currentStep)
-    },
     setPlace(e) {
-      place1 = e.detail.value
+      this.setData({
+        place1: e.detail.value
+      })
     },
     setDescription1(e) {
-      description1 = e.detail.value
-    },
-    setDescription2(e) {
-      description2 = e.detail.value
-      ////console.log(description2)
+      this.setData({
+        description1: e.detail.value
+      })
     },
     onTabsChange(event) {
       //console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
@@ -455,7 +371,6 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      ////console.log('picker pick:', place1);
       this.setData({
         [`${key}Visible`]: true,
       });
@@ -465,6 +380,7 @@ Component({
       ////console.log('picker pick:', e);
     },
     onPickerChange(e) {
+      //console.log(e.detail)
       const {
         key
       } = e?.currentTarget?.dataset;
@@ -474,17 +390,17 @@ Component({
         [`${key}Value`]: e.detail.value,
         [`${key}CurrentValue`]: this.joinArray(e.detail.label),
       });
-      if (e.detail.value.length == 4) {
+      if (e.detail.value.length === 4) {
         this.setData({
           list1: e.detail.value
         })
       }
-      if (e.detail.label[0] == e.detail.value[0] + '时') {
+      if (e.detail.label[0] === e.detail.value[0] + '时') {
         this.setData({
           list2: e.detail.value
         })
       }
-      if (e.detail.label[0] == e.detail.value[0] + '文') {
+      if (e.detail.label[0] === e.detail.value[0] + '文') {
         this.setData({
           list3: e.detail.value
         })
@@ -544,13 +460,13 @@ Component({
           title: '请填写小记者',
           mask: true
         })
-      } else if (place1 === '') {
+      } else if (this.data.place1 === '') {
         wx.showToast({
           icon: 'none',
           title: '请填写地点',
           mask: true
         })
-      } else if (description1 === '') {
+      } else if (this.data.description1 === '') {
         wx.showToast({
           icon: 'none',
           title: '请填写活动内容',
@@ -578,14 +494,15 @@ Component({
         wx.request({
           url: 'https://www.hustnic.tech:8081/NIC/manage',
           data: {
-            "method": "add",
+            "method": "alter",
             "data": {
+              "missionID":this.data.missionID,
               "tags": tags,
               "element": 0,
               "publisher": app.globalData.userid,
-              "place": place1,
+              "place": this.data.place1,
               "title": "",
-              "description": description1,
+              "description": this.data.description1,
               "time": {
                 "year": year,
                 "month": this.data.list1[0],
@@ -621,98 +538,6 @@ Component({
             }
           },
         })
-      }
-    },
-    publishMission2(e) {
-      ////console.log(this.data)
-      let fileArray = this.data.fileArray
-      //console.log(fileArray)
-      let description = ''
-      for (let i of fileArray) {
-        if (i.name.includes('docx') || i.name.includes('doc')) {
-          description = i.name.split('.doc')[0]
-          //console.log(description)
-        }
-      }
-
-      if (this.data.currentStep === 2 && description2 === '') {
-        wx.showToast({
-          icon: 'none',
-          title: '请填写稿件备注',
-          mask: true
-        })
-      } else if (fileArray.length === 0) {
-        wx.showToast({
-          icon: 'none',
-          title: '请上传文件',
-          mask: true
-        })
-      } else {
-        let obj = Object.create(null);
-        for (let [k, v] of this.data.tag2) {
-          obj[k] = v;
-        }
-        let tags = JSON.stringify(obj)
-        //console.log(tags)
-        let postscript = {}
-        if (this.data.currentStep === 2) {
-          postscript = {
-            [app.globalData.username]: description2 //
-          }
-        }
-        wx.request({
-          url: 'https://www.hustnic.tech:8081/NIC/manage',
-          data: {
-            "method": "add",
-            "data": {
-              "tags": tags,
-              "description": description,
-              "element": this.data.currentStep + 1,
-              "publisher": app.globalData.userid,
-              "postscript": postscript,
-              "deadline": this.data.dateValue[0] + '月' + this.data.dateValue[1] + '日' + this.data.dateValue[1] + '时' + '00分'
-            }
-          },
-          success: (res) => {
-            //console.log(res.data)
-            let missionID = res.data.missionID
-            //console.log(missionID)
-            for (let i = 0; i < fileArray.length; i++) {
-              //console.log(fileArray[i])
-              wx.uploadFile({
-                filePath: fileArray[i].path,
-                name: 'file',
-                url: 'https://www.hustnic.tech:8081/NIC/upload?missionID=' + missionID + '&userid=' + app.globalData.userid.toString(),
-                header: {
-                  "Content-Type": "multipart/form-data"
-                },
-                success: (res) => {
-                  //console.log(res.data)
-                  let json = JSON.parse(res.data)
-                  //console.log(json)
-                }
-              })
-            }
-            wx.showToast({
-              title: '发布成功',
-              mask: true
-            })
-            wx.request({
-              url: '', //
-              data: {
-                'missionID': missionID
-              },
-              success: (res) => {
-                //console.log(res)
-              }
-            })
-            app.sleep(1500)
-            wx.redirectTo({
-              url: '/pages/home/home',
-            })
-          },
-        })
-
       }
     }
   },

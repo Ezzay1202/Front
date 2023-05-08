@@ -181,7 +181,7 @@ Page({
             },
             url: 'https://www.hustnic.tech:8081/NIC/login',
             success: (res) => {
-              console.log(res.data)
+              //console.log(res.data)
               if (res.data.code === 102) {
                 app.globalData.hasLogin = true
                 app.globalData.authority1 = res.data.data.authority1
@@ -215,11 +215,11 @@ Page({
                 wx.getUserProfile({
                   desc: '是否授权？',
                   success: (res) => {
-                    console.log(res)
+                    //console.log(res)
                     let datalist1 = res
                     wx.login({
                       success: (res) => {
-                        console.log(res)
+                        //console.log(res)
                         let datalist2 = res
                         wx.request({
                           url: '', //
@@ -232,7 +232,7 @@ Page({
                             'userid': app.globalData.userid
                           },
                           success: (res) => {
-                            console.log(res)
+                            //console.log(res)
                           }
                         })
                       }
@@ -243,7 +243,7 @@ Page({
                 wx.requestSubscribeMessage({
                   tmplIds: ['Fehs8jFNXvAJixC7KkudGdsH1uKw5t_-UnehkRMfaB8', 'Fehs8jFNXvAJixC7KkudGaGyx-3_zmdEYjk-5zCbG1g', '9stBRAqDVcQt15Oi4FgLw75P7xpzb9YrifSX7-jLGoQ'],
                   success: (res) => {
-                    console.log(res)
+                    //console.log(res)
                   }
                 })
                 wx.redirectTo({

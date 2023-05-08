@@ -314,7 +314,7 @@ Page({
         }
       },
       success: (res) => {
-        console.log(res.data)
+        //console.log(res.data)
         this.setData({
           kcb_code: res.data.code
         })
@@ -323,7 +323,7 @@ Page({
             kcb: res.data.data
           })
         }
-        console.log(this.data.kcb)
+        //console.log(this.data.kcb)
       }
     })
   },
@@ -353,7 +353,7 @@ Page({
           }
         },
         success: (res) => {
-          console.log(res.data)
+          //console.log(res.data)
           if (res.data.code === 702) {
             wx.showToast({
               title: '导入成功!'
@@ -436,7 +436,7 @@ Page({
     }
   },
   gotoMyi() {
-    console.log(app)
+    //console.log(app)
     let info = [{
       btext: app.globalData.userid
     }, {

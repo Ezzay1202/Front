@@ -25,10 +25,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log('apply')
+    //console.log('apply')
     //const resultInfo2 = JSON.parse(options.resultInfo2)
-    //console.log(resultInfo2)
-    console.log('yes')
+    ////console.log(resultInfo2)
+    //console.log('yes')
     a = resultInfo2.a
     b = resultInfo2.b
     c = resultInfo2.c
@@ -79,7 +79,7 @@ Component({
     ready() {
       let that = this
       const resultInfo2 = JSON.parse(that.options.resultInfo2)
-      console.log(resultInfo2)
+      //console.log(resultInfo2)
       a = resultInfo2.a
       b = resultInfo2.b
       c = resultInfo2.c
@@ -127,7 +127,7 @@ Component({
           }
         },
         success: (res) => {
-          console.log(res.data)
+          //console.log(res.data)
           if (res.data.code == 302) {
             let current = 0
             a = res.data.data[0].publisher + "于 " + res.data.data[0].status.发布任务
@@ -171,7 +171,7 @@ Component({
               e: e,
               f: f
             }
-            console.log(data_temp)
+            //console.log(data_temp)
             wx.showToast({
               title: '查询成功'
             })

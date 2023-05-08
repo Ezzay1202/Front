@@ -42,7 +42,7 @@ Component({
           let people = []
           let dep = []
           let datas = res.data.data
-          console.log(datas)
+          //console.log(datas)
           let i = 0
           let maps1 = {}
           let maps2 = {}
@@ -54,7 +54,7 @@ Component({
             maps1.label = k
             maps1.title = k
             let tempRelated = this.data.peopleRelated //Map
-            console.log(tempRelated)
+            //console.log(tempRelated)
             tempRelated.set(k, [])
             this.setData({
               peopleRelated: tempRelated
@@ -74,7 +74,7 @@ Component({
           this.setData({
             categories: people
           })
-          console.log(this.data.categories);
+          //console.log(this.data.categories);
         }
       })
     }
@@ -93,7 +93,7 @@ Component({
       })
     },
     checkedTags(e) {
-      console.log(this.data)
+      //console.log(this.data)
       this.setData({
         index1: e.currentTarget.dataset.index1
       })
@@ -104,12 +104,12 @@ Component({
       let peopleRelated = this.data.peopleRelated //是一个Map
       let peopleTemp = this.data.categories[index1].items[index2].label //人名
       let useridTemp = this.data.categories[index1].items[index2].userid
-      //console.log(peopleTemp)
+      ////console.log(peopleTemp)
       let tempList = peopleRelated.get(this.data.categories[index1].title)
-      console.log(peopleRelated)
-      console.log(tempList)
-      console.log(this.data.categories)
       //console.log(peopleRelated)
+      //console.log(tempList)
+      //console.log(this.data.categories)
+      ////console.log(peopleRelated)
       if (tempList.includes(peopleTemp)) //检测Map中是否有此人名
       {
         tempList.splice(tempList.indexOf(peopleTemp), 1)
@@ -123,7 +123,7 @@ Component({
       let number = []
       let k = 0
       for (let p of peopleRelated) {
-        console.log(p)
+        //console.log(p)
         for (let q = 0; q < p[1].length; q++) {
           number[k++] = p[1][q]
         }
@@ -133,7 +133,7 @@ Component({
         peoples: number,
         useridList: useridList
       })
-      console.log(peopleRelated)
+      //console.log(peopleRelated)
     },
 
     cancel() {
@@ -157,7 +157,7 @@ Component({
     },
 
     onSideBarChange(e) {
-      console.log(e.detail)
+      //console.log(e.detail)
       const {
         value
       } = e.detail;

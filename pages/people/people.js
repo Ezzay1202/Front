@@ -119,7 +119,7 @@ Page({
   },
 
   showDep(e) {
-    console.log(e)
+    //console.log(e)
     let index1 = e.currentTarget.dataset.index1
     let show_dep = 'people[' + index1 + '].show_dep'
     this.setData({
@@ -148,7 +148,7 @@ Page({
     })
   },
   onChooses(e) {
-    console.log(e)
+    //console.log(e)
     let choose = this.data.choose
     if (choose && this.data.flag) {
       this.setData({
@@ -157,7 +157,7 @@ Page({
       let index1 = this.data.index1
       let index2 = this.data.index2
       let checked = 'people[' + index1 + '].dep[' + index2 + '].checked'
-      console.log(index1, index2, checked)
+      //console.log(index1, index2, checked)
       this.setData({
         [checked]: !this.data.people[index1].dep[index2].checked
       })
@@ -173,8 +173,8 @@ Page({
           ImgSrc: this.data.ImgSrc
         })
       }
-      console.log(this.data.people[index1].dep[index2].img);
-      console.log(this.data.ImgSrc);
+      //console.log(this.data.people[index1].dep[index2].img);
+      //console.log(this.data.ImgSrc);
     }
   },
   onClickNav({
@@ -219,7 +219,7 @@ Page({
         let people = []
         let dep = []
         let datas = res.data.data
-        console.log(datas)
+        //console.log(datas)
         let i = 0
         let maps1 = {}
         let maps2 = {}
@@ -227,8 +227,8 @@ Page({
           maps1.text = k
           maps1.show_dep = true
           for (let j = 0; j < datas[k].length; j++) {
-            console.log(datas[k][j]);
-            console.log(j);
+            //console.log(datas[k][j]);
+            //console.log(j);
             maps2.checked = false
             maps2.img = 'http://www.hustnic.tech:8080/NIC/work_files/' + datas[k][j].head
             maps2.name = datas[k][j].username

@@ -14,7 +14,7 @@ Page({
       url: 'https://www.hustnic.tech:8081/NIC/show?method=showNeed',
       success: (res) => {
         let list_all = res.data.data;
-        console.log(res)
+        //console.log(res)
         let j = -1;
         let len = list_all.length;
         for (let i = 0; i < len; i++) {
@@ -66,7 +66,7 @@ Page({
             isUrge4: isUrge4,
           }
         }
-        console.log(list_show)
+        //console.log(list_show)
         this.setData({
           listm: list_show
         })
@@ -77,7 +77,7 @@ Page({
     wx.request({
       url: 'https://www.hustnic.tech:8081/NIC/show?method=showNeedLayout',
       success: (res) => {
-        console.log(res.data.data)
+        //console.log(res.data.data)
         let list_all = res.data.data
         let list_show = []
         for (let i = 0; i < list_all.length; i++) {
@@ -124,7 +124,7 @@ Page({
   },
   downloadFile(e) {
     let arr = e.currentTarget.dataset.index
-    console.log(arr)
+    //console.log(arr)
     wx.showLoading({
       title: '下载中...',
       mask: true
@@ -146,7 +146,7 @@ Page({
   },
   previewFile(e) {
     let arr = e.currentTarget.dataset.index
-    console.log(e)
+    //console.log(e)
     let tempFilePath = ''
     wx.showLoading({
       title: '请稍等...',
@@ -154,17 +154,17 @@ Page({
     wx.downloadFile({
       url: 'https://www.hustnic.tech/NIC/work_files/' + this.data.listp[this.data.index1].file[arr].name,
       success: (res) => {
-        console.log(res)
+        //console.log(res)
         tempFilePath = res.tempFilePath
         // 文件预览
         wx.openDocument({
           filePath: tempFilePath, // 文件地址
           showMenu: true,
           success: function (res) {
-            //console.log('成功')
+            ////console.log('成功')
           },
           fail: function (error) {
-            console.log(error)
+            //console.log(error)
             wx.showToast({
               title: '无法预览！',
               icon: 'error'
@@ -192,7 +192,7 @@ Page({
         }
       },
       success: (res) => {
-        console.log(res.data)
+        //console.log(res.data)
         if (res.data.code === 401) {
           wx.showToast({
             title: res.data.msg,
@@ -240,7 +240,7 @@ Page({
         }
       },
       success: (res) => {
-        console.log(res.data)
+        //console.log(res.data)
         if (res.data.code === 401) {
           wx.showToast({
             title: res.data.msg,
@@ -287,7 +287,7 @@ Page({
         }
       },
       success: (res) => {
-        console.log(res.data)
+        //console.log(res.data)
         if (res.data.code === 401) {
           wx.showToast({
             title: res.data.msg,
@@ -382,7 +382,7 @@ Page({
     index1: ''
   },
   showDetail(e) {
-    console.log(e)
+    //console.log(e)
     let index = e.currentTarget.dataset.index
     let showdetail = 'listp[' + index + '].showdetail'
     this.setData({

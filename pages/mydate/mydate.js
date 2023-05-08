@@ -46,7 +46,7 @@ Page({
   },
   estimateDate() {
     let list = []
-    //console.log(date_now)
+    ////console.log(date_now)
     rank = this.indexOf(date_now, this.data.date_list)
     let temp = {}
     for (let j = 0; j < 7; j++) {
@@ -146,9 +146,9 @@ Page({
   onLoad(options) {
     this.setDate_list()
     this.estimateDate()
-    //console.log(this.data.date_list)
+    ////console.log(this.data.date_list)
     const kcb = JSON.parse(options.kcb)
-    //console.log(kcb)
+    ////console.log(kcb)
     this.setData({
       currentWeek: app.globalData.week_kcb,
     })
@@ -176,7 +176,7 @@ Page({
       }
       list_all.push(temp2)
     }
-    //console.log(list_all)
+    ////console.log(list_all)
     this.setData({
       weeks: list_all
     })
@@ -231,8 +231,8 @@ Page({
 
   },
   changeWeeks(e) {
-    //console.log(e.detail)
-    console.log(this.data.weekList)
+    ////console.log(e.detail)
+    //console.log(this.data.weekList)
     let list = this.data.weekList
     const week_kcb = app.globalData.week_kcb
     const rank = this.indexOf(date_now, this.data.date_list)

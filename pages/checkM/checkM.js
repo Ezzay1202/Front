@@ -13,7 +13,7 @@ Page({
     } else {
       kind = 'editor'
     }
-    console.log(kind)
+    //console.log(kind)
     list_show = []
     this.setData({
       list_all: []
@@ -26,7 +26,7 @@ Page({
         }
       },
       success: (res) => {
-        console.log(res.data.data)
+        //console.log(res.data.data)
         list_all = res.data.data
         let j = -1;
         let len = list_all.length;
@@ -87,7 +87,7 @@ Page({
         this.setData({
           listm: list_show
         })
-        console.log(this.data.listm)
+        //console.log(this.data.listm)
       }
     })
   },

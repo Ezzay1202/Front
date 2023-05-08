@@ -2,8 +2,8 @@
   "pages": [
     "pages/home/home",
     "pages/mywork/mywork",
-
     "pages/login/login",
+    "pages/changeN/changeN",
     "pages/managment/managment",
     "pages/publishM/publishM",
     "pages/updateN/updateN",

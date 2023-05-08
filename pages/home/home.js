@@ -311,14 +311,14 @@ Component({
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/frontpage?method=show',
         success: (res) => {
-          console.log(res.data)
+          ////console.log(res.data)
           this.setData({
             swiper_show: res.data.data.top,
             boxshow: res.data.data.middle,
             news: res.data.data.news,
             picture: res.data.data.photos
           })
-          console.log(this.data.news)
+          ////console.log(this.data.news)
         }
       })
 
@@ -337,7 +337,7 @@ Component({
               }
             },
             success: (res) => {
-              console.log(res.data)
+              ////console.log(res.data)
               app.globalData.kcb_code = res.data.code
               if (app.globalData.kcb_code === 702) {
                 app.globalData.kcb = res.data.data
@@ -360,7 +360,7 @@ Component({
               }
             },
             success: (res) => {
-              console.log(res.data)
+              ////console.log(res.data)
               let affairList = res.data.data
               let eventList = []
               for (let j = 0; j < affairList.length; j++) {
@@ -412,7 +412,7 @@ Component({
             let people = []
             let dep = []
             let datas = res.data.data
-            //console.log(datas)
+            ////console.log(datas)
             let i = 0
             let maps1 = {}
             let maps2 = {}
@@ -424,7 +424,7 @@ Component({
               maps1.label = k
               maps1.title = k
               let tempRelated = this.data.peopleRelated //Map
-              //console.log(tempRelated)
+              ////console.log(tempRelated)
               tempRelated.set(k, [])
               this.setData({
                 peopleRelated: tempRelated
@@ -444,7 +444,7 @@ Component({
             this.setData({
               categories: people
             })
-            console.log(this.data.categories);
+            ////console.log(this.data.categories);
           }
         })
       }
@@ -481,9 +481,9 @@ Component({
         this.setData({
           swiperViewHeight: headerHeight
         });
-        console.log(this.data.swiperViewHeight)
+        ////console.log(this.data.swiperViewHeight)
         // if (this.data.swiperViewHeight >= this.data.maxswiperViewHeight[num]) {
-        //   console.log(this.data.swiperViewHeight)
+        //   //console.log(this.data.swiperViewHeight)
         //   let maxswiperViewHeight = 'maxswiperViewHeight[' + num + ']'
         //   this.setData({
         //     [maxswiperViewHeight]: this.data.swiperViewHeight
@@ -499,7 +499,7 @@ Component({
       })
     },
     locationName(e) {
-      //console.log(this.data.peopleRelated.size)
+      ////console.log(this.data.peopleRelated.size)
       this.setData({
         locationname: e.detail.value
       })
@@ -529,13 +529,13 @@ Component({
       }
     },
     checkedTag(e) {
-      console.log(e)
+      ////console.log(e)
       this.setData({
         index2: e.currentTarget.dataset.index2
       })
     },
     checkedTags(e) {
-      console.log(this.data)
+      //////console.log(this.data)
       this.setData({
         index1: e.currentTarget.dataset.index1
       })
@@ -546,12 +546,12 @@ Component({
       let peopleRelated = this.data.peopleRelated //是一个Map
       let peopleTemp = this.data.categories[index1].items[index2].label //一个人名
       let useridTemp = this.data.categories[index1].items[index2].userid //
-      //console.log(peopleTemp)
+      //////console.log(peopleTemp)
       let tempList = peopleRelated.get(this.data.categories[index1].title)
 
-      console.log(tempList)
-      console.log(this.data.categories)
-      //console.log(peopleRelated)
+      ////console.log(tempList)
+      ////console.log(this.data.categories)
+      //////console.log(peopleRelated)
       if (tempList.includes(peopleTemp)) //检测Map中是否有此人名
       {
         tempList.splice(tempList.indexOf(peopleTemp), 1)
@@ -575,19 +575,19 @@ Component({
         peoples: number,
         useridList: useridList
       })
-      console.log(useridList)
+      ////console.log(useridList)
     },
     onClickPicker(e) {
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker pick:', place1);
+      ////console.log('picker pick:', place1);
       this.setData({
         [`${key}Visible`]: true,
       });
     },
     addEvent(e) {
-      console.log(this.data)
+      ////console.log(this.data)
         if (this.data.eventname === '') {
           wx.showToast({
             title: '请输入事项名称',
@@ -629,7 +629,7 @@ Component({
               }
             },
             success: (res) => {
-              console.log(res.data)
+              ////console.log(res.data)
               if (res.data.code === 702) {
                 wx.showToast({
                   title: res.data.msg
@@ -662,7 +662,7 @@ Component({
     },
 
     onSideBarChange(e) {
-      console.log(e.detail)
+      ////console.log(e.detail)
       const {
         value
       } = e.detail;
@@ -673,7 +673,7 @@ Component({
     },
 
     onColumnChange(e) {
-      console.log('picker pick:', e);
+      ////console.log('picker pick:', e);
     },
     joinArray(array) {
       return array.join('');
@@ -682,7 +682,7 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker change:', );
+      ////console.log('picker change:', );
       this.setData({
         [`${key}Visible`]: false,
         [`${key}Value`]: e.detail.value,
@@ -708,8 +708,8 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log(e, '取消');
-      console.log('picker1 cancel:');
+      ////console.log(e, '取消');
+      ////console.log('picker1 cancel:');
       this.setData({
         [`${key}Visible`]: false,
       });
@@ -728,7 +728,7 @@ Component({
 
     },
     goto(e) {
-      console.log(e)
+      ////console.log(e)
       let url = e.currentTarget.dataset.url
       wx.navigateTo({
         url: `../seeM/seeM?url=${url}`,
@@ -776,7 +776,7 @@ Component({
       })
     },
     goTomoudle2(e) {
-      console.log("yes")
+      ////console.log("yes")
       let index = e.currentTarget.dataset.index
       let url = this.data.functions[index].goto
       if (url === '/pages/checkM/checkM') {

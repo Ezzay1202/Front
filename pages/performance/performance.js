@@ -99,13 +99,13 @@ Page({
     this.setData({
       index1: index1
     })
-    console.log(e, index1);
+    //console.log(e, index1);
     let complete = 'performance[' + index1 + '].complete'
-    console.log(complete)
+    //console.log(complete)
     this.setData({
       [complete]: !this.data.performance[index1].complete
     })
-    console.log(this.data.performance[index1].complete)
+    //console.log(this.data.performance[index1].complete)
   },
   checkPeople(e) {
     let index2 = e.currentTarget.dataset.index2;
@@ -122,19 +122,19 @@ Page({
     const {
       key
     } = e?.currentTarget?.dataset;
-    //console.log('picker pick:', place1);
+    ////console.log('picker pick:', place1);
     this.setData({
       [`${key}Visible`]: true,
     });
   },
   onColumnChange(e) {
-    //console.log('picker pick:', e);
+    ////console.log('picker pick:', e);
   },
   onPickerChange(e) {
     const {
       key
     } = e?.currentTarget?.dataset;
-    //console.log('picker change:', );
+    ////console.log('picker change:', );
     this.setData({
       [`${key}Visible`]: false,
       [`${key}Value`]: e.detail.value,
@@ -160,8 +160,8 @@ Page({
     const {
       key
     } = e?.currentTarget?.dataset;
-    console.log(e, '取消');
-    console.log('picker1 cancel:');
+    //console.log(e, '取消');
+    //console.log('picker1 cancel:');
     this.setData({
       [`${key}Visible`]: false,
     });

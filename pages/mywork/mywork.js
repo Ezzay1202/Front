@@ -77,50 +77,48 @@ Page({
   deleteM(e) {
     let index = e.currentTarget.dataset.index
     //let step = this.data.listm_ing[index].steps_num - 1
-    console.log(index)
+    //console.log(index)
     this.setData({
       showDelete: true,
       deltext: this.data.listm_ing[index].text,
-      delmissionID:this.data.listm_ing[index].missionID
+      delmissionID: this.data.listm_ing[index].missionID
       //delstep: this.data.step[step].text
     })
   },
-  missionDelete(){
+  missionDelete() {
     wx.request({
       url: 'https://www.hustnic.tech:8081/NIC/manage',
-      data:{
-        'method':'delete',
-        'data':{
-          'missionID':this.data.delmissionID
+      data: {
+        'method': 'delete',
+        'data': {
+          'missionID': this.data.delmissionID
         }
       },
-      success:(res)=>{
-        console.log(res.data)
-        if(res.data.code === 202){
+      success: (res) => {
+        //console.log(res.data)
+        if (res.data.code === 202) {
           wx.showToast({
             title: res.data.msg
           })
-        }else{
+        } else {
           wx.showToast({
             title: '删除失败！',
-            icon:'error'
+            icon: 'error'
           })
         }
       }
     })
     this.setData({
-      showDelete:false
+      showDelete: false
     })
     this.onLoad()
   },
-  missionChange(e){
+  missionChange(e) {
     let index = e.currentTarget.dataset.index
-    console.log(index)
-    wx.request({
-      url: 'https://www.hustnic.tech:8081/NIC/manage',
-      data:{
-        'method':'alter'
-      }
+    let data = this.data.listm_ing[index]
+    ////console.log(data)
+    wx.navigateTo({
+      url: '/pages/changeN/changeN?resultInfo=' + JSON.stringify(data),
     })
   },
   gotoHistory() {
@@ -149,7 +147,7 @@ Page({
     })
   },
   goto(e) {
-    console.log(e)
+    //console.log(e)
     let url = e.currentTarget.dataset.url
     wx.navigateTo({
       url: `../seeM/seeM?url=${url}`,
@@ -195,20 +193,20 @@ Page({
         }
       },
       success: (res) => {
-        console.log(res.data.data)
+        //console.log(res.data.data)
         let datalist = res.data.data
         let listm_ing = []
         for (let i = 0; i < datalist.length; i++) {
           let steps_num = 0
-          if(datalist[i].status['接稿'] != '未达成'){
+          if (datalist[i].status['接稿'] != '未达成') {
             steps_num += 1
-            if(datalist[i].status['写稿'] != '未达成'){
+            if (datalist[i].status['写稿'] != '未达成') {
               steps_num += 1
-              if(datalist[i].status['编辑部审稿'] != '未达成'){
+              if (datalist[i].status['编辑部审稿'] != '未达成') {
                 steps_num += 1
-                if(datalist[i].status['辅导员审核'] != '未达成'){
+                if (datalist[i].status['辅导员审核'] != '未达成') {
                   steps_num += 1
-                  if(datalist[i].status['接排版'] != '未达成'){
+                  if (datalist[i].status['接排版'] != '未达成') {
                     steps_num += 1
                   }
                 }
@@ -217,15 +215,18 @@ Page({
 
           }
           let tempMission = {
-            missionID:datalist[i].missionID,
-            text:datalist[i].description,
-            steps_num:steps_num,
-
+            missionID: datalist[i].missionID,
+            text: datalist[i].description,
+            steps_num: steps_num,
+            tags: datalist[i].tags,
+            reporterNeeds: datalist[i].reporterNeeds,
+            place: datalist[i].place,
+            time: datalist[i].time
           }
           listm_ing.push(tempMission)
         }
         this.setData({
-          listm_ing:listm_ing
+          listm_ing: listm_ing
         })
       }
     })

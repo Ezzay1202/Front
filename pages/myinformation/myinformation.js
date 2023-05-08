@@ -18,7 +18,7 @@ Page({
       sourceType: ['album', 'camera'],
       camera: 'back',
       success: (res) => {
-        console.log(res.tempFiles[0].tempFilePath)
+        //console.log(res.tempFiles[0].tempFilePath)
         this.setData({
           picture: res.tempFiles[0].tempFilePath
         })
@@ -27,7 +27,7 @@ Page({
   },
 
   changeName(e) {
-    //console.log(e)
+    ////console.log(e)
     this.setData({
       index: e.currentTarget.dataset.index,
       showName: !this.data.showName
@@ -44,7 +44,7 @@ Page({
    */
   onLoad(options) {
     const resultInfo = JSON.parse(options.resultInfo)
-    console.log(resultInfo)
+    //console.log(resultInfo)
     this.setData({
       man: true,
       info: [{

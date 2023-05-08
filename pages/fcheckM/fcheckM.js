@@ -5,7 +5,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // console.log(app.globalData.authority3)
+    // //console.log(app.globalData.authority3)
     if (app.globalData.authority3 === 1) {
       this.setData({
         isManagement: true
@@ -16,7 +16,7 @@ Page({
       })
     }
     const resultInfo = JSON.parse(options.resultInfo)
-    console.log(resultInfo)
+    //console.log(resultInfo)
     let people = []
     for (let i = 0; i < resultInfo.mag.article.length; i++) {
       let temp = {
@@ -41,7 +41,7 @@ Page({
       people.push(temp)
     }
     if (resultInfo.mag.editor != undefined && this.data.isManagement) {
-      //console.log(resultInfo.mag.editor)
+      ////console.log(resultInfo.mag.editor)
       let temp = {
         name: resultInfo.mag.editor.username,
         job: '审',
@@ -81,7 +81,7 @@ Page({
   },
   downloadFile(e) {
     let arr = e.currentTarget.dataset.id
-    console.log(arr)
+    //console.log(arr)
     wx.showLoading({
       title: '下载中...',
       mask: true
@@ -193,7 +193,7 @@ Page({
         }
       },
       success: (res) => {
-        console.log(res.data)
+        //console.log(res.data)
         if (res.data.code === 202) {
           wx.showToast({
             title: res.data.msg
@@ -214,7 +214,7 @@ Page({
     });
   },
   onColumnChange(e) {
-    console.log('picker pick:', e);
+    //console.log('picker pick:', e);
   },
   joinArray(array) {
     return array.join('');
@@ -225,7 +225,7 @@ Page({
       date1Value: e.detail.value,
       date1CurrentValue: this.joinArray(e.detail.label),
     })
-    console.log('picker change:', this.data.date1CurrentValue)
+    //console.log('picker change:', this.data.date1CurrentValue)
     if (e.detail.value.length === 4) {
       this.setData({
         list1: e.detail.value
@@ -243,8 +243,8 @@ Page({
     }
   },
   onPickerCancel(e) {
-    console.log(e, '取消');
-    console.log('picker1 cancel:');
+    //console.log(e, '取消');
+    //console.log('picker1 cancel:');
     this.setData({
       date1Visible: false,
     });
@@ -269,11 +269,11 @@ Page({
     that.setData({
       userStars: tempUserStars
     })
-    console.log(this.data.wjxScore)
+    //console.log(this.data.wjxScore)
   },
   // 标签
   labelx(e) {
-    console.log(e)
+    //console.log(e)
     var i = e.currentTarget.dataset.index;
     var that = this.data.tag[i];
     that.setData({
@@ -281,7 +281,7 @@ Page({
     })
   },
   label(e) {
-    console.log(e)
+    //console.log(e)
     var that = this;
     that.setData({
       attitude: !e.currentTarget.dataset.index
@@ -293,7 +293,7 @@ Page({
     this.setData({
       review: value
     })
-    //console.log(this.data.review)
+    ////console.log(this.data.review)
     if (len > this.data.max)
       return;
     this.setData({
@@ -309,7 +309,7 @@ Page({
     this.setData({
       remarks: value
     })
-    //console.log(this.data.remarks)
+    ////console.log(this.data.remarks)
     //最多字数限制
     if (len > this.data.max)
       return
@@ -356,7 +356,7 @@ Page({
         if (this.data.isManagement) {
           kind = 'teacher'
         }
-        console.log(kind)
+        //console.log(kind)
         wx.uploadFile({
           filePath: this.data.file_upload[i].path,
           name: 'file',
@@ -365,14 +365,14 @@ Page({
             "Content-Type": "multipart/form-data"
           },
           success: (res) => {
-            console.log(res)
+            //console.log(res)
             let json = JSON.parse(res.data)
-            console.log(json)
+            //console.log(json)
             if (json.code === 502) {
               count += 1
               if (count === this.data.file_upload.length) {
                 if (kind === 'editor') {
-                  console.log(kind)
+                  //console.log(kind)
                   wx.request({
                     url: 'https://www.hustnic.tech:8081/NIC/manage',
                     data: {
@@ -387,7 +387,7 @@ Page({
                       }
                     },
                     success: (res) => {
-                      console.log(res)
+                      //console.log(res)
                       if (count === this.data.file_upload.length && res.data.code === 402) {
                         wx.showToast({
                           title: '提交成功',
@@ -406,7 +406,7 @@ Page({
                   })
                 }
                 if (kind === 'teacher') {
-                  console.log(kind)
+                  //console.log(kind)
                   wx.request({
                     url: 'https://www.hustnic.tech:8081/NIC/manage',
                     data: {
@@ -423,7 +423,7 @@ Page({
                       }
                     },
                     success: (res) => {
-                      console.log(res)
+                      //console.log(res)
                       if (count === this.data.file_upload.length && res.data.code === 402) {
                         wx.showToast({
                           title: '提交成功',
@@ -461,7 +461,7 @@ Page({
       count: 10, //选择文件的数量
       type: 'all', //选择文件的类型
       success: (res) => {
-        console.log(res.tempFiles)
+        //console.log(res.tempFiles)
         this.setData({
           file_upload: this.data.file_upload.concat(res.tempFiles)
         })
@@ -470,7 +470,7 @@ Page({
   },
   removefile(e) {
     let index = e.currentTarget.dataset.index
-    console.log(e, index)
+    //console.log(e, index)
     this.data.file_upload.splice(index, 1)
     this.setData({
       file_upload: this.data.file_upload
@@ -478,7 +478,7 @@ Page({
   },
   // 预览附件
   previewFile(e) {
-    console.log(e)
+    //console.log(e)
     let string = ''
     string = e.currentTarget.dataset.path.substring(e.currentTarget.dataset.path.indexOf(".") + 1)
     if (string === 'png' || string === 'jpg' || string === 'gif' || string === 'jpeg') {
@@ -497,17 +497,17 @@ Page({
       wx.downloadFile({
         url: 'https://www.hustnic.tech/NIC/work_files/' + this.data.file_download[e.currentTarget.dataset.id].name,
         success: (res) => {
-          console.log(res)
+          //console.log(res)
           tempFilePath = res.tempFilePath
           // 文件预览
           wx.openDocument({
             filePath: tempFilePath, // 文件地址
             showMenu: true,
             success: function (res) {
-              //console.log('成功')
+              ////console.log('成功')
             },
             fail: function (error) {
-              console.log(error)
+              //console.log(error)
               wx.showToast({
                 title: '无法预览！',
                 icon: 'error'
@@ -525,7 +525,7 @@ Page({
     }
   },
   goToinformation(e) {
-    console.log(this.data.people)
+    //console.log(this.data.people)
     let i = e.currentTarget.dataset.index
 
     let data = {

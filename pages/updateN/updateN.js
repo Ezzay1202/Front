@@ -194,7 +194,7 @@ Component({
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/manage?method=getTag',
         success: (res) => {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           list1 = res.data.data['list1'][0]
           list2 = res.data.data['list2']
           let len = list1.length === list2.length ? list1.length : 0
@@ -218,14 +218,14 @@ Component({
               categories: temp3,
               tag: tag
             })
-            //console.log(temp3)
+            ////console.log(temp3)
           }
         }
       })
     },
     checkedTag(e) {
-      console.log('2')
-      console.log(e)
+      //console.log('2')
+      //console.log(e)
       this.setData({
         index2: e.currentTarget.dataset.index2
       })
@@ -261,7 +261,7 @@ Component({
       })
     },
     onSideBarChange(e) {
-      console.log(e.detail)
+      //console.log(e.detail)
       const {
         value
       } = e.detail;
@@ -271,13 +271,13 @@ Component({
       });
     },
     checkedTag(e) {
-      console.log(e)
+      //console.log(e)
       this.setData({
         index2: e.currentTarget.dataset.index2
       })
     },
     checkedTags(e) {
-      console.log('1')
+      //console.log('1')
       this.setData({
         index1: e.currentTarget.dataset.index1
       })
@@ -306,17 +306,17 @@ Component({
         tag: temp,
         tagbox: temptagbox
       })
-      console.log(this.data.categories[index1].items[index2].checked)
-      //console.log(this.data.tag)
+      //console.log(this.data.categories[index1].items[index2].checked)
+      ////console.log(this.data.tag)
     },
 
     uploadFile: function (e) {
-      console.log(e)
+      //console.log(e)
       wx.chooseMessageFile({
         count: 10, //选择文件的数量
         type: 'all', //选择文件的类型
         success: (res) => {
-          console.log(res.tempFiles)
+          //console.log(res.tempFiles)
           this.setData({
             fileArray: this.data.fileArray.concat(res.tempFiles)
           })
@@ -325,7 +325,7 @@ Component({
     },
     removefile(e) {
       let index = e.currentTarget.dataset.index
-      console.log(e, index)
+      //console.log(e, index)
       this.data.fileArray.splice(index, 1)
       this.setData({
         fileArray: this.data.fileArray
@@ -349,10 +349,10 @@ Component({
           fileType: string, // 文件类型
           filePath: e.currentTarget.dataset.path, // 文件地址
           success: function (res) {
-            console.log('成功')
+            //console.log('成功')
           },
           fail: function (error) {
-            console.log("失败")
+            //console.log("失败")
           }
         })
       }
@@ -381,18 +381,18 @@ Component({
     },
     setDescription2(e) {
       description2 = e.detail.value
-      //console.log(description2)
+      ////console.log(description2)
     },
     onTabsChange(event) {
-      console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
+      //console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
     },
 
     onTabsClick(event) {
-      console.log(`Click tab, tab-panel value is ${event.detail.value}.`);
+      //console.log(`Click tab, tab-panel value is ${event.detail.value}.`);
     },
 
     onStickyScroll(event) {
-      console.log(event.detail);
+      //console.log(event.detail);
 
     },
 
@@ -404,20 +404,20 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      //console.log('picker pick:', place1);
+      ////console.log('picker pick:', place1);
       this.setData({
         [`${key}Visible`]: true,
       });
     },
 
     onColumnChange(e) {
-      //console.log('picker pick:', e);
+      ////console.log('picker pick:', e);
     },
     onPickerChange(e) {
       const {
         key
       } = e?.currentTarget?.dataset;
-      //console.log('picker change:', );
+      ////console.log('picker change:', );
       this.setData({
         [`${key}Visible`]: false,
         [`${key}Value`]: e.detail.value,
@@ -443,8 +443,8 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log(e, '取消');
-      console.log('picker1 cancel:');
+      //console.log(e, '取消');
+      //console.log('picker1 cancel:');
       this.setData({
         [`${key}Visible`]: false,
       });
@@ -499,7 +499,7 @@ Component({
           obj[k] = v;
         }
         let tags = JSON.stringify(obj)
-        console.log(tags)
+        //console.log(tags)
         wx.request({
           url: 'https://www.hustnic.tech:8081/NIC/manage',
           data: {
@@ -527,7 +527,7 @@ Component({
             }
           },
           success: (res) => {
-            console.log(res)
+            //console.log(res)
             if (res.data.code == 202) {
               wx.navigateTo({
                 url: "/pages/exception/exception?missionID=" + JSON.stringify(res.data.missionID),
@@ -569,10 +569,10 @@ Component({
             }
           },
           success: (res) => {
-            console.log(res.data)
+            //console.log(res.data)
             let missionID = res.data.missionID
             for (let i = 0; i < fileArray.length; i++) {
-              console.log(fileArray[i])
+              //console.log(fileArray[i])
               wx.uploadFile({
                 filePath: fileArray[i].path,
                 name: 'file',
@@ -582,7 +582,7 @@ Component({
                 },
                 success: (res) => {
                   let json = JSON.parse(res.data)
-                  console.log(json)
+                  //console.log(json)
                 }
               })
             }

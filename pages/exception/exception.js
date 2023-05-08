@@ -151,7 +151,7 @@ Page({
         }
       },
       success: (res) => {
-        console.log(res.data)
+        //console.log(res.data)
         if (res.data.code === 202) {
           wx.showToast({
             title: '提交成功'
@@ -174,7 +174,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options);
+    //console.log(options);
     const missionID = JSON.parse(options.missionID)
     this.setData({
       missionID: missionID

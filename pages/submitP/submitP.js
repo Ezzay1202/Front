@@ -14,7 +14,7 @@ Page({
     })
   },
   goto(e) {
-    console.log(e)
+    //console.log(e)
     let url = e.currentTarget.dataset.url
     wx.navigateTo({
       url: `../seeM/seeM?url=${url}`,
@@ -36,7 +36,7 @@ Page({
         }
       },
       success: (res) => {
-        console.log(res.data)
+        //console.log(res.data)
         let list_all = res.data.data
         let list_show = []
         for (let i = 0; i < list_all.length; i++) {
@@ -79,7 +79,7 @@ Page({
     })
   },
   submitP(e) {
-    console.log(this.data.listp[e.currentTarget.dataset.index].url)
+    //console.log(this.data.listp[e.currentTarget.dataset.index].url)
     let url = this.data.listp[e.currentTarget.dataset.index].url
     if (url != '') {
       wx.request({
@@ -93,7 +93,7 @@ Page({
           }
         },
         success: (res) => {
-          console.log(res.data)
+          //console.log(res.data)
           if (res.data.code === 202) {
             wx.showToast({
               title: '上传成功'
