@@ -46,7 +46,7 @@ Page({
   },
   estimateDate() {
     let list = []
-    ////console.log(date_now)
+    //console.log(date_now)
     rank = this.indexOf(date_now, this.data.date_list)
     let temp = {}
     for (let j = 0; j < 7; j++) {
@@ -75,65 +75,65 @@ Page({
   data: {
     time: {
       one: [{
-        index: 1,
-        timeStart: '08:00',
-        timeEnd: '08:45'
-      },
-      {
-        index: 2,
-        timeStart: '08:55',
-        timeEnd: '09:40'
-      },
-      {
-        index: 3,
-        timeStart: '09:50',
-        timeEnd: '10:45'
-      },
-      {
-        index: 4,
-        timeStart: '10:50',
-        timeEnd: '11:35'
-      },
-      {
-        index: 5,
-        timeStart: '13:30',
-        timeEnd: '14:15'
-      },
-      {
-        index: 6,
-        timeStart: '14:25',
-        timeEnd: '15:10'
-      },
-      {
-        index: 7,
-        timeStart: '15:20',
-        timeEnd: '16:05'
-      },
-      {
-        index: 8,
-        timeStart: '16:15',
-        timeEnd: '17:00'
-      },
-      {
-        index: 9,
-        timeStart: '13:30',
-        timeEnd: '14:15'
-      },
-      {
-        index: 10,
-        timeStart: '14:25',
-        timeEnd: '15:10'
-      },
-      {
-        index: 11,
-        timeStart: '15:20',
-        timeEnd: '16:05'
-      },
-      {
-        index: 12,
-        timeStart: '16:15',
-        timeEnd: '17:00'
-      },
+          index: 1,
+          timeStart: '08:00',
+          timeEnd: '08:45'
+        },
+        {
+          index: 2,
+          timeStart: '08:55',
+          timeEnd: '09:40'
+        },
+        {
+          index: 3,
+          timeStart: '10:10',
+          timeEnd: '10:55'
+        },
+        {
+          index: 4,
+          timeStart: '11:05',
+          timeEnd: '11:50'
+        },
+        {
+          index: 5,
+          timeStart: '14:30',
+          timeEnd: '15:15'
+        },
+        {
+          index: 6,
+          timeStart: '15:20',
+          timeEnd: '16:05'
+        },
+        {
+          index: 7,
+          timeStart: '16:25',
+          timeEnd: '17:10'
+        },
+        {
+          index: 8,
+          timeStart: '17:15',
+          timeEnd: '18:00'
+        },
+        {
+          index: 9,
+          timeStart: '19:00',
+          timeEnd: '19:45'
+        },
+        {
+          index: 10,
+          timeStart: '19:50',
+          timeEnd: '20:35'
+        },
+        {
+          index: 11,
+          timeStart: '20:45',
+          timeEnd: '21:30'
+        },
+        {
+          index: 12,
+          timeStart: '21:35',
+          timeEnd: '22:20'
+        },
       ],
     },
     isShow: false,
@@ -146,28 +146,30 @@ Page({
   onLoad(options) {
     this.setDate_list()
     this.estimateDate()
-    ////console.log(this.data.date_list)
+    //console.log(this.data.date_list)
     const kcb = JSON.parse(options.kcb)
-    ////console.log(kcb)
+    //console.log(kcb)
     this.setData({
       currentWeek: app.globalData.week_kcb,
     })
     let list_all = []
-    for (let i = 1; i < kcb.length + 1; i++) {
+    for (let i = 0; i < kcb.length+1; i++) {
       let lesson_list = []
-      for (let j = 0; j < 7; j++) {
-        for (let k = 0; k < kcb[i - 1].time[j].lesson.length; k++) {
-          let num1 = Number(kcb[i - 1].time[j].lesson[k].time.split('-')[0])
-          let num2 = Number(kcb[i - 1].time[j].lesson[k].time.split('-')[1]) + 1
-          let temp = {
-            weekday: j + 1,
-            num1: num1,
-            num2: num2,
-            sub: kcb[i - 1].time[j].lesson[k].name,
-            add: kcb[i - 1].time[j].lesson[k].location,
-            color: Math.floor(Math.random() * 10)
+      if(i != 0){
+        for (let j = 0; j < 7; j++) {
+          for (let k = 0; k < kcb[i-1].time[j].lesson.length; k++) {
+            let num1 = Number(kcb[i-1].time[j].lesson[k].time.split('-')[0])
+            let num2 = Number(kcb[i-1].time[j].lesson[k].time.split('-')[1]) + 1
+            let temp = {
+              weekday: j + 1,
+              num1: num1,
+              num2: num2,
+              sub: kcb[i-1].time[j].lesson[k].name,
+              add: kcb[i-1].time[j].lesson[k].location,
+              color: Math.floor(Math.random() * 10)
+            }
+            lesson_list.push(temp)
           }
-          lesson_list.push(temp)
         }
       }
       let temp2 = {
@@ -176,7 +178,7 @@ Page({
       }
       list_all.push(temp2)
     }
-    ////console.log(list_all)
+    console.log(list_all)
     this.setData({
       weeks: list_all
     })
@@ -231,7 +233,7 @@ Page({
 
   },
   changeWeeks(e) {
-    ////console.log(e.detail)
+    //console.log(e.detail)
     //console.log(this.data.weekList)
     let list = this.data.weekList
     const week_kcb = app.globalData.week_kcb

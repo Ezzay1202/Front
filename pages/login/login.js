@@ -93,7 +93,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) { },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -208,9 +208,9 @@ Page({
                 wx.setStorageSync('EXPIREDTIME', expiredTime)
 
                 wx.showToast({
-                  title: '登录成功',
-                  mask: true
-                }),
+                    title: '登录成功',
+                    mask: true
+                  }),
                   app.sleep(1200)
                 wx.getUserProfile({
                   desc: '是否授权？',
@@ -276,7 +276,7 @@ Page({
         },
         complete: () => {
           wx.hideLoading({
-            success: (res) => { },
+            success: (res) => {},
           })
         }
       })
