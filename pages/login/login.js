@@ -16,7 +16,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    open: true
+    open: true,
+    isShow: false
   },
 
   /**
@@ -82,14 +83,6 @@ Page({
       open: open
     })
   },
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    open: true
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -200,55 +193,20 @@ Page({
                 app.globalData.sessionId = res.data.sessionId
                 wx.setStorageSync('SESSIONID', res.data.sessionId)
                 //存储账号密码
-                wx.setStorage('USERID', res.data.data.userid)
-                wx.setStorage('PASSWORD', this.data.password)
+                wx.setStorageSync('USERID', res.data.data.userid)
+                wx.setStorageSync('PASSWORD', this.data.password)
                 // 假设登录态保持1天
-                let expiredTime = +new Date() + 1 * 24 * 60 * 60 * 1000 * 180
+                let expiredTime = new Date() + 1 * 24 * 60 * 60 * 1000 * 180
                 app.globalData.expiredTime = expiredTime
                 wx.setStorageSync('EXPIREDTIME', expiredTime)
-
                 wx.showToast({
                     title: '登录成功',
                     mask: true
                   }),
-                  app.sleep(1200)
-                wx.getUserProfile({
-                  desc: '是否授权？',
-                  success: (res) => {
-                    //console.log(res)
-                    let datalist1 = res
-                    wx.login({
-                      success: (res) => {
-                        //console.log(res)
-                        let datalist2 = res
-                        wx.request({
-                          url: '', //
-                          data: {
-                            'encryptedData': datalist1.encryptedData,
-                            'iv': datalist1.iv,
-                            'signature': datalist1.signature,
-                            'rawData': datalist1.rawData,
-                            'code': datalist2.code,
-                            'userid': app.globalData.userid
-                          },
-                          success: (res) => {
-                            //console.log(res)
-                          }
-                        })
-                      }
-                    })
-                  }
-                })
-
-                wx.requestSubscribeMessage({
-                  tmplIds: ['Fehs8jFNXvAJixC7KkudGdsH1uKw5t_-UnehkRMfaB8', 'Fehs8jFNXvAJixC7KkudGaGyx-3_zmdEYjk-5zCbG1g', '9stBRAqDVcQt15Oi4FgLw75P7xpzb9YrifSX7-jLGoQ'],
-                  success: (res) => {
-                    //console.log(res)
-                  }
-                })
-                wx.redirectTo({
-                  url: '/pages/home/home',
-                })
+                  app.sleep(1200)       
+                  this.setData({
+                    isShow:true
+                  })
               }
               if (res.data.code === 99) {
                 wx.showToast({
@@ -286,6 +244,53 @@ Page({
     wx.navigateTo({
       url: '/pages/home/home',
     })
+  },
+  getUserProfile(e){
+    wx.getUserProfile({
+      desc: '是否授权？',
+      success: (res) => {
+        console.log(res)
+        let datalist1 = res
+        wx.login({
+          success: (res) => {
+            //console.log(res)
+            let datalist2 = res
+            wx.request({
+              url: 'https://www.hustnic.tech:8081/NIC/getLoginCertificate',
+              data: {
+                'encryptedData': datalist1.encryptedData,
+                'iv': datalist1.iv,
+                'signature': datalist1.signature,
+                'rawData': datalist1.rawData,
+                'code': datalist2.code,
+                'userid': app.globalData.userid
+              },
+              success: (res) => {
+                //console.log(res)
+              }
+            })
+          }
+        })
+      },
+      fail:(res)=>{
+        //console.log(res)
+      },
+      complete:(res)=>{
+        wx.redirectTo({
+          url: '/pages/home/home',
+        })
+      }
+    })
+    wx.requestSubscribeMessage({
+      tmplIds: ['Fehs8jFNXvAJixC7KkudGdsH1uKw5t_-UnehkRMfaB8', 'Fehs8jFNXvAJixC7KkudGaGyx-3_zmdEYjk-5zCbG1g', '9stBRAqDVcQt15Oi4FgLw75P7xpzb9YrifSX7-jLGoQ'],
+      success: (res) => {
+        console.log(res)
+      }
+    })
+  },
+  cancelMask(){
+    wx.redirectTo({
+      url: '/pages/home/home',
+    })
   }
-  // Login2() { }
 })

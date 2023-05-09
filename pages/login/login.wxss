@@ -1,4 +1,7 @@
 /* pages/login/login.wxss */
+page{
+  --bu-color: #0b1f51;
+}
 .v1{
   display: block;
   position:absolute;
@@ -117,3 +120,103 @@ button{
   border-radius: 2%;
 }
 
+.mask-bac {
+  z-index: 11;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.text{
+  position: relative;
+    top: 30rpx;
+    left: 30rpx;
+    font-size: 19px;
+    color: black;
+}
+.modal {
+  width: 600rpx;
+  height: 450rpx;
+  border-radius: 20rpx;
+  position: fixed;
+  z-index: 11;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  box-sizing: border-box;
+  padding: 1em;
+  color: #7e7a7a;
+  font-size: 27rpx;
+  line-height: 40rpx;
+}
+
+
+
+.pannel-item {
+  display: flex;
+  align-items: center;
+  border: 6rpx outset;
+
+}
+
+.pannel-item-other {
+  margin: 0 1em;
+  margin-bottom: -13rpx;
+  background-color: #f0ecfe;
+  border-radius: 5%;
+}
+
+.pannel-item .last {
+  margin-bottom: -13rpx;
+}
+
+.pannel-label {
+  width: 160rpx;
+  margin-right: 32rpx;
+}
+
+.pannel-text {
+  flex: 1;
+  color: rgb(0, 0, 0);
+  opacity: 0.9;
+}
+
+.pannel-text.empty {
+  opacity: 0.26;
+}
+
+.modal .mbutton-box {
+  position: absolute;
+  bottom: 50rpx;
+  width: 540rpx;
+  margin: .5em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.mbutton-box>button {
+  flex: 1;
+  font-size: 29rpx;
+  margin: 0 10rpx .5em;
+  padding: 0;
+  color: var(--bu-color);
+  /* background-color: #aef4e0; */
+  border: 1px solid var(--bu-color) !important;
+  border-radius: 2%;
+}
+
+.modal.noShow {
+  top: -0%;
+  opacity: 0;
+  transition: all 1s;
+}
+
+.modal.show {
+  top: 50%;
+  transition: all 1s;
+  opacity: 1;
+}

@@ -7,8 +7,8 @@ App({
     wx.setStorageSync('logs', logs)
     let sessionId = wx.getStorageSync('SESSIONID')
     let expiredTime = wx.getStorageSync('EXPIREDTIME')
-    let userid = wx.getStorage('USERID')
-    let password = wx.getStorage("PASSWORD")
+    let userid = wx.getStorageSync('USERID')
+    let password = wx.getStorageSync("PASSWORD")
     let now = +new Date()
     if (now - expiredTime <= 1 * 24 * 60 * 60 * 1000 * 180) {
       this.globalData.sessionId = sessionId

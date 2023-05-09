@@ -26,7 +26,19 @@
    </view>
  </view>
  
-
+ <view class="mask" hidden="{{!isShow}}">
+  <view class="mask-bac" catchtouchmove='true'>
+    <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
+      <view class='text' >是否绑定微信</view>
+      <view class="mbutton-box">
+        <button style="background-color: var(--bu-color); color:white" bindtap="getUserProfile">绑定微信</button>
+        <button bindtap="cancelMask">取消</button>
+        
+      </view>
+    </view>
+    
+  </view>
+</view>
 
 
 
