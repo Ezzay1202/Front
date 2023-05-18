@@ -86,7 +86,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) { },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -200,13 +200,13 @@ Page({
                 app.globalData.expiredTime = expiredTime
                 wx.setStorageSync('EXPIREDTIME', expiredTime)
                 wx.showToast({
-                    title: '登录成功',
-                    mask: true
-                  }),
-                  app.sleep(1200)       
-                  this.setData({
-                    isShow:true
-                  })
+                  title: '登录成功',
+                  mask: true
+                }),
+                  app.sleep(1200)
+                this.setData({
+                  isShow: true
+                })
               }
               if (res.data.code === 99) {
                 wx.showToast({
@@ -234,7 +234,7 @@ Page({
         },
         complete: () => {
           wx.hideLoading({
-            success: (res) => {},
+            success: (res) => { },
           })
         }
       })
@@ -245,7 +245,7 @@ Page({
       url: '/pages/home/home',
     })
   },
-  getUserProfile(e){
+  getUserProfile(e) {
     wx.getUserProfile({
       desc: '是否授权？',
       success: (res) => {
@@ -272,23 +272,23 @@ Page({
           }
         })
       },
-      fail:(res)=>{
+      fail: (res) => {
         //console.log(res)
       },
-      complete:(res)=>{
+      complete: (res) => {
         wx.redirectTo({
           url: '/pages/home/home',
         })
       }
     })
     wx.requestSubscribeMessage({
-      tmplIds: ['Fehs8jFNXvAJixC7KkudGdsH1uKw5t_-UnehkRMfaB8', 'Fehs8jFNXvAJixC7KkudGaGyx-3_zmdEYjk-5zCbG1g', '9stBRAqDVcQt15Oi4FgLw75P7xpzb9YrifSX7-jLGoQ'],
+      tmplIds: ['uuQFBkHw0iV9EQhtGNIwaF4zD7kTN4JIIMgJScDUUqY', 'srvRC1W53H6Fns29YbmsVpZgh1j82egPTT6gD8T1VFc', '9stBRAqDVcQt15Oi4FgLw75P7xpzb9YrifSX7-jLGoQ'],
       success: (res) => {
         console.log(res)
       }
     })
   },
-  cancelMask(){
+  cancelMask() {
     wx.redirectTo({
       url: '/pages/home/home',
     })
