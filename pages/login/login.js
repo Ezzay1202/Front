@@ -17,14 +17,18 @@ Page({
    */
   data: {
     open: true,
-    isShow: false
+    isShow: false,
+    userid: '',
+    password: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log('check')
     if (app.globalData.userid != '' && app.globalData.password != '') {
+      console.log('yes')
       this.Login1()
     }
   },
@@ -83,50 +87,11 @@ Page({
       open: open
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) { },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
 
   },
 
@@ -143,23 +108,23 @@ Page({
     })
   },
   Login1() {
-    if (this.data.password === '' && app.globalData.password === '') {
-      wx.showToast({
-        title: '请输入密码！',
-        icon: 'error',
-        mask: true
-      })
-    }
+    console.log(app.globalData)
     if (this.data.userid === '' && app.globalData.userid === '') {
       wx.showToast({
         title: '请输入账户！',
         icon: 'error',
         mask: true
       })
+    } else if (this.data.password === '' && app.globalData.password === '') {
+      wx.showToast({
+        title: '请输入密码！',
+        icon: 'error',
+        mask: true
+      })
     } else {
       let userid = (this.data.userid === '') ? app.globalData.userid : this.data.userid
       let password = (this.data.password === '') ?
-        globalData.password : this.data.password
+        app.globalData.password : this.data.password
       wx.showLoading({
         title: '登陆中...',
         mask: true,
@@ -200,9 +165,9 @@ Page({
                 app.globalData.expiredTime = expiredTime
                 wx.setStorageSync('EXPIREDTIME', expiredTime)
                 wx.showToast({
-                  title: '登录成功',
-                  mask: true
-                }),
+                    title: '登录成功',
+                    mask: true
+                  }),
                   app.sleep(1200)
                 this.setData({
                   isShow: true
@@ -234,7 +199,7 @@ Page({
         },
         complete: () => {
           wx.hideLoading({
-            success: (res) => { },
+            success: (res) => {},
           })
         }
       })

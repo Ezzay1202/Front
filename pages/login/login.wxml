@@ -8,7 +8,7 @@
      <!-- 账号 -->
      <view class="phoneCs">
        <!-- <image src="/images/zhang.png" class="ph"></image> -->
-       <input placeholder="HUST学号或手机号" type="text" bindinput="content" />
+       <input placeholder="HUST学号" type="text" bindinput="content" />
      </view>
      <!-- 密码 -->
      <view class="passwordCs">
