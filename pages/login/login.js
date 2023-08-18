@@ -17,6 +17,7 @@ Page({
    */
   data: {
     open: true,
+    auto:false,
     isShow: false,
     userid: '',
     password: ''
@@ -27,8 +28,10 @@ Page({
    */
   onLoad(options) {
     console.log('check')
-    if (app.globalData.userid != '' && app.globalData.password != '') {
-      console.log('yes')
+    if (app.globalData.userid != '') {
+      this.setData({
+        auto:true
+      })
       this.Login1()
     }
   },
@@ -153,12 +156,14 @@ Page({
                 app.globalData.identity = res.data.data.identity
                 app.globalData.missionTaken = res.data.data.missionTaken
                 app.globalData.finishedPerformance = res.data.data.finishedPerformance
+                app.globalData.password = this.data.password
 
                 // 把 SessionId 和过期时间放在内存中的全局对象和本地缓存里边
                 app.globalData.sessionId = res.data.sessionId
                 wx.setStorageSync('SESSIONID', res.data.sessionId)
                 //存储账号密码
                 wx.setStorageSync('USERID', res.data.data.userid)
+                //console.log(this.data.password)
                 wx.setStorageSync('PASSWORD', this.data.password)
                 // 假设登录态保持1天
                 let expiredTime = new Date() + 1 * 24 * 60 * 60 * 1000 * 180
@@ -169,9 +174,17 @@ Page({
                     mask: true
                   }),
                   app.sleep(1200)
-                this.setData({
-                  isShow: true
-                })
+                  //
+                if(!this.data.auto){
+                  this.setData({
+                    isShow: true
+                  })
+                }
+                if(this.data.auto){
+                  wx.redirectTo({
+                    url: '/pages/home/home',
+                  })
+                }
               }
               if (res.data.code === 99) {
                 wx.showToast({
@@ -205,6 +218,7 @@ Page({
       })
     }
   },
+
   gotoHome() {
     wx.navigateTo({
       url: '/pages/home/home',

@@ -34,6 +34,7 @@ Page({
       src: "https://www.hustnic.tech/NIC/work_files/image/myt.png",
       bindtap: "gotoMydate"
     }],
+
     list: [{
       value: 'label_1',
       label: '首页',
@@ -243,6 +244,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log(app.globalData)
     this.getKcb()
     this.setData({
       headP: app.globalData.head
@@ -414,6 +416,7 @@ Page({
     })
   },
   gotoMyper() {
+    app.globalData.hasLogin = false
     wx.showToast({
       title: '敬请期待',
       icon: 'error'
