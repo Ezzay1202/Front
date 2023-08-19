@@ -9,8 +9,9 @@ App({
     let expiredTime = wx.getStorageSync('EXPIREDTIME')
     let userid = wx.getStorageSync('USERID')
     let password = wx.getStorageSync('PASSWORD')
-    let now = +new Date()
-    if (now - expiredTime <= 1 * 24 * 60 * 60 * 1000 * 180) {
+    let now = new Date()
+    if (now.getTime() - expiredTime <= 1 * 24 * 60 * 60 * 1000 * 180) {
+      console.log(password)
       this.globalData.sessionId = sessionId
       this.globalData.expiredTime = expiredTime
       this.globalData.userid = userid
@@ -37,10 +38,10 @@ App({
     userid: "",
     password: "",
     username: "",
-    head:"",//headurl
+    head: "", //headurl
     tel: "",
     identity: "",
-    head:'',
+    head: '',
     authority1: 0, //记者权限（接任务）
     authority2: 0, //编辑部成员（发布任务和审核稿件权限）
     authority3: 0, //辅导员权限（稿件二审）

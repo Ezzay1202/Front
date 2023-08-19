@@ -314,7 +314,7 @@ Component({
         success: (res) => {
           console.log(res.data)
           this.setData({
-            config: res.data
+            config: !res.data
           })
         }
       })

@@ -416,7 +416,6 @@ Page({
     })
   },
   gotoMyper() {
-    app.globalData.hasLogin = false
     wx.showToast({
       title: '敬请期待',
       icon: 'error'
