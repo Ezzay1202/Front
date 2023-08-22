@@ -18,13 +18,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    /*
     if (options.type = "baidu") {
       this.setData({
         url: "https://mp.weixin.qq.com/s/HVmzDgdhLzOJUcBnIMy0fg"
       })
     }
     this.setSwiperHeight(this.data.arr[1], 1)
-
+    */
   },
 
   /**
@@ -182,21 +183,21 @@ Component({
       title: '新闻速览'
     }],
     list: [{
-      value: 'label_1',
-      label: '首页',
-      icon: 'home'
-    },
-    {
-      value: 'label_2',
-      label: '发布',
-      icon: 'check-rectangle'
-    },
+        value: 'label_1',
+        label: '首页',
+        icon: 'home'
+      },
+      {
+        value: 'label_2',
+        label: '发布',
+        icon: 'check-rectangle'
+      },
 
-    {
-      value: 'label_4',
-      label: '我的',
-      icon: 'user'
-    },
+      {
+        value: 'label_4',
+        label: '我的',
+        icon: 'user'
+      },
     ],
     todaywork: [], //我的时间
     day: [], //查看所有日程
@@ -210,47 +211,47 @@ Component({
       text: '辅导员审稿',
     }, {
       text: '排版',
-    },],
+    }, ],
     listm: [{
-      text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-      date: "2022-11-30",
-      location: "管理学院105",
-      people: [{
-        key: 1,
-        name: "陶柯羽"
-      }, {
-        key: 2,
-        name: "高原"
-      }, {
-        key: 5,
-        name: "徐文慧"
-      }, {
-        key: 4,
-        name: "张赫"
-      },],
-      url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-      score: 4.5
-    },
-    {
-      text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-      date: "2022-11-30",
-      location: "管理学院105",
-      people: [{
-        key: 1,
-        name: "陶柯羽"
-      }, {
-        key: 2,
-        name: "高原"
-      }, {
-        key: 5,
-        name: "徐文慧"
-      }, {
-        key: 4,
-        name: "张赫"
-      },],
-      url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-      score: 4.5
-    },
+        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
+        date: "2022-11-30",
+        location: "管理学院105",
+        people: [{
+          key: 1,
+          name: "陶柯羽"
+        }, {
+          key: 2,
+          name: "高原"
+        }, {
+          key: 5,
+          name: "徐文慧"
+        }, {
+          key: 4,
+          name: "张赫"
+        }, ],
+        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
+        score: 4.5
+      },
+      {
+        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
+        date: "2022-11-30",
+        location: "管理学院105",
+        people: [{
+          key: 1,
+          name: "陶柯羽"
+        }, {
+          key: 2,
+          name: "高原"
+        }, {
+          key: 5,
+          name: "徐文慧"
+        }, {
+          key: 4,
+          name: "张赫"
+        }, ],
+        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
+        score: 4.5
+      },
     ],
     time: 2 * 24 * 60 * 60 * 1000,
     timeData: {},
@@ -314,11 +315,10 @@ Component({
         success: (res) => {
           console.log(res.data)
           this.setData({
-            config: !res.data
+            config: res.data
           })
         }
       })
-
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/frontpage?method=show',
         success: (res) => {
@@ -329,12 +329,9 @@ Component({
             news: res.data.data.news,
             picture: res.data.data.photos
           })
-          ////console.log(this.data.news)
+          //console.log(this.data.news)
         }
       })
-
-
-
       if (app.globalData.hasLogin) {
         if (app.globalData.kcb_code != 702) {
           wx.request({
@@ -460,6 +457,11 @@ Component({
         })
       }
       this.setSwiperHeight(this.data.arr[1], 1)
+      if (app.globalData.userid != '' && !app.globalData.hasLogin) {
+        wx.redirectTo({
+          url: '/pages/login/login',
+        })
+      }
     }
   },
   methods: {
@@ -515,7 +517,7 @@ Component({
         locationname: e.detail.value
       })
     },
-    kcbSpider(e) { },
+    kcbSpider(e) {},
 
 
 
@@ -528,16 +530,16 @@ Component({
           icon: 'error'
         })
       } else
-        if (app.globalData.kcb_code != 702) {
-          wx.showToast({
-            title: '您未导入课程表!',
-            icon: 'error'
-          })
-        } else {
-          wx.navigateTo({
-            url: "/pages/mydate/mydate?kcb=" + JSON.stringify(app.globalData.kcb),
-          })
-        }
+      if (app.globalData.kcb_code != 702) {
+        wx.showToast({
+          title: '您未导入课程表!',
+          icon: 'error'
+        })
+      } else {
+        wx.navigateTo({
+          url: "/pages/mydate/mydate?kcb=" + JSON.stringify(app.globalData.kcb),
+        })
+      }
     },
     checkedTag(e) {
       ////console.log(e)

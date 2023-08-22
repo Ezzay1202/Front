@@ -79,7 +79,7 @@
           <text>总绩效</text>
         </view>
       </view>
-      <block wx:for="{{performance}}" wx:if="index">
+      <block wx:key="{{performance}}" wx:if="index">
         <view class="performance-box performance-items">
           <view class="p-leftbox">
             <image src="{{item.complete? ('https://www.hustnic.tech/NIC/work_files/image//sx.png'):('https://www.hustnic.tech/NIC/work_files/image//kx.png')}}" mode="" />

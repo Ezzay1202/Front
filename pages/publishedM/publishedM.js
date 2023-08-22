@@ -5,6 +5,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    if (app.globalData.userid != '' && !app.globalData.hasLogin) {
+      wx.redirectTo({
+        url: '/pages/login/login',
+      })
+    }
     let list_show = []
     this.setData({
       listm: [],
@@ -121,6 +126,7 @@ Page({
 
       }
     })
+    
   },
   downloadFile(e) {
     let arr = e.currentTarget.dataset.index
