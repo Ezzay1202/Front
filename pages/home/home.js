@@ -310,6 +310,7 @@ Component({
 
   lifetimes: {
     attached() {
+      console.log(app.globalData)
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/getConfig',
         success: (res) => {
@@ -695,7 +696,7 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      ////console.log('picker change:', );
+      //console.log('picker change:', );
       this.setData({
         [`${key}Visible`]: false,
         [`${key}Value`]: e.detail.value,
@@ -741,7 +742,7 @@ Component({
 
     },
     goto(e) {
-      ////console.log(e)
+      //console.log(e)
       let url = e.currentTarget.dataset.url
       wx.navigateTo({
         url: `../seeM/seeM?url=${url}`,
@@ -789,7 +790,7 @@ Component({
       })
     },
     goTomoudle2(e) {
-      ////console.log("yes")
+      //console.log("yes")
       let index = e.currentTarget.dataset.index
       let url = this.data.functions[index].goto
       if (url === '/pages/checkM/checkM') {

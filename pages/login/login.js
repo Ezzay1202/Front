@@ -239,7 +239,7 @@ Page({
               // 把 SessionId 和过期时间放在内存中的全局对象和本地缓存里边
               app.globalData.sessionId = res.data.sessionId
               wx.setStorageSync('SESSIONID', res.data.sessionId)
-              // 假设登录态保持1天
+              // 假设登录态保持180天
               let expiredTime = new Date().getTime() + 1 * 24 * 60 * 60 * 1000 * 180
               app.globalData.expiredTime = expiredTime
               wx.setStorageSync('EXPIREDTIME', expiredTime)

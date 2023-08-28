@@ -18,8 +18,8 @@ Page({
     wx.request({
       url: 'https://www.hustnic.tech:8081/NIC/show?method=showNeed',
       success: (res) => {
-        let list_all = res.data.data;
-        //console.log(res)
+        let list_all = res.data.data
+        console.log(res)
         let j = -1;
         let len = list_all.length;
         for (let i = 0; i < len; i++) {
