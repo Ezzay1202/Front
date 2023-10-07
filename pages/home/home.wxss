@@ -808,9 +808,3 @@ van-count-down>text {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-.blur {
-  position: relative;
-  filter: blur(10px);
-  user-select: none;
-}

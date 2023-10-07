@@ -1,4 +1,4 @@
-// pages/submitM/submitM.js
+// pages/submitM/submitM.js 提交稿件
 const app = getApp()
 let index1 = 0
 let list_all = []

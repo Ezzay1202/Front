@@ -212,47 +212,6 @@ Component({
     }, {
       text: '排版',
     }, ],
-    listm: [{
-        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-        date: "2022-11-30",
-        location: "管理学院105",
-        people: [{
-          key: 1,
-          name: "陶柯羽"
-        }, {
-          key: 2,
-          name: "高原"
-        }, {
-          key: 5,
-          name: "徐文慧"
-        }, {
-          key: 4,
-          name: "张赫"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-        score: 4.5
-      },
-      {
-        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-        date: "2022-11-30",
-        location: "管理学院105",
-        people: [{
-          key: 1,
-          name: "陶柯羽"
-        }, {
-          key: 2,
-          name: "高原"
-        }, {
-          key: 5,
-          name: "徐文慧"
-        }, {
-          key: 4,
-          name: "张赫"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-        score: 4.5
-      },
-    ],
     time: 2 * 24 * 60 * 60 * 1000,
     timeData: {},
 
@@ -463,6 +422,34 @@ Component({
           url: '/pages/login/login',
         })
       }
+
+
+      wx.request({
+        url: 'https://www.hustnic.tech:8081/NIC/user',
+        data: {
+          "method": "userInfo",
+          "data": {
+            "userid": app.globalData.userid.toString()
+          }
+        },
+        success: (res) => {
+          console.log(res.data.data)
+          let listm = []
+          for (let i = 0; i < res.data.data.length; i++) {
+            let temp = {
+              text: res.data.data[i].description,
+              date: res.data.data[i].time.year + '-' + res.data.data[i].time.month + '-' + res.data.data[i].time.day + '-' + res.data.data[i].time.beginHour + ':' + res.data.data[i].time.beginMinute,
+              steps_num: 1
+            }
+            listm.push(temp)
+          }
+          console.log(listm)
+          this.setData({
+            listm:listm
+          })
+        }
+      })
+
     }
   },
   methods: {
@@ -495,7 +482,7 @@ Component({
         this.setData({
           swiperViewHeight: headerHeight
         });
-        ////console.log(this.data.swiperViewHeight)
+        //console.log(this.data.swiperViewHeight)
         // if (this.data.swiperViewHeight >= this.data.maxswiperViewHeight[num]) {
         //   //console.log(this.data.swiperViewHeight)
         //   let maxswiperViewHeight = 'maxswiperViewHeight[' + num + ']'
@@ -543,13 +530,13 @@ Component({
       }
     },
     checkedTag(e) {
-      ////console.log(e)
+      //console.log(e)
       this.setData({
         index2: e.currentTarget.dataset.index2
       })
     },
     checkedTags(e) {
-      //////console.log(this.data)
+      //console.log(this.data)
       this.setData({
         index1: e.currentTarget.dataset.index1
       })
@@ -560,12 +547,12 @@ Component({
       let peopleRelated = this.data.peopleRelated //是一个Map
       let peopleTemp = this.data.categories[index1].items[index2].label //一个人名
       let useridTemp = this.data.categories[index1].items[index2].userid //
-      //////console.log(peopleTemp)
+      //console.log(peopleTemp)
       let tempList = peopleRelated.get(this.data.categories[index1].title)
 
-      ////console.log(tempList)
-      ////console.log(this.data.categories)
-      //////console.log(peopleRelated)
+      //console.log(tempList)
+      //console.log(this.data.categories)
+      //console.log(peopleRelated)
       if (tempList.includes(peopleTemp)) //检测Map中是否有此人名
       {
         tempList.splice(tempList.indexOf(peopleTemp), 1)
@@ -589,7 +576,7 @@ Component({
         peoples: number,
         useridList: useridList
       })
-      ////console.log(useridList)
+      //console.log(useridList)
     },
     onClickPicker(e) {
       const {
@@ -601,7 +588,7 @@ Component({
       });
     },
     addEvent(e) {
-      ////console.log(this.data)
+      //console.log(this.data)
       if (this.data.eventname === '') {
         wx.showToast({
           title: '请输入事项名称',
@@ -643,7 +630,7 @@ Component({
             }
           },
           success: (res) => {
-            ////console.log(res.data)
+            //console.log(res.data)
             if (res.data.code === 702) {
               wx.showToast({
                 title: res.data.msg
@@ -662,7 +649,11 @@ Component({
       }
 
     },
-
+    gotoSubmitM() {
+      wx.navigateTo({
+        url: '/pages/submitM/submitM',
+      })
+    },
     showCheck(e) {
       this.setData({
         showcheck: !this.data.showcheck
@@ -676,7 +667,7 @@ Component({
     },
 
     onSideBarChange(e) {
-      ////console.log(e.detail)
+      //console.log(e.detail)
       const {
         value
       } = e.detail;
@@ -687,7 +678,7 @@ Component({
     },
 
     onColumnChange(e) {
-      ////console.log('picker pick:', e);
+      //console.log('picker pick:', e);
     },
     joinArray(array) {
       return array.join('');
@@ -722,8 +713,8 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      ////console.log(e, '取消');
-      ////console.log('picker1 cancel:');
+      //console.log(e, '取消');
+      //console.log('picker1 cancel:');
       this.setData({
         [`${key}Visible`]: false,
       });
