@@ -14,7 +14,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     value: 'label_4',
     steps_num: 2,
     functions: [{
@@ -51,104 +50,12 @@ Page({
         icon: 'user'
       },
     ],
-    listm: [{
-        text: "学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动",
-        date: "2022-11-30",
-        location: "管理学院105",
-        people: [{
-          key: 1,
-          name: "陶柯羽"
-        }, {
-          key: 2,
-          name: "高原"
-        }, {
-          key: 5,
-          name: "徐文慧"
-        }, {
-          key: 4,
-          name: "张赫"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",
-        score: 4.5
-      },
-      {
-        text: "学习二十大，管院在行动 | 管理学院“领跑计划”学生骨干成长训练营开展专题培训",
-        date: "2022-11-29",
-        location: "校史馆",
-        people: [{
-          key: 1,
-          name: "杨彬雪"
-        }, {
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "桂云凤"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/yReSTZQn5L9UC4eE2zsYNw",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      },
-      {
-        text: "五连冠！管理学院乒乓球队再创佳绩",
-        date: "2022-11-24",
-        location: "光谷体育馆",
-        people: [{
-          key: 5,
-          name: "黄颖澜"
-        }, {
-          key: 4,
-          name: "方权泽"
-        }, ],
-        url: "https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg",
-        score: 4.5
-      }
-    ],
+    listm: [],
+    listn: [],
     step: [{
-      text: '已接稿',
+      text: '接稿',
     }, {
-      text: '已写稿',
+      text: '写稿',
     }, {
       text: '编辑部审稿',
     }, {
@@ -156,65 +63,8 @@ Page({
     }, {
       text: '排版',
     }, ],
-    todaywork: [{
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      },
-      {
-        name: "概率论",
-        add: "D888",
-        time1: "8:00",
-        time2: "10:00",
-      },
-    ],
-    day: [{
-      date: "1/12 周四",
-      work: [{
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-        {
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-      ],
-    }, {
-      date: "1/12 周四",
-      work: [{
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-        {
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-      ],
-    }, {
-      date: "1/12 周四",
-      work: [{
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-        {
-          name: "概率论",
-          add: "D888",
-          time1: "8:00",
-          time2: "10:00",
-        },
-      ],
-    }],
+    todaywork: [],
+    day: [],
     performance: [{
       title: "完成第一篇稿件",
       style: false,
@@ -245,6 +95,8 @@ Page({
    */
   onLoad(options) {
     this.getKcb()
+    this.getHistoryMission()
+    this.getRelatedMission()
     this.setData({
       headP: app.globalData.head
     })
@@ -470,8 +322,104 @@ Page({
       icon: 'error'
     })
     */
-     wx.navigateTo({
-       url: '/pages/mywork/mywork',
-     })
-  }
+    wx.navigateTo({
+      url: '/pages/mywork/mywork',
+    })
+  },
+  getHistoryMission() {
+    wx.request({
+      url: 'https://www.hustnic.tech:8081/NIC/user',
+      data: {
+        'method': 'showFinished',
+        'data': {
+          'userid': app.globalData.userid.toString()
+        }
+      },
+      success: (res) => {
+        console.log(res.data)
+        let list1 = res.data.data
+        let list2 = []
+        for (let i = 0; i < list1.length; i++) {
+          let peoplelist = [{
+            key: 1,
+            name: list1[i]['statusChanger']['编辑部审稿']['username']
+          }, {
+            key: 2,
+            name: list1[i]['statusChanger']['辅导员审核']['username']
+          }]
+          for (let j = 0; j < list1[i]['reporters']['article'].length; j++) {
+            let temp = {
+              key: 5,
+              name: list1[i]['reporters']['article'][j]['username']
+            }
+            peoplelist.push(temp)
+          }
+          for (let j = 0; j < list1[i]['reporters']['photo'].length; j++) {
+            let temp = {
+              key: 4,
+              name: list1[i]['reporters']['photo'][j]['username']
+            }
+            peoplelist.push(temp)
+          }
+          let temp = {
+            text: list1[i]['description'],
+            date: list1[i]['time']['year'] + '-' + list1[i]['time']['month'] + '-' + list1[i]['time']['day'],
+            location: list1[i]['place'],
+            people: peoplelist,
+            url: list1[i]['url']
+          }
+          console.log(temp)
+          list2.push(temp)
+        }
+        this.setData({
+          listm: list2
+        })
+      }
+    })
+  },
+  getRelatedMission() {
+    wx.request({
+      url: 'https://www.hustnic.tech:8081/NIC/user',
+      data: {
+        'method': 'showRelated',
+        'data': {
+          'userid': app.globalData.userid.toString()
+        }
+      },
+      success: (res) => {
+        console.log(res.data.data)
+        let listn = []
+        for (let i = 0; i < res.data.data.length; i++) {
+          let temp = {
+            text: res.data.data[i].description,
+            date: res.data.data[i].time.year + '-' + res.data.data[i].time.month + '-' + res.data.data[i].time.day + '-' + res.data.data[i].time.beginHour + ':' + res.data.data[i].time.beginMinute,
+            steps_num: this.checkStep(res.data.data[i].status)
+          }
+          listn.push(temp)
+        }
+        console.log(listn)
+        this.setData({
+          listn: listn
+        })
+      }
+    })
+  },
+  gotoURL(e) {
+    console.log(e)
+    let url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url: `../seeM/seeM?url=${url}`,
+    })
+  },
+  checkStep(status) {
+    if (status['写稿'] == '未达成') {
+      return 1
+    } else if (status['编辑部审稿'] == '未达成') {
+      return 2
+    } else if (status['辅导员审核'] == '未达成') {
+      return 3
+    } else {
+      return 4
+    }
+  },
 })

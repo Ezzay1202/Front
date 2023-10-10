@@ -171,7 +171,7 @@ Page({
       }
     })
 
-    ////console.log('1')
+    //console.log('1')
     const query = wx.createSelectorQuery().in(this);
     query
       .selectAll('.title')
@@ -227,7 +227,7 @@ Page({
       tagbox: temptagbox
     })
     //console.log(this.data.categories[index1].items[index2].checked)
-    ////console.log(this.data.tag)
+    //console.log(this.data.tag)
   },
 
   /**

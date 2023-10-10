@@ -148,7 +148,7 @@ page {
 .myM-ing {
   padding: 1em;
   max-height: 25vh;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .m-ing {
@@ -171,7 +171,7 @@ page {
 .myM-history {
   padding: .5em;
   max-height: 26vh;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .m {
@@ -486,12 +486,6 @@ page {
   top: 50%;
   transition: all 1s;
   opacity: 1;
-}
-
-.blur {
-  position: relative;
-  filter: blur(10px);
-  user-select: none;
 }
 
 .tip {

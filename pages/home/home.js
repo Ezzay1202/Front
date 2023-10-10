@@ -202,9 +202,9 @@ Component({
     todaywork: [], //我的时间
     day: [], //查看所有日程
     step: [{
-      text: '已接稿',
+      text: '接稿',
     }, {
-      text: '已写稿',
+      text: '写稿',
     }, {
       text: '编辑部审稿',
     }, {
@@ -269,6 +269,7 @@ Component({
 
   lifetimes: {
     attached() {
+      this.getMywork()
       console.log(app.globalData)
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/getConfig',
@@ -282,7 +283,7 @@ Component({
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/frontpage?method=show',
         success: (res) => {
-          ////console.log(res.data)
+          //console.log(res.data)
           this.setData({
             swiper_show: res.data.data.top,
             boxshow: res.data.data.middle,
@@ -305,7 +306,7 @@ Component({
               }
             },
             success: (res) => {
-              ////console.log(res.data)
+              //console.log(res.data)
               app.globalData.kcb_code = res.data.code
               if (app.globalData.kcb_code === 702) {
                 app.globalData.kcb = res.data.data
@@ -328,7 +329,7 @@ Component({
               }
             },
             success: (res) => {
-              ////console.log(res.data)
+              //console.log(res.data)
               let affairList = res.data.data
               let eventList = []
               for (let j = 0; j < affairList.length; j++) {
@@ -380,7 +381,7 @@ Component({
             let people = []
             let dep = []
             let datas = res.data.data
-            ////console.log(datas)
+            //console.log(datas)
             let i = 0
             let maps1 = {}
             let maps2 = {}
@@ -392,7 +393,7 @@ Component({
               maps1.label = k
               maps1.title = k
               let tempRelated = this.data.peopleRelated //Map
-              ////console.log(tempRelated)
+              //console.log(tempRelated)
               tempRelated.set(k, [])
               this.setData({
                 peopleRelated: tempRelated
@@ -412,7 +413,7 @@ Component({
             this.setData({
               categories: people
             })
-            ////console.log(this.data.categories);
+            //console.log(this.data.categories);
           }
         })
       }
@@ -439,20 +440,45 @@ Component({
             let temp = {
               text: res.data.data[i].description,
               date: res.data.data[i].time.year + '-' + res.data.data[i].time.month + '-' + res.data.data[i].time.day + '-' + res.data.data[i].time.beginHour + ':' + res.data.data[i].time.beginMinute,
-              steps_num: 1
+              steps_num: this.checkStep(res.data.data[i].status),
+              bool: this.checkStep(res.data.data[i].status) == 1 ? true : false
             }
             listm.push(temp)
           }
           console.log(listm)
           this.setData({
-            listm:listm
+            listm: listm
           })
         }
       })
-
     }
   },
   methods: {
+    checkStep(status) {
+      if (status['写稿'] == '未达成') {
+        return 1
+      } else if (status['编辑部审稿'] == '未达成') {
+        return 2
+      } else if (status['辅导员审核'] == '未达成') {
+        return 3
+      } else {
+        return 4
+      }
+    },
+    getMywork() {
+      wx.request({
+        url: 'https://www.hustnic.tech:8081/NIC/user',
+        data: {
+          'method': 'showRelated',
+          'data': {
+            'userid': app.globalData.userid.toString()
+          }
+        },
+        success: (res) => {
+          console.log(res.data)
+        }
+      })
+    },
     onPageScroll() {
       this.setSwiperHeight(this.data.arr[1], 1)
 
@@ -500,7 +526,7 @@ Component({
       })
     },
     locationName(e) {
-      ////console.log(this.data.peopleRelated.size)
+      //console.log(this.data.peopleRelated.size)
       this.setData({
         locationname: e.detail.value
       })
@@ -582,7 +608,7 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      ////console.log('picker pick:', place1);
+      //console.log('picker pick:', place1);
       this.setData({
         [`${key}Visible`]: true,
       });
@@ -853,5 +879,7 @@ Component({
         })
       }
     },
+
   },
-});
+
+})
