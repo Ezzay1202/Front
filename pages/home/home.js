@@ -418,7 +418,7 @@ Component({
         })
       }
       this.setSwiperHeight(this.data.arr[1], 1)
-      if (app.globalData.userid != '' && !app.globalData.hasLogin) {
+      if (app.globalData.userid != '' && !app.globalData.hasLogin && !this.data.config) {
         wx.redirectTo({
           url: '/pages/login/login',
         })

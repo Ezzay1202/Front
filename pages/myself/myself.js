@@ -98,6 +98,7 @@ Page({
     this.getHistoryMission()
     this.getRelatedMission()
     this.setData({
+      name: app.globalData.username,
       headP: app.globalData.head
     })
   },

@@ -6,7 +6,7 @@
   </view>
   <view class="head">
     <image src='{{headP}}'></image>
-    <text>烟霞状元</text>
+    <text>{{name}}</text>
   </view>
   <!-- 第2部分 -->
   <view class='middle-container'>
