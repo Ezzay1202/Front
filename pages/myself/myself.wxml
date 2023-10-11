@@ -155,7 +155,7 @@
         <input placeholder="密码" type="password" placeholder-class="p-class" bindinput="password" class="phonecs" />
       </view>
       <view class="button-box">
-        <button bindtap="cannelMask">取消</button>
+        <button bindtap="cancelMask">取消</button>
         <button style="background-color: var(--bu-color); color:white" bindtap="kcbSpider">确认</button>
       </view>
     </view>
