@@ -184,19 +184,15 @@ Page({
   kcbSpider(e) {
     if (userid === '') {
       wx.showToast({
-        title: 'title',
+        title: '请输入学号',
         icon: 'error'
       })
     } else if (password === '') {
       wx.showToast({
-        title: 'title',
+        title: '请输入密码',
         icon: 'error'
       })
     } else {
-      wx.showLoading({
-        title: '导入课程表中...',
-        mask: true //防止多次点击
-      })
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/lesson',
         data: {
@@ -218,16 +214,13 @@ Page({
               isShow: false
             })
           }
-        },
-        fail: () => {
-          wx.showToast({
-            title: '导入失败，请稍后再试！',
-            icon: 'error'
-          })
-        },
-        complete: () => {
-          wx.hideLoading()
         }
+      })
+      wx.showToast({
+        title: '已提交成功',
+      })
+      this.setData({
+        isShow: false
       })
     }
   },
