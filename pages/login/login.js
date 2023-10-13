@@ -27,14 +27,8 @@ Page({
    */
   onLoad(options) {
     console.log('check')
-    wx.request({
-      url: 'https://www.hustnic.tech:8081/NIC/getConfig',
-      success: (res) => {
-        console.log(res.data)
-        this.setData({
-          config: res.data
-        })
-      }
+    this.setData({
+      config: app.globalData.config
     })
     if (app.globalData.userid != '') {
       this.Login3()

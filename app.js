@@ -17,6 +17,13 @@ App({
       this.globalData.userid = userid
       this.globalData.password = password
     }
+    wx.request({
+      url: 'https://www.hustnic.tech:8081/NIC/getConfig',
+      success: (res) => {
+        console.log(res.data)
+        this.globalData.config = res.data
+      }
+    })
 
     // 登录
     wx.login({
@@ -36,6 +43,7 @@ App({
   globalData: {
     hasLogin: false,
     userid: "",
+    config: true,
     password: "",
     username: "",
     head: "", //headurl

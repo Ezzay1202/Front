@@ -1,224 +1,114 @@
 <!--pages/publishM/publishM.wxml-->
 
 <!--bind:change="onTabsChange" bind:click="onTabsClick" -->
-<t-tabs defaultValue="{{0}}" t-class="custom-tabs">
-  <t-tab-panel label="日常任务" value="0">
-    <view class="container" style="align-items: stretch; justify-content: stretch; height: 82vh; overflow: scroll;">
-      <view class="conts title_box">
-        <textarea maxlength='-1' class="areas" placeholder='输入稿件的标题' bindinput="setDescription1">
+<block wx:if="{{config}}">
+  <t-tabs defaultValue="{{0}}" t-class="custom-tabs">
+    <t-tab-panel label="日常任务" value="0">
+      <view class="container" style="align-items: stretch; justify-content: stretch; height: 82vh; overflow: scroll;">
+        <view class="conts title_box">
+          <textarea maxlength='-1' class="areas" placeholder='输入稿件的标题' bindinput="setDescription1">
        </textarea>
-      </view>
-      <!-- <view class="demo-textarea">
+        </view>
+        <!-- <view class="demo-textarea">
       <text class="pannel-label">活动标题</text>
       <t-textarea class="t-textarea__placeholder" placeholder="请输入文字" bind:change="setDescription1" bordered maxlength="100" indicator />
     </view> -->
-      <view class="box tagbox">
-        <view class="tag-item">
-          <block wx:for="{{tagbox}}" wx:key="index">
-            <view class="tag">{{item.tag}}</view>
-          </block>
-        </view>
-        <button bind:tap="showCheck">选择稿件类型</button>
-        <!-- <view class="pannel-label">稿件类型</view>
+        <view class="box tagbox">
+          <view class="tag-item">
+            <block wx:for="{{tagbox}}" wx:key="index">
+              <view class="tag">{{item.tag}}</view>
+            </block>
+          </view>
+          <button bind:tap="showCheck">选择稿件类型</button>
+          <!-- <view class="pannel-label">稿件类型</view>
       <view class="pannel-text empty"> {{'选择稿件类型' }}</view>
       <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" /> -->
-      </view>
-      <block>
-        <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
-          <view class="pannel-label">起始时间</view>
-          <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
-          <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
         </view>
-      </block>
-
-      <block>
-        <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE2}}">
-          <view class="pannel-label">结束时间</view>
-          <view class="pannel-text {{date2CurrentValue.length ? '' : 'empty'}}"> {{date2CurrentValue || '选择时间' }}</view>
-          <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
-        </view>
-      </block>
-
-      <view class="pannel-item last">
-        <view class="pannel-label">地点</view>
-        <input label="地点" placeholder="输入任务的地点" bind:change="setPlace" placeholder-style="color:black; opacity: 0.26;" />
-      </view>
-
-      <block>
-        <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.People}}">
-          <view class="pannel-label">小记者</view>
-          <view class="pannel-text {{peopleValue.length ? '' : 'empty'}}"> {{peopleCurrentValue || '选择人数' }}</view>
-          <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
-        </view>
-      </block>
-
-      <view class="apply">
-        <button bindtap="publishMission">发布</button>
-      </view>
-    </view>
-    <!-- 起始时间 不带标题 -->
-    <t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
-      <t-picker-item options="{{months}}"></t-picker-item>
-      <t-picker-item options="{{days}}"></t-picker-item>
-      <t-picker-item options="{{hour}}"></t-picker-item>
-      <t-picker-item options="{{minute}}"></t-picker-item>
-    </t-picker>
-
-    <!-- 结束时间 不带标题 -->
-    <t-picker visible="{{date2Visible}}" value="{{date2Value}}" data-key="date2" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
-      <t-picker-item options="{{hour}}"></t-picker-item>
-      <t-picker-item options="{{minute}}"></t-picker-item>
-    </t-picker>
-
-    <!-- 小记者 不带标题 -->
-    <t-picker visible="{{peopleVisible}}" value="{{peopleValue}}" data-key="people" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
-      <t-picker-item options="{{wen}}"></t-picker-item>
-      <t-picker-item options="{{she}}"></t-picker-item>
-    </t-picker>
-
-    <t-popup visible="{{showcheck}}" bind:visible-change="onVisibleChange" placement="bottom">
-      <view class="block2">
-        <view class="header">
-          <view class="btn2 btn--cancel" aria-role="button" bindtap="cancelCheck">取消</view>
-          <view class="title"></view>
-          <view class="btn2 btn--confirm" aria-role="button" bindtap="showCheck">确定</view>
-        </view>
-        <view class="side-bar-wrapper">
-          <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
-            <t-side-bar-item wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" disabled="{{item.disabled}}" badge-props="{{item.badgeProps}}" />
-          </t-side-bar>
-          <view class="content">
-            <scroll-view style="transform: translateY(-{{sideBarIndex * 100}}%)" wx:for="{{categories}}" wx:key="index" class="section" scroll-y scroll-with-animation show-scrollbar="{{true}}" data-index1="{{index1}}" wx:for-index='index1' bindtap="checkedTags" enhanced="{{true}}">
-              <view class="title2">{{item.title || item.label}}</view>
-              <view class="t-grid">
-                <view style="margin-left:0px; margin-top:0px" class="t-grid__content">
-                  <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" wx:for-index='index2'>
-                    <view hover-stay-time="200" style="width:33.33333333333333%" class="t-grid-item t-sidebar" bindtap="checkedTag" data-index2="{{index2}}">
-                      <view>
-                        <view class="t-grid-item__content t-sidebar-content">
-                          <view class="t-grid-item__words t-grid-item__words--vertical">
-                            <view class="t-grid-item__text t-sidebar-text{{cargo.checked ? '-checked' : ' '}}">
-                              {{cargo.label}}
-                            </view>
-                          </view>
-                        </view>
-                      </view>
-                    </view>
-                  </block>
-                </view>
-              </view>
-              <!-- <t-grid column="{{3}}" border="{{false}}">
-                <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
-                  <t-grid-item 
-                  t-class-text="t-sidebar-text{{cargo.checked ? '-checked' : ' '}}" 
-                  t-class="t-sidebar" t-class-content="t-sidebar-content"
-                  data-index2="{{index}}"
-                  bindtap="checkedTag" 
-                  text="{{cargo.label}}" >
-                  </t-grid-item>
-                </block>
-              </t-grid> -->
-
-            </scroll-view>
-          </view>
-        </view>
-      </view>
-    </t-popup>
-
-
-  </t-tab-panel>
-  <t-tab-panel label="其他任务" value="1">
-    <view class="container" style="align-items: stretch; justify-content: stretch; height: 82vh; overflow: scroll;">
-      <view class="block">
-        <text>请选择任务状态</text>
-        <t-steps  current="{{first}}" bind:change="currentStepChange">
-          <block wx:for="{{step}}" wx:key="index">
-            <t-step-item title="{{item.text}}" content="{{item.content}}" hidden="{{item.hidden}}" t-class-content='t-class-content'/>
-          </block>
-        </t-steps>
-      </view>
-      <view class="box tagbox">
-        <view class="tag-item">
-          <block wx:for="{{tagbox2}}" wx:key="index">
-            <view class="tag">{{item.tag}}</view>
-          </block>
-        </view>
-        <button bind:tap="showCheck2">选择稿件类型</button>
-      </view>
-      <block>
-        <view class="box filebox">
-          <view class="right" wx:for="{{fileArray}}" wx:key="index">
-            <image src="https://www.hustnic.tech/NIC/work_files/image//删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
-            </image>
-            <view class="n" bindtap="previewFile" data-path="{{item.path}}">
-              <image src="https://www.hustnic.tech/NIC/work_files/image//docm.png" mode="aspectFill"></image>
-              <text class="name">{{item.name}}</text>
-              <text class="size">{{item.size}}</text>
-            </view>
-          </view>
-          <button bindtap="uploadFile">选择稿件及照片</button>
-        </view>
-
-
-        <block wx:if="{{currentStep===2}}">
-          <view class="pannel-item-other pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE}}">
-            <view class="pannel-label">截止时间</view>
-            <view class="pannel-text {{dateCurrentValue.length ? '' : 'empty'}}"> {{dateCurrentValue || '选择时间' }}</view>
+        <block>
+          <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
+            <view class="pannel-label">起始时间</view>
+            <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
             <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
           </view>
-          <view class="conts">
-            <textarea maxlength='-1' class="areas" placeholder='添加稿件的备注' bindinput="setDescription2">
-       </textarea>
-          </view>
-
         </block>
-        <t-picker visible="{{dateVisible}}" value="{{dateValue}}" data-key="date" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
-          <t-picker-item options="{{months}}"></t-picker-item>
-          <t-picker-item options="{{days}}"></t-picker-item>
-          <t-picker-item options="{{hour}}"></t-picker-item>
-        </t-picker>
 
-        <!--提交评价-->
+        <block>
+          <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE2}}">
+            <view class="pannel-label">结束时间</view>
+            <view class="pannel-text {{date2CurrentValue.length ? '' : 'empty'}}"> {{date2CurrentValue || '选择时间' }}</view>
+            <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+          </view>
+        </block>
+
+        <view class="pannel-item last">
+          <view class="pannel-label">地点</view>
+          <input label="地点" placeholder="输入任务的地点" bind:change="setPlace" placeholder-style="color:black; opacity: 0.26;" />
+        </view>
+
+        <block>
+          <view class="pannel-item last" bind:tap="onClickPicker" data-key="{{PICKER_KEY.People}}">
+            <view class="pannel-label">小记者</view>
+            <view class="pannel-text {{peopleValue.length ? '' : 'empty'}}"> {{peopleCurrentValue || '选择人数' }}</view>
+            <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+          </view>
+        </block>
+
         <view class="apply">
-          <button bindtap="publishMission2">发布任务</button>
+          <button bindtap="publishMission">发布</button>
         </view>
-        <!-- <button class='btn' bindtap='publishMission2'>发布任务</button> -->
-      </block>
+      </view>
+      <!-- 起始时间 不带标题 -->
+      <t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+        <t-picker-item options="{{months}}"></t-picker-item>
+        <t-picker-item options="{{days}}"></t-picker-item>
+        <t-picker-item options="{{hour}}"></t-picker-item>
+        <t-picker-item options="{{minute}}"></t-picker-item>
+      </t-picker>
 
-    </view>
+      <!-- 结束时间 不带标题 -->
+      <t-picker visible="{{date2Visible}}" value="{{date2Value}}" data-key="date2" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+        <t-picker-item options="{{hour}}"></t-picker-item>
+        <t-picker-item options="{{minute}}"></t-picker-item>
+      </t-picker>
 
-    <t-popup visible="{{showcheck2}}" bind:visible-change="onVisibleChange2" placement="bottom">
-      <view class="block2">
-        <view class="header">
-          <view class="btn2 btn--cancel" aria-role="button" bindtap="cancelCheck2">取消</view>
-          <view class="title"></view>
-          <view class="btn2 btn--confirm" aria-role="button" bindtap="showCheck2">确定</view>
-        </view>
-        <view class="side-bar-wrapper">
-          <t-side-bar value="{{sideBarIndex2}}" bind:change="onSideBarChange2">
-            <t-side-bar-item wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" disabled="{{item.disabled}}" badge-props="{{item.badgeProps}}" />
-          </t-side-bar>
-          <view class="content">
-            <scroll-view style="transform: translateY(-{{sideBarIndex * 100}}%)" wx:for="{{categories}}" wx:key="index" class="section" scroll-y scroll-with-animation show-scrollbar="{{true}}" data-index12="{{index12}}" wx:for-index='index12' bindtap="checkedTags2" enhanced="{{true}}">
-              <view class="title2">{{item.title || item.label}}</view>
-              <view class="t-grid">
-                <view style="margin-left:0px; margin-top:0px" class="t-grid__content">
-                  <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" wx:for-index='index22'>
-                    <view hover-stay-time="200" style="width:33.33333333333333%" class="t-grid-item t-sidebar" bindtap="checkedTag2" data-index22="{{index22}}">
-                      <view>
-                        <view class="t-grid-item__content t-sidebar-content">
-                          <view class="t-grid-item__words t-grid-item__words--vertical">
-                            <view class="t-grid-item__text t-sidebar-text{{cargo.checked ? '-checked' : ' '}}">
-                              {{cargo.label}}
+      <!-- 小记者 不带标题 -->
+      <t-picker visible="{{peopleVisible}}" value="{{peopleValue}}" data-key="people" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+        <t-picker-item options="{{wen}}"></t-picker-item>
+        <t-picker-item options="{{she}}"></t-picker-item>
+      </t-picker>
+
+      <t-popup visible="{{showcheck}}" bind:visible-change="onVisibleChange" placement="bottom">
+        <view class="block2">
+          <view class="header">
+            <view class="btn2 btn--cancel" aria-role="button" bindtap="cancelCheck">取消</view>
+            <view class="title"></view>
+            <view class="btn2 btn--confirm" aria-role="button" bindtap="showCheck">确定</view>
+          </view>
+          <view class="side-bar-wrapper">
+            <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
+              <t-side-bar-item wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" disabled="{{item.disabled}}" badge-props="{{item.badgeProps}}" />
+            </t-side-bar>
+            <view class="content">
+              <scroll-view style="transform: translateY(-{{sideBarIndex * 100}}%)" wx:for="{{categories}}" wx:key="index" class="section" scroll-y scroll-with-animation show-scrollbar="{{true}}" data-index1="{{index1}}" wx:for-index='index1' bindtap="checkedTags" enhanced="{{true}}">
+                <view class="title2">{{item.title || item.label}}</view>
+                <view class="t-grid">
+                  <view style="margin-left:0px; margin-top:0px" class="t-grid__content">
+                    <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" wx:for-index='index2'>
+                      <view hover-stay-time="200" style="width:33.33333333333333%" class="t-grid-item t-sidebar" bindtap="checkedTag" data-index2="{{index2}}">
+                        <view>
+                          <view class="t-grid-item__content t-sidebar-content">
+                            <view class="t-grid-item__words t-grid-item__words--vertical">
+                              <view class="t-grid-item__text t-sidebar-text{{cargo.checked ? '-checked' : ' '}}">
+                                {{cargo.label}}
+                              </view>
                             </view>
                           </view>
                         </view>
                       </view>
-                    </view>
-                  </block>
+                    </block>
+                  </view>
                 </view>
-              </view>
-              <!-- <t-grid column="{{3}}" border="{{false}}">
+                <!-- <t-grid column="{{3}}" border="{{false}}">
                 <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
                   <t-grid-item 
                   t-class-text="t-sidebar-text{{cargo.checked ? '-checked' : ' '}}" 
@@ -230,18 +120,130 @@
                 </block>
               </t-grid> -->
 
-            </scroll-view>
+              </scroll-view>
+            </view>
           </view>
         </view>
+      </t-popup>
+
+
+    </t-tab-panel>
+    <t-tab-panel label="其他任务" value="1">
+      <view class="container" style="align-items: stretch; justify-content: stretch; height: 82vh; overflow: scroll;">
+        <view class="block">
+          <text>请选择任务状态</text>
+          <t-steps current="{{first}}" bind:change="currentStepChange">
+            <block wx:for="{{step}}" wx:key="index">
+              <t-step-item title="{{item.text}}" content="{{item.content}}" hidden="{{item.hidden}}" t-class-content='t-class-content' />
+            </block>
+          </t-steps>
+        </view>
+        <view class="box tagbox">
+          <view class="tag-item">
+            <block wx:for="{{tagbox2}}" wx:key="index">
+              <view class="tag">{{item.tag}}</view>
+            </block>
+          </view>
+          <button bind:tap="showCheck2">选择稿件类型</button>
+        </view>
+        <block>
+          <view class="box filebox">
+            <view class="right" wx:for="{{fileArray}}" wx:key="index">
+              <image src="https://www.hustnic.tech/NIC/work_files/image//删除.png" bindtap="removefile" data-item="{{item}}" data-index="{{index}}">
+              </image>
+              <view class="n" bindtap="previewFile" data-path="{{item.path}}">
+                <image src="https://www.hustnic.tech/NIC/work_files/image//docm.png" mode="aspectFill"></image>
+                <text class="name">{{item.name}}</text>
+                <text class="size">{{item.size}}</text>
+              </view>
+            </view>
+            <button bindtap="uploadFile">选择稿件及照片</button>
+          </view>
+
+
+          <block wx:if="{{currentStep===2}}">
+            <view class="pannel-item-other pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE}}">
+              <view class="pannel-label">截止时间</view>
+              <view class="pannel-text {{dateCurrentValue.length ? '' : 'empty'}}"> {{dateCurrentValue || '选择时间' }}</view>
+              <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+            </view>
+            <view class="conts">
+              <textarea maxlength='-1' class="areas" placeholder='添加稿件的备注' bindinput="setDescription2">
+       </textarea>
+            </view>
+
+          </block>
+          <t-picker visible="{{dateVisible}}" value="{{dateValue}}" data-key="date" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+            <t-picker-item options="{{months}}"></t-picker-item>
+            <t-picker-item options="{{days}}"></t-picker-item>
+            <t-picker-item options="{{hour}}"></t-picker-item>
+          </t-picker>
+
+          <!--提交评价-->
+          <view class="apply">
+            <button bindtap="publishMission2">发布任务</button>
+          </view>
+          <!-- <button class='btn' bindtap='publishMission2'>发布任务</button> -->
+        </block>
+
       </view>
-    </t-popup>
-  </t-tab-panel>
-</t-tabs>
+
+      <t-popup visible="{{showcheck2}}" bind:visible-change="onVisibleChange2" placement="bottom">
+        <view class="block2">
+          <view class="header">
+            <view class="btn2 btn--cancel" aria-role="button" bindtap="cancelCheck2">取消</view>
+            <view class="title"></view>
+            <view class="btn2 btn--confirm" aria-role="button" bindtap="showCheck2">确定</view>
+          </view>
+          <view class="side-bar-wrapper">
+            <t-side-bar value="{{sideBarIndex2}}" bind:change="onSideBarChange2">
+              <t-side-bar-item wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" disabled="{{item.disabled}}" badge-props="{{item.badgeProps}}" />
+            </t-side-bar>
+            <view class="content">
+              <scroll-view style="transform: translateY(-{{sideBarIndex * 100}}%)" wx:for="{{categories}}" wx:key="index" class="section" scroll-y scroll-with-animation show-scrollbar="{{true}}" data-index12="{{index12}}" wx:for-index='index12' bindtap="checkedTags2" enhanced="{{true}}">
+                <view class="title2">{{item.title || item.label}}</view>
+                <view class="t-grid">
+                  <view style="margin-left:0px; margin-top:0px" class="t-grid__content">
+                    <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" wx:for-index='index22'>
+                      <view hover-stay-time="200" style="width:33.33333333333333%" class="t-grid-item t-sidebar" bindtap="checkedTag2" data-index22="{{index22}}">
+                        <view>
+                          <view class="t-grid-item__content t-sidebar-content">
+                            <view class="t-grid-item__words t-grid-item__words--vertical">
+                              <view class="t-grid-item__text t-sidebar-text{{cargo.checked ? '-checked' : ' '}}">
+                                {{cargo.label}}
+                              </view>
+                            </view>
+                          </view>
+                        </view>
+                      </view>
+                    </block>
+                  </view>
+                </view>
+                <!-- <t-grid column="{{3}}" border="{{false}}">
+                <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
+                  <t-grid-item 
+                  t-class-text="t-sidebar-text{{cargo.checked ? '-checked' : ' '}}" 
+                  t-class="t-sidebar" t-class-content="t-sidebar-content"
+                  data-index2="{{index}}"
+                  bindtap="checkedTag" 
+                  text="{{cargo.label}}" >
+                  </t-grid-item>
+                </block>
+              </t-grid> -->
+
+              </scroll-view>
+            </view>
+          </view>
+        </view>
+      </t-popup>
+    </t-tab-panel>
+  </t-tabs>
 
 
 
-<t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
-  <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}">
-    {{item.label}}
-  </t-tab-bar-item>
-</t-tab-bar>
+  <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
+    <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}">
+      {{item.label}}
+    </t-tab-bar-item>
+  </t-tab-bar>
+</block>

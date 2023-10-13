@@ -10,6 +10,9 @@ Page({
    */
   onLoad(options) {
     let list_show = []
+    this.setData({
+      config: app.globalData.config
+    })
     wx.request({
       url: 'https://www.hustnic.tech:8081/NIC/user',
       data: {

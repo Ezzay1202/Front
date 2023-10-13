@@ -13,7 +13,8 @@ Page({
     let list_show = []
     this.setData({
       listm: [],
-      listp: []
+      listp: [],
+      config:app.globalData.config
     })
     wx.request({
       url: 'https://www.hustnic.tech:8081/NIC/show?method=showNeed',

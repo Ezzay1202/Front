@@ -271,14 +271,8 @@ Component({
     attached() {
       this.getMywork()
       console.log(app.globalData)
-      wx.request({
-        url: 'https://www.hustnic.tech:8081/NIC/getConfig',
-        success: (res) => {
-          console.log(res.data)
-          this.setData({
-            config: res.data
-          })
-        }
+      this.setData({
+        config: app.globalData.config
       })
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/frontpage?method=show',
@@ -418,13 +412,11 @@ Component({
         })
       }
       this.setSwiperHeight(this.data.arr[1], 1)
-      if (app.globalData.userid != '' && !app.globalData.hasLogin && !this.data.config) {
+      if (app.globalData.userid != '' && !app.globalData.hasLogin && this.data.config) {
         wx.redirectTo({
           url: '/pages/login/login',
         })
       }
-
-
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/user',
         data: {

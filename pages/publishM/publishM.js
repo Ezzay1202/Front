@@ -184,6 +184,9 @@ Component({
       let list1 = []
       let list2 = []
       let temp3 = []
+      this.setData({
+        config: app.globalData.config
+      })
       wx.request({
         url: 'https://www.hustnic.tech:8081/NIC/manage?method=getTag',
         success: (res) => {
