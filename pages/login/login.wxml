@@ -2,6 +2,7 @@
 <view class="v1" style="height:{{clientHeight?clientHeight+'px':'auto'}}">
  
  <!-- v2父容器  子view使用绝对布局 -->
+ <block wx:if="{{config}}">
    <view class="v2">
      <view class="dltext" style="width: 232rpx; height: 92rpx; display: block; box-sizing: border-box; left: 0rpx; top: -2rpx">NIC</view>
   
@@ -24,6 +25,7 @@
          <button bindtap="gotoHome">取消</button>
      </view>
    </view>
+</block>
  </view>
  
  <view class="mask" hidden="{{!isShow}}">
